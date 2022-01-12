@@ -11,14 +11,6 @@
 		public const string MeltySound = "./ExternalTools/SotnRandoTools/Sounds/Melty.mp3";
 		public const string DragonInstallSound = "./ExternalTools/SotnRandoTools/Sounds/DragonInstall.mp3";
 		public const string ZaWarudoSound = "./ExternalTools/SotnRandoTools/Sounds/ZaWarudo.mp3";
-		public const string DeathLaughAlternateSound = "./ExternalTools/SotnRandoTools/Sounds/DeathLaughAlternate.mp3";
-		public const string DieSound = "./ExternalTools/SotnRandoTools/Sounds/Die.mp3";
-		public const string DracLaughSound = "./ExternalTools/SotnRandoTools/Sounds/DracLaugh.mp3";
-		public const string HohoSound = "./ExternalTools/SotnRandoTools/Sounds/Hoho.mp3";
-		public const string SlowWhatSound = "./ExternalTools/SotnRandoTools/Sounds/SlowWhat.mp3";
-		public const string SwordBroSound = "./ExternalTools/SotnRandoTools/Sounds/SwordBro.mp3";
-		public const string AlreadyDeadSound = "./ExternalTools/SotnRandoTools/Sounds/AlreadyDead.mp3";
-		public const string BattleOrdersSound = "./ExternalTools/SotnRandoTools/Sounds/BattleOrders.mp3";
 
 		public const string NamesFilePath = "./ExternalTools/SotnRandoTools/Khaos/names.txt";
 
@@ -27,7 +19,7 @@
 		public const string ApiLink = "https://github.com/TalicZealot/SotnApi";
 		public const string UpdaterLink = "https://github.com/TalicZealot/SimpleLatestReleaseUpdater";
 		public const string RandoSourceLink = "https://github.com/3snowp7im/SotN-Randomizer";
-		public const string DonateLink = "https://www.paypal.com/donate?hosted_button_id=5F8565K23F2F8";
+		public const string DonateLink = "https://streamlabs.com/taliczealot";
 
 		public const string LatestReleaseApi = "https://api.github.com/repos/taliczealot/sotnrandotools/releases";
 		public const string LatestReleaseUrl = "https://github.com/TalicZealot/SotnRandoTools/releases/latest";
@@ -54,13 +46,8 @@
 		public const string CasualPresetPath = "./ExternalTools/SotnRandoTools/Presets/casual.json";
 		public const string SafePresetPath = "./ExternalTools/SotnRandoTools/Presets/safe.json";
 		public const string SpeedrunPresetPath = "./ExternalTools/SotnRandoTools/Presets/speedrun.json";
-		public const string BatMasterPresetPath = "./ExternalTools/SotnRandoTools/Presets/bat-master.json";
 
 		public const string ConfigPath = "./ExternalTools/SotnRandoTools/ToolConfig.ini";
 		public const string CheatsPath = "./ExternalTools/SotnRandoTools/Cheats/Cheats.cht";
-		public const string CheatsBackupPath = "./ExternalTools/SotnRandoTools/Cheats/Cheats.cht.bkp";
-
-		public const string KhaosDatabase = "./ExternalTools/SotnRandoTools/Khaos/Khaos.db";
-		public const string TwitchRedirectUri = "http://localhost:8080/redirect/";
 	}
 }

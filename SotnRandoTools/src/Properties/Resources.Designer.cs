@@ -63,16 +63,6 @@ namespace SotnRandoTools.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap BizAlucard {
-            get {
-                object obj = ResourceManager.GetObject("BizAlucard", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap coop {
             get {
                 object obj = ResourceManager.GetObject("coop", resourceCulture);
@@ -83,9 +73,9 @@ namespace SotnRandoTools.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Khaos {
+        internal static System.Drawing.Bitmap khaosb {
             get {
-                object obj = ResourceManager.GetObject("Khaos", resourceCulture);
+                object obj = ResourceManager.GetObject("khaosb", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +83,9 @@ namespace SotnRandoTools.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Tracker {
+        internal static System.Drawing.Bitmap LogoTZtwtr1 {
             get {
-                object obj = ResourceManager.GetObject("Tracker", resourceCulture);
+                object obj = ResourceManager.GetObject("LogoTZtwtr1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +93,9 @@ namespace SotnRandoTools.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap VectorSimple {
+        internal static System.Drawing.Bitmap tracker {
             get {
-                object obj = ResourceManager.GetObject("VectorSimple", resourceCulture);
+                object obj = ResourceManager.GetObject("tracker", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

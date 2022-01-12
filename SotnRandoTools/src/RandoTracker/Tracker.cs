@@ -8,7 +8,6 @@ using SotnApi.Constants.Values.Game;
 using SotnApi.Interfaces;
 using SotnRandoTools.Configuration.Interfaces;
 using SotnRandoTools.Constants;
-using SotnRandoTools.Khaos.Interfaces;
 using SotnRandoTools.RandoTracker.Interfaces;
 using SotnRandoTools.RandoTracker.Models;
 using SotnRandoTools.Services;
@@ -23,7 +22,9 @@ namespace SotnRandoTools.RandoTracker
 		private readonly IToolConfig toolConfig;
 		private readonly TrackerGraphicsEngine trackerGraphicsEngine;
 		private readonly IWatchlistService watchlistService;
-		private readonly ISotnApi sotnApi;
+		private readonly IRenderingApi renderingApi;
+		private readonly IGameApi gameApi;
+		private readonly IAlucardApi alucardApi;
 
 		private List<Relic> relics = new List<Relic>
 		{
@@ -85,7 +86,7 @@ namespace SotnRandoTools.RandoTracker
 			new Location { Name = "FaerieCard",  MapRow = 108, MapCol = 418,  Rooms = new List<Room>{ new Room { Name = "FaerieCard", Values = new int[] { 0x40 } }}},
 			new Location { Name = "DemonCard",  MapRow = 316, MapCol = 234,  Rooms = new List<Room>{ new Room { Name = "DemonCard", Values = new int[] { 0x10 } }}},
 			new Location { Name = "SwordCard",  MapRow = 108, MapCol = 162,  Rooms = new List<Room>{ new Room { Name = "SwordCard", Values = new int[] { 0x40 } }}},
-			new Location { Name = "CrystalCloak", GuardedExtension = true, SpreadExtension = true,  MapRow = 268, MapCol = 322,  Rooms = new List<Room>{ new Room { Name = "CrystalCloak", Values = new int[] { 0x40 } }}},
+			new Location { Name = "CrystalCloak", GuardedExtension = true,  MapRow = 268, MapCol = 322,  Rooms = new List<Room>{ new Room { Name = "CrystalCloak", Values = new int[] { 0x40 } }}},
 			new Location { Name = "Mormegil", GuardedExtension = true,  MapRow = 364, MapCol = 138,  Rooms = new List<Room>{ new Room { Name = "Mormegil", Values = new int[] { 0x10 } }}},
 			new Location { Name = "GoldRing",  MapRow = 228, MapCol = 362,  Rooms = new List<Room>{ new Room { Name = "GoldRing", Values = new int[] { 0x10 } }}},
 			new Location { Name = "Spikebreaker",  MapRow = 372, MapCol = 330,  Rooms = new List<Room>{ new Room { Name = "Spikebreaker", Values = new int[] { 0x10 } }}},
@@ -99,9 +100,9 @@ namespace SotnRandoTools.RandoTracker
 			new Location { Name = "EyeOfVlad", SecondCastle = true,  MapRow = 114, MapCol = 264,  Rooms = new List<Room>{ new Room { Name = "EyeOfVlad", Values = new int[] { 0x10, 0x40 } }}},
 			new Location { Name = "ForceOfEcho", SecondCastle = true,  MapRow = 106, MapCol = 64,  Rooms = new List<Room>{ new Room { Name = "ForceOfEcho", Values = new int[] { 0x40 } }}},
 			new Location { Name = "GasCloud", SecondCastle = true,  MapRow = 34, MapCol = 368,  Rooms = new List<Room>{ new Room { Name = "GasCloud", Values = new int[] { 0x04 } }}},
-			new Location { Name = "RingOfArcana", GuardedExtension = true, SpreadExtension = true, SecondCastle = true,  MapRow = 218, MapCol = 400,  Rooms = new List<Room>{ new Room { Name = "RingOfArcana", Values = new int[] { 0x04 } }}},
-			new Location { Name = "DarkBlade", GuardedExtension = true, SpreadExtension = true, SecondCastle = true,  MapRow = 130, MapCol = 184,  Rooms = new List<Room>{ new Room { Name = "DarkBlade", Values = new int[] { 0x01 } }}},
-			new Location { Name = "Trio", GuardedExtension = true, SpreadExtension = true, SecondCastle = true,  MapRow = 258, MapCol = 344,  Rooms = new List<Room>
+			new Location { Name = "RingOfArcana", GuardedExtension = true, SecondCastle = true,  MapRow = 218, MapCol = 400,  Rooms = new List<Room>{ new Room { Name = "RingOfArcana", Values = new int[] { 0x04 } }}},
+			new Location { Name = "DarkBlade", GuardedExtension = true, SecondCastle = true,  MapRow = 130, MapCol = 184,  Rooms = new List<Room>{ new Room { Name = "DarkBlade", Values = new int[] { 0x01 } }}},
+			new Location { Name = "Trio", GuardedExtension = true, SecondCastle = true,  MapRow = 258, MapCol = 344,  Rooms = new List<Room>
 			{ new Room { Name = "Trio1", Values = new int[] { 0x40 } }, new Room { Name = "Trio2", Values = new int[] { 0x01 } }}},
 			new Location { Name = "Walk armor", EquipmentExtension = true, MapRow = 364, MapCol = 186, Rooms = new List<Room>{ new Room { Name = "Walk armor", Values = new int[] { 0x1 }} }},
 			new Location { Name = "Icebrand", EquipmentExtension = true, MapRow = 364, MapCol = 194, Rooms = new List<Room>{ new Room { Name = "Icebrand", Values = new int[] { 0x40 }} }},
@@ -155,10 +156,10 @@ namespace SotnRandoTools.RandoTracker
 			new Location { Name = "Moon rod", EquipmentExtension = true, SecondCastle = true, MapRow = 346, MapCol = 168, Rooms = new List<Room>{ new Room { Name = "Moon rod", Values = new int[] { 0x10 }} }},
 			new Location { Name = "Sunstone", EquipmentExtension = true, SecondCastle = true, MapRow = 322, MapCol = 112, Rooms = new List<Room>{ new Room { Name = "Sunstone", Values = new int[] { 0x4 }} }},
 			new Location { Name = "Luminus", EquipmentExtension = true, SecondCastle = true, MapRow = 328, MapCol = 64, Rooms = new List<Room>{ new Room { Name = "Luminus", Values = new int[] { 0x10, 0x40 }} }},
-			new Location { Name = "Dragon helm", EquipmentExtension = true, SpreadExtension = true, SecondCastle = true, MapRow = 346, MapCol = 32, Rooms = new List<Room>{ new Room { Name = "Dragon helm", Values = new int[] { 0x40 }} }},
-			new Location { Name = "Shotel", EquipmentExtension = true, SpreadExtension = true, SecondCastle = true, MapRow = 218, MapCol = 32, Rooms = new List<Room>{ new Room { Name = "Shotel", Values = new int[] { 0x40 }} }},
+			new Location { Name = "Dragon helm", EquipmentExtension = true, SecondCastle = true, MapRow = 346, MapCol = 32, Rooms = new List<Room>{ new Room { Name = "Dragon helm", Values = new int[] { 0x40 }} }},
+			new Location { Name = "Shotel", EquipmentExtension = true, SecondCastle = true, MapRow = 218, MapCol = 32, Rooms = new List<Room>{ new Room { Name = "Shotel", Values = new int[] { 0x40 }} }},
 			new Location { Name = "Badelaire", EquipmentExtension = true, SecondCastle = true, MapRow = 290, MapCol = 104, Rooms = new List<Room>{ new Room { Name = "Badelaire", Values = new int[] { 0x10 }} }},
-			new Location { Name = "Staurolite", EquipmentExtension = true, SpreadExtension = true, SecondCastle = true, MapRow = 264, MapCol = 120, Rooms = new List<Room>{ new Room { Name = "Staurolite", Values = new int[] { 0x40 }} }},
+			new Location { Name = "Staurolite", EquipmentExtension = true, SecondCastle = true, MapRow = 264, MapCol = 120, Rooms = new List<Room>{ new Room { Name = "Staurolite", Values = new int[] { 0x40 }} }},
 			new Location { Name = "Forbidden Library Opal", EquipmentExtension = true, SecondCastle = true, MapRow = 274, MapCol = 110, Rooms = new List<Room>{ new Room { Name = "Forbidden Library Opal", Values = new int[] { 0x04 }} }},
 			new Location { Name = "Reverse Caverns Diamond", EquipmentExtension = true, SecondCastle = true, MapRow = 218, MapCol = 224, Rooms = new List<Room>{ new Room { Name = "Reverse Caverns Diamond", Values = new int[] { 0x40 }} }},
 			new Location { Name = "Reverse Caverns Opal", EquipmentExtension = true, SecondCastle = true, MapRow = 178, MapCol = 208, Rooms = new List<Room>{ new Room { Name = "Reverse Caverns Opal", Values = new int[] { 0x4 }} }},
@@ -199,25 +200,27 @@ namespace SotnRandoTools.RandoTracker
 		private uint roomCount = 2;
 		private bool guardedExtension = true;
 		private bool equipmentExtension = false;
-		private bool spreadExtension = false;
 		private bool gameReset = true;
 		private bool secondCastle = false;
 		private bool restarted = false;
 		private bool relicOrItemCollected = false;
-		private string lastLocationVisited = "";
 		private List<MapLocation> replay = new();
 		private int prologueTime = 0;
 
-		public Tracker(IGraphics? formGraphics, IToolConfig toolConfig, IWatchlistService watchlistService, ISotnApi sotnApi)
+		public Tracker(IGraphics? formGraphics, IToolConfig toolConfig, IWatchlistService watchlistService, IRenderingApi renderingApi, IGameApi gameApi, IAlucardApi alucardApi)
 		{
 			if (formGraphics is null) throw new ArgumentNullException(nameof(formGraphics));
 			if (toolConfig is null) throw new ArgumentNullException(nameof(toolConfig));
 			if (watchlistService is null) throw new ArgumentNullException(nameof(watchlistService));
-			if (sotnApi is null) throw new ArgumentNullException(nameof(sotnApi));
+			if (renderingApi is null) throw new ArgumentNullException(nameof(renderingApi));
+			if (gameApi is null) throw new ArgumentNullException(nameof(gameApi));
+			if (alucardApi is null) throw new ArgumentNullException(nameof(alucardApi));
 			this.formGraphics = formGraphics;
 			this.toolConfig = toolConfig;
 			this.watchlistService = watchlistService;
-			this.sotnApi = sotnApi;
+			this.renderingApi = renderingApi;
+			this.gameApi = gameApi;
+			this.alucardApi = alucardApi;
 
 			if (toolConfig.Tracker.Locations)
 			{
@@ -231,7 +234,6 @@ namespace SotnRandoTools.RandoTracker
 		}
 
 		public string SeedInfo { get; set; }
-		public IVladRelicLocationDisplay VladRelicLocationDisplay { get; set; }
 
 		public TrackerGraphicsEngine GraphicsEngine { get; }
 
@@ -245,11 +247,11 @@ namespace SotnRandoTools.RandoTracker
 		{
 			UpdateSeedLabel();
 
-			bool inGame = sotnApi.GameApi.Status == Status.InGame;
-			bool updatedSecondCastle = sotnApi.GameApi.SecondCastle;
+			bool inGame = gameApi.Status == Status.InGame;
+			bool updatedSecondCastle = gameApi.SecondCastle;
 			relicOrItemCollected = false;
 
-			if (sotnApi.GameApi.InAlucardMode() && sotnApi.AlucardApi.HasHitbox())
+			if (gameApi.InAlucardMode())
 			{
 				restarted = false;
 
@@ -286,7 +288,7 @@ namespace SotnRandoTools.RandoTracker
 			{
 				gameReset = true;
 			}
-			else if (sotnApi.GameApi.InPrologue())
+			else if (gameApi.InPrologue())
 			{
 				prologueTime++;
 				if (!restarted)
@@ -338,7 +340,7 @@ namespace SotnRandoTools.RandoTracker
 			roomCount = 2;
 			foreach (var relic in relics)
 			{
-				relic.Collected = false;
+				relic.Status = false;
 			}
 			foreach (var item in progressionItems)
 			{
@@ -357,7 +359,7 @@ namespace SotnRandoTools.RandoTracker
 
 		private void UpdateSeedLabel()
 		{
-			if (SeedInfo == DefaultSeedInfo && sotnApi.GameApi.Status == Status.MainMenu)
+			if (SeedInfo == DefaultSeedInfo && gameApi.Status == Status.MainMenu)
 			{
 				getSeedData();
 				trackerGraphicsEngine.Render();
@@ -367,18 +369,17 @@ namespace SotnRandoTools.RandoTracker
 
 		private void UpdateLocations()
 		{
-			uint currentRooms = sotnApi.AlucardApi.Rooms;
+			uint currentRooms = alucardApi.Rooms;
 			if (currentRooms > roomCount)
 			{
 				roomCount = currentRooms;
 				watchlistService.UpdateWatchlist(watchlistService.SafeLocationWatches);
 				CheckRooms(watchlistService.SafeLocationWatches);
-				if (equipmentExtension || spreadExtension)
+				if (equipmentExtension)
 				{
 					watchlistService.UpdateWatchlist(watchlistService.EquipmentLocationWatches);
 					CheckRooms(watchlistService.EquipmentLocationWatches);
 				}
-
 			}
 		}
 
@@ -391,51 +392,12 @@ namespace SotnRandoTools.RandoTracker
 				{
 					if (watchlistService.RelicWatches[i].Value > 0)
 					{
-						relics[i].Collected = true;
+						relics[i].Status = true;
 						relicOrItemCollected = true;
-						Console.WriteLine($"Found relic {relics[i].Name} at: {lastLocationVisited}");
-						if (VladRelicLocationDisplay is not null)
-						{
-							switch (relics[i].Name)
-							{
-								case "HeartOfVlad":
-									if (VladRelicLocationDisplay.HeartOfVladLocation is null)
-									{
-										VladRelicLocationDisplay.HeartOfVladLocation = lastLocationVisited;
-									}
-									break;
-								case "ToothOfVlad":
-									if (VladRelicLocationDisplay.ToothOfVladLocation is null)
-									{
-										VladRelicLocationDisplay.ToothOfVladLocation = lastLocationVisited;
-									}
-									break;
-								case "RibOfVlad":
-									if (VladRelicLocationDisplay.RibOfVladLocation is null)
-									{
-										VladRelicLocationDisplay.RibOfVladLocation = lastLocationVisited;
-									}
-									break;
-								case "RingOfVlad":
-									if (VladRelicLocationDisplay.RingOfVladLocation is null)
-									{
-										VladRelicLocationDisplay.RingOfVladLocation = lastLocationVisited;
-									}
-									break;
-								case "EyeOfVlad":
-									if (VladRelicLocationDisplay.EyeOfVladLocation is null)
-									{
-										VladRelicLocationDisplay.EyeOfVladLocation = lastLocationVisited;
-									}
-									break;
-								default:
-									break;
-							}
-						}
 					}
 					else
 					{
-						relics[i].Collected = false;
+						relics[i].Status = false;
 					}
 					DrawRelicsAndItems();
 					if (toolConfig.Tracker.Locations)
@@ -465,13 +427,13 @@ namespace SotnRandoTools.RandoTracker
 						{
 							case 0:
 							case 1:
-								progressionItems[i].Status = (sotnApi.AlucardApi.Accessory1 == progressionItems[i].Value) || (sotnApi.AlucardApi.Accessory2 == progressionItems[i].Value);
+								progressionItems[i].Status = (alucardApi.Accessory1 == progressionItems[i].Value) || (alucardApi.Accessory2 == progressionItems[i].Value);
 								break;
 							case 2:
-								progressionItems[i].Status = (sotnApi.AlucardApi.Armor == progressionItems[i].Value);
+								progressionItems[i].Status = (alucardApi.Armor == progressionItems[i].Value);
 								break;
 							case 3:
-								progressionItems[i].Status = (sotnApi.AlucardApi.Helm == progressionItems[i].Value);
+								progressionItems[i].Status = (alucardApi.Helm == progressionItems[i].Value);
 								break;
 							default:
 								progressionItems[i].Status = false;
@@ -502,7 +464,7 @@ namespace SotnRandoTools.RandoTracker
 					}
 					else
 					{
-						thrustSwords[i].Status = (sotnApi.AlucardApi.RightHand == thrustSwords[i].Value);
+						thrustSwords[i].Status = (alucardApi.RightHand == thrustSwords[i].Value);
 					}
 					DrawRelicsAndItems();
 					if (toolConfig.Tracker.Locations)
@@ -517,8 +479,8 @@ namespace SotnRandoTools.RandoTracker
 		private void getSeedData()
 
 		{
-			string seedName = sotnApi.GameApi.ReadSeedName();
-			preset = sotnApi.GameApi.ReadPresetName();
+			string seedName = gameApi.ReadSeedName();
+			preset = gameApi.ReadPresetName();
 			if (preset == "tournament" || preset == "")
 			{
 				preset = "custom";
@@ -538,17 +500,6 @@ namespace SotnRandoTools.RandoTracker
 					break;
 				case "og":
 					guardedExtension = false;
-					break;
-				case "guarded-og":
-					guardedExtension = true;
-					break;
-				case "bat-master":
-					guardedExtension = false;
-					spreadExtension = true;
-					LoadLocks(Paths.BatMasterPresetPath, false);
-					break;
-				case "speedrun":
-					LoadLocks(Paths.SpeedrunPresetPath, false);
 					break;
 				case "custom":
 					guardedExtension = toolConfig.Tracker.CustomLocationsGuarded;
@@ -579,31 +530,13 @@ namespace SotnRandoTools.RandoTracker
 			{
 				if (!locations[i].Status && locations[i].SecondCastle == secondCastle)
 				{
-					if (locations[i].SpreadExtension && !locations[i].GuardedExtension && !spreadExtension)
+					if (locations[i].EquipmentExtension && !equipmentExtension)
 					{
 						continue;
 					}
-					if (locations[i].EquipmentExtension && !equipmentExtension)
-					{
-						if (locations[i].SpreadExtension && !spreadExtension)
-						{
-							continue;
-						}
-						else if (!locations[i].SpreadExtension)
-						{
-							continue;
-						}
-					}
 					if (locations[i].GuardedExtension && !guardedExtension)
 					{
-						if (locations[i].SpreadExtension && !spreadExtension)
-						{
-							continue;
-						}
-						else if (!locations[i].SpreadExtension)
-						{
-							continue;
-						}
+						continue;
 					}
 					ColorMapRoom(i, (uint) locations[i].AvailabilityColor, locations[i].SecondCastle);
 				}
@@ -620,7 +553,7 @@ namespace SotnRandoTools.RandoTracker
 				{
 					roomWatch = watchlistService.EquipmentLocationWatches.Where(x => x.Notes.ToLower() == room.Name.ToLower()).FirstOrDefault();
 				}
-				sotnApi.GameApi.SetRoomToUnvisited(roomWatch.Address);
+				gameApi.SetRoomToUnvisited(roomWatch.Address);
 			}
 		}
 
@@ -635,13 +568,13 @@ namespace SotnRandoTools.RandoTracker
 			}
 			uint borderColor = color > 0 ? (uint) MapColor.Border : 0;
 
-			if (locations[i].EquipmentExtension && spreadExtension == false)
+			if (locations[i].EquipmentExtension)
 			{
-				sotnApi.RenderingApi.ColorMapLocation(row, col, color);
+				renderingApi.ColorMapLocation(row, col, color);
 			}
 			else
 			{
-				sotnApi.RenderingApi.ColorMapRoom(row, col, color, borderColor);
+				renderingApi.ColorMapRoom(row, col, color, borderColor);
 			}
 		}
 
@@ -659,7 +592,7 @@ namespace SotnRandoTools.RandoTracker
 					row = (398 / 2) - row;
 					col = (504 / 4) - col;
 				}
-				return sotnApi.RenderingApi.RoomIsRendered(row, col);
+				return renderingApi.RoomIsRendered(row, col);
 			}
 			return true;
 		}
@@ -685,6 +618,7 @@ namespace SotnRandoTools.RandoTracker
 						{
 							foreach (int value in room.Values)
 							{
+								Console.WriteLine($"Tracker: {location.Name} change, value = {value}");
 								if ((watch.Value & value) == value)
 								{
 									location.Status = true;
@@ -708,8 +642,6 @@ namespace SotnRandoTools.RandoTracker
 										Console.WriteLine($"Added {coopWatch.Notes} at index {watchIndex} value {watchlistService.CoopLocationValues[watchIndex]} to coopValues.");
 									}
 									ClearMapLocation(locations.IndexOf(location));
-
-									lastLocationVisited = location.Name;
 								}
 							}
 						}
@@ -786,7 +718,7 @@ namespace SotnRandoTools.RandoTracker
 			Relic relic = relics.Where(relic => relic.Name.ToLower() == name).FirstOrDefault();
 			if (relic != null)
 			{
-				return relic.Collected;
+				return relic.Status;
 			}
 			Item progressionItem = progressionItems.Where(item => item.Name.ToLower() == name).FirstOrDefault();
 			if (progressionItem != null)
@@ -804,8 +736,8 @@ namespace SotnRandoTools.RandoTracker
 
 		private void SaveReplayLine()
 		{
-			int currentMapX = (int) sotnApi.AlucardApi.MapX;
-			int currentMapY = (int) sotnApi.AlucardApi.MapY;
+			int currentMapX = (int) alucardApi.MapX;
+			int currentMapY = (int) alucardApi.MapY;
 
 			if ((currentMapY == 44 && currentMapX < 19) || (currentMapX < 2 && currentMapY < 3) || currentMapX > 200 || currentMapY > 200)
 			{
@@ -863,7 +795,7 @@ namespace SotnRandoTools.RandoTracker
 			int relicsNumber = 0;
 			for (int i = 0; i < relics.Count; i++)
 			{
-				if (relics[i].Collected)
+				if (relics[i].Status)
 				{
 					relicsNumber |= (int) Math.Pow(2, i);
 				}

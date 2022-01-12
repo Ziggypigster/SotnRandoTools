@@ -3,7 +3,6 @@ using System.Drawing;
 using System.Windows.Forms;
 using SotnApi.Interfaces;
 using SotnRandoTools.Configuration.Interfaces;
-using SotnRandoTools.Khaos.Interfaces;
 using SotnRandoTools.RandoTracker;
 using SotnRandoTools.RandoTracker.Adapters;
 using SotnRandoTools.Services;
@@ -14,20 +13,26 @@ namespace SotnRandoTools
 	{
 		private readonly IToolConfig toolConfig;
 		private readonly IWatchlistService watchlistService;
-		private readonly ISotnApi sotnApi;
+		private readonly IRenderingApi renderingApi;
+		private readonly IGameApi gameApi;
+		private readonly IAlucardApi alucardApi;
 
 		private GraphicsAdapter? formGraphics;
 		private Graphics? internalGraphics;
 		private ITracker? tracker;
 
-		public TrackerForm(IToolConfig toolConfig, IWatchlistService watchlistService, ISotnApi sotnApi)
+		public TrackerForm(IToolConfig toolConfig, IWatchlistService watchlistService, IRenderingApi renderingApi, IGameApi gameApi, IAlucardApi alucardApi)
 		{
 			if (toolConfig is null) throw new ArgumentNullException(nameof(toolConfig));
 			if (watchlistService is null) throw new ArgumentNullException(nameof(watchlistService));
-			if (sotnApi is null) throw new ArgumentNullException(nameof(sotnApi));
+			if (renderingApi is null) throw new ArgumentNullException(nameof(renderingApi));
+			if (gameApi is null) throw new ArgumentNullException(nameof(gameApi));
+			if (alucardApi is null) throw new ArgumentNullException(nameof(alucardApi));
 			this.toolConfig = toolConfig;
 			this.watchlistService = watchlistService;
-			this.sotnApi = sotnApi;
+			this.renderingApi = renderingApi;
+			this.gameApi = gameApi;
+			this.alucardApi = alucardApi;
 
 			InitializeComponent();
 			SuspendLayout();
@@ -38,12 +43,6 @@ namespace SotnRandoTools
 			this.tracker.Update();
 		}
 
-		public void SetTrackerVladRelicLocationDisplay(IVladRelicLocationDisplay vladRelicLocationDisplay)
-		{
-			if (vladRelicLocationDisplay is null) throw new ArgumentNullException(nameof(vladRelicLocationDisplay));
-			tracker.VladRelicLocationDisplay = vladRelicLocationDisplay;
-		}
-
 		private void TrackerForm_Load(object sender, EventArgs e)
 		{
 			this.TopMost = toolConfig.Tracker.AlwaysOnTop;
@@ -51,7 +50,7 @@ namespace SotnRandoTools
 			this.Location = toolConfig.Tracker.Location;
 			this.internalGraphics = this.CreateGraphics();
 			this.formGraphics = new GraphicsAdapter(internalGraphics);
-			this.tracker = new Tracker(formGraphics, toolConfig, watchlistService, sotnApi);
+			this.tracker = new Tracker(formGraphics, toolConfig, watchlistService, renderingApi, gameApi, alucardApi);
 		}
 
 		private void TrackerForm_Paint(object sender, PaintEventArgs e)

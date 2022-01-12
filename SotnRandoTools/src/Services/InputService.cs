@@ -11,7 +11,7 @@ namespace SotnRandoTools.Services
 	public class InputService : IInputService
 	{
 		private readonly IJoypadApi joypadApi;
-		private readonly ISotnApi sotnApi;
+		private readonly IAlucardApi alucardApi;
 		private List<Dictionary<string, object>> inputHistory = new();
 		private List<Dictionary<string, bool>> moveHistory = new();
 		private Input dragonPunch = new Input
@@ -40,7 +40,6 @@ namespace SotnRandoTools.Services
 		{
 			MotionSequence = new List<Dictionary<string, object>>
 			{
-				new Dictionary<string, object> {[InputKeys.Forward] = false},
 				new Dictionary<string, object> {[InputKeys.Forward] = true},
 				new Dictionary<string, object> {[InputKeys.Forward] = false},
 				new Dictionary<string, object> {[InputKeys.Forward] = true}
@@ -48,23 +47,23 @@ namespace SotnRandoTools.Services
 			Activator = null
 		};
 
-		public InputService(IJoypadApi joypadApi, ISotnApi sotnApi)
+		public InputService(IJoypadApi joypadApi, IAlucardApi alucardApi)
 		{
 			if (joypadApi is null) throw new ArgumentNullException(nameof(joypadApi));
-			if (sotnApi is null) throw new ArgumentNullException(nameof(sotnApi));
+			if (alucardApi is null) throw new ArgumentNullException(nameof(alucardApi));
 			this.joypadApi = joypadApi;
-			this.sotnApi = sotnApi;
+			this.alucardApi = alucardApi;
 		}
 
 		public void UpdateInputs()
 		{
-			inputHistory.Add((Dictionary<string, object>) joypadApi.Get());
+			inputHistory.Add(joypadApi.Get().ToDictionary(kvp => kvp.Key, kvp => kvp.Value));
 			if (inputHistory.Count > 120)
 			{
 				inputHistory.RemoveAt(0);
 			}
 
-			if (sotnApi.AlucardApi.FacingLeft)
+			if (alucardApi.FacingLeft)
 			{
 				inputHistory[inputHistory.Count - 1].Add(InputKeys.Forward, Convert.ToBoolean(inputHistory[inputHistory.Count - 1][PlaystationInputKeys.Left]));
 				inputHistory[inputHistory.Count - 1].Add(InputKeys.Back, Convert.ToBoolean(inputHistory[inputHistory.Count - 1][PlaystationInputKeys.Right]));
@@ -94,7 +93,7 @@ namespace SotnRandoTools.Services
 				moveHistory[moveHistory.Count - 1].Add(InputKeys.HalfCircleForward, false);
 			}
 
-			if (ReadInput(dash, Globals.InputBufferSizeDash))
+			if (ReadInput(dash, Globals.InputBufferSize))
 			{
 				moveHistory[moveHistory.Count - 1].Add(InputKeys.Dash, true);
 			}

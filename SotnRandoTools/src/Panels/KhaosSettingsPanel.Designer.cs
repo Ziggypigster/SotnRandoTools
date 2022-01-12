@@ -30,37 +30,22 @@ namespace SotnRandoTools
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             this.khaosPanelTitle = new System.Windows.Forms.Label();
             this.divider = new System.Windows.Forms.Label();
             this.saveButton = new System.Windows.Forms.Button();
             this.khaosTabs = new System.Windows.Forms.TabControl();
             this.generalTab = new System.Windows.Forms.TabPage();
             this.generalSettingsBox = new System.Windows.Forms.GroupBox();
-            this.costDecayCheckBox = new System.Windows.Forms.CheckBox();
-            this.keepVladRelicsCheckbox = new System.Windows.Forms.CheckBox();
             this.dynamicIntervalCheckBox = new System.Windows.Forms.CheckBox();
             this.pandoraMaxTextBox = new System.Windows.Forms.TextBox();
             this.pandoraMinTextBox = new System.Windows.Forms.TextBox();
@@ -80,6 +65,13 @@ namespace SotnRandoTools
             this.volumeLabel = new System.Windows.Forms.Label();
             this.volumeTrackBar = new System.Windows.Forms.TrackBar();
             this.alertsCheckbox = new System.Windows.Forms.CheckBox();
+            this.inputTab = new System.Windows.Forms.TabPage();
+            this.botApiKeyBox = new System.Windows.Forms.GroupBox();
+            this.botApiKey = new System.Windows.Forms.TextBox();
+            this.namesBox = new System.Windows.Forms.GroupBox();
+            this.namesBrowseButton = new System.Windows.Forms.Button();
+            this.namesPath = new System.Windows.Forms.TextBox();
+            this.namesLabel = new System.Windows.Forms.Label();
             this.alertsTab = new System.Windows.Forms.TabPage();
             this.alertsGridView = new System.Windows.Forms.DataGridView();
             this.ActionName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -91,33 +83,22 @@ namespace SotnRandoTools
             this.AlertEnabled = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Duration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Meter = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.actionCooldowns = new System.Windows.Forms.TabPage();
-            this.actionCooldownsGridView = new System.Windows.Forms.DataGridView();
-            this.actionPrices = new System.Windows.Forms.TabPage();
-            this.actionPricingGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.channelPoints = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.scaling = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.maxChannelPoints = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.alertFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.namesFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.valueToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.keepVladRelicsCheckbox = new System.Windows.Forms.CheckBox();
             this.khaosTabs.SuspendLayout();
             this.generalTab.SuspendLayout();
             this.generalSettingsBox.SuspendLayout();
             this.audioBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.volumeTrackBar)).BeginInit();
+            this.inputTab.SuspendLayout();
+            this.botApiKeyBox.SuspendLayout();
+            this.namesBox.SuspendLayout();
             this.alertsTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.alertsGridView)).BeginInit();
             this.actionSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.actionsGridView)).BeginInit();
-            this.actionCooldowns.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.actionCooldownsGridView)).BeginInit();
-            this.actionPrices.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.actionPricingGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // khaosPanelTitle
@@ -157,10 +138,9 @@ namespace SotnRandoTools
             // khaosTabs
             // 
             this.khaosTabs.Controls.Add(this.generalTab);
+            this.khaosTabs.Controls.Add(this.inputTab);
             this.khaosTabs.Controls.Add(this.alertsTab);
             this.khaosTabs.Controls.Add(this.actionSettings);
-            this.khaosTabs.Controls.Add(this.actionCooldowns);
-            this.khaosTabs.Controls.Add(this.actionPrices);
             this.khaosTabs.Location = new System.Drawing.Point(6, 43);
             this.khaosTabs.Name = "khaosTabs";
             this.khaosTabs.SelectedIndex = 0;
@@ -182,7 +162,6 @@ namespace SotnRandoTools
             // 
             // generalSettingsBox
             // 
-            this.generalSettingsBox.Controls.Add(this.costDecayCheckBox);
             this.generalSettingsBox.Controls.Add(this.keepVladRelicsCheckbox);
             this.generalSettingsBox.Controls.Add(this.dynamicIntervalCheckBox);
             this.generalSettingsBox.Controls.Add(this.pandoraMaxTextBox);
@@ -207,34 +186,10 @@ namespace SotnRandoTools
             this.generalSettingsBox.TabStop = false;
             this.generalSettingsBox.Text = "General";
             // 
-            // costDecayCheckBox
-            // 
-            this.costDecayCheckBox.AutoSize = true;
-            this.costDecayCheckBox.Location = new System.Drawing.Point(193, 116);
-            this.costDecayCheckBox.Name = "costDecayCheckBox";
-            this.costDecayCheckBox.Size = new System.Drawing.Size(81, 17);
-            this.costDecayCheckBox.TabIndex = 16;
-            this.costDecayCheckBox.Text = "Cost Decay";
-            this.valueToolTip.SetToolTip(this.costDecayCheckBox, "If the cost is at maximum and gets redeemed it will go to 20% of max or the defau" +
-        "lt.");
-            this.costDecayCheckBox.UseVisualStyleBackColor = true;
-            this.costDecayCheckBox.CheckedChanged += new System.EventHandler(this.costDecayCheckBox_CheckedChanged);
-            // 
-            // keepVladRelicsCheckbox
-            // 
-            this.keepVladRelicsCheckbox.AutoSize = true;
-            this.keepVladRelicsCheckbox.Location = new System.Drawing.Point(193, 68);
-            this.keepVladRelicsCheckbox.Name = "keepVladRelicsCheckbox";
-            this.keepVladRelicsCheckbox.Size = new System.Drawing.Size(103, 17);
-            this.keepVladRelicsCheckbox.TabIndex = 15;
-            this.keepVladRelicsCheckbox.Text = "Keep Vlad Relics";
-            this.keepVladRelicsCheckbox.UseVisualStyleBackColor = true;
-            this.keepVladRelicsCheckbox.CheckedChanged += new System.EventHandler(this.keepVladRelicsCheckbox_CheckedChanged);
-            // 
             // dynamicIntervalCheckBox
             // 
             this.dynamicIntervalCheckBox.AutoSize = true;
-            this.dynamicIntervalCheckBox.Location = new System.Drawing.Point(193, 93);
+            this.dynamicIntervalCheckBox.Location = new System.Drawing.Point(193, 116);
             this.dynamicIntervalCheckBox.Name = "dynamicIntervalCheckBox";
             this.dynamicIntervalCheckBox.Size = new System.Drawing.Size(105, 17);
             this.dynamicIntervalCheckBox.TabIndex = 14;
@@ -412,6 +367,81 @@ namespace SotnRandoTools
             this.alertsCheckbox.UseVisualStyleBackColor = true;
             this.alertsCheckbox.CheckedChanged += new System.EventHandler(this.alertsCheckbox_CheckedChanged);
             // 
+            // inputTab
+            // 
+            this.inputTab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
+            this.inputTab.Controls.Add(this.botApiKeyBox);
+            this.inputTab.Controls.Add(this.namesBox);
+            this.inputTab.Location = new System.Drawing.Point(4, 22);
+            this.inputTab.Name = "inputTab";
+            this.inputTab.Size = new System.Drawing.Size(374, 265);
+            this.inputTab.TabIndex = 1;
+            this.inputTab.Text = "Input";
+            // 
+            // botApiKeyBox
+            // 
+            this.botApiKeyBox.Controls.Add(this.botApiKey);
+            this.botApiKeyBox.ForeColor = System.Drawing.Color.White;
+            this.botApiKeyBox.Location = new System.Drawing.Point(6, 10);
+            this.botApiKeyBox.Name = "botApiKeyBox";
+            this.botApiKeyBox.Size = new System.Drawing.Size(362, 57);
+            this.botApiKeyBox.TabIndex = 3;
+            this.botApiKeyBox.TabStop = false;
+            this.botApiKeyBox.Text = "Bot API Key";
+            // 
+            // botApiKey
+            // 
+            this.botApiKey.Location = new System.Drawing.Point(9, 20);
+            this.botApiKey.Name = "botApiKey";
+            this.botApiKey.Size = new System.Drawing.Size(347, 21);
+            this.botApiKey.TabIndex = 1;
+            this.botApiKey.TextChanged += new System.EventHandler(this.botApiKey_TextChanged);
+            // 
+            // namesBox
+            // 
+            this.namesBox.Controls.Add(this.namesBrowseButton);
+            this.namesBox.Controls.Add(this.namesPath);
+            this.namesBox.Controls.Add(this.namesLabel);
+            this.namesBox.ForeColor = System.Drawing.Color.White;
+            this.namesBox.Location = new System.Drawing.Point(6, 73);
+            this.namesBox.Name = "namesBox";
+            this.namesBox.Size = new System.Drawing.Size(362, 61);
+            this.namesBox.TabIndex = 2;
+            this.namesBox.TabStop = false;
+            this.namesBox.Text = "Names";
+            // 
+            // namesBrowseButton
+            // 
+            this.namesBrowseButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(21)))), ((int)(((byte)(57)))));
+            this.namesBrowseButton.FlatAppearance.BorderSize = 2;
+            this.namesBrowseButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
+            this.namesBrowseButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
+            this.namesBrowseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.namesBrowseButton.Font = new System.Drawing.Font("Tahoma", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.namesBrowseButton.Location = new System.Drawing.Point(288, 22);
+            this.namesBrowseButton.Name = "namesBrowseButton";
+            this.namesBrowseButton.Size = new System.Drawing.Size(68, 21);
+            this.namesBrowseButton.TabIndex = 5;
+            this.namesBrowseButton.Text = "Browse...";
+            this.namesBrowseButton.UseVisualStyleBackColor = true;
+            this.namesBrowseButton.Click += new System.EventHandler(this.namesBrowseButton_Click);
+            // 
+            // namesPath
+            // 
+            this.namesPath.Location = new System.Drawing.Point(93, 23);
+            this.namesPath.Name = "namesPath";
+            this.namesPath.Size = new System.Drawing.Size(189, 21);
+            this.namesPath.TabIndex = 4;
+            // 
+            // namesLabel
+            // 
+            this.namesLabel.AutoSize = true;
+            this.namesLabel.Location = new System.Drawing.Point(6, 26);
+            this.namesLabel.Name = "namesLabel";
+            this.namesLabel.Size = new System.Drawing.Size(60, 13);
+            this.namesLabel.TabIndex = 3;
+            this.namesLabel.Text = "Names file:";
+            // 
             // alertsTab
             // 
             this.alertsTab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
@@ -428,20 +458,20 @@ namespace SotnRandoTools
             this.alertsGridView.AllowUserToDeleteRows = false;
             this.alertsGridView.AllowUserToResizeColumns = false;
             this.alertsGridView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
-            this.alertsGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
+            this.alertsGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
             this.alertsGridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
             this.alertsGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.alertsGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             this.alertsGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.alertsGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.alertsGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.alertsGridView.ColumnHeadersHeight = 20;
             this.alertsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.alertsGridView.ColumnHeadersVisible = false;
@@ -449,14 +479,14 @@ namespace SotnRandoTools
             this.ActionName,
             this.AlertPath,
             this.Browse});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.alertsGridView.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.alertsGridView.DefaultCellStyle = dataGridViewCellStyle14;
             this.alertsGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
             this.alertsGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
             this.alertsGridView.Location = new System.Drawing.Point(3, 3);
@@ -471,9 +501,9 @@ namespace SotnRandoTools
             // ActionName
             // 
             this.ActionName.DataPropertyName = "Name";
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
-            this.ActionName.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
+            this.ActionName.DefaultCellStyle = dataGridViewCellStyle13;
             this.ActionName.HeaderText = "Name";
             this.ActionName.Name = "ActionName";
             this.ActionName.ReadOnly = true;
@@ -505,7 +535,7 @@ namespace SotnRandoTools
             this.actionSettings.Name = "actionSettings";
             this.actionSettings.Size = new System.Drawing.Size(374, 265);
             this.actionSettings.TabIndex = 3;
-            this.actionSettings.Text = "Action Settings";
+            this.actionSettings.Text = "Actions";
             // 
             // actionsGridView
             // 
@@ -513,20 +543,20 @@ namespace SotnRandoTools
             this.actionsGridView.AllowUserToDeleteRows = false;
             this.actionsGridView.AllowUserToResizeColumns = false;
             this.actionsGridView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
-            this.actionsGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
+            this.actionsGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle15;
             this.actionsGridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
             this.actionsGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.actionsGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             this.actionsGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.actionsGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle16.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.actionsGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
             this.actionsGridView.ColumnHeadersHeight = 20;
             this.actionsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.actionsGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -534,14 +564,14 @@ namespace SotnRandoTools
             this.AlertEnabled,
             this.Duration,
             this.Meter});
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.actionsGridView.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.actionsGridView.DefaultCellStyle = dataGridViewCellStyle20;
             this.actionsGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
             this.actionsGridView.EnableHeadersVisualStyles = false;
             this.actionsGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
@@ -557,9 +587,9 @@ namespace SotnRandoTools
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.DataPropertyName = "Name";
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
-            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
+            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle17;
             this.dataGridViewTextBoxColumn1.HeaderText = "Name";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
@@ -579,9 +609,9 @@ namespace SotnRandoTools
             // Duration
             // 
             this.Duration.DataPropertyName = "Duration";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.NullValue = null;
-            this.Duration.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle18.NullValue = null;
+            this.Duration.DefaultCellStyle = dataGridViewCellStyle18;
             this.Duration.HeaderText = "Duration";
             this.Duration.MaxInputLength = 8;
             this.Duration.Name = "Duration";
@@ -590,183 +620,12 @@ namespace SotnRandoTools
             // Meter
             // 
             this.Meter.DataPropertyName = "Meter";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Meter.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Meter.DefaultCellStyle = dataGridViewCellStyle19;
             this.Meter.HeaderText = "Khaos Meter";
             this.Meter.MaxInputLength = 2;
             this.Meter.Name = "Meter";
             this.Meter.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // actionCooldowns
-            // 
-            this.actionCooldowns.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
-            this.actionCooldowns.Controls.Add(this.actionCooldownsGridView);
-            this.actionCooldowns.Location = new System.Drawing.Point(4, 22);
-            this.actionCooldowns.Name = "actionCooldowns";
-            this.actionCooldowns.Size = new System.Drawing.Size(374, 265);
-            this.actionCooldowns.TabIndex = 4;
-            this.actionCooldowns.Text = "Cooldowns";
-            // 
-            // actionCooldownsGridView
-            // 
-            this.actionCooldownsGridView.AllowUserToAddRows = false;
-            this.actionCooldownsGridView.AllowUserToDeleteRows = false;
-            this.actionCooldownsGridView.AllowUserToResizeColumns = false;
-            this.actionCooldownsGridView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
-            this.actionCooldownsGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
-            this.actionCooldownsGridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
-            this.actionCooldownsGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.actionCooldownsGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            this.actionCooldownsGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.actionCooldownsGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
-            this.actionCooldownsGridView.ColumnHeadersHeight = 20;
-            this.actionCooldownsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.actionCooldownsGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4});
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.actionCooldownsGridView.DefaultCellStyle = dataGridViewCellStyle15;
-            this.actionCooldownsGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
-            this.actionCooldownsGridView.EnableHeadersVisualStyles = false;
-            this.actionCooldownsGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
-            this.actionCooldownsGridView.Location = new System.Drawing.Point(3, 3);
-            this.actionCooldownsGridView.MultiSelect = false;
-            this.actionCooldownsGridView.Name = "actionCooldownsGridView";
-            this.actionCooldownsGridView.RowHeadersVisible = false;
-            this.actionCooldownsGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.actionCooldownsGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.actionCooldownsGridView.Size = new System.Drawing.Size(368, 259);
-            this.actionCooldownsGridView.TabIndex = 2;
-            // 
-            // actionPrices
-            // 
-            this.actionPrices.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
-            this.actionPrices.Controls.Add(this.actionPricingGridView);
-            this.actionPrices.Location = new System.Drawing.Point(4, 22);
-            this.actionPrices.Name = "actionPrices";
-            this.actionPrices.Size = new System.Drawing.Size(374, 265);
-            this.actionPrices.TabIndex = 5;
-            this.actionPrices.Text = "Pricing";
-            // 
-            // actionPricingGridView
-            // 
-            this.actionPricingGridView.AllowUserToAddRows = false;
-            this.actionPricingGridView.AllowUserToDeleteRows = false;
-            this.actionPricingGridView.AllowUserToResizeColumns = false;
-            this.actionPricingGridView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
-            this.actionPricingGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
-            this.actionPricingGridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
-            this.actionPricingGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.actionPricingGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            this.actionPricingGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.actionPricingGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
-            this.actionPricingGridView.ColumnHeadersHeight = 20;
-            this.actionPricingGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.actionPricingGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn5,
-            this.channelPoints,
-            this.scaling,
-            this.maxChannelPoints});
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle22.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
-            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.actionPricingGridView.DefaultCellStyle = dataGridViewCellStyle22;
-            this.actionPricingGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
-            this.actionPricingGridView.EnableHeadersVisualStyles = false;
-            this.actionPricingGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
-            this.actionPricingGridView.Location = new System.Drawing.Point(3, 3);
-            this.actionPricingGridView.MultiSelect = false;
-            this.actionPricingGridView.Name = "actionPricingGridView";
-            this.actionPricingGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle23.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle23.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.actionPricingGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle23;
-            this.actionPricingGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.actionPricingGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.actionPricingGridView.Size = new System.Drawing.Size(368, 259);
-            this.actionPricingGridView.TabIndex = 3;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "Name";
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
-            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle18;
-            this.dataGridViewTextBoxColumn5.FillWeight = 90F;
-            this.dataGridViewTextBoxColumn5.HeaderText = "Name";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn5.Width = 90;
-            // 
-            // channelPoints
-            // 
-            this.channelPoints.DataPropertyName = "ChannelPoints";
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.channelPoints.DefaultCellStyle = dataGridViewCellStyle19;
-            this.channelPoints.FillWeight = 90F;
-            this.channelPoints.HeaderText = "Channel Points";
-            this.channelPoints.MaxInputLength = 8;
-            this.channelPoints.Name = "channelPoints";
-            this.channelPoints.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.channelPoints.Width = 90;
-            // 
-            // scaling
-            // 
-            this.scaling.DataPropertyName = "Scaling";
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.scaling.DefaultCellStyle = dataGridViewCellStyle20;
-            this.scaling.FillWeight = 60F;
-            this.scaling.HeaderText = "Scaling";
-            this.scaling.MaxInputLength = 8;
-            this.scaling.Name = "scaling";
-            this.scaling.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.scaling.Width = 60;
-            // 
-            // maxChannelPoints
-            // 
-            this.maxChannelPoints.DataPropertyName = "MaximumChannelPoints";
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle21.NullValue = null;
-            this.maxChannelPoints.DefaultCellStyle = dataGridViewCellStyle21;
-            this.maxChannelPoints.FillWeight = 70F;
-            this.maxChannelPoints.HeaderText = "Max";
-            this.maxChannelPoints.MaxInputLength = 8;
-            this.maxChannelPoints.Name = "maxChannelPoints";
-            this.maxChannelPoints.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.maxChannelPoints.Width = 70;
             // 
             // alertFileDialog
             // 
@@ -774,36 +633,21 @@ namespace SotnRandoTools
             this.alertFileDialog.Title = "Select Alert Sound File";
             this.alertFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.alertFileDialog_FileOk);
             // 
-            // dataGridViewTextBoxColumn2
+            // namesFileDialog
             // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "Name";
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
-            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle13;
-            this.dataGridViewTextBoxColumn2.HeaderText = "Name";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.namesFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            this.namesFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.namesFileDialog_FileOk);
             // 
-            // dataGridViewTextBoxColumn3
+            // keepVladRelicsCheckbox
             // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "Cooldown";
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle14.NullValue = null;
-            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle14;
-            this.dataGridViewTextBoxColumn3.HeaderText = "Cooldown";
-            this.dataGridViewTextBoxColumn3.MaxInputLength = 8;
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "StartsOnCooldown";
-            this.dataGridViewTextBoxColumn4.HeaderText = "Starts On Cooldown";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn4.Width = 140;
+            this.keepVladRelicsCheckbox.AutoSize = true;
+            this.keepVladRelicsCheckbox.Location = new System.Drawing.Point(193, 68);
+            this.keepVladRelicsCheckbox.Name = "keepVladRelicsCheckbox";
+            this.keepVladRelicsCheckbox.Size = new System.Drawing.Size(103, 17);
+            this.keepVladRelicsCheckbox.TabIndex = 15;
+            this.keepVladRelicsCheckbox.Text = "Keep Vlad Relics";
+            this.keepVladRelicsCheckbox.UseVisualStyleBackColor = true;
+            this.keepVladRelicsCheckbox.CheckedChanged += new System.EventHandler(this.keepVladRelicsCheckbox_CheckedChanged);
             // 
             // KhaosSettingsPanel
             // 
@@ -826,14 +670,15 @@ namespace SotnRandoTools
             this.audioBox.ResumeLayout(false);
             this.audioBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.volumeTrackBar)).EndInit();
+            this.inputTab.ResumeLayout(false);
+            this.botApiKeyBox.ResumeLayout(false);
+            this.botApiKeyBox.PerformLayout();
+            this.namesBox.ResumeLayout(false);
+            this.namesBox.PerformLayout();
             this.alertsTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.alertsGridView)).EndInit();
             this.actionSettings.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.actionsGridView)).EndInit();
-            this.actionCooldowns.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.actionCooldownsGridView)).EndInit();
-            this.actionPrices.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.actionPricingGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -850,6 +695,7 @@ namespace SotnRandoTools
 		private System.Windows.Forms.CheckBox alertsCheckbox;
 		private System.Windows.Forms.Label volumeLabel;
 		private System.Windows.Forms.TrackBar volumeTrackBar;
+		private System.Windows.Forms.TabPage inputTab;
 		private System.Windows.Forms.TabPage alertsTab;
 		private System.Windows.Forms.TabPage actionSettings;
 		private System.Windows.Forms.OpenFileDialog alertFileDialog;
@@ -868,6 +714,10 @@ namespace SotnRandoTools
 		private System.Windows.Forms.TextBox crippleTextBox;
 		private System.Windows.Forms.TextBox pandoraMaxTextBox;
 		private System.Windows.Forms.TextBox pandoraMinTextBox;
+		private System.Windows.Forms.GroupBox namesBox;
+		private System.Windows.Forms.Button namesBrowseButton;
+		private System.Windows.Forms.TextBox namesPath;
+		private System.Windows.Forms.Label namesLabel;
 		private System.Windows.Forms.OpenFileDialog namesFileDialog;
 		private System.Windows.Forms.ToolTip valueToolTip;
 		private System.Windows.Forms.DataGridView alertsGridView;
@@ -876,22 +726,12 @@ namespace SotnRandoTools
 		private System.Windows.Forms.DataGridViewTextBoxColumn AlertPath;
 		private System.Windows.Forms.DataGridViewButtonColumn Browse;
 		private System.Windows.Forms.CheckBox dynamicIntervalCheckBox;
+		private System.Windows.Forms.GroupBox botApiKeyBox;
+		private System.Windows.Forms.TextBox botApiKey;
 		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn AlertEnabled;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Duration;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Meter;
 		private System.Windows.Forms.CheckBox keepVladRelicsCheckbox;
-		private System.Windows.Forms.TabPage actionCooldowns;
-		private System.Windows.Forms.DataGridView actionCooldownsGridView;
-		private System.Windows.Forms.TabPage actionPrices;
-		private System.Windows.Forms.DataGridView actionPricingGridView;
-		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-		private System.Windows.Forms.DataGridViewTextBoxColumn channelPoints;
-		private System.Windows.Forms.DataGridViewTextBoxColumn scaling;
-		private System.Windows.Forms.DataGridViewTextBoxColumn maxChannelPoints;
-		private System.Windows.Forms.CheckBox costDecayCheckBox;
-		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-		private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewTextBoxColumn4;
 	}
 }

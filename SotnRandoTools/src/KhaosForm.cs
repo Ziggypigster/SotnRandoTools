@@ -1,40 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Timers;
 using System.Windows.Forms;
 using BizHawk.Client.Common;
 using SotnApi.Interfaces;
 using SotnRandoTools.Configuration.Interfaces;
-using SotnRandoTools.Constants;
 using SotnRandoTools.Khaos;
-using SotnRandoTools.Khaos.Interfaces;
 using SotnRandoTools.Khaos.Models;
 using SotnRandoTools.Services;
 using SotnRandoTools.Services.Adapters;
-using SotnRandoTools.Services.Models;
 
 namespace SotnRandoTools
 {
-	public partial class KhaosForm : Form, IKhaosActionsInfoDisplay, INotifyPropertyChanged, IVladRelicLocationDisplay
+	public partial class KhaosForm : Form
 	{
-		private ICheatCollectionAdapter adaptedCheats;
-		private readonly IToolConfig toolConfig;
+		private readonly ICheatCollectionAdapter adaptedCheats;
 		private KhaosController? khaosControler;
-		private TwitchListener? twitchListener;
-		private ChannelPointsController? channelPointsController;
-		private List<ActionTimer> actionTimers = new();
-		private System.Timers.Timer countdownTimer;
-		private string heartOfVladLocation;
-		private string toothOfVladLocation;
-		private string ribOfVladLocation;
-		private string ringOfVladLocation;
-		private string eyeOfVladLocation;
+		private readonly IToolConfig toolConfig;
 		private bool started = false;
-		private bool connected = false;
 
-		public KhaosForm(IToolConfig toolConfig, CheatCollection cheats, ISotnApi sotnApi, INotificationService notificationService, IInputService inputService)
+		public KhaosForm(IToolConfig toolConfig, CheatCollection cheats, IGameApi gameApi, IAlucardApi alucardApi, IActorApi actorApi, INotificationService notificationService, IInputService inputService)
 		{
 			if (toolConfig is null) throw new ArgumentNullException(nameof(toolConfig));
 			if (cheats is null) throw new ArgumentNullException(nameof(cheats));
@@ -43,131 +26,13 @@ namespace SotnRandoTools
 			this.toolConfig = toolConfig;
 
 			adaptedCheats = new CheatCollectionAdapter(cheats);
-			khaosControler = new KhaosController(toolConfig, sotnApi, adaptedCheats, notificationService, inputService, this);
-			twitchListener = new TwitchListener(Paths.TwitchRedirectUri);
-			channelPointsController = new ChannelPointsController(toolConfig, twitchListener, khaosControler, notificationService);
+			khaosControler = new KhaosController(toolConfig, gameApi, alucardApi, actorApi, adaptedCheats, notificationService, inputService);
 
 			InitializeComponent();
 			SuspendLayout();
 			ResumeLayout();
-			countdownTimer = new System.Timers.Timer();
-			countdownTimer.Interval = 1000;
-			countdownTimer.Elapsed += DecrementTimers;
-			countdownTimer.Start();
-			this.PropertyChanged += KhaosForm_PropertyChanged;
-
-			heartLocation.DataBindings.Add(new System.Windows.Forms.Binding("Text", this, "HeartOfVladLocation"));
-			toothLocation.DataBindings.Add(new System.Windows.Forms.Binding("Text", this, "ToothOfVladLocation"));
-			ribLocation.DataBindings.Add(new System.Windows.Forms.Binding("Text", this, "RibOfVladLocation"));
-			ringLocation.DataBindings.Add(new System.Windows.Forms.Binding("Text", this, "RingOfVladLocation"));
-			eyeLocation.DataBindings.Add(new System.Windows.Forms.Binding("Text", this, "EyeOfVladLocation"));
 		}
 
-		public ICheatCollectionAdapter AdaptedCheats
-		{
-			get
-			{
-				return this.adaptedCheats;
-			}
-
-			set
-			{
-				this.adaptedCheats = value;
-				khaosControler.GetCheats();
-			}
-		}
-
-		public event PropertyChangedEventHandler PropertyChanged;
-		public string HeartOfVladLocation
-		{
-			get
-			{
-				return heartOfVladLocation;
-			}
-			set
-			{
-				heartOfVladLocation = value;
-
-				if (PropertyChanged != null)
-				{
-					PropertyChanged(this, new PropertyChangedEventArgs("HeartOfVladLocation"));
-				}
-			}
-		}
-		public string ToothOfVladLocation
-		{
-			get
-			{
-				return toothOfVladLocation;
-			}
-			set
-			{
-				toothOfVladLocation = value;
-
-				if (PropertyChanged != null)
-				{
-					PropertyChanged(this, new PropertyChangedEventArgs("ToothOfVladLocation"));
-				}
-			}
-		}
-		public string RibOfVladLocation
-		{
-			get
-			{
-				return ribOfVladLocation;
-			}
-			set
-			{
-				ribOfVladLocation = value;
-
-				if (PropertyChanged != null)
-				{
-					PropertyChanged(this, new PropertyChangedEventArgs("RibOfVladLocation"));
-				}
-			}
-		}
-		public string RingOfVladLocation
-		{
-			get
-			{
-				return ringOfVladLocation;
-			}
-			set
-			{
-				ringOfVladLocation = value;
-
-				if (PropertyChanged != null)
-				{
-					PropertyChanged(this, new PropertyChangedEventArgs("RingOfVladLocation"));
-				}
-			}
-		}
-		public string EyeOfVladLocation
-		{
-			get
-			{
-				return eyeOfVladLocation;
-			}
-			set
-			{
-				eyeOfVladLocation = value;
-
-				if (PropertyChanged != null)
-				{
-					PropertyChanged(this, new PropertyChangedEventArgs("EyeOfVladLocation"));
-				}
-			}
-		}
-		public List<QueuedAction> ActionQueue { get; set; }
-
-		public void AddTimer(ActionTimer timer)
-		{
-			actionTimers.Add(timer);
-		}
-		public bool ContainsTimer(string name)
-		{
-			return actionTimers.Where(timer => timer.Name == name).Count() > 0;
-		}
 		public void UpdateKhaosValues()
 		{
 			if (khaosControler is not null)
@@ -176,48 +41,6 @@ namespace SotnRandoTools
 			}
 		}
 
-		private void KhaosForm_PropertyChanged(object sender, PropertyChangedEventArgs e)
-		{
-		}
-
-		private void DecrementTimers(object sender, ElapsedEventArgs e)
-		{
-			foreach (var timer in actionTimers)
-			{
-				if (timer.TotalDuration == 0)
-				{
-					timer.TotalDuration = (int) timer.Duration.TotalSeconds;
-				}
-
-				timer.Duration -= TimeSpan.FromSeconds(1);
-				if (timer.Duration.TotalSeconds < 1)
-				{
-					actionTimers.Remove(timer);
-				}
-			}
-
-			string timersLines = "";
-
-			foreach (var timer in actionTimers)
-			{
-				timersLines += timer.Name.PadRight(16, ' ') + timer.Duration.Minutes + ":" + timer.Duration.Seconds + "\r\n";
-			}
-
-			timersTextBox.Text = timersLines;
-			DrawQueue();
-
-		}
-		private void DrawQueue()
-		{
-			string queueLines = "";
-
-			foreach (var action in ActionQueue)
-			{
-				queueLines += action.Name + "\r\n";
-			}
-
-			queueTextBox.Text = queueLines;
-		}
 		private void Khaos_Load(object sender, EventArgs e)
 		{
 			this.Location = toolConfig.Khaos.Location;
@@ -256,66 +79,12 @@ namespace SotnRandoTools
 				started = false;
 				khaosControler.StopKhaos();
 				startButton.Text = "Start";
-				startButton.BackColor = System.Drawing.Color.FromArgb(17, 0, 17);
-				startButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(48, 20, 48);
-				connectButton.Enabled = false;
-				connectButton.Text = "Connect to Twitch";
-				if (connected)
-				{
-					channelPointsController.Disconnect();
-					connected = false;
-				}
-				autoKhaosButton.Enabled = false;
-				khaosControler.AutoKhaosOn = false;
-				autoKhaosButton.Text = "Start Auto Khaos";
-				autoKhaosButton.BackColor = System.Drawing.Color.FromArgb(17, 0, 17);
-				autoKhaosButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(48, 20, 48);
 			}
 			else
 			{
 				started = true;
 				khaosControler.StartKhaos();
 				startButton.Text = "Stop";
-				startButton.BackColor = System.Drawing.Color.FromArgb(114, 32, 25);
-				startButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(169, 19, 7);
-				connectButton.Enabled = true;
-				autoKhaosButton.Enabled = true;
-			}
-		}
-		private void autoKhaosButton_Click(object sender, EventArgs e)
-		{
-			if (khaosControler.AutoKhaosOn)
-			{
-				khaosControler.AutoKhaosOn = false;
-				autoKhaosButton.Text = "Start Auto Khaos";
-				autoKhaosButton.BackColor = System.Drawing.Color.FromArgb(17, 0, 17);
-				autoKhaosButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(48, 20, 48);
-			}
-			else
-			{
-				khaosControler.AutoKhaosOn = true;
-				autoKhaosButton.Text = "Stop Auto Khaos";
-				autoKhaosButton.BackColor = System.Drawing.Color.FromArgb(62, 68, 91);
-				autoKhaosButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(72, 81, 118);
-			}
-		}
-		private async void connectButton_Click(object sender, EventArgs e)
-		{
-			if (connected)
-			{
-				connectButton.Text = "Connect to Twitch";
-				channelPointsController.Disconnect();
-				connected = false;
-				connectButton.BackColor = System.Drawing.Color.FromArgb(17, 0, 17);
-				connectButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(48, 20, 48);
-			}
-			else
-			{
-				var result = await channelPointsController.Connect();
-				connectButton.Text = "Disonnect";
-				connected = true;
-				connectButton.BackColor = System.Drawing.Color.FromArgb(93, 56, 147);
-				connectButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(145, 70, 255);
 			}
 		}
 
@@ -324,7 +93,7 @@ namespace SotnRandoTools
 		{
 			if (toolConfig.Khaos.ControlPannelQueueActions)
 			{
-				khaosControler.EnqueueAction(new EventAddAction { ActionIndex = 0, UserName = "Khaos" });
+				khaosControler.EnqueueAction(new EventAddAction { Command = "kstatus", UserName = "Khaos" });
 			}
 			else
 			{
@@ -335,7 +104,7 @@ namespace SotnRandoTools
 		{
 			if (toolConfig.Khaos.ControlPannelQueueActions)
 			{
-				khaosControler.EnqueueAction(new EventAddAction { ActionIndex = 1, UserName = "Khaos" });
+				khaosControler.EnqueueAction(new EventAddAction { Command = "kequipment", UserName = "Khaos" });
 			}
 			else
 			{
@@ -347,7 +116,7 @@ namespace SotnRandoTools
 		{
 			if (toolConfig.Khaos.ControlPannelQueueActions)
 			{
-				khaosControler.EnqueueAction(new EventAddAction { ActionIndex = 2, UserName = "Khaos" });
+				khaosControler.EnqueueAction(new EventAddAction { Command = "kstats", UserName = "Khaos" });
 			}
 			else
 			{
@@ -359,7 +128,7 @@ namespace SotnRandoTools
 		{
 			if (toolConfig.Khaos.ControlPannelQueueActions)
 			{
-				khaosControler.EnqueueAction(new EventAddAction { ActionIndex = 3, UserName = "Khaos" });
+				khaosControler.EnqueueAction(new EventAddAction { Command = "krelics", UserName = "Khaos" });
 			}
 			else
 			{
@@ -371,7 +140,7 @@ namespace SotnRandoTools
 		{
 			if (toolConfig.Khaos.ControlPannelQueueActions)
 			{
-				khaosControler.EnqueueAction(new EventAddAction { ActionIndex = 4, UserName = "Khaos" });
+				khaosControler.EnqueueAction(new EventAddAction { Command = "pandora", UserName = "Khaos" });
 			}
 			else
 			{
@@ -379,11 +148,22 @@ namespace SotnRandoTools
 				khaosControler.PandorasBox();
 			}
 		}
+		private void bankruptButton_Click(object sender, EventArgs e)
+		{
+			if (toolConfig.Khaos.ControlPannelQueueActions)
+			{
+				khaosControler.EnqueueAction(new EventAddAction { Command = "bankrupt", UserName = "Khaos" });
+			}
+			else
+			{
+				khaosControler.Bankrupt();
+			}
+		}
 		private void gambleButton_Click(object sender, EventArgs e)
 		{
 			if (toolConfig.Khaos.ControlPannelQueueActions)
 			{
-				khaosControler.EnqueueAction(new EventAddAction { ActionIndex = 5, UserName = "Khaos" });
+				khaosControler.EnqueueAction(new EventAddAction { Command = "gamble", UserName = "Khaos" });
 			}
 			else
 			{
@@ -391,36 +171,13 @@ namespace SotnRandoTools
 				khaosControler.Gamble();
 			}
 		}
-		private void burstButton_Click(object sender, EventArgs e)
-		{
-			if (toolConfig.Khaos.ControlPannelQueueActions)
-			{
-				khaosControler.EnqueueAction(new EventAddAction { ActionIndex = 6, UserName = "Khaos" });
-			}
-			else
-			{
-
-				khaosControler.KhaoticBurst();
-			}
-		}
 		#endregion
 		#region Debuffs
-		private void bankruptButton_Click(object sender, EventArgs e)
-		{
-			if (toolConfig.Khaos.ControlPannelQueueActions)
-			{
-				khaosControler.EnqueueAction(new EventAddAction { ActionIndex = 7, UserName = "Khaos" });
-			}
-			else
-			{
-				khaosControler.Bankrupt();
-			}
-		}
 		private void weakenButton_Click(object sender, EventArgs e)
 		{
 			if (toolConfig.Khaos.ControlPannelQueueActions)
 			{
-				khaosControler.EnqueueAction(new EventAddAction { ActionIndex = 8, UserName = "Khaos" });
+				khaosControler.EnqueueAction(new EventAddAction { Command = "weaken", UserName = "Khaos" });
 			}
 			else
 			{
@@ -431,7 +188,7 @@ namespace SotnRandoTools
 		{
 			if (toolConfig.Khaos.ControlPannelQueueActions)
 			{
-				khaosControler.EnqueueAction(new EventAddAction { ActionIndex = 9, UserName = "Khaos" });
+				khaosControler.EnqueueAction(new EventAddAction { Command = "respawnbosses", UserName = "Khaos" });
 			}
 			else
 			{
@@ -442,7 +199,7 @@ namespace SotnRandoTools
 		{
 			if (toolConfig.Khaos.ControlPannelQueueActions)
 			{
-				khaosControler.EnqueueAction(new EventAddAction { ActionIndex = 10, UserName = "Khaos" });
+				khaosControler.EnqueueAction(new EventAddAction { Command = "subsonly", UserName = "Khaos" });
 			}
 			else
 			{
@@ -450,23 +207,11 @@ namespace SotnRandoTools
 				khaosControler.SubweaponsOnly();
 			}
 		}
-		private void crippleButton_Click(object sender, EventArgs e)
-		{
-			if (toolConfig.Khaos.ControlPannelQueueActions)
-			{
-				khaosControler.EnqueueAction(new EventAddAction { ActionIndex = 11, UserName = "Khaos" });
-			}
-			else
-			{
-
-				khaosControler.Slow();
-			}
-		}
 		private void bloodManaButton_Click(object sender, EventArgs e)
 		{
 			if (toolConfig.Khaos.ControlPannelQueueActions)
 			{
-				khaosControler.EnqueueAction(new EventAddAction { ActionIndex = 12, UserName = "Khaos" });
+				khaosControler.EnqueueAction(new EventAddAction { Command = "bloodmana", UserName = "Khaos" });
 			}
 			else
 			{
@@ -477,7 +222,7 @@ namespace SotnRandoTools
 		{
 			if (toolConfig.Khaos.ControlPannelQueueActions)
 			{
-				khaosControler.EnqueueAction(new EventAddAction { ActionIndex = 13, UserName = "Khaos" });
+				khaosControler.EnqueueAction(new EventAddAction { Command = "thirst", UserName = "Khaos" });
 			}
 			else
 			{
@@ -488,7 +233,7 @@ namespace SotnRandoTools
 		{
 			if (toolConfig.Khaos.ControlPannelQueueActions)
 			{
-				khaosControler.EnqueueAction(new EventAddAction { ActionIndex = 14, UserName = "Khaos" });
+				khaosControler.EnqueueAction(new EventAddAction { Command = "horde", UserName = "Khaos" });
 			}
 			else
 			{
@@ -499,43 +244,32 @@ namespace SotnRandoTools
 		{
 			if (toolConfig.Khaos.ControlPannelQueueActions)
 			{
-				khaosControler.EnqueueAction(new EventAddAction { ActionIndex = 15, UserName = "Khaos" });
+				khaosControler.EnqueueAction(new EventAddAction { Command = "endurance", UserName = "Khaos" });
 			}
 			else
 			{
 				khaosControler.Endurance();
 			}
 		}
-		private void hnkButton_Click(object sender, EventArgs e)
+		private void crippleButton_Click(object sender, EventArgs e)
 		{
 			if (toolConfig.Khaos.ControlPannelQueueActions)
 			{
-				khaosControler.EnqueueAction(new EventAddAction { ActionIndex = 16, UserName = "Khaos" });
-			}
-			else
-			{
-				khaosControler.HnK();
-			}
-		}
-		#endregion
-		#region Buffs
-		private void vampireButton_Click(object sender, EventArgs e)
-		{
-			if (toolConfig.Khaos.ControlPannelQueueActions)
-			{
-				khaosControler.EnqueueAction(new EventAddAction { ActionIndex = 17, UserName = "Khaos" });
+				khaosControler.EnqueueAction(new EventAddAction { Command = "cripple", UserName = "Khaos" });
 			}
 			else
 			{
 
-				khaosControler.Vampire();
+				khaosControler.Cripple();
 			}
 		}
+		#endregion
+		#region Buffs
 		private void lightHelpButton_Click(object sender, EventArgs e)
 		{
 			if (toolConfig.Khaos.ControlPannelQueueActions)
 			{
-				khaosControler.EnqueueAction(new EventAddAction { ActionIndex = 18, UserName = "Khaos" });
+				khaosControler.EnqueueAction(new EventAddAction { Command = "lighthelp", UserName = "Khaos" });
 			}
 			else
 			{
@@ -546,7 +280,7 @@ namespace SotnRandoTools
 		{
 			if (toolConfig.Khaos.ControlPannelQueueActions)
 			{
-				khaosControler.EnqueueAction(new EventAddAction { ActionIndex = 19, UserName = "Khaos" });
+				khaosControler.EnqueueAction(new EventAddAction { Command = "mediumhelp", UserName = "Khaos" });
 			}
 			else
 			{
@@ -558,7 +292,7 @@ namespace SotnRandoTools
 		{
 			if (toolConfig.Khaos.ControlPannelQueueActions)
 			{
-				khaosControler.EnqueueAction(new EventAddAction { ActionIndex = 20, UserName = "Khaos" });
+				khaosControler.EnqueueAction(new EventAddAction { Command = "heavyhelp", UserName = "Khaos" });
 			}
 			else
 			{
@@ -570,7 +304,7 @@ namespace SotnRandoTools
 		{
 			if (toolConfig.Khaos.ControlPannelQueueActions)
 			{
-				khaosControler.EnqueueAction(new EventAddAction { ActionIndex = 21, UserName = "Khaos" });
+				khaosControler.EnqueueAction(new EventAddAction { Command = "battleorders", UserName = "Khaos" });
 			}
 			else
 			{
@@ -582,7 +316,7 @@ namespace SotnRandoTools
 		{
 			if (toolConfig.Khaos.ControlPannelQueueActions)
 			{
-				khaosControler.EnqueueAction(new EventAddAction { ActionIndex = 22, UserName = "Khaos" });
+				khaosControler.EnqueueAction(new EventAddAction { Command = "magician", UserName = "Khaos" });
 			}
 			else
 			{
@@ -594,7 +328,7 @@ namespace SotnRandoTools
 		{
 			if (toolConfig.Khaos.ControlPannelQueueActions)
 			{
-				khaosControler.EnqueueAction(new EventAddAction { ActionIndex = 23, UserName = "Khaos" });
+				khaosControler.EnqueueAction(new EventAddAction { Command = "melty", UserName = "Khaos" });
 			}
 			else
 			{
@@ -602,11 +336,23 @@ namespace SotnRandoTools
 				khaosControler.MeltyBlood();
 			}
 		}
+		private void vampireButton_Click(object sender, EventArgs e)
+		{
+			if (toolConfig.Khaos.ControlPannelQueueActions)
+			{
+				khaosControler.EnqueueAction(new EventAddAction { Command = "vampire", UserName = "Khaos" });
+			}
+			else
+			{
+
+				khaosControler.Vampire();
+			}
+		}
 		private void fourBeastsButton_Click(object sender, EventArgs e)
 		{
 			if (toolConfig.Khaos.ControlPannelQueueActions)
 			{
-				khaosControler.EnqueueAction(new EventAddAction { ActionIndex = 25, UserName = "Khaos" });
+				khaosControler.EnqueueAction(new EventAddAction { Command = "fourbeasts", UserName = "Khaos" });
 			}
 			else
 			{
@@ -617,7 +363,7 @@ namespace SotnRandoTools
 		{
 			if (toolConfig.Khaos.ControlPannelQueueActions)
 			{
-				khaosControler.EnqueueAction(new EventAddAction { ActionIndex = 26, UserName = "Khaos" });
+				khaosControler.EnqueueAction(new EventAddAction { Command = "zawarudo", UserName = "Khaos" });
 			}
 			else
 			{
@@ -628,22 +374,11 @@ namespace SotnRandoTools
 		{
 			if (toolConfig.Khaos.ControlPannelQueueActions)
 			{
-				khaosControler.EnqueueAction(new EventAddAction { ActionIndex = 27, UserName = "Khaos" });
+				khaosControler.EnqueueAction(new EventAddAction { Command = "haste", UserName = "Khaos" });
 			}
 			else
 			{
 				khaosControler.Haste();
-			}
-		}
-		private void lordButton_Click(object sender, EventArgs e)
-		{
-			if (toolConfig.Khaos.ControlPannelQueueActions)
-			{
-				khaosControler.EnqueueAction(new EventAddAction { ActionIndex = 28, UserName = "Khaos" });
-			}
-			else
-			{
-				khaosControler.Lord();
 			}
 		}
 		#endregion
@@ -654,20 +389,9 @@ namespace SotnRandoTools
 			{
 				started = false;
 				khaosControler.StopKhaos();
+				startButton.Text = "Start";
 			}
-			startButton.Text = "Start";
-			startButton.BackColor = System.Drawing.Color.FromArgb(17, 0, 17);
-			connectButton.Enabled = false;
-			connectButton.Text = "Connect to Twitch";
-			if (connected)
-			{
-				channelPointsController.Disconnect();
-				connected = false;
-			};
-			autoKhaosButton.Enabled = false;
-			khaosControler.AutoKhaosOn = false;
-			autoKhaosButton.Text = "Start Auto Khaos";
-			autoKhaosButton.BackColor = System.Drawing.Color.FromArgb(17, 0, 17);
+			khaosControler = null;
 		}
 	}
 }

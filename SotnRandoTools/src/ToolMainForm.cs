@@ -3,42 +3,21 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Windows.Forms;
 using BizHawk.Client.Common;
 using BizHawk.Client.EmuHawk;
 using BizHawk.Emulation.Common;
 using Newtonsoft.Json;
+using SotnApi;
 using SotnRandoTools.Configuration;
 using SotnRandoTools.Constants;
 using SotnRandoTools.Services;
-using SotnRandoTools.Services.Adapters;
 
 namespace SotnRandoTools
 {
-	[ExternalTool("Symphony of the Night Randomizer Tools",
-		Description = "A collection of tools to enhance the SotN randomizer experience.",
-		LoadAssemblyFiles = new[]
-		{
-			"SotnRandoTools/SotnApi.dll",
-			"SotnRandoTools/SimpleTCP.dll",
-			"SotnRandoTools/WatsonWebsocket.dll",
-			"SotnRandoTools/Microsoft.Extensions.Logging.Abstractions.dll",
-			"SotnRandoTools/System.Net.Http.dll",
-			"SotnRandoTools/TwitchLib.Api.Core.Enums.dll",
-			"SotnRandoTools/TwitchLib.Api.Core.Interfaces.dll",
-			"SotnRandoTools/TwitchLib.Api.Helix.Models.dll",
-			"SotnRandoTools/TwitchLib.Api.Core.Models.dll",
-			"SotnRandoTools/TwitchLib.Api.Core.dll",
-			"SotnRandoTools/TwitchLib.Api.Helix.dll",
-			"SotnRandoTools/TwitchLib.Api.V5.Models.dll",
-			"SotnRandoTools/TwitchLib.Api.V5.dll",
-			"SotnRandoTools/TwitchLib.Communication.dll",
-			"SotnRandoTools/TwitchLib.Api.dll",
-			"SotnRandoTools/TwitchLib.PubSub.dll"
-		})]
-	[ExternalToolEmbeddedIcon("SotnRandoTools.Resources.BizAlucard.png")]
-	//TODO: Revert after BIzhawk 2.7.1 releases
+	[ExternalTool("Symphony of the Night Randomizer Tools", Description = "A collection of tools to enhance the SotN randomizer experience.", LoadAssemblyFiles = new[] { "./SotnRandoTools/SotnApi.dll", "./SotnRandoTools/SimpleTCP.dll", "./SotnRandoTools/WatsonWebsocket.dll" })]
+	[ExternalToolEmbeddedIcon("BizAlucard.ico")]
+	//TODO: Revert when BIzhawk fixes Dump Status Report
 	//[ExternalToolApplicability.SingleRom(CoreSystem.Playstation, "0DDCBC3D")]
 	public partial class ToolMainForm : ToolFormBase, IExternalToolForm
 	{
@@ -69,9 +48,6 @@ namespace SotnRandoTools
 		[RequiredApi]
 		private IMemoryApi? _maybeMemAPI { get; set; }
 
-		[RequiredApi]
-		private ISQLiteApi? _maybesQLiteApi { get; set; }
-
 		private ApiContainer? _apis;
 
 		private ApiContainer APIs => _apis ??= new ApiContainer(new Dictionary<Type, IExternalApi>
@@ -82,12 +58,14 @@ namespace SotnRandoTools
 			[typeof(IEmulationApi)] = _maybeEmuAPI ?? throw new NullReferenceException(),
 			[typeof(IGameInfoApi)] = _maybeGameInfoAPI ?? throw new NullReferenceException(),
 			[typeof(IGuiApi)] = _maybeGuiAPI ?? throw new NullReferenceException(),
-			[typeof(IMemoryApi)] = _maybeMemAPI ?? throw new NullReferenceException(),
-			[typeof(ISQLiteApi)] = _maybesQLiteApi ?? throw new NullReferenceException(),
+			[typeof(IMemoryApi)] = _maybeMemAPI ?? throw new NullReferenceException()
 		});
 		private Config GlobalConfig => (_maybeEmuAPI as EmulationApi ?? throw new Exception("required API wasn't fulfilled")).ForbiddenConfigReference;
 
-		private SotnApi.Main.SotnApi? sotnApi;
+		private ActorApi? actorApi;
+		private AlucardApi? alucardApi;
+		private GameApi? gameApi;
+		private RenderingApi? renderingApi;
 		private ToolConfig toolConfig;
 		private WatchlistService? watchlistService;
 		private NotificationService? notificationService;
@@ -102,6 +80,7 @@ namespace SotnRandoTools
 		private string _windowTitle = "Symphony of the Night Randomizer Tools";
 		private const int PanelOffset = 130;
 		private int cooldown = 0;
+		private StringWriter log = new();
 
 		public ToolMainForm()
 		{
@@ -117,17 +96,12 @@ namespace SotnRandoTools
 			{
 				string configJson = File.ReadAllText(Paths.ConfigPath);
 				toolConfig = JsonConvert.DeserializeObject<ToolConfig>(configJson,
-					new JsonSerializerSettings { ObjectCreationHandling = ObjectCreationHandling.Replace, MissingMemberHandling = MissingMemberHandling.Error }) ?? new ToolConfig();
-				if (toolConfig.Khaos.Actions.Count != Constants.Khaos.KhaosActionsCount)
-				{
-					toolConfig.Khaos.DefaultActions();
-				}
+					new JsonSerializerSettings { ObjectCreationHandling = ObjectCreationHandling.Replace }) ?? new ToolConfig();
 			}
 			else
 			{
 				toolConfig = new ToolConfig();
 			}
-
 		}
 
 		protected override string WindowTitle => _windowTitle;
@@ -137,6 +111,7 @@ namespace SotnRandoTools
 		private void ToolMainForm_Load(object sender, EventArgs e)
 		{
 			this.Location = toolConfig.Location;
+			notificationService = new NotificationService(toolConfig, _maybeGuiAPI, _maybeClientAPI);
 
 			aboutPanel = new AboutPanel();
 			aboutPanel.Location = new Point(0, PanelOffset);
@@ -147,7 +122,7 @@ namespace SotnRandoTools
 			autotrackerSettingsPanel.Location = new Point(0, PanelOffset);
 			this.Controls.Add(autotrackerSettingsPanel);
 
-			khaosSettingsPanel = new KhaosSettingsPanel(toolConfig);
+			khaosSettingsPanel = new KhaosSettingsPanel(toolConfig, notificationService);
 			khaosSettingsPanel.Location = new Point(0, PanelOffset);
 			this.Controls.Add(khaosSettingsPanel);
 
@@ -170,41 +145,27 @@ namespace SotnRandoTools
 				}
 			}
 
-			LoadCheats();
-
-			sotnApi = new SotnApi.Main.SotnApi(APIs.Memory);
-			watchlistService = new WatchlistService(_memoryDomains, _emu?.SystemId, GlobalConfig);
-			inputService = new InputService(APIs.Joypad, sotnApi);
-		}
-
-		private void LoadCheats()
-		{
 			if (!File.Exists(Paths.CheatsPath))
 			{
-				File.Copy(Paths.CheatsBackupPath, Paths.CheatsPath);
+				File.Copy(Paths.CheatsPath + ".bkp", Paths.CheatsPath);
 			}
 
 			this.MainForm.CheatList.Load(_memoryDomains, Paths.CheatsPath, false);
 			this.MainForm.CheatList.DisableAll();
 
-			var checkCheat = this.MainForm.CheatList.Where(x => x.Name == "AlucardAttackHitbox2Width").FirstOrDefault();
+			actorApi = new ActorApi(_maybeMemAPI);
+			alucardApi = new AlucardApi(_maybeMemAPI);
+			gameApi = new GameApi(_maybeMemAPI);
+			renderingApi = new RenderingApi(_maybeMemAPI);
+			watchlistService = new WatchlistService(_memoryDomains, _emu?.SystemId, GlobalConfig);
+			inputService = new InputService(_maybeJoypadApi, alucardApi);
 
-			if (checkCheat is null)
-			{
-				File.Copy(Paths.CheatsBackupPath, Paths.CheatsPath);
-				this.MainForm.CheatList.Load(_memoryDomains, Paths.CheatsPath, false);
-				this.MainForm.CheatList.DisableAll();
-			}
-
-			if (khaosForm is not null)
-			{
-				khaosForm.AdaptedCheats = new CheatCollectionAdapter(this.MainForm.CheatList);
-			}
+			Console.SetOut(log);
 		}
 
 		public override bool AskSaveChanges() => true;
 
-		public override void Restart() {}
+		public override void Restart() { }
 
 		public override void UpdateValues(ToolFormUpdateType type)
 		{
@@ -227,10 +188,6 @@ namespace SotnRandoTools
 				if (coopForm is not null)
 				{
 					coopForm.UpdateCoop();
-				}
-				if (this.MainForm.CheatList.Count == 0)
-				{
-					LoadCheats();
 				}
 			}
 		}
@@ -256,74 +213,65 @@ namespace SotnRandoTools
 				coopForm.Dispose();
 			}
 
-			sotnApi = null;
+			string logPath = Paths.LogsPath + DateTime.Now.ToString("dd-MM-yy hh-mm-ss") + ".txt";
+			if (!File.Exists(logPath))
+			{
+				using (StreamWriter w = File.AppendText(logPath))
+				{
+					w.Write(log.ToString());
+				}
+			}
+
+			actorApi = null;
+			alucardApi = null;
+			gameApi = null;
+			renderingApi = null;
 			watchlistService = null;
 			inputService = null;
 		}
 
 		private void autotrackerLaunch_Click(object sender, EventArgs e)
 		{
-			if (trackerForm is not null && sotnApi is not null && watchlistService is not null)
+			if (trackerForm is not null && renderingApi is not null && gameApi is not null && alucardApi is not null && watchlistService is not null)
 			{
 				trackerForm.Close();
-				trackerForm = new TrackerForm(toolConfig, watchlistService, sotnApi);
+				trackerForm = new TrackerForm(toolConfig, watchlistService, renderingApi, gameApi, alucardApi);
 				trackerForm.Show();
 			}
-			else if (trackerForm is null && sotnApi is not null && watchlistService is not null)
+			else if (trackerForm is null && renderingApi is not null && gameApi is not null && alucardApi is not null && watchlistService is not null)
 			{
-				trackerForm = new TrackerForm(toolConfig, watchlistService, sotnApi);
+				trackerForm = new TrackerForm(toolConfig, watchlistService, renderingApi, gameApi, alucardApi);
 				trackerForm.Show();
-				if (khaosForm is not null)
-				{
-					trackerForm.SetTrackerVladRelicLocationDisplay(khaosForm);
-				}
 			}
 		}
 
 		private void khaosChatLaunch_Click(object sender, EventArgs e)
 		{
-			if (khaosForm is not null && sotnApi is not null)
+			if (khaosForm is not null && gameApi is not null && alucardApi is not null && actorApi is not null)
 			{
-				CreateNotificationService();
 				khaosForm.Close();
-				khaosForm = new KhaosForm(toolConfig, this.MainForm.CheatList, sotnApi, notificationService, inputService);
+				khaosForm = new KhaosForm(toolConfig, this.MainForm.CheatList, gameApi, alucardApi, actorApi, notificationService, inputService);
 				khaosForm.Show();
 			}
-			else if (khaosForm is null && sotnApi is not null)
+			else if (khaosForm is null && gameApi is not null && alucardApi is not null && actorApi is not null)
 			{
-				CreateNotificationService();
-				khaosForm = new KhaosForm(toolConfig, this.MainForm.CheatList, sotnApi, notificationService, inputService);
+				khaosForm = new KhaosForm(toolConfig, this.MainForm.CheatList, gameApi, alucardApi, actorApi, notificationService, inputService);
 				khaosForm.Show();
-				if (trackerForm is not null)
-				{
-					trackerForm.SetTrackerVladRelicLocationDisplay(khaosForm);
-				}
 			}
 		}
 
 		private void multiplayerLaunch_Click(object sender, EventArgs e)
 		{
-			if (coopForm is not null && sotnApi is not null && watchlistService is not null && APIs.Joypad is not null)
+			if (coopForm is not null && gameApi is not null && alucardApi is not null && watchlistService is not null && _maybeJoypadApi is not null)
 			{
-				CreateNotificationService();
 				coopForm.Close();
-				coopForm = new CoopForm(toolConfig, watchlistService, inputService, sotnApi, APIs.Joypad, notificationService);
+				coopForm = new CoopForm(toolConfig, watchlistService, inputService, gameApi, alucardApi, _maybeJoypadApi, notificationService);
 				coopForm.Show();
 			}
-			else if (coopForm is null && sotnApi is not null && watchlistService is not null && APIs.Joypad is not null)
+			else if (coopForm is null && gameApi is not null && alucardApi is not null && watchlistService is not null && _maybeJoypadApi is not null)
 			{
-				CreateNotificationService();
-				coopForm = new CoopForm(toolConfig, watchlistService, inputService, sotnApi, APIs.Joypad, notificationService);
+				coopForm = new CoopForm(toolConfig, watchlistService, inputService, gameApi, alucardApi, _maybeJoypadApi, notificationService);
 				coopForm.Show();
-			}
-		}
-
-		private void CreateNotificationService()
-		{
-			if (notificationService is null)
-			{
-				notificationService = new NotificationService(toolConfig, APIs.Gui, APIs.EmuClient);
-				khaosSettingsPanel.NotificationService = notificationService;
 			}
 		}
 

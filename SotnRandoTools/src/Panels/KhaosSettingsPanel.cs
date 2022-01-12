@@ -9,20 +9,25 @@ namespace SotnRandoTools
 	public partial class KhaosSettingsPanel : UserControl
 	{
 		private readonly IToolConfig? toolConfig;
-		private BindingSource actionSettingsSource = new();
+		private readonly INotificationService notificationService;
+		private BindingSource actionsAlertsSource = new();
+		private BindingSource actionsOtherSource = new();
 
-		public KhaosSettingsPanel(IToolConfig toolConfig)
+		public KhaosSettingsPanel(IToolConfig toolConfig, INotificationService notificationService)
 		{
 			if (toolConfig is null) throw new ArgumentNullException(nameof(toolConfig));
+			if (notificationService is null) throw new ArgumentNullException(nameof(notificationService));
 			this.toolConfig = toolConfig;
+			this.notificationService = notificationService;
 
 			InitializeComponent();
 		}
-		public INotificationService NotificationService { get; set; }
 
 		private void KhaosSettingsPanel_Load(object sender, EventArgs e)
 		{
 			alertsCheckbox.Checked = toolConfig.Khaos.Alerts;
+			namesPath.Text = toolConfig.Khaos.NamesFilePath;
+			botApiKey.Text = toolConfig.Khaos.BotApiKey;
 			volumeTrackBar.Value = toolConfig.Khaos.Volume;
 			crippleTextBox.Text = (toolConfig.Khaos.CrippleFactor * 100) + "%";
 			hasteTextBox.Text = (toolConfig.Khaos.HasteFactor * 100) + "%";
@@ -31,71 +36,19 @@ namespace SotnRandoTools
 			queueTextBox.Text = toolConfig.Khaos.QueueInterval.ToString();
 			dynamicIntervalCheckBox.Checked = toolConfig.Khaos.DynamicInterval;
 			keepVladRelicsCheckbox.Checked = toolConfig.Khaos.KeepVladRelics;
-			costDecayCheckBox.Checked = toolConfig.Khaos.CostDecay;
 			pandoraMinTextBox.Text = toolConfig.Khaos.PandoraMinItems.ToString();
 			pandoraMaxTextBox.Text = toolConfig.Khaos.PandoraMaxItems.ToString();
 
 			foreach (var action in toolConfig.Khaos.Actions)
 			{
-				actionSettingsSource.Add(action);
+				actionsAlertsSource.Add(action);
+				actionsOtherSource.Add(action);
 			}
 			alertsGridView.AutoGenerateColumns = false;
-			alertsGridView.DataSource = actionSettingsSource;
+			alertsGridView.DataSource = actionsAlertsSource;
 			alertsGridView.CellClick += AlertsGridView_BrowseClick;
 			actionsGridView.AutoGenerateColumns = false;
-			actionsGridView.DataSource = actionSettingsSource;
-			actionCooldownsGridView.AutoGenerateColumns = false;
-			actionCooldownsGridView.DataSource = actionSettingsSource;
-			actionPricingGridView.AutoGenerateColumns = false;
-			actionPricingGridView.DataSource = actionSettingsSource;
-			actionPricingGridView.CellValidating += ActionPricingGridView_CellValidating;
-		}
-
-		private void ActionPricingGridView_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
-		{
-			string property = actionPricingGridView.Columns[e.ColumnIndex].DataPropertyName;
-
-			if (property.Equals("Scaling"))
-			{
-				if (string.IsNullOrEmpty(e.FormattedValue.ToString()))
-				{
-					actionPricingGridView.Rows[e.RowIndex].ErrorText =
-						"Scaling must not be empty.";
-					e.Cancel = true;
-				}
-				else if (Convert.ToDouble(e.FormattedValue) < 1)
-				{
-					actionPricingGridView.Rows[e.RowIndex].ErrorText =
-						"Scaling cannot be lower than 1.";
-					e.Cancel = true;
-				}
-				else if (Convert.ToDouble(e.FormattedValue) > 10)
-				{
-					actionPricingGridView.Rows[e.RowIndex].ErrorText =
-						"Scaling cannot be higher than 10.";
-					e.Cancel = true;
-				}
-				else
-				{
-					actionPricingGridView.Rows[e.RowIndex].ErrorText = "";
-					e.Cancel = false;
-				}
-			}
-			else if (property.Equals("MaximumChannelPoints"))
-			{
-				if (string.IsNullOrEmpty(e.FormattedValue.ToString()))
-				{
-					actionPricingGridView.Rows[e.RowIndex].ErrorText =
-						"Maximum Channel Points must not be empty.";
-					e.Cancel = true;
-				}
-				else if (Convert.ToUInt32(e.FormattedValue) <= toolConfig.Khaos.Actions[e.RowIndex].ChannelPoints && Convert.ToUInt32(e.FormattedValue) != 0)
-				{
-					actionPricingGridView.Rows[e.RowIndex].ErrorText =
-						"Maximum Channel Points must be higher than Channel Points or 0(uncapped).";
-					e.Cancel = true;
-				}
-			}
+			actionsGridView.DataSource = actionsOtherSource;
 		}
 
 		private void AlertsGridView_BrowseClick(object sender, DataGridViewCellEventArgs e)
@@ -118,15 +71,23 @@ namespace SotnRandoTools
 		private void volumeTrackBar_Scroll(object sender, EventArgs e)
 		{
 			toolConfig.Khaos.Volume = volumeTrackBar.Value;
-			if (NotificationService is not null)
-			{
-				NotificationService.Volume = (double) volumeTrackBar.Value / 10F;
-			}
+			notificationService.Volume = (double) volumeTrackBar.Value / 10F;
 		}
 
 		private void alertsCheckbox_CheckedChanged(object sender, EventArgs e)
 		{
 			toolConfig.Khaos.Alerts = alertsCheckbox.Checked;
+		}
+
+		private void namesBrowseButton_Click(object sender, EventArgs e)
+		{
+			namesFileDialog.ShowDialog();
+		}
+
+		private void namesFileDialog_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			namesPath.Text = namesFileDialog.FileName;
+			toolConfig.Khaos.NamesFilePath = namesFileDialog.FileName;
 		}
 
 		private void crippleTextBox_Validated(object sender, EventArgs e)
@@ -342,14 +303,14 @@ namespace SotnRandoTools
 			toolConfig.Khaos.DynamicInterval = dynamicIntervalCheckBox.Checked;
 		}
 
+		private void botApiKey_TextChanged(object sender, EventArgs e)
+		{
+			toolConfig.Khaos.BotApiKey = botApiKey.Text;
+		}
+
 		private void keepVladRelicsCheckbox_CheckedChanged(object sender, EventArgs e)
 		{
 			toolConfig.Khaos.KeepVladRelics = keepVladRelicsCheckbox.Checked;
-		}
-
-		private void costDecayCheckBox_CheckedChanged(object sender, EventArgs e)
-		{
-			toolConfig.Khaos.CostDecay = costDecayCheckBox.Checked;
 		}
 	}
 }
