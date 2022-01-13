@@ -3,7 +3,7 @@ name: Khaos effect idea
 about: Suggest an in-game effect that can be added to Khaos.
 title: "[KHAOS EFFECT]"
 labels: enhancement, Khaos
-assignees: TalicZealot
+assignees: Ziggypigster
 
 ---
 

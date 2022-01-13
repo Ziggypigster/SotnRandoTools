@@ -3,12 +3,13 @@
 	public enum Action
 	{
 		KhaosStatus,
+		KhaosBurst,
 		KhaosEquipment,
 		KhaosStats,
 		KhaosRelics,
 		PandorasBox,
 		Gamble,
-		KhaoticBurst,
+		Slam,
 		Bankrupt,
 		Weaken,
 		RespawnBosses,
@@ -29,6 +30,7 @@
 		GuiltyGear,
 		FourBeasts,
 		ZAWARUDO,
-		Haste
+		Haste,
+		Lord
 	}
 }

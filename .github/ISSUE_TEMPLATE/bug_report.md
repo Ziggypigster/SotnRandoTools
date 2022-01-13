@@ -3,7 +3,7 @@ name: Bug report
 about: Create a report with relevant information.
 title: ''
 labels: bug
-assignees: TalicZealot
+assignees: Ziggypigster
 
 ---
 

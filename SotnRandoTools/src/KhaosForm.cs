@@ -171,8 +171,31 @@ namespace SotnRandoTools
 				khaosControler.Gamble();
 			}
 		}
+		private void kburstButton_Click(object sender, EventArgs e)
+		{
+			if (toolConfig.Khaos.ControlPannelQueueActions)
+			{
+				khaosControler.EnqueueAction(new EventAddAction { Command = "kburst", UserName = "Khaos" });
+			}
+			else
+			{
+
+				khaosControler.KhaoticBurst();
+			}
+		}
 		#endregion
 		#region Debuffs
+		private void slamButton_Click(object sender, EventArgs e)
+		{
+			if (toolConfig.Khaos.ControlPannelQueueActions)
+			{
+				khaosControler.EnqueueAction(new EventAddAction { Command = "slam", UserName = "Khaos" });
+			}
+			else
+			{
+				khaosControler.Slam();
+			}
+		}
 		private void weakenButton_Click(object sender, EventArgs e)
 		{
 			if (toolConfig.Khaos.ControlPannelQueueActions)
@@ -261,6 +284,18 @@ namespace SotnRandoTools
 			{
 
 				khaosControler.Cripple();
+			}
+		}
+		private void randomizeHnkButton_Click(object sender, EventArgs e)
+		{
+			if (toolConfig.Khaos.ControlPannelQueueActions)
+			{
+				khaosControler.EnqueueAction(new EventAddAction { Command = "hnk", UserName = "Khaos" });
+			}
+			else
+			{
+
+				khaosControler.HnK();
 			}
 		}
 		#endregion
@@ -379,6 +414,17 @@ namespace SotnRandoTools
 			else
 			{
 				khaosControler.Haste();
+			}
+		}
+		private void lordButton_Click(object sender, EventArgs e)
+		{
+			if (toolConfig.Khaos.ControlPannelQueueActions)
+			{
+				khaosControler.EnqueueAction(new EventAddAction { Command = "lord", UserName = "Khaos" });
+			}
+			else
+			{
+				khaosControler.Lord();
 			}
 		}
 		#endregion

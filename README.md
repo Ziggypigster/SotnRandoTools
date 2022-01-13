@@ -1,3 +1,8 @@
+#Intent of this build
+
+This build is based on the 1.08 version of the SotN Randomizer code.
+The intent is to carry over the Twitch only updates, along with some balancing changes, to the old chatbot version.
+
 # Symphony of the Night Randomizer Tools
 
 [![(latest) release | GitHub](https://img.shields.io/github/release/TalicZealot/SotnRandoTools.svg?logo=github&logoColor=333333&style=popout)](https://github.com/TalicZealot/SotnRandoTools/releases/latest)

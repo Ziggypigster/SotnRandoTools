@@ -296,6 +296,15 @@ namespace SotnRandoTools
             this.thirstLabel.TabIndex = 3;
             this.thirstLabel.Text = "Thirst Drain:";
             // 
+            // RomhackMode
+            // 
+            this.thirstLabel.AutoSize = true;
+            this.thirstLabel.Location = new System.Drawing.Point(10, 92);
+            this.thirstLabel.Name = "RomhackMode";
+            this.thirstLabel.Size = new System.Drawing.Size(66, 13);
+            this.thirstLabel.TabIndex = 3;
+            this.thirstLabel.Text = "Romhack Mode:";
+            // 
             // weakenLabel
             // 
             this.weakenLabel.AutoSize = true;

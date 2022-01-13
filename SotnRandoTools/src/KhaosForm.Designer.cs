@@ -59,6 +59,15 @@ namespace SotnRandoTools
             this.weakenButton = new System.Windows.Forms.Button();
             this.randomEquipmentButton = new System.Windows.Forms.Button();
             this.randomStatusButton = new System.Windows.Forms.Button();
+			this.randomizeStatsButton = new System.Windows.Forms.Button();
+            this.weakenButton = new System.Windows.Forms.Button();
+            this.randomEquipmentButton = new System.Windows.Forms.Button();
+            this.randomStatusButton = new System.Windows.Forms.Button();
+			#new commands
+			this.kBurstButton = new System.Windows.Forms.Button();
+            this.slamButton = new System.Windows.Forms.Button();
+            this.hnKButton = new System.Windows.Forms.Button();
+            this.lordButton = new System.Windows.Forms.Button();
             this.startButton = new System.Windows.Forms.Button();
             this.controlBox.SuspendLayout();
             this.modePanel.SuspendLayout();
@@ -92,6 +101,10 @@ namespace SotnRandoTools
             this.controlBox.Controls.Add(this.weakenButton);
             this.controlBox.Controls.Add(this.randomEquipmentButton);
             this.controlBox.Controls.Add(this.randomStatusButton);
+			this.controlBox.Controls.Add(this.kBurstButton);
+            this.controlBox.Controls.Add(this.slamButton);
+            this.controlBox.Controls.Add(this.hnKButton);
+            this.controlBox.Controls.Add(this.lordButton);
             this.controlBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.controlBox.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.controlBox.ForeColor = System.Drawing.Color.White;
@@ -143,7 +156,7 @@ namespace SotnRandoTools
             this.subsonlyButton.Name = "subsonlyButton";
             this.subsonlyButton.Size = new System.Drawing.Size(134, 26);
             this.subsonlyButton.TabIndex = 24;
-            this.subsonlyButton.Text = "SubweaponsOnly";
+            this.subsonlyButton.Text = "Subweapons Only";
             this.subsonlyButton.UseVisualStyleBackColor = true;
             this.subsonlyButton.Click += new System.EventHandler(this.subsonlyButton_Click);
             // 
@@ -158,7 +171,7 @@ namespace SotnRandoTools
             this.hordeButton.Name = "hordeButton";
             this.hordeButton.Size = new System.Drawing.Size(134, 26);
             this.hordeButton.TabIndex = 23;
-            this.hordeButton.Text = "Khaos Horde";
+            this.hordeButton.Text = "Horde";
             this.hordeButton.UseVisualStyleBackColor = true;
             this.hordeButton.Click += new System.EventHandler(this.hordeButton_Click);
             // 
@@ -223,7 +236,7 @@ namespace SotnRandoTools
             this.thurstButton.Name = "thurstButton";
             this.thurstButton.Size = new System.Drawing.Size(134, 26);
             this.thurstButton.TabIndex = 20;
-            this.thurstButton.Text = "Thurst";
+            this.thurstButton.Text = "Thirst";
             this.thurstButton.UseVisualStyleBackColor = true;
             this.thurstButton.Click += new System.EventHandler(this.thurstButton_Click);
             // 
@@ -463,7 +476,7 @@ namespace SotnRandoTools
             this.randomizeStatsButton.Name = "randomizeStatsButton";
             this.randomizeStatsButton.Size = new System.Drawing.Size(134, 26);
             this.randomizeStatsButton.TabIndex = 3;
-            this.randomizeStatsButton.Text = "Khaos Stats";
+            this.randomizeStatsButton.Text = "KStats";
             this.randomizeStatsButton.UseVisualStyleBackColor = true;
             this.randomizeStatsButton.Click += new System.EventHandler(this.randomizeStatsButton_Click);
             // 
@@ -511,6 +524,66 @@ namespace SotnRandoTools
             this.randomStatusButton.Text = "Khaos Status";
             this.randomStatusButton.UseVisualStyleBackColor = true;
             this.randomStatusButton.Click += new System.EventHandler(this.randomStatusButton_Click);
+			// 
+            // Khaotic Burst
+            // 
+            this.kBurstButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(21)))), ((int)(((byte)(57)))));
+            this.kBurstButton.FlatAppearance.BorderSize = 2;
+            this.kBurstButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
+            this.kBurstButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
+            this.kBurstButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.kBurstButton.Location = new System.Drawing.Point(6, 289);
+            this.kBurstButton.Name = "kBurstButton";
+            this.kBurstButton.Size = new System.Drawing.Size(134, 26);
+            this.kBurstButton.TabIndex = 0;
+            this.kBurstButton.Text = "KBurst";
+            this.kBurstButton.UseVisualStyleBackColor = true;
+            this.kBurstButton.Click += new System.EventHandler(this.kBurstButton_Click);
+			// 
+            // Slam
+            // 
+            this.slamButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(21)))), ((int)(((byte)(57)))));
+            this.slamButton.FlatAppearance.BorderSize = 2;
+            this.slamButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
+            this.slamButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
+            this.slamButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.slamButton.Location = new System.Drawing.Point(146, 65);
+            this.slamButton.Name = "slamButton";
+            this.slamButton.Size = new System.Drawing.Size(134, 26);
+            this.slamButton.TabIndex = 0;
+            this.slamButton.Text = "Slam";
+            this.slamButton.UseVisualStyleBackColor = true;
+            this.slamButton.Click += new System.EventHandler(this.slamButton_Click);
+			// 
+            // HnK
+            // 
+            this.hnKButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(21)))), ((int)(((byte)(57)))));
+            this.hnKButton.FlatAppearance.BorderSize = 2;
+            this.hnKButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
+            this.hnKButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
+            this.hnKButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.hnKButton.Location = new System.Drawing.Point(146, 385);
+            this.hnKButton.Name = "hnKButton";
+            this.hnKButton.Size = new System.Drawing.Size(134, 26);
+            this.hnKButton.TabIndex = 0;
+            this.hnKButton.Text = "HnK";
+            this.hnKButton.UseVisualStyleBackColor = true;
+            this.hnKButton.Click += new System.EventHandler(this.hnKButton_Click);
+			// 
+            // Lord
+            // 
+            this.lordButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(21)))), ((int)(((byte)(57)))));
+            this.lordButton.FlatAppearance.BorderSize = 2;
+            this.lordButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
+            this.lordButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
+            this.lordButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lordButton.Location = new System.Drawing.Point(286, 65);
+            this.lordButton.Name = "lordButton";
+            this.lordButton.Size = new System.Drawing.Size(134, 26);
+            this.lordButton.TabIndex = 0;
+            this.lordButton.Text = "Lord";
+            this.lordButton.UseVisualStyleBackColor = true;
+            this.lordButton.Click += new System.EventHandler(this.lordButton_Click);
             // 
             // startButton
             // 

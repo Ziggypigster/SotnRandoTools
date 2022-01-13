@@ -6,8 +6,10 @@
 		public const string KhaosEquipment = "Khaos Equipment";
 		public const string KhaosStats = "Khaos Stats";
 		public const string KhaosRelics = "Khaos Relics";
+		public const strong KhaosBurst = "Khaos Burst"
 		public const string PandorasBox = "Pandora's Box";
 		public const string Gamble = "Gamble";
+		public const string Slam = "Slam";
 		public const string Bankrupt = "Bankrupt";
 		public const string Weaken = "Weaken";
 		public const string RespawnBosses = "Respawn Bosses";
@@ -18,6 +20,7 @@
 		public const string Thirst = "Thirst";
 		public const string KhaosHorde = "Khaos Horde";
 		public const string Endurance = "Endurance";
+		public const string Hnk = "HnK";
 		public const string Vampire = "Vampire";
 		public const string LightHelp = "Light Help";
 		public const string MediumHelp = "Medium Help";
@@ -29,5 +32,6 @@
 		public const string FourBeasts = "Four Beasts";
 		public const string ZaWarudo = "ZA WARUDO";
 		public const string Haste = "Haste";
+		public const string Lord = "Lord";
 	}
 }
