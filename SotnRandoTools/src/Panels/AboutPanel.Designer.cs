@@ -100,7 +100,7 @@ namespace SotnRandoTools
             this.descriptionLabel.Name = "descriptionLabel";
             this.descriptionLabel.Size = new System.Drawing.Size(365, 65);
             this.descriptionLabel.TabIndex = 5;
-            this.descriptionLabel.Text = "SotN Randomizer Tools is a free and open source set of tools to enhance the SotN " +
+            this.descriptionLabel.Text = "Ziggypigster test - SotN Randomizer Tools is a free and open source set of tools to enhance the SotN " +
     "randomizer experience.\r\nMade by TalicZealot.\r\n\r\nAssociated Projects:";
             // 
             // readmeLink
