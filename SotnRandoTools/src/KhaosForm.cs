@@ -286,7 +286,7 @@ namespace SotnRandoTools
 				khaosControler.Cripple();
 			}
 		}
-		private void randomizeHnkButton_Click(object sender, EventArgs e)
+		private void hnkButton_Click(object sender, EventArgs e)
 		{
 			if (toolConfig.Khaos.ControlPannelQueueActions)
 			{

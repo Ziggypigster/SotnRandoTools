@@ -51,9 +51,9 @@ namespace SotnRandoTools
             this.autotrackerPanelTitle.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.autotrackerPanelTitle.Location = new System.Drawing.Point(1, 0);
             this.autotrackerPanelTitle.Name = "autotrackerPanelTitle";
-            this.autotrackerPanelTitle.Size = new System.Drawing.Size(74, 29);
+            this.autotrackerPanelTitle.Size = new System.Drawing.Size(395, 29);
             this.autotrackerPanelTitle.TabIndex = 0;
-            this.autotrackerPanelTitle.Text = "About";
+            this.autotrackerPanelTitle.Text = "About: Custom Khaos (Ziggypigster)";
             // 
             // divider
             // 
@@ -100,8 +100,9 @@ namespace SotnRandoTools
             this.descriptionLabel.Name = "descriptionLabel";
             this.descriptionLabel.Size = new System.Drawing.Size(365, 65);
             this.descriptionLabel.TabIndex = 5;
-            this.descriptionLabel.Text = "Ziggypigster test - SotN Randomizer Tools is a free and open source set of tools to enhance the SotN " +
-    "randomizer experience.\r\nMade by TalicZealot.\r\n\r\nAssociated Projects:";
+            this.descriptionLabel.Text = "SotN Randomizer Tools is a free and open source set of tools to enhance the SotN " +
+    "randomizer experience.\r\nMade by TalicZealot, Customized by Ziggypigster.\r\n\r\nAsso" +
+    "ciated Projects:";
             // 
             // readmeLink
             // 

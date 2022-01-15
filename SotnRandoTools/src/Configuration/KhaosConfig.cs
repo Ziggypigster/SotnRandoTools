@@ -14,43 +14,47 @@ namespace SotnRandoTools.Configuration
 			Volume = 2;
 			NamesFilePath = Paths.NamesFilePath;
 			BotApiKey = "";
-			WeakenFactor = 0.5F;
+			WeakenFactor = 0.4F;
 			CrippleFactor = 0.8F;
 			HasteFactor = 3.2F;
 			ThirstDrainPerSecond = 1;
-			PandoraMinItems = 5;
+			PandoraMinItems = 12;
 			PandoraMaxItems = 32;
 			QueueInterval = new System.TimeSpan(0, 0, 31);
 			DynamicInterval = true;
-			KeepVladRelics = false;
+			KeepVladRelics = true;
 			Actions = new List<Action>
 			{
-				new Action{Name="Khaos Status", Enabled = true, Meter = 2, AlertPath = Paths.AlucardWhatSound},
-				new Action{Name="Khaos Equipment", Enabled = true, Meter = 6, AlertPath = Paths.AlucardWhatSound},
-				new Action{Name="Khaos Stats", Enabled = true, Meter = 6, AlertPath = Paths.AlucardWhatSound},
-				new Action{Name="Khaos Relics", Enabled = true, Meter = 6, AlertPath = Paths.AlucardWhatSound},
-				new Action{Name="Pandora's Box", Enabled = true, Meter = 6, AlertPath = Paths.AlucardWhatSound},
+				new Action{Name="Khaos Status", Enabled = true, Meter = 3, AlertPath = Paths.AlucardWhatSound},
 				new Action{Name="Gamble", Enabled = true, Meter = 2, AlertPath = Paths.LibrarianThankYouSound},
-				new Action{Name="Bankrupt", Enabled = true, Meter = 5, AlertPath = Paths.DeathLaughSound},
-				new Action{Name="Weaken", Enabled = true, Meter = 5, AlertPath = Paths.RichterLaughSound},
-				new Action{Name="Respawn Bosses", Enabled = true, Meter = 3, AlertPath = Paths.DeathLaughSound},
-				new Action{Name="Subweapons Only", Enabled = true, Meter = 4, AlertPath = Paths.RichterLaughSound, Duration = new System.TimeSpan(0, 1, 0)},
-				new Action{Name="Cripple", Enabled = true, Meter = 5, Duration = new System.TimeSpan(0, 1, 0), AlertPath = Paths.DeathLaughSound},
+				new Action{Name="Khaos Burst", Enabled = true, Meter = 0, AlertPath = Paths.AlucardWhatSound},
+				new Action{Name="Khaos Stats", Enabled = true, Meter = 8, AlertPath = Paths.AlucardWhatSound},
+				new Action{Name="Khaos Equipment", Enabled = true, Meter = 10, AlertPath = Paths.AlucardWhatSound},
+				new Action{Name="Khaos Relics", Enabled = true, Meter = 12, AlertPath = Paths.AlucardWhatSound},
+				new Action{Name="Pandora's Box", Enabled = true, Meter = 12, AlertPath = Paths.AlucardWhatSound},
 				new Action{Name="Blood Mana", Enabled = true, Meter = 3, Duration = new System.TimeSpan(0, 1, 0), AlertPath = Paths.DeathLaughSound},
-				new Action{Name="Thirst", Enabled = true, Meter = 4, Duration = new System.TimeSpan(0, 1, 0), AlertPath = Paths.DeathLaughSound},
-				new Action{Name="Khaos Horde", Enabled = true, Meter = 6, Duration = new System.TimeSpan(0, 1, 0), Interval = new System.TimeSpan(0, 0, 1), AlertPath = Paths.RichterLaughSound},
-				new Action{Name="Endurance", Enabled = true, Meter = 4, AlertPath = Paths.DeathLaughSound},
-				new Action{Name="Vampire", Enabled = true,  Meter = 2, Duration = new System.TimeSpan(0, 1, 0)},
+				new Action{Name="Cripple", Enabled = true, Meter = 4, Duration = new System.TimeSpan(0, 1, 0), AlertPath = Paths.DeathLaughSound},
+				new Action{Name="Slam", Enabled = true, Meter = 4, AlertPath = Paths.AlucardWhatSound},
+				new Action{Name="Subweapons Only", Enabled = true, Meter = 6, AlertPath = Paths.RichterLaughSound, Duration = new System.TimeSpan(0, 1, 0)},
+				new Action{Name="Thirst", Enabled = true, Meter = 6, Duration = new System.TimeSpan(0, 1, 0), AlertPath = Paths.DeathLaughSound},
+				new Action{Name="Respawn Bosses", Enabled = true, Meter = 6, AlertPath = Paths.DeathLaughSound},
+				new Action{Name="HnK", Enabled = true, Meter = 8, AlertPath = Paths.DeathLaughSound},
+				new Action{Name="Khaos Horde", Enabled = true, Meter = 8, Duration = new System.TimeSpan(0, 1, 0), Interval = new System.TimeSpan(0, 0, 1), AlertPath = Paths.RichterLaughSound},
+				new Action{Name="Endurance", Enabled = true, Meter = 10, AlertPath = Paths.DeathLaughSound},
+				new Action{Name="Weaken", Enabled = true, Meter = 12, AlertPath = Paths.RichterLaughSound},
+				new Action{Name="Bankrupt", Enabled = true, Meter = 12, AlertPath = Paths.DeathLaughSound},
 				new Action{Name="Light Help", Enabled = true, Meter = 2, AlertPath = Paths.FairyPotionSound},
-				new Action{Name="Medium Help", Enabled = true, Meter = 3, AlertPath = Paths.FairyPotionSound},
-				new Action{Name="Heavy Help", Enabled = true, Meter = 5, AlertPath = Paths.FairyPotionSound},
-				new Action{Name="Battle Orders", Enabled = true,  Meter = 4, Duration = new System.TimeSpan(0, 1, 0)},
-				new Action{Name="Magician", Enabled = true, Meter = 4, Duration = new System.TimeSpan(0, 1, 0)},
-				new Action{Name="Melty Blood", Enabled = true, Meter = 5, Duration = new System.TimeSpan(0, 1, 0), AlertPath = Paths.MeltySound},
-				new Action{Name="Guilty Gear", Enabled = true, Meter = 5, Duration = new System.TimeSpan(0, 1, 0), AlertPath = Paths.DragonInstallSound},
-				new Action{Name="Four Beasts", Enabled = true,  Meter = 6, Duration = new System.TimeSpan(0, 1, 0)},
-				new Action{Name="ZA WARUDO", Enabled = true, Meter = 4, Duration = new System.TimeSpan(0, 1, 0), AlertPath = Paths.ZaWarudoSound},
-				new Action{Name="Haste", Enabled = true, Meter = 6, Duration = new System.TimeSpan(0, 1, 0)}
+				new Action{Name="Haste", Enabled = true, Meter = 4, Duration = new System.TimeSpan(0, 1, 0)},
+				new Action{Name="Vampire", Enabled = true,  Meter = 4, Duration = new System.TimeSpan(0, 1, 0)},
+				new Action{Name="Medium Help", Enabled = true, Meter = 4, AlertPath = Paths.FairyPotionSound},
+				new Action{Name="ZA WARUDO", Enabled = true, Meter = 6, Duration = new System.TimeSpan(0, 1, 0), AlertPath = Paths.ZaWarudoSound},
+				new Action{Name="Battle Orders", Enabled = true,  Meter = 6, Duration = new System.TimeSpan(0, 1, 0)},
+				new Action{Name="Magician", Enabled = true, Meter = 6, Duration = new System.TimeSpan(0, 1, 0)},
+				new Action{Name="Guilty Gear", Enabled = true, Meter = 6, Duration = new System.TimeSpan(0, 1, 0), AlertPath = Paths.DragonInstallSound},
+				new Action{Name="Heavy Help", Enabled = true, Meter = 8, AlertPath = Paths.FairyPotionSound},
+				new Action{Name="Melty Blood", Enabled = true, Meter = 8, Duration = new System.TimeSpan(0, 1, 0), AlertPath = Paths.MeltySound},
+				new Action{Name="Lord", Enabled = true,  Meter = 10, Duration = new System.TimeSpan(0, 1, 0)},
+				new Action{Name="Four Beasts", Enabled = true,  Meter = 10, Duration = new System.TimeSpan(0, 1, 0)},	
 			};
 			LightHelpItemRewards = new string[]
 			{
@@ -79,7 +83,7 @@ namespace SotnRandoTools.Configuration
 				"Onyx",
 				"Garnet",
 				"Nauglamir",
-				"Talisman"
+				"Talisman",
 				"Mystic pendant",
 				"Gauntlet",
 				"Moonstone"

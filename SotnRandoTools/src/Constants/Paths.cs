@@ -16,10 +16,10 @@
 
 		public const string SourceLink = "https://github.com/Ziggypigster/SotnRandoTools/";
 		public const string ReadmeLink = "https://github.com/Ziggypigster/SotnRandoTools/blob/main/README.md";
-		public const string ApiLink = "https://github.com/Ziggypigster/SotnApi";
-		public const string UpdaterLink = "https://github.com/Ziggypigster/SimpleLatestReleaseUpdater";
+		public const string ApiLink = "https://github.com/TalicZealot/SotnApi";
+		public const string UpdaterLink = "https://github.com/TalicZealot/SimpleLatestReleaseUpdater";
 		public const string RandoSourceLink = "https://github.com/3snowp7im/SotN-Randomizer";
-		public const string DonateLink = "https://streamlabs.com/Ziggypigster";
+		public const string DonateLink = "https://streamelements.com/ziggypigster/";
 
 		public const string LatestReleaseApi = "https://api.github.com/repos/Ziggypigster/sotnrandotools/releases";
 		public const string LatestReleaseUrl = "https://github.com/Ziggypigster/SotnRandoTools/releases/latest";
