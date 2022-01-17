@@ -18,5 +18,6 @@ namespace SotnRandoTools.Khaos.Models
 		public bool LocksSpeed { get; set; }
 		public bool LocksMana { get; set; }
 		public bool LocksInvincibility { get; set; }
+		public bool LocksSpawning { get; set; }
 	}
 }

@@ -66,6 +66,7 @@ namespace SotnRandoTools
 		private AlucardApi? alucardApi;
 		private GameApi? gameApi;
 		private RenderingApi? renderingApi;
+		private SotnApi.Main.SotnApi? sotnApi;
 		private ToolConfig toolConfig;
 		private WatchlistService? watchlistService;
 		private NotificationService? notificationService;
@@ -145,13 +146,17 @@ namespace SotnRandoTools
 				}
 			}
 
-			if (!File.Exists(Paths.CheatsPath))
-			{
-				File.Copy(Paths.CheatsPath + ".bkp", Paths.CheatsPath);
-			}
+			LoadCheats();
 
-			this.MainForm.CheatList.Load(_memoryDomains, Paths.CheatsPath, false);
-			this.MainForm.CheatList.DisableAll();
+			sotnApi = new SotnApi.Main.SotnApi(APIs.Memory);
+
+			//if (!File.Exists(Paths.CheatsPath))
+			//{
+			//File.Copy(Paths.CheatsPath + ".bkp", Paths.CheatsPath);
+			//}
+
+			//this.MainForm.CheatList.Load(_memoryDomains, Paths.CheatsPath, false);
+			//this.MainForm.CheatList.DisableAll();
 
 			actorApi = new ActorApi(_maybeMemAPI);
 			alucardApi = new AlucardApi(_maybeMemAPI);
@@ -161,6 +166,31 @@ namespace SotnRandoTools
 			inputService = new InputService(_maybeJoypadApi, alucardApi);
 
 			Console.SetOut(log);
+		}
+
+		private void LoadCheats()
+		{
+			if (!File.Exists(Paths.CheatsPath))
+			{
+				File.Copy(Paths.CheatsBackupPath, Paths.CheatsPath);
+			}
+
+			this.MainForm.CheatList.Load(_memoryDomains, Paths.CheatsPath, false);
+			this.MainForm.CheatList.DisableAll();
+
+			//var checkCheat = this.MainForm.CheatList.Where(x => x.Name == "AlucardAttackHitbox2Width").FirstOrDefault();
+
+			//if (checkCheat is null)
+			//{
+				//File.Copy(Paths.CheatsBackupPath, Paths.CheatsPath);
+				//this.MainForm.CheatList.Load(_memoryDomains, Paths.CheatsPath, false);
+				//this.MainForm.CheatList.DisableAll();
+			//}
+
+			//if (khaosForm is not null)
+			//{
+			//	khaosForm.AdaptedCheats = new CheatCollectionAdapter(this.MainForm.CheatList);
+			//}
 		}
 
 		public override bool AskSaveChanges() => true;
@@ -188,6 +218,10 @@ namespace SotnRandoTools
 				if (coopForm is not null)
 				{
 					coopForm.UpdateCoop();
+				}
+				if (this.MainForm.CheatList.Count == 0)
+				{
+					LoadCheats();
 				}
 			}
 		}
@@ -250,12 +284,12 @@ namespace SotnRandoTools
 			if (khaosForm is not null && gameApi is not null && alucardApi is not null && actorApi is not null)
 			{
 				khaosForm.Close();
-				khaosForm = new KhaosForm(toolConfig, this.MainForm.CheatList, gameApi, alucardApi, actorApi, notificationService, inputService);
+				khaosForm = new KhaosForm(toolConfig, this.MainForm.CheatList, sotnApi, gameApi, alucardApi, actorApi, notificationService, inputService);
 				khaosForm.Show();
 			}
 			else if (khaosForm is null && gameApi is not null && alucardApi is not null && actorApi is not null)
 			{
-				khaosForm = new KhaosForm(toolConfig, this.MainForm.CheatList, gameApi, alucardApi, actorApi, notificationService, inputService);
+				khaosForm = new KhaosForm(toolConfig, this.MainForm.CheatList, sotnApi, gameApi, alucardApi, actorApi, notificationService, inputService);
 				khaosForm.Show();
 			}
 		}

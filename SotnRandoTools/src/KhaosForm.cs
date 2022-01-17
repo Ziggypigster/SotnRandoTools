@@ -12,12 +12,12 @@ namespace SotnRandoTools
 {
 	public partial class KhaosForm : Form
 	{
-		private readonly ICheatCollectionAdapter adaptedCheats;
-		private KhaosController? khaosControler;
+		private ICheatCollectionAdapter adaptedCheats;
 		private readonly IToolConfig toolConfig;
+		private KhaosController? khaosControler;
 		private bool started = false;
 
-		public KhaosForm(IToolConfig toolConfig, CheatCollection cheats, IGameApi gameApi, IAlucardApi alucardApi, IActorApi actorApi, INotificationService notificationService, IInputService inputService)
+		public KhaosForm(IToolConfig toolConfig, CheatCollection cheats, ISotnApi sotnApi, IGameApi gameApi, IAlucardApi alucardApi, IActorApi actorApi, INotificationService notificationService, IInputService inputService)
 		{
 			if (toolConfig is null) throw new ArgumentNullException(nameof(toolConfig));
 			if (cheats is null) throw new ArgumentNullException(nameof(cheats));
@@ -26,11 +26,21 @@ namespace SotnRandoTools
 			this.toolConfig = toolConfig;
 
 			adaptedCheats = new CheatCollectionAdapter(cheats);
-			khaosControler = new KhaosController(toolConfig, gameApi, alucardApi, actorApi, adaptedCheats, notificationService, inputService);
+			khaosControler = new KhaosController(toolConfig, sotnApi, gameApi, alucardApi, actorApi, adaptedCheats, notificationService, inputService);
 
 			InitializeComponent();
 			SuspendLayout();
 			ResumeLayout();
+		}
+		public ICheatCollectionAdapter AdaptedCheats
+		{
+			get => adaptedCheats;
+
+			set
+			{
+				adaptedCheats = value;
+				khaosControler.GetCheats();
+			}
 		}
 
 		public void UpdateKhaosValues()
