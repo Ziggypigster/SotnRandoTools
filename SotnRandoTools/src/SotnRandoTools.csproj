@@ -20,6 +20,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove=".stylecop.json" />
+    <None Remove="SotnApi.dll" />
   </ItemGroup>
   <ItemGroup>
     <AdditionalFiles Include=".stylecop.json" />
@@ -42,23 +43,23 @@
     <PackageReference Include="System.Drawing.Common" Version="5.0.2" />
     <PackageReference Include="WatsonWebsocket" Version="2.3.0" />
     <Reference Include="BizHawk.Client.Common">
-      <HintPath>..\..\..\..\..\..\OneDrive\Desktop\Games\SotNKhaos\Dependencies\BizHawk.Client.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="EmuHawk">
-      <HintPath>..\..\..\..\..\..\OneDrive\Desktop\Games\SotNKhaos\Dependencies\Bizhawk.Client.EmuHawk.dll</HintPath>
+      <HintPath>..\BizHawk\dll\BizHawk.Client.Common.dll</HintPath>
     </Reference>
     <Reference Include="BizHawk.Common">
-      <HintPath>..\..\..\..\..\..\OneDrive\Desktop\Games\SotNKhaos\Dependencies\BizHawk.Common.dll</HintPath>
+      <HintPath>..\BizHawk\dll\BizHawk.Common.dll</HintPath>
     </Reference>
     <Reference Include="BizHawk.Emulation.Common">
-      <HintPath>..\..\..\..\..\..\OneDrive\Desktop\Games\SotNKhaos\Dependencies\BizHawk.Emulation.Common.dll</HintPath>
+      <HintPath>..\BizHawk\dll\BizHawk.Emulation.Common.dll</HintPath>
     </Reference>
     <Reference Include="BizHawk.WinForms.Controls">
-      <HintPath>..\..\..\..\..\..\OneDrive\Desktop\Games\SotNKhaos\Dependencies\BizHawk.WinForms.Controls.dll</HintPath>
+      <HintPath>..\BizHawk\dll\BizHawk.WinForms.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="EmuHawk">
+      <HintPath>..\BizHawk\EmuHawk.exe</HintPath>
     </Reference>
     <Reference Include="PresentationCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="SotnApi">
-      <HintPath>..\..\..\..\..\..\OneDrive\Desktop\Games\SotNKhaos\Dependencies\SotnApi.dll</HintPath>
+      <HintPath>..\BizHawk\ExternalTools\SotnApi.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http">
       <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.Net.Http.dll</HintPath>
@@ -95,9 +96,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Update="KhaosForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Update="KhaosForm.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Properties\Resources.resx">

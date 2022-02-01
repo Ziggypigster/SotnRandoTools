@@ -30,41 +30,56 @@ namespace SotnRandoTools
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle61 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle62 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle64 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle63 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle65 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle66 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle70 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle67 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle68 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle69 = new System.Windows.Forms.DataGridViewCellStyle();
             this.khaosPanelTitle = new System.Windows.Forms.Label();
             this.divider = new System.Windows.Forms.Label();
             this.saveButton = new System.Windows.Forms.Button();
             this.khaosTabs = new System.Windows.Forms.TabControl();
             this.generalTab = new System.Windows.Forms.TabPage();
             this.generalSettingsBox = new System.Windows.Forms.GroupBox();
+            this.keepVladRelicsCheckbox = new System.Windows.Forms.CheckBox();
             this.dynamicIntervalCheckBox = new System.Windows.Forms.CheckBox();
-            this.pandoraMaxTextBox = new System.Windows.Forms.TextBox();
-            this.pandoraMinTextBox = new System.Windows.Forms.TextBox();
+            this.pandemoniumMaxTextBox = new System.Windows.Forms.TextBox();
+            this.pandemoniumMinTextBox = new System.Windows.Forms.TextBox();
             this.queueTextBox = new System.Windows.Forms.TextBox();
-            this.thirstTextBox = new System.Windows.Forms.TextBox();
-            this.weakenTextBox = new System.Windows.Forms.TextBox();
-            this.hasteTextBox = new System.Windows.Forms.TextBox();
-            this.crippleTextBox = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.regenTextBox = new System.Windows.Forms.TextBox();
+            this.statsDownTextBox = new System.Windows.Forms.TextBox();
+            this.speedTextBox = new System.Windows.Forms.TextBox();
+            this.underwaterTextBox = new System.Windows.Forms.TextBox();
+            this.pandemoniumMaxLabel = new System.Windows.Forms.Label();
+            this.pandemoniumMinLabel = new System.Windows.Forms.Label();
             this.queueLabel = new System.Windows.Forms.Label();
             this.thirstLabel = new System.Windows.Forms.Label();
             this.weakenLabel = new System.Windows.Forms.Label();
             this.hasteLabel = new System.Windows.Forms.Label();
-            this.crippleLabel = new System.Windows.Forms.Label();
+            this.underwaterLabel = new System.Windows.Forms.Label();
             this.audioBox = new System.Windows.Forms.GroupBox();
             this.volumeLabel = new System.Windows.Forms.Label();
             this.volumeTrackBar = new System.Windows.Forms.TrackBar();
             this.alertsCheckbox = new System.Windows.Forms.CheckBox();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.pandoraMaxTextBox = new System.Windows.Forms.TextBox();
+            this.pandoraMinTextBox = new System.Windows.Forms.TextBox();
+            this.thirstTextBox = new System.Windows.Forms.TextBox();
+            this.weakenTextBox = new System.Windows.Forms.TextBox();
+            this.hasteTextBox = new System.Windows.Forms.TextBox();
+            this.crippleTextBox = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.crippelLabel = new System.Windows.Forms.Label();
             this.inputTab = new System.Windows.Forms.TabPage();
             this.botApiKeyBox = new System.Windows.Forms.GroupBox();
             this.botApiKey = new System.Windows.Forms.TextBox();
@@ -86,12 +101,13 @@ namespace SotnRandoTools
             this.alertFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.namesFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.valueToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.keepVladRelicsCheckbox = new System.Windows.Forms.CheckBox();
             this.khaosTabs.SuspendLayout();
             this.generalTab.SuspendLayout();
             this.generalSettingsBox.SuspendLayout();
             this.audioBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.volumeTrackBar)).BeginInit();
+            this.tabPage1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.inputTab.SuspendLayout();
             this.botApiKeyBox.SuspendLayout();
             this.namesBox.SuspendLayout();
@@ -107,9 +123,9 @@ namespace SotnRandoTools
             this.khaosPanelTitle.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.khaosPanelTitle.Location = new System.Drawing.Point(1, 0);
             this.khaosPanelTitle.Name = "khaosPanelTitle";
-            this.khaosPanelTitle.Size = new System.Drawing.Size(169, 29);
+            this.khaosPanelTitle.Size = new System.Drawing.Size(195, 29);
             this.khaosPanelTitle.TabIndex = 0;
-            this.khaosPanelTitle.Text = "Khaos Settings";
+            this.khaosPanelTitle.Text = "Mayhem Settings";
             // 
             // divider
             // 
@@ -138,6 +154,7 @@ namespace SotnRandoTools
             // khaosTabs
             // 
             this.khaosTabs.Controls.Add(this.generalTab);
+            this.khaosTabs.Controls.Add(this.tabPage1);
             this.khaosTabs.Controls.Add(this.inputTab);
             this.khaosTabs.Controls.Add(this.alertsTab);
             this.khaosTabs.Controls.Add(this.actionSettings);
@@ -164,20 +181,20 @@ namespace SotnRandoTools
             // 
             this.generalSettingsBox.Controls.Add(this.keepVladRelicsCheckbox);
             this.generalSettingsBox.Controls.Add(this.dynamicIntervalCheckBox);
-            this.generalSettingsBox.Controls.Add(this.pandoraMaxTextBox);
-            this.generalSettingsBox.Controls.Add(this.pandoraMinTextBox);
+            this.generalSettingsBox.Controls.Add(this.pandemoniumMaxTextBox);
+            this.generalSettingsBox.Controls.Add(this.pandemoniumMinTextBox);
             this.generalSettingsBox.Controls.Add(this.queueTextBox);
-            this.generalSettingsBox.Controls.Add(this.thirstTextBox);
-            this.generalSettingsBox.Controls.Add(this.weakenTextBox);
-            this.generalSettingsBox.Controls.Add(this.hasteTextBox);
-            this.generalSettingsBox.Controls.Add(this.crippleTextBox);
-            this.generalSettingsBox.Controls.Add(this.label2);
-            this.generalSettingsBox.Controls.Add(this.label1);
+            this.generalSettingsBox.Controls.Add(this.regenTextBox);
+            this.generalSettingsBox.Controls.Add(this.statsDownTextBox);
+            this.generalSettingsBox.Controls.Add(this.speedTextBox);
+            this.generalSettingsBox.Controls.Add(this.underwaterTextBox);
+            this.generalSettingsBox.Controls.Add(this.pandemoniumMaxLabel);
+            this.generalSettingsBox.Controls.Add(this.pandemoniumMinLabel);
             this.generalSettingsBox.Controls.Add(this.queueLabel);
             this.generalSettingsBox.Controls.Add(this.thirstLabel);
             this.generalSettingsBox.Controls.Add(this.weakenLabel);
             this.generalSettingsBox.Controls.Add(this.hasteLabel);
-            this.generalSettingsBox.Controls.Add(this.crippleLabel);
+            this.generalSettingsBox.Controls.Add(this.underwaterLabel);
             this.generalSettingsBox.ForeColor = System.Drawing.Color.White;
             this.generalSettingsBox.Location = new System.Drawing.Point(6, 100);
             this.generalSettingsBox.Name = "generalSettingsBox";
@@ -185,6 +202,17 @@ namespace SotnRandoTools
             this.generalSettingsBox.TabIndex = 2;
             this.generalSettingsBox.TabStop = false;
             this.generalSettingsBox.Text = "General";
+            // 
+            // keepVladRelicsCheckbox
+            // 
+            this.keepVladRelicsCheckbox.AutoSize = true;
+            this.keepVladRelicsCheckbox.Location = new System.Drawing.Point(193, 68);
+            this.keepVladRelicsCheckbox.Name = "keepVladRelicsCheckbox";
+            this.keepVladRelicsCheckbox.Size = new System.Drawing.Size(103, 17);
+            this.keepVladRelicsCheckbox.TabIndex = 15;
+            this.keepVladRelicsCheckbox.Text = "Keep Vlad Relics";
+            this.keepVladRelicsCheckbox.UseVisualStyleBackColor = true;
+            this.keepVladRelicsCheckbox.CheckedChanged += new System.EventHandler(this.keepVladRelicsCheckbox_CheckedChanged);
             // 
             // dynamicIntervalCheckBox
             // 
@@ -197,23 +225,23 @@ namespace SotnRandoTools
             this.dynamicIntervalCheckBox.UseVisualStyleBackColor = true;
             this.dynamicIntervalCheckBox.CheckedChanged += new System.EventHandler(this.dynamicIntervalCheckBox_CheckedChanged);
             // 
-            // pandoraMaxTextBox
+            // pandemoniumMaxTextBox
             // 
-            this.pandoraMaxTextBox.Location = new System.Drawing.Point(300, 39);
-            this.pandoraMaxTextBox.Name = "pandoraMaxTextBox";
-            this.pandoraMaxTextBox.Size = new System.Drawing.Size(54, 21);
-            this.pandoraMaxTextBox.TabIndex = 13;
-            this.pandoraMaxTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.pandoraMaxTextBox_Validating);
-            this.pandoraMaxTextBox.Validated += new System.EventHandler(this.pandoraMaxTextBox_Validated);
+            this.pandemoniumMaxTextBox.Location = new System.Drawing.Point(300, 39);
+            this.pandemoniumMaxTextBox.Name = "pandemoniumMaxTextBox";
+            this.pandemoniumMaxTextBox.Size = new System.Drawing.Size(54, 21);
+            this.pandemoniumMaxTextBox.TabIndex = 13;
+            this.pandemoniumMaxTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.pandemoniumMaxTextBox_Validating);
+            this.pandemoniumMaxTextBox.Validated += new System.EventHandler(this.pandemoniumMaxTextBox_Validated);
             // 
-            // pandoraMinTextBox
+            // pandemoniumMinTextBox
             // 
-            this.pandoraMinTextBox.Location = new System.Drawing.Point(300, 14);
-            this.pandoraMinTextBox.Name = "pandoraMinTextBox";
-            this.pandoraMinTextBox.Size = new System.Drawing.Size(54, 21);
-            this.pandoraMinTextBox.TabIndex = 12;
-            this.pandoraMinTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.pandoraMinTextBox_Validating);
-            this.pandoraMinTextBox.Validated += new System.EventHandler(this.pandoraMinTextBox_Validated);
+            this.pandemoniumMinTextBox.Location = new System.Drawing.Point(300, 14);
+            this.pandemoniumMinTextBox.Name = "pandemoniumMinTextBox";
+            this.pandemoniumMinTextBox.Size = new System.Drawing.Size(54, 21);
+            this.pandemoniumMinTextBox.TabIndex = 12;
+            this.pandemoniumMinTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.pandemoniumMinTextBox_Validating);
+            this.pandemoniumMinTextBox.Validated += new System.EventHandler(this.pandemoniumMinTextBox_Validated);
             // 
             // queueTextBox
             // 
@@ -224,59 +252,61 @@ namespace SotnRandoTools
             this.queueTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.queueTextBox_Validating);
             this.queueTextBox.Validated += new System.EventHandler(this.queueTextBox_Validated);
             // 
-            // thirstTextBox
+            // regenTextBox
             // 
-            this.thirstTextBox.Location = new System.Drawing.Point(100, 89);
-            this.thirstTextBox.Name = "thirstTextBox";
-            this.thirstTextBox.Size = new System.Drawing.Size(54, 21);
-            this.thirstTextBox.TabIndex = 10;
-            this.thirstTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.thirstTextBox_Validating);
-            this.thirstTextBox.Validated += new System.EventHandler(this.thirstTextBox_Validated);
+            this.regenTextBox.Location = new System.Drawing.Point(100, 89);
+            this.regenTextBox.Name = "regenTextBox";
+            this.regenTextBox.Size = new System.Drawing.Size(54, 21);
+            this.regenTextBox.TabIndex = 10;
+            this.regenTextBox.TextChanged += new System.EventHandler(this.thirstTextBox_TextChanged);
+            this.regenTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.regenTextBox_Validating);
+            this.regenTextBox.Validated += new System.EventHandler(this.regenTextBox_Validated);
             // 
-            // weakenTextBox
+            // statsDownTextBox
             // 
-            this.weakenTextBox.Location = new System.Drawing.Point(100, 64);
-            this.weakenTextBox.Name = "weakenTextBox";
-            this.weakenTextBox.Size = new System.Drawing.Size(54, 21);
-            this.weakenTextBox.TabIndex = 9;
-            this.weakenTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.weakenTextBox_Validating);
-            this.weakenTextBox.Validated += new System.EventHandler(this.weakenTextBox_Validated);
+            this.statsDownTextBox.Location = new System.Drawing.Point(100, 64);
+            this.statsDownTextBox.Name = "statsDownTextBox";
+            this.statsDownTextBox.Size = new System.Drawing.Size(54, 21);
+            this.statsDownTextBox.TabIndex = 9;
+            this.statsDownTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.statsDownTextBox_Validating);
+            this.statsDownTextBox.Validated += new System.EventHandler(this.statsDownTextBox_Validated);
             // 
-            // hasteTextBox
+            // speedTextBox
             // 
-            this.hasteTextBox.Location = new System.Drawing.Point(100, 39);
-            this.hasteTextBox.Name = "hasteTextBox";
-            this.hasteTextBox.Size = new System.Drawing.Size(54, 21);
-            this.hasteTextBox.TabIndex = 8;
-            this.hasteTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.hasteTextBox_Validating);
-            this.hasteTextBox.Validated += new System.EventHandler(this.hasteTextBox_Validated);
+            this.speedTextBox.Location = new System.Drawing.Point(100, 39);
+            this.speedTextBox.Name = "speedTextBox";
+            this.speedTextBox.Size = new System.Drawing.Size(54, 21);
+            this.speedTextBox.TabIndex = 8;
+            this.speedTextBox.TextChanged += new System.EventHandler(this.speedTextBox_TextChanged);
+            this.speedTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.speedTextBox_Validating);
+            this.speedTextBox.Validated += new System.EventHandler(this.speedTextBox_Validated);
             // 
-            // crippleTextBox
+            // underwaterTextBox
             // 
-            this.crippleTextBox.Location = new System.Drawing.Point(100, 14);
-            this.crippleTextBox.Name = "crippleTextBox";
-            this.crippleTextBox.Size = new System.Drawing.Size(54, 21);
-            this.crippleTextBox.TabIndex = 7;
-            this.crippleTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.crippleTextBox_Validating);
-            this.crippleTextBox.Validated += new System.EventHandler(this.crippleTextBox_Validated);
+            this.underwaterTextBox.Location = new System.Drawing.Point(100, 14);
+            this.underwaterTextBox.Name = "underwaterTextBox";
+            this.underwaterTextBox.Size = new System.Drawing.Size(54, 21);
+            this.underwaterTextBox.TabIndex = 7;
+            this.underwaterTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.underwaterTextBox_Validating);
+            this.underwaterTextBox.Validated += new System.EventHandler(this.underwaterTextBox_Validated);
             // 
-            // label2
+            // pandemoniumMaxLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(190, 42);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(104, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Pandora Max Items:";
+            this.pandemoniumMaxLabel.AutoSize = true;
+            this.pandemoniumMaxLabel.Location = new System.Drawing.Point(190, 42);
+            this.pandemoniumMaxLabel.Name = "pandemoniumMaxLabel";
+            this.pandemoniumMaxLabel.Size = new System.Drawing.Size(61, 13);
+            this.pandemoniumMaxLabel.TabIndex = 6;
+            this.pandemoniumMaxLabel.Text = "Max Items:";
             // 
-            // label1
+            // pandemoniumMinLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(190, 17);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 13);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Pandora Min Items:";
+            this.pandemoniumMinLabel.AutoSize = true;
+            this.pandemoniumMinLabel.Location = new System.Drawing.Point(190, 17);
+            this.pandemoniumMinLabel.Name = "pandemoniumMinLabel";
+            this.pandemoniumMinLabel.Size = new System.Drawing.Size(57, 13);
+            this.pandemoniumMinLabel.TabIndex = 5;
+            this.pandemoniumMinLabel.Text = "Min Items:";
             // 
             // queueLabel
             // 
@@ -292,45 +322,36 @@ namespace SotnRandoTools
             this.thirstLabel.AutoSize = true;
             this.thirstLabel.Location = new System.Drawing.Point(10, 92);
             this.thirstLabel.Name = "thirstLabel";
-            this.thirstLabel.Size = new System.Drawing.Size(66, 13);
+            this.thirstLabel.Size = new System.Drawing.Size(68, 13);
             this.thirstLabel.TabIndex = 3;
-            this.thirstLabel.Text = "Thirst Drain:";
-            // 
-            // RomhackMode
-            // 
-            this.thirstLabel.AutoSize = true;
-            this.thirstLabel.Location = new System.Drawing.Point(10, 92);
-            this.thirstLabel.Name = "RomhackMode";
-            this.thirstLabel.Size = new System.Drawing.Size(66, 13);
-            this.thirstLabel.TabIndex = 3;
-            this.thirstLabel.Text = "Romhack Mode:";
+            this.thirstLabel.Text = "Regen Rate:";
             // 
             // weakenLabel
             // 
             this.weakenLabel.AutoSize = true;
             this.weakenLabel.Location = new System.Drawing.Point(10, 67);
             this.weakenLabel.Name = "weakenLabel";
-            this.weakenLabel.Size = new System.Drawing.Size(84, 13);
+            this.weakenLabel.Size = new System.Drawing.Size(75, 13);
             this.weakenLabel.TabIndex = 2;
-            this.weakenLabel.Text = "Weaken Factor:";
+            this.weakenLabel.Text = "Stat Down %:";
             // 
             // hasteLabel
             // 
             this.hasteLabel.AutoSize = true;
             this.hasteLabel.Location = new System.Drawing.Point(10, 42);
             this.hasteLabel.Name = "hasteLabel";
-            this.hasteLabel.Size = new System.Drawing.Size(72, 13);
+            this.hasteLabel.Size = new System.Drawing.Size(55, 13);
             this.hasteLabel.TabIndex = 1;
-            this.hasteLabel.Text = "Haste Speed:";
+            this.hasteLabel.Text = "Speed %:";
             // 
-            // crippleLabel
+            // underwaterLabel
             // 
-            this.crippleLabel.AutoSize = true;
-            this.crippleLabel.Location = new System.Drawing.Point(10, 17);
-            this.crippleLabel.Name = "crippleLabel";
-            this.crippleLabel.Size = new System.Drawing.Size(77, 13);
-            this.crippleLabel.TabIndex = 0;
-            this.crippleLabel.Text = "Cripple Speed:";
+            this.underwaterLabel.AutoSize = true;
+            this.underwaterLabel.Location = new System.Drawing.Point(10, 17);
+            this.underwaterLabel.Name = "underwaterLabel";
+            this.underwaterLabel.Size = new System.Drawing.Size(82, 13);
+            this.underwaterLabel.TabIndex = 0;
+            this.underwaterLabel.Text = "Underwater %:";
             // 
             // audioBox
             // 
@@ -375,6 +396,142 @@ namespace SotnRandoTools
             this.alertsCheckbox.Text = "Enable audio alerts on action activation";
             this.alertsCheckbox.UseVisualStyleBackColor = true;
             this.alertsCheckbox.CheckedChanged += new System.EventHandler(this.alertsCheckbox_CheckedChanged);
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.BackColor = System.Drawing.Color.Black;
+            this.tabPage1.Controls.Add(this.groupBox1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(374, 265);
+            this.tabPage1.TabIndex = 4;
+            this.tabPage1.Text = "Legacy";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.pandoraMaxTextBox);
+            this.groupBox1.Controls.Add(this.pandoraMinTextBox);
+            this.groupBox1.Controls.Add(this.thirstTextBox);
+            this.groupBox1.Controls.Add(this.weakenTextBox);
+            this.groupBox1.Controls.Add(this.hasteTextBox);
+            this.groupBox1.Controls.Add(this.crippleTextBox);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.crippelLabel);
+            this.groupBox1.ForeColor = System.Drawing.Color.White;
+            this.groupBox1.Location = new System.Drawing.Point(6, 100);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(360, 159);
+            this.groupBox1.TabIndex = 3;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "General";
+            // 
+            // pandoraMaxTextBox
+            // 
+            this.pandoraMaxTextBox.Location = new System.Drawing.Point(300, 39);
+            this.pandoraMaxTextBox.Name = "pandoraMaxTextBox";
+            this.pandoraMaxTextBox.Size = new System.Drawing.Size(54, 21);
+            this.pandoraMaxTextBox.TabIndex = 13;
+            // 
+            // pandoraMinTextBox
+            // 
+            this.pandoraMinTextBox.Location = new System.Drawing.Point(300, 14);
+            this.pandoraMinTextBox.Name = "pandoraMinTextBox";
+            this.pandoraMinTextBox.Size = new System.Drawing.Size(54, 21);
+            this.pandoraMinTextBox.TabIndex = 12;
+            this.pandoraMinTextBox.TextChanged += new System.EventHandler(this.pandoraMinTextBox_TextChanged);
+            this.pandoraMinTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.pandoraMaxTextBox_Validating);
+            this.pandoraMinTextBox.Validated += new System.EventHandler(this.pandoraMaxTextBox_Validated);
+            // 
+            // thirstTextBox
+            // 
+            this.thirstTextBox.Location = new System.Drawing.Point(100, 89);
+            this.thirstTextBox.Name = "thirstTextBox";
+            this.thirstTextBox.Size = new System.Drawing.Size(54, 21);
+            this.thirstTextBox.TabIndex = 10;
+            this.thirstTextBox.TextChanged += new System.EventHandler(this.thirstTextBox_TextChanged);
+            // 
+            // weakenTextBox
+            // 
+            this.weakenTextBox.Location = new System.Drawing.Point(100, 64);
+            this.weakenTextBox.Name = "weakenTextBox";
+            this.weakenTextBox.Size = new System.Drawing.Size(54, 21);
+            this.weakenTextBox.TabIndex = 9;
+            this.weakenTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.weakenTextBox_Validating);
+            this.weakenTextBox.Validated += new System.EventHandler(this.weakenTextBox_Validated);
+            // 
+            // hasteTextBox
+            // 
+            this.hasteTextBox.Location = new System.Drawing.Point(100, 39);
+            this.hasteTextBox.Name = "hasteTextBox";
+            this.hasteTextBox.Size = new System.Drawing.Size(54, 21);
+            this.hasteTextBox.TabIndex = 8;
+            // 
+            // crippleTextBox
+            // 
+            this.crippleTextBox.Location = new System.Drawing.Point(100, 14);
+            this.crippleTextBox.Name = "crippleTextBox";
+            this.crippleTextBox.Size = new System.Drawing.Size(54, 21);
+            this.crippleTextBox.TabIndex = 7;
+            this.crippleTextBox.TextChanged += new System.EventHandler(this.crippleTextBox_TextChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(190, 42);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(104, 13);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Pandora Max Items:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(190, 17);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(100, 13);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "Pandora Min Items:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(10, 92);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(66, 13);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "Thirst Drain:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(10, 67);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(84, 13);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "Weaken Factor:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(10, 42);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(72, 13);
+            this.label8.TabIndex = 1;
+            this.label8.Text = "Haste Speed:";
+            // 
+            // crippelLabel
+            // 
+            this.crippelLabel.AutoSize = true;
+            this.crippelLabel.Location = new System.Drawing.Point(10, 17);
+            this.crippelLabel.Name = "crippelLabel";
+            this.crippelLabel.Size = new System.Drawing.Size(77, 13);
+            this.crippelLabel.TabIndex = 0;
+            this.crippelLabel.Text = "Cripple Speed:";
             // 
             // inputTab
             // 
@@ -467,20 +624,20 @@ namespace SotnRandoTools
             this.alertsGridView.AllowUserToDeleteRows = false;
             this.alertsGridView.AllowUserToResizeColumns = false;
             this.alertsGridView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
-            this.alertsGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle61.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
+            this.alertsGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle61;
             this.alertsGridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
             this.alertsGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.alertsGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             this.alertsGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.alertsGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle62.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle62.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle62.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle62.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle62.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle62.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle62.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.alertsGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle62;
             this.alertsGridView.ColumnHeadersHeight = 20;
             this.alertsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.alertsGridView.ColumnHeadersVisible = false;
@@ -488,14 +645,14 @@ namespace SotnRandoTools
             this.ActionName,
             this.AlertPath,
             this.Browse});
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.alertsGridView.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle64.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle64.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle64.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle64.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle64.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
+            dataGridViewCellStyle64.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle64.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.alertsGridView.DefaultCellStyle = dataGridViewCellStyle64;
             this.alertsGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
             this.alertsGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
             this.alertsGridView.Location = new System.Drawing.Point(3, 3);
@@ -510,9 +667,9 @@ namespace SotnRandoTools
             // ActionName
             // 
             this.ActionName.DataPropertyName = "Name";
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
-            this.ActionName.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle63.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle63.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
+            this.ActionName.DefaultCellStyle = dataGridViewCellStyle63;
             this.ActionName.HeaderText = "Name";
             this.ActionName.Name = "ActionName";
             this.ActionName.ReadOnly = true;
@@ -552,20 +709,20 @@ namespace SotnRandoTools
             this.actionsGridView.AllowUserToDeleteRows = false;
             this.actionsGridView.AllowUserToResizeColumns = false;
             this.actionsGridView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
-            this.actionsGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle65.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
+            this.actionsGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle65;
             this.actionsGridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
             this.actionsGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.actionsGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             this.actionsGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle16.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.actionsGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle66.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle66.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
+            dataGridViewCellStyle66.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle66.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle66.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
+            dataGridViewCellStyle66.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle66.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.actionsGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle66;
             this.actionsGridView.ColumnHeadersHeight = 20;
             this.actionsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.actionsGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -573,14 +730,14 @@ namespace SotnRandoTools
             this.AlertEnabled,
             this.Duration,
             this.Meter});
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.actionsGridView.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle70.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle70.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle70.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle70.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle70.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
+            dataGridViewCellStyle70.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle70.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.actionsGridView.DefaultCellStyle = dataGridViewCellStyle70;
             this.actionsGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
             this.actionsGridView.EnableHeadersVisualStyles = false;
             this.actionsGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
@@ -596,9 +753,9 @@ namespace SotnRandoTools
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.DataPropertyName = "Name";
-            dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
-            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle67.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle67.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
+            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle67;
             this.dataGridViewTextBoxColumn1.HeaderText = "Name";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
@@ -618,9 +775,9 @@ namespace SotnRandoTools
             // Duration
             // 
             this.Duration.DataPropertyName = "Duration";
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle18.NullValue = null;
-            this.Duration.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle68.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle68.NullValue = null;
+            this.Duration.DefaultCellStyle = dataGridViewCellStyle68;
             this.Duration.HeaderText = "Duration";
             this.Duration.MaxInputLength = 8;
             this.Duration.Name = "Duration";
@@ -629,8 +786,8 @@ namespace SotnRandoTools
             // Meter
             // 
             this.Meter.DataPropertyName = "Meter";
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Meter.DefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle69.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Meter.DefaultCellStyle = dataGridViewCellStyle69;
             this.Meter.HeaderText = "Khaos Meter";
             this.Meter.MaxInputLength = 2;
             this.Meter.Name = "Meter";
@@ -646,17 +803,6 @@ namespace SotnRandoTools
             // 
             this.namesFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
             this.namesFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.namesFileDialog_FileOk);
-            // 
-            // keepVladRelicsCheckbox
-            // 
-            this.keepVladRelicsCheckbox.AutoSize = true;
-            this.keepVladRelicsCheckbox.Location = new System.Drawing.Point(193, 68);
-            this.keepVladRelicsCheckbox.Name = "keepVladRelicsCheckbox";
-            this.keepVladRelicsCheckbox.Size = new System.Drawing.Size(103, 17);
-            this.keepVladRelicsCheckbox.TabIndex = 15;
-            this.keepVladRelicsCheckbox.Text = "Keep Vlad Relics";
-            this.keepVladRelicsCheckbox.UseVisualStyleBackColor = true;
-            this.keepVladRelicsCheckbox.CheckedChanged += new System.EventHandler(this.keepVladRelicsCheckbox_CheckedChanged);
             // 
             // KhaosSettingsPanel
             // 
@@ -679,6 +825,9 @@ namespace SotnRandoTools
             this.audioBox.ResumeLayout(false);
             this.audioBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.volumeTrackBar)).EndInit();
+            this.tabPage1.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.inputTab.ResumeLayout(false);
             this.botApiKeyBox.ResumeLayout(false);
             this.botApiKeyBox.PerformLayout();
@@ -709,20 +858,20 @@ namespace SotnRandoTools
 		private System.Windows.Forms.TabPage actionSettings;
 		private System.Windows.Forms.OpenFileDialog alertFileDialog;
 		private System.Windows.Forms.GroupBox generalSettingsBox;
-		private System.Windows.Forms.Label crippleLabel;
+		private System.Windows.Forms.Label underwaterLabel;
 		private System.Windows.Forms.Label weakenLabel;
 		private System.Windows.Forms.Label hasteLabel;
 		private System.Windows.Forms.Label thirstLabel;
 		private System.Windows.Forms.Label queueLabel;
-		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Label pandemoniumMaxLabel;
+		private System.Windows.Forms.Label pandemoniumMinLabel;
 		private System.Windows.Forms.TextBox queueTextBox;
-		private System.Windows.Forms.TextBox thirstTextBox;
-		private System.Windows.Forms.TextBox weakenTextBox;
-		private System.Windows.Forms.TextBox hasteTextBox;
-		private System.Windows.Forms.TextBox crippleTextBox;
-		private System.Windows.Forms.TextBox pandoraMaxTextBox;
-		private System.Windows.Forms.TextBox pandoraMinTextBox;
+		private System.Windows.Forms.TextBox regenTextBox;
+		private System.Windows.Forms.TextBox statsDownTextBox;
+		private System.Windows.Forms.TextBox speedTextBox;
+		private System.Windows.Forms.TextBox underwaterTextBox;
+		private System.Windows.Forms.TextBox pandemoniumMaxTextBox;
+		private System.Windows.Forms.TextBox pandemoniumMinTextBox;
 		private System.Windows.Forms.GroupBox namesBox;
 		private System.Windows.Forms.Button namesBrowseButton;
 		private System.Windows.Forms.TextBox namesPath;
@@ -742,5 +891,19 @@ namespace SotnRandoTools
 		private System.Windows.Forms.DataGridViewTextBoxColumn Duration;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Meter;
 		private System.Windows.Forms.CheckBox keepVladRelicsCheckbox;
+		private System.Windows.Forms.TabPage tabPage1;
+		private System.Windows.Forms.GroupBox groupBox1;
+		private System.Windows.Forms.TextBox pandoraMaxTextBox;
+		private System.Windows.Forms.TextBox pandoraMinTextBox;
+		private System.Windows.Forms.TextBox thirstTextBox;
+		private System.Windows.Forms.TextBox weakenTextBox;
+		private System.Windows.Forms.TextBox hasteTextBox;
+		private System.Windows.Forms.TextBox crippleTextBox;
+		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.Label label6;
+		private System.Windows.Forms.Label label7;
+		private System.Windows.Forms.Label label8;
+		private System.Windows.Forms.Label crippelLabel;
 	}
 }

@@ -16,8 +16,8 @@ namespace SotnRandoTools.Services
 {
 	public class NotificationService : INotificationService
 	{
-		private const int NotificationTime = 4 * 1000;
-		private const int NotificationTimeFast = 1 * 1000;
+		private const int NotificationTime = 5 * 1000;
+		private const int NotificationTimeFast = 3 * 1000;
 		private const int MeterSize = 60;
 
 		private readonly IGuiApi guiApi;
@@ -39,7 +39,7 @@ namespace SotnRandoTools.Services
 		private List<string> messageQueue = new();
 		private List<ActionTimer> actionTimers = new();
 		private bool cleared = false;
-		private Color meterForegroundColor = Color.FromArgb(96, 101, 168);
+		private Color meterForegroundColor = Color.FromArgb(110, 25, 170);
 		private Color meterBackgroundColor = Color.FromArgb(40, 40, 40);
 		private Color meterBorderColor = Color.FromArgb(180, 180, 180);
 		private Color timerPieColor = Color.FromArgb(190, 190, 190, 190);
@@ -279,7 +279,7 @@ namespace SotnRandoTools.Services
 			guiApi.DrawBox(xpos - (1 * scale), ypos - (1 * scale), xpos + (MeterSize * scale) + (1 * scale), ypos + (5 * scale) + (1 * scale), meterBorderColor, meterBorderColor);
 			guiApi.DrawBox(xpos, ypos, xpos + (MeterSize * scale), ypos + (5 * scale), meterBackgroundColor, meterBackgroundColor);
 			guiApi.DrawBox(xpos, ypos, xpos + ((int) ((adjustedMeter / 100f) * MeterSize) * scale), ypos + (5 * scale), meterForegroundColor, meterForegroundColor);
-			guiApi.DrawString(xpos + (int) (0.38 * (MeterSize * scale)), ypos, "KHAOS", Color.White, null, 4 * scale, "Arial", "bold");
+			guiApi.DrawString(xpos + (int) (0.38 * (MeterSize * scale)), ypos, "MAYHEM", Color.White, null, 4 * scale, "Arial", "bold");
 		}
 
 		private void DequeueMessage(object sender, ElapsedEventArgs e)

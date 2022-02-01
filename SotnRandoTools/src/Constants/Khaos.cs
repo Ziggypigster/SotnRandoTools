@@ -17,6 +17,31 @@ namespace SotnRandoTools.Constants
 			Relic.JewelOfOpen,
 			Relic.MermanStatue
 		};
+		public static Relic[] MinorBoonRelics =
+		{
+			Relic.SoulOfWolf,
+			Relic.CubeOfZoe,
+			Relic.HolySymbol,
+			Relic.FaerieCard,
+			Relic.LeapStone,
+		};
+		public static Relic[] ModerateBoonRelics =
+		{
+			Relic.SoulOfWolf,
+			Relic.DemonCard
+		};
+		public static Relic[] MajorBoonRelics =
+		{
+			Relic.JewelOfOpen,
+			Relic.MermanStatue,
+			Relic.FormOfMist,
+			Relic.PowerOfMist,
+			Relic.GravityBoots,
+			Relic.LeapStone,
+			Relic.SoulOfWolf,
+			Relic.SoulOfBat
+		};
+
 		public static List<Relic[]> FlightRelics = new List<Relic[]>{
 			new Relic[] {Relic.SoulOfBat},
 			new Relic[] {Relic.LeapStone, Relic.GravityBoots},
@@ -89,6 +114,7 @@ namespace SotnRandoTools.Constants
 		public static List<MapLocation> EntranceCutsceneRooms = new List<MapLocation>
 		{
 			new MapLocation{X = 0, Y = 44, SecondCastle = 0},
+			new MapLocation{X = 1, Y = 44, SecondCastle = 0},
 			new MapLocation{X = 2, Y = 44, SecondCastle = 0},
 			new MapLocation{X = 3, Y = 44, SecondCastle = 0},
 			new MapLocation{X = 4, Y = 44, SecondCastle = 0},
@@ -376,7 +402,27 @@ namespace SotnRandoTools.Constants
 			"Estoc",
 			"Shotel"
 		};
-		
+
+		public static string[] TwoHandedWeapons = {
+			"Muramasa",
+			"Namakura",
+			"Red rust",
+			"Takemitsu",
+			"Nunchuku",
+			"Claymore",
+			"Sword of dawn",
+			"Flamberge",
+			"Katana",
+			"Zweihander",
+			"Estoc",
+			"Obsidian sword",
+			"Osafune katana",
+			"Masamune",
+			"Yasutsuna",
+			"Great sword",
+		};
+
+
 		public static int RichterRoomMapMinX = 31;
 		public static int RichterRoomMapMaxX = 34;
 		public static int RichterRoomMapY = 8;
@@ -389,7 +435,22 @@ namespace SotnRandoTools.Constants
 		public static int GalamothRoomMapMaxY = 13;
 		public static int SuccubusMapX = 0;
 		public static int SuccubusMapY = 0;
-		
+
+		#region mayhem
+		public static float SuperStatsDownFactor = 0.5F;
+		public static float SuperUnderwaterFactor = 0.5F;
+		public static int UnderwaterQueueIntervalEnd = 3;
+		public static int SpeedQueueIntervalStart = 8;
+		public static uint SuperAbsorbExtraGain = 2u;
+		public static int BoonItemRetryCount = 15;
+		public static float FaceTankHpMultiplier = 2F;
+		public static uint UnarmedInvincibility = 3;
+		public static uint UnarmedAttack = 50;
+		public static uint UnarmedDefence = 50;
+		public static uint ExtraRangeDarkMetamorphosis = 50;
+		#endregion
+
+		#region Legacy
 		public static float SuperWeakenFactor = 0.5F;
 		public static float SuperCrippleFactor = 0.5F;
 		public static int SlowQueueIntervalEnd = 3;
@@ -401,6 +462,8 @@ namespace SotnRandoTools.Constants
 		public static uint GuiltyGearAttack = 50;
 		public static uint GuiltyGearDefence = 50;
 		public static uint GuiltyGearDarkMetamorphosis = 50;
+		#endregion
+
 		public static uint ShaftKhaosHp = 25;
 		public static uint GalamothKhaosHp = 2000;
 		public static uint GalamothKhaosPositionOffset = 100;

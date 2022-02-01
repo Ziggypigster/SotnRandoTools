@@ -51,9 +51,10 @@ namespace SotnRandoTools
             this.autotrackerPanelTitle.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.autotrackerPanelTitle.Location = new System.Drawing.Point(1, 0);
             this.autotrackerPanelTitle.Name = "autotrackerPanelTitle";
-            this.autotrackerPanelTitle.Size = new System.Drawing.Size(395, 29);
+            this.autotrackerPanelTitle.Size = new System.Drawing.Size(334, 29);
             this.autotrackerPanelTitle.TabIndex = 0;
-            this.autotrackerPanelTitle.Text = "About: Custom Khaos (Ziggypigster)";
+            this.autotrackerPanelTitle.Text = "About: Mayhem (Ziggypigster)";
+            this.autotrackerPanelTitle.Click += new System.EventHandler(this.autotrackerPanelTitle_Click);
             // 
             // divider
             // 

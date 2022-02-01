@@ -12,6 +12,7 @@ using SotnApi;
 using SotnRandoTools.Configuration;
 using SotnRandoTools.Constants;
 using SotnRandoTools.Services;
+using SotnRandoTools.Services.Adapters;
 
 namespace SotnRandoTools
 {
@@ -148,15 +149,7 @@ namespace SotnRandoTools
 
 			LoadCheats();
 
-			sotnApi = new SotnApi.Main.SotnApi(APIs.Memory);
-
-			//if (!File.Exists(Paths.CheatsPath))
-			//{
-			//File.Copy(Paths.CheatsPath + ".bkp", Paths.CheatsPath);
-			//}
-
-			//this.MainForm.CheatList.Load(_memoryDomains, Paths.CheatsPath, false);
-			//this.MainForm.CheatList.DisableAll();
+			sotnApi = new SotnApi.Main.SotnApi(_maybeMemAPI);
 
 			actorApi = new ActorApi(_maybeMemAPI);
 			alucardApi = new AlucardApi(_maybeMemAPI);
@@ -179,18 +172,19 @@ namespace SotnRandoTools
 			this.MainForm.CheatList.DisableAll();
 
 			//var checkCheat = this.MainForm.CheatList.Where(x => x.Name == "AlucardAttackHitbox2Width").FirstOrDefault();
+			var checkCheat = "?";
 
-			//if (checkCheat is null)
-			//{
-				//File.Copy(Paths.CheatsBackupPath, Paths.CheatsPath);
-				//this.MainForm.CheatList.Load(_memoryDomains, Paths.CheatsPath, false);
-				//this.MainForm.CheatList.DisableAll();
-			//}
+			if (checkCheat is null)
+			{
+				File.Copy(Paths.CheatsBackupPath, Paths.CheatsPath);
+				this.MainForm.CheatList.Load(_memoryDomains, Paths.CheatsPath, false);
+				this.MainForm.CheatList.DisableAll();
+			}
 
-			//if (khaosForm is not null)
-			//{
-			//	khaosForm.AdaptedCheats = new CheatCollectionAdapter(this.MainForm.CheatList);
-			//}
+			if (khaosForm is not null)
+			{
+				khaosForm.AdaptedCheats = new CheatCollectionAdapter(this.MainForm.CheatList);
+			}
 		}
 
 		public override bool AskSaveChanges() => true;
@@ -260,6 +254,7 @@ namespace SotnRandoTools
 			alucardApi = null;
 			gameApi = null;
 			renderingApi = null;
+			sotnApi = null;
 			watchlistService = null;
 			inputService = null;
 		}
@@ -281,13 +276,13 @@ namespace SotnRandoTools
 
 		private void khaosChatLaunch_Click(object sender, EventArgs e)
 		{
-			if (khaosForm is not null && gameApi is not null && alucardApi is not null && actorApi is not null)
+			if (khaosForm is not null && gameApi is not null && alucardApi is not null && actorApi is not null && sotnApi is not null)
 			{
 				khaosForm.Close();
 				khaosForm = new KhaosForm(toolConfig, this.MainForm.CheatList, sotnApi, gameApi, alucardApi, actorApi, notificationService, inputService);
 				khaosForm.Show();
 			}
-			else if (khaosForm is null && gameApi is not null && alucardApi is not null && actorApi is not null)
+			else if (khaosForm is null && gameApi is not null && alucardApi is not null && actorApi is not null && sotnApi is not null)
 			{
 				khaosForm = new KhaosForm(toolConfig, this.MainForm.CheatList, sotnApi, gameApi, alucardApi, actorApi, notificationService, inputService);
 				khaosForm.Show();

@@ -29,13 +29,22 @@ namespace SotnRandoTools
 			namesPath.Text = toolConfig.Khaos.NamesFilePath;
 			botApiKey.Text = toolConfig.Khaos.BotApiKey;
 			volumeTrackBar.Value = toolConfig.Khaos.Volume;
+
+			queueTextBox.Text = toolConfig.Khaos.QueueInterval.ToString();
+			dynamicIntervalCheckBox.Checked = toolConfig.Khaos.DynamicInterval;
+			keepVladRelicsCheckbox.Checked = toolConfig.Khaos.KeepVladRelics;
+
+			underwaterTextBox.Text = (toolConfig.Khaos.UnderwaterFactor * 100) + "%";
+			speedTextBox.Text = (toolConfig.Khaos.SpeedFactor * 100) + "%";
+			statsDownTextBox.Text = (toolConfig.Khaos.StatsDownFactor * 100) + "%";
+			regenTextBox.Text = toolConfig.Khaos.RegenGainPerSecond.ToString();
+			pandemoniumMinTextBox.Text = toolConfig.Khaos.PandemoniumMinItems.ToString();
+			pandemoniumMaxTextBox.Text = toolConfig.Khaos.PandemoniumMaxItems.ToString();
+
 			crippleTextBox.Text = (toolConfig.Khaos.CrippleFactor * 100) + "%";
 			hasteTextBox.Text = (toolConfig.Khaos.HasteFactor * 100) + "%";
 			weakenTextBox.Text = (toolConfig.Khaos.WeakenFactor * 100) + "%";
 			thirstTextBox.Text = toolConfig.Khaos.ThirstDrainPerSecond.ToString();
-			queueTextBox.Text = toolConfig.Khaos.QueueInterval.ToString();
-			dynamicIntervalCheckBox.Checked = toolConfig.Khaos.DynamicInterval;
-			keepVladRelicsCheckbox.Checked = toolConfig.Khaos.KeepVladRelics;
 			pandoraMinTextBox.Text = toolConfig.Khaos.PandoraMinItems.ToString();
 			pandoraMaxTextBox.Text = toolConfig.Khaos.PandoraMaxItems.ToString();
 
@@ -90,176 +99,6 @@ namespace SotnRandoTools
 			toolConfig.Khaos.NamesFilePath = namesFileDialog.FileName;
 		}
 
-		private void crippleTextBox_Validated(object sender, EventArgs e)
-		{
-			string boxText = crippleTextBox.Text.Replace("%", "");
-			int cripplePercentage;
-			bool result = Int32.TryParse(boxText, out cripplePercentage);
-			if (result)
-			{
-				toolConfig.Khaos.CrippleFactor = (cripplePercentage / 100F);
-			}
-			crippleTextBox.BackColor = Color.White;
-			this.valueToolTip.Active = false;
-		}
-
-		private void crippleTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-		{
-			//if (this.ActiveControl.Equals(sender))
-			//return;
-			string boxText = crippleTextBox.Text.Replace("%", "");
-			int cripplePercentage;
-			bool result = Int32.TryParse(boxText, out cripplePercentage);
-			if (!result || cripplePercentage < 0 || cripplePercentage > 90)
-			{
-				this.crippleTextBox.Text = "";
-				this.crippleTextBox.BackColor = Color.Red;
-				this.valueToolTip.SetToolTip(crippleTextBox, "Invalid value!");
-				this.valueToolTip.ToolTipIcon = ToolTipIcon.Warning;
-				this.valueToolTip.Active = true;
-				e.Cancel = true;
-			}
-		}
-
-		private void hasteTextBox_Validated(object sender, EventArgs e)
-		{
-			string boxText = hasteTextBox.Text.Replace("%", "");
-			int hastePercentage;
-			bool result = Int32.TryParse(boxText, out hastePercentage);
-			if (result)
-			{
-				toolConfig.Khaos.HasteFactor = (hastePercentage / 100F);
-			}
-			hasteTextBox.BackColor = Color.White;
-			this.valueToolTip.Active = false;
-		}
-
-		private void hasteTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-		{
-			string boxText = hasteTextBox.Text.Replace("%", "");
-			int hastePercentage;
-			bool result = Int32.TryParse(boxText, out hastePercentage);
-			if (!result || hastePercentage < 100 || hastePercentage > 1000)
-			{
-				this.hasteTextBox.Text = "";
-				this.hasteTextBox.BackColor = Color.Red;
-				this.valueToolTip.SetToolTip(hasteTextBox, "Invalid value!");
-				this.valueToolTip.ToolTipIcon = ToolTipIcon.Warning;
-				this.valueToolTip.Active = true;
-				e.Cancel = true;
-			}
-		}
-
-		private void weakenTextBox_Validated(object sender, EventArgs e)
-		{
-			string boxText = weakenTextBox.Text.Replace("%", "");
-			int weakenPercentage;
-			bool result = Int32.TryParse(boxText, out weakenPercentage);
-			if (result)
-			{
-				toolConfig.Khaos.WeakenFactor = (weakenPercentage / 100F);
-			}
-			weakenTextBox.BackColor = Color.White;
-			this.valueToolTip.Active = false;
-		}
-
-		private void weakenTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-		{
-			string boxText = weakenTextBox.Text.Replace("%", "");
-			int weakenPercentage;
-			bool result = Int32.TryParse(boxText, out weakenPercentage);
-			if (!result || weakenPercentage < 10 || weakenPercentage > 90)
-			{
-				this.weakenTextBox.Text = "";
-				this.weakenTextBox.BackColor = Color.Red;
-				this.valueToolTip.SetToolTip(weakenTextBox, "Invalid value!");
-				this.valueToolTip.ToolTipIcon = ToolTipIcon.Warning;
-				this.valueToolTip.Active = true;
-				e.Cancel = true;
-			}
-		}
-
-		private void thirstTextBox_Validated(object sender, EventArgs e)
-		{
-			int thirstDrain;
-			bool result = Int32.TryParse(thirstTextBox.Text, out thirstDrain);
-			if (result)
-			{
-				toolConfig.Khaos.ThirstDrainPerSecond = (uint) thirstDrain;
-			}
-			thirstTextBox.BackColor = Color.White;
-			this.valueToolTip.Active = false;
-		}
-
-		private void thirstTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-		{
-			int thirstDrain;
-			bool result = Int32.TryParse(thirstTextBox.Text, out thirstDrain);
-			if (!result || thirstDrain < 1 || thirstDrain > 100)
-			{
-				this.thirstTextBox.Text = "";
-				this.thirstTextBox.BackColor = Color.Red;
-				this.valueToolTip.SetToolTip(thirstTextBox, "Invalid value!");
-				this.valueToolTip.ToolTipIcon = ToolTipIcon.Warning;
-				this.valueToolTip.Active = true;
-				e.Cancel = true;
-			}
-		}
-
-		private void pandoraMinTextBox_Validated(object sender, EventArgs e)
-		{
-			int pandoraMinItems;
-			bool result = Int32.TryParse(pandoraMinTextBox.Text, out pandoraMinItems);
-			if (result)
-			{
-				toolConfig.Khaos.PandoraMinItems = pandoraMinItems;
-			}
-			pandoraMinTextBox.BackColor = Color.White;
-			this.valueToolTip.Active = false;
-		}
-
-		private void pandoraMinTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-		{
-			int pandoraMinItems;
-			bool result = Int32.TryParse(pandoraMinTextBox.Text, out pandoraMinItems);
-			if (!result || pandoraMinItems < 0 || pandoraMinItems > 100)
-			{
-				this.pandoraMinTextBox.Text = "";
-				this.pandoraMinTextBox.BackColor = Color.Red;
-				this.valueToolTip.SetToolTip(pandoraMinTextBox, "Invalid value!");
-				this.valueToolTip.ToolTipIcon = ToolTipIcon.Warning;
-				this.valueToolTip.Active = true;
-				e.Cancel = true;
-			}
-		}
-
-		private void pandoraMaxTextBox_Validated(object sender, EventArgs e)
-		{
-			int pandoraMaxItems;
-			bool result = Int32.TryParse(pandoraMaxTextBox.Text, out pandoraMaxItems);
-			if (result)
-			{
-				toolConfig.Khaos.PandoraMaxItems = pandoraMaxItems;
-			}
-			pandoraMaxTextBox.BackColor = Color.White;
-			this.valueToolTip.Active = false;
-		}
-
-		private void pandoraMaxTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-		{
-			int pandoraMaxItems;
-			bool result = Int32.TryParse(pandoraMaxTextBox.Text, out pandoraMaxItems);
-			if (!result || pandoraMaxItems < 1 || pandoraMaxItems > 100)
-			{
-				this.pandoraMaxTextBox.Text = "";
-				this.pandoraMaxTextBox.BackColor = Color.Red;
-				this.valueToolTip.SetToolTip(pandoraMaxTextBox, "Invalid value!");
-				this.valueToolTip.ToolTipIcon = ToolTipIcon.Warning;
-				this.valueToolTip.Active = true;
-				e.Cancel = true;
-			}
-		}
-
 		private void queueTextBox_Validated(object sender, EventArgs e)
 		{
 			TimeSpan queueInterval;
@@ -308,9 +147,285 @@ namespace SotnRandoTools
 			toolConfig.Khaos.BotApiKey = botApiKey.Text;
 		}
 
+
 		private void keepVladRelicsCheckbox_CheckedChanged(object sender, EventArgs e)
 		{
 			toolConfig.Khaos.KeepVladRelics = keepVladRelicsCheckbox.Checked;
+		}
+
+		#region Mayhem
+
+		private void underwaterTextBox_Validated(object sender, EventArgs e)
+		{
+			string boxText = underwaterTextBox.Text.Replace("%", "");
+			int underwaterPercentage;
+			bool result = Int32.TryParse(boxText, out underwaterPercentage);
+			if (result)
+			{
+				toolConfig.Khaos.UnderwaterFactor = (underwaterPercentage / 100F);
+			}
+			underwaterTextBox.BackColor = Color.White;
+			this.valueToolTip.Active = false;
+		}
+
+		private void underwaterTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			//if (this.ActiveControl.Equals(sender))
+			//return;
+			string boxText = underwaterTextBox.Text.Replace("%", "");
+			int underwaterPercentage;
+			bool result = Int32.TryParse(boxText, out underwaterPercentage);
+			if (!result || underwaterPercentage < 0 || underwaterPercentage > 90)
+			{
+				this.underwaterTextBox.Text = "";
+				this.underwaterTextBox.BackColor = Color.Red;
+				this.valueToolTip.SetToolTip(underwaterTextBox, "Invalid value!");
+				this.valueToolTip.ToolTipIcon = ToolTipIcon.Warning;
+				this.valueToolTip.Active = true;
+				e.Cancel = true;
+			}
+		}
+
+		private void speedTextBox_Validated(object sender, EventArgs e)
+		{
+			string boxText = speedTextBox.Text.Replace("%", "");
+			int speedPercentage;
+			bool result = Int32.TryParse(boxText, out speedPercentage);
+			if (result)
+			{
+				toolConfig.Khaos.HasteFactor = (speedPercentage / 100F);
+			}
+			speedTextBox.BackColor = Color.White;
+			this.valueToolTip.Active = false;
+		}
+
+		private void speedTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			string boxText = speedTextBox.Text.Replace("%", "");
+			int speedPercentage;
+			bool result = Int32.TryParse(boxText, out speedPercentage);
+			if (!result || speedPercentage < 100 || speedPercentage > 1000)
+			{
+				this.speedTextBox.Text = "";
+				this.speedTextBox.BackColor = Color.Red;
+				this.valueToolTip.SetToolTip(speedTextBox, "Invalid value!");
+				this.valueToolTip.ToolTipIcon = ToolTipIcon.Warning;
+				this.valueToolTip.Active = true;
+				e.Cancel = true;
+			}
+		}
+
+		private void statsDownTextBox_Validated(object sender, EventArgs e)
+		{
+			string boxText = statsDownTextBox.Text.Replace("%", "");
+			int statsDownPercentage;
+			bool result = Int32.TryParse(boxText, out statsDownPercentage);
+			if (result)
+			{
+				toolConfig.Khaos.WeakenFactor = (statsDownPercentage / 100F);
+			}
+			statsDownTextBox.BackColor = Color.White;
+			this.valueToolTip.Active = false;
+		}
+
+		private void statsDownTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			string boxText = statsDownTextBox.Text.Replace("%", "");
+			int statsDownPercentage;
+			bool result = Int32.TryParse(boxText, out statsDownPercentage);
+			if (!result || statsDownPercentage < 10 || statsDownPercentage > 90)
+			{
+				this.statsDownTextBox.Text = "";
+				this.statsDownTextBox.BackColor = Color.Red;
+				this.valueToolTip.SetToolTip(statsDownTextBox, "Invalid value!");
+				this.valueToolTip.ToolTipIcon = ToolTipIcon.Warning;
+				this.valueToolTip.Active = true;
+				e.Cancel = true;
+			}
+		}
+
+		private void regenTextBox_Validated(object sender, EventArgs e)
+		{
+			int regenGain;
+			bool result = Int32.TryParse(regenTextBox.Text, out regenGain);
+			if (result)
+			{
+				toolConfig.Khaos.RegenGainPerSecond = (uint) regenGain;
+			}
+			regenTextBox.BackColor = Color.White;
+			this.valueToolTip.Active = false;
+		}
+
+		private void regenTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			int regenGain;
+			bool result = Int32.TryParse(regenTextBox.Text, out regenGain);
+			if (!result || regenGain < 1 || regenGain > 100)
+			{
+				this.regenTextBox.Text = "";
+				this.regenTextBox.BackColor = Color.Red;
+				this.valueToolTip.SetToolTip(regenTextBox, "Invalid value!");
+				this.valueToolTip.ToolTipIcon = ToolTipIcon.Warning;
+				this.valueToolTip.Active = true;
+				e.Cancel = true;
+			}
+		}
+
+		private void pandemoniumMinTextBox_Validated(object sender, EventArgs e)
+		{
+			int pandemoniumMinItems;
+			bool result = Int32.TryParse(pandemoniumMinTextBox.Text, out pandemoniumMinItems);
+			if (result)
+			{
+				toolConfig.Khaos.PandemoniumMinItems = pandemoniumMinItems;
+			}
+			pandemoniumMinTextBox.BackColor = Color.White;
+			this.valueToolTip.Active = false;
+		}
+
+		private void pandemoniumMinTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			int pandemoniumMinItems;
+			bool result = Int32.TryParse(pandemoniumMinTextBox.Text, out pandemoniumMinItems);
+			if (!result || pandemoniumMinItems < 0 || pandemoniumMinItems > 100)
+			{
+				this.pandemoniumMinTextBox.Text = "";
+				this.pandemoniumMinTextBox.BackColor = Color.Red;
+				this.valueToolTip.SetToolTip(pandemoniumMinTextBox, "Invalid value!");
+				this.valueToolTip.ToolTipIcon = ToolTipIcon.Warning;
+				this.valueToolTip.Active = true;
+				e.Cancel = true;
+			}
+		}
+
+		private void pandemoniumMaxTextBox_Validated(object sender, EventArgs e)
+		{
+			int pandemoniumMaxItems;
+			bool result = Int32.TryParse(pandemoniumMaxTextBox.Text, out pandemoniumMaxItems);
+			if (result)
+			{
+				toolConfig.Khaos.PandoraMaxItems = pandemoniumMaxItems;
+			}
+			pandemoniumMaxTextBox.BackColor = Color.White;
+			this.valueToolTip.Active = false;
+		}
+
+		private void pandemoniumMaxTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			int pandoraMaxItems;
+			bool result = Int32.TryParse(pandemoniumMaxTextBox.Text, out pandoraMaxItems);
+			if (!result || pandoraMaxItems < 1 || pandoraMaxItems > 100)
+			{
+				this.pandemoniumMaxTextBox.Text = "";
+				this.pandemoniumMaxTextBox.BackColor = Color.Red;
+				this.valueToolTip.SetToolTip(pandemoniumMaxTextBox, "Invalid value!");
+				this.valueToolTip.ToolTipIcon = ToolTipIcon.Warning;
+				this.valueToolTip.Active = true;
+				e.Cancel = true;
+			}
+		}
+		#endregion
+		#region Legacy
+		private void crippleTextBox_Validated(object sender, EventArgs e)
+		{
+
+		}
+
+		private void crippleTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+
+		}
+
+		private void hasteTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+
+		}
+
+		private void weakenTextBox_Validated(object sender, EventArgs e)
+		{
+			string boxText = statsDownTextBox.Text.Replace("%", "");
+			int weakenPercentage;
+			bool result = Int32.TryParse(boxText, out weakenPercentage);
+			if (result)
+			{
+				toolConfig.Khaos.WeakenFactor = (weakenPercentage / 100F);
+			}
+			statsDownTextBox.BackColor = Color.White;
+			this.valueToolTip.Active = false;
+		}
+
+		private void weakenTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			string boxText = statsDownTextBox.Text.Replace("%", "");
+			int weakenPercentage;
+			bool result = Int32.TryParse(boxText, out weakenPercentage);
+			if (!result || weakenPercentage < 10 || weakenPercentage > 90)
+			{
+				this.statsDownTextBox.Text = "";
+				this.statsDownTextBox.BackColor = Color.Red;
+				this.valueToolTip.SetToolTip(statsDownTextBox, "Invalid value!");
+				this.valueToolTip.ToolTipIcon = ToolTipIcon.Warning;
+				this.valueToolTip.Active = true;
+				e.Cancel = true;
+			}
+		}
+
+		private void thirstTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+
+		}
+
+		private void pandoraMinTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+
+		}
+
+		private void pandoraMaxTextBox_Validated(object sender, EventArgs e)
+		{
+			int pandoraMaxItems;
+			bool result = Int32.TryParse(pandemoniumMaxTextBox.Text, out pandoraMaxItems);
+			if (result)
+			{
+				toolConfig.Khaos.PandoraMaxItems = pandoraMaxItems;
+			}
+			pandemoniumMaxTextBox.BackColor = Color.White;
+			this.valueToolTip.Active = false;
+		}
+
+		private void pandoraMaxTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			int pandoraMaxItems;
+			bool result = Int32.TryParse(pandemoniumMaxTextBox.Text, out pandoraMaxItems);
+			if (!result || pandoraMaxItems < 1 || pandoraMaxItems > 100)
+			{
+				this.pandemoniumMaxTextBox.Text = "";
+				this.pandemoniumMaxTextBox.BackColor = Color.Red;
+				this.valueToolTip.SetToolTip(pandemoniumMaxTextBox, "Invalid value!");
+				this.valueToolTip.ToolTipIcon = ToolTipIcon.Warning;
+				this.valueToolTip.Active = true;
+				e.Cancel = true;
+			}
+		}
+
+		#endregion
+		private void thirstTextBox_TextChanged(object sender, EventArgs e)
+		{
+
+		}
+
+		private void crippleTextBox_TextChanged(object sender, EventArgs e)
+		{
+
+		}
+
+		private void pandoraMinTextBox_TextChanged(object sender, EventArgs e)
+		{
+
+		}
+
+		private void speedTextBox_TextChanged(object sender, EventArgs e)
+		{
+
 		}
 	}
 }

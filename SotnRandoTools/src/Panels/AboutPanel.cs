@@ -93,5 +93,10 @@ namespace SotnRandoTools
 			patchNotesLink.LinkVisited = true;
 			Process.Start(path + Paths.ChangeLogPath);
 		}
+
+		private void autotrackerPanelTitle_Click(object sender, EventArgs e)
+		{
+
+		}
 	}
 }
