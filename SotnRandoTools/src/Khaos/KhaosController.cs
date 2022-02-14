@@ -979,11 +979,11 @@ namespace SotnRandoTools.Khaos
 
 		public void RushDown(string user = "Mayhem")
 		{ 
-			curse.Enable();
 			speedLocked = true;
 			weaponsLocked = true;
 			rushDownActive = true;
 			invincibilityLocked = true;
+			curse.Enable();
 			preRushdownCon = 0;
 			preRushdownLevel = 0;
 			rushdownBible.Enable();
@@ -1079,12 +1079,12 @@ namespace SotnRandoTools.Khaos
 			contactDamage.Disable();
 			sotnApi.AlucardApi.ContactDamage = 0;
 			SetSpeed();
+			rushDownTimer.Stop();
 			statLocked = false;
 			invincibilityLocked = false;
 			heartsLocked = false;
 			speedLocked = false;
 			rushDownActive = false;
-			rushDownTimer.Stop();
 		}
 		public void SwapStats(string user = "Mayhem")
 		{
@@ -2855,10 +2855,10 @@ namespace SotnRandoTools.Khaos
 		{
 			hasteTimer.Stop();
 			SetSpeed();
+			speedOverdriveOffTimer.Start();
 			superSpeed = false;
 			speedActive = false;
 			speedLocked = false;
-			speedOverdriveOffTimer.Start();
 		}
 		private void SpeedOverdriveOn(object sender, System.Timers.ElapsedEventArgs e)
 		{
@@ -5039,7 +5039,7 @@ namespace SotnRandoTools.Khaos
 			fastActionTimer.Stop();
 			actionTimer.Stop();
 
-			#region mayhem timers
+			#region Mayhem timers
 
 			hpForMPDeathTimer.Stop();
 			HPForMPTimer.Interval = 1;
@@ -5063,6 +5063,7 @@ namespace SotnRandoTools.Khaos
 			timeStopTimer.Interval = 1;
 			timeStopCheckTimer.Interval = 1;
 
+			faceTankTimer.Interval = 1;
 			speedTimer.Interval = 1;
 			speedOverdriveTimer.Interval = 1;
 			speedOverdriveOffTimer.Interval = 1;
@@ -5079,7 +5080,7 @@ namespace SotnRandoTools.Khaos
 			#endregion
 
 
-			#region legacy stop
+			#region Legacy Stop Timers
 			bloodManaDeathTimer.Interval = 1;
 			subweaponsOnlyTimer.Interval = 1;
 			honestGamerTimer.Interval = 1;
@@ -5131,42 +5132,14 @@ namespace SotnRandoTools.Khaos
 					{
 						index = i;
 						actionUnlocked = true;
-						if (queuedActions[i].ChangesStats && statLocked)
-						{
-							actionUnlocked = false;
-							continue;
-						}
-						if (queuedActions[i].ChangesSubWeapons && subWeaponsLocked)
-						{
-							actionUnlocked = false;
-							continue;
-						}
-						if (queuedActions[i].LocksSpeed && speedLocked)
-						{
-							actionUnlocked = false;
-							continue;
-						}
-						if (queuedActions[i].LocksMana && manaLocked)
-						{
-							actionUnlocked = false;
-							continue;
-						}
-						if (queuedActions[i].LocksHearts && heartsLocked)
-						{
-							actionUnlocked = false;
-							continue;
-						}
-						if (queuedActions[i].LocksWeapons && weaponsLocked)
-						{
-							actionUnlocked = false;
-							continue;
-						}
-						if (queuedActions[i].LocksInvincibility && invincibilityLocked)
-						{
-							actionUnlocked = false;
-							continue;
-						}
-						if (queuedActions[i].LocksSpawning && spawnActive)
+						if ((queuedActions[i].ChangesStats && statLocked)||
+							(queuedActions[i].ChangesSubWeapons && subWeaponsLocked)||
+							(queuedActions[i].LocksSpeed && speedLocked)||
+							(queuedActions[i].LocksMana && manaLocked)||
+							(queuedActions[i].LocksHearts && heartsLocked)||
+							(queuedActions[i].LocksWeapons && weaponsLocked)||
+							(queuedActions[i].LocksInvincibility && invincibilityLocked)||
+							(queuedActions[i].LocksSpawning && spawnActive))
 						{
 							actionUnlocked = false;
 							continue;
@@ -5182,7 +5155,7 @@ namespace SotnRandoTools.Khaos
 					}
 					else
 					{
-						Console.WriteLine($"All actions locked. speed: {speedLocked}, invincibility: {invincibilityLocked}, mana: {manaLocked}");
+						Console.WriteLine($"All actions locked. statlocked: {statLocked}, subWeaponsLocked: {subWeaponsLocked}, speed: {speedLocked}, manaLocked:{manaLocked}, weaponsLocked{weaponsLocked}, invincibility: {invincibilityLocked}, mana: {manaLocked}");
 					}
 				}
 			}
