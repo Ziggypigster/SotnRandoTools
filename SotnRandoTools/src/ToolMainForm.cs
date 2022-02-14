@@ -171,8 +171,7 @@ namespace SotnRandoTools
 			this.MainForm.CheatList.Load(_memoryDomains, Paths.CheatsPath, false);
 			this.MainForm.CheatList.DisableAll();
 
-			//var checkCheat = this.MainForm.CheatList.Where(x => x.Name == "AlucardAttackHitbox2Width").FirstOrDefault();
-			var checkCheat = "?";
+			/*var checkCheat = this.MainForm.CheatList.Where(x => x.Name == "AlucardAttackHitbox2Width").FirstOrDefault();
 
 			if (checkCheat is null)
 			{
@@ -180,6 +179,7 @@ namespace SotnRandoTools
 				this.MainForm.CheatList.Load(_memoryDomains, Paths.CheatsPath, false);
 				this.MainForm.CheatList.DisableAll();
 			}
+			*/
 
 			if (khaosForm is not null)
 			{

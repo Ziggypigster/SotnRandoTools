@@ -31,9 +31,10 @@ namespace SotnRandoTools
 			volumeTrackBar.Value = toolConfig.Khaos.Volume;
 
 			queueTextBox.Text = toolConfig.Khaos.QueueInterval.ToString();
-			dynamicIntervalCheckBox.Checked = toolConfig.Khaos.DynamicInterval;
+			enforceMinStatsCheckbox.Checked = toolConfig.Khaos.enforceMinStats;
 			keepVladRelicsCheckbox.Checked = toolConfig.Khaos.KeepVladRelics;
-
+			dynamicIntervalCheckBox.Checked = toolConfig.Khaos.DynamicInterval;
+			
 			underwaterTextBox.Text = (toolConfig.Khaos.UnderwaterFactor * 100) + "%";
 			speedTextBox.Text = (toolConfig.Khaos.SpeedFactor * 100) + "%";
 			statsDownTextBox.Text = (toolConfig.Khaos.StatsDownFactor * 100) + "%";
@@ -155,6 +156,12 @@ namespace SotnRandoTools
 
 		#region Mayhem
 
+		private void enforceMinStatsCheckbox_CheckedChanged(object sender, EventArgs e)
+		{
+			toolConfig.Khaos.enforceMinStats = enforceMinStatsCheckbox.Checked;
+		}
+
+
 		private void underwaterTextBox_Validated(object sender, EventArgs e)
 		{
 			string boxText = underwaterTextBox.Text.Replace("%", "");
@@ -193,7 +200,7 @@ namespace SotnRandoTools
 			bool result = Int32.TryParse(boxText, out speedPercentage);
 			if (result)
 			{
-				toolConfig.Khaos.HasteFactor = (speedPercentage / 100F);
+				toolConfig.Khaos.SpeedFactor = (speedPercentage / 100F);
 			}
 			speedTextBox.BackColor = Color.White;
 			this.valueToolTip.Active = false;
@@ -222,7 +229,7 @@ namespace SotnRandoTools
 			bool result = Int32.TryParse(boxText, out statsDownPercentage);
 			if (result)
 			{
-				toolConfig.Khaos.WeakenFactor = (statsDownPercentage / 100F);
+				toolConfig.Khaos.StatsDownFactor = (statsDownPercentage / 100F);
 			}
 			statsDownTextBox.BackColor = Color.White;
 			this.valueToolTip.Active = false;
@@ -326,19 +333,63 @@ namespace SotnRandoTools
 		}
 		#endregion
 		#region Legacy
+
 		private void crippleTextBox_Validated(object sender, EventArgs e)
 		{
-
+			string boxText = crippleTextBox.Text.Replace("%", "");
+			int cripplePercentage;
+			bool result = Int32.TryParse(boxText, out cripplePercentage);
+			if (result)
+			{
+				toolConfig.Khaos.UnderwaterFactor = (cripplePercentage / 100F);
+			}
+			crippleTextBox.BackColor = Color.White;
+			this.valueToolTip.Active = false;
 		}
 
 		private void crippleTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
 		{
+			string boxText = crippleTextBox.Text.Replace("%", "");
+			int cripplePercentage;
+			bool result = Int32.TryParse(boxText, out cripplePercentage);
+			if (!result || cripplePercentage < 0 || cripplePercentage > 90)
+			{
+				this.crippleTextBox.Text = "";
+				this.crippleTextBox.BackColor = Color.Red;
+				this.valueToolTip.SetToolTip(crippleTextBox, "Invalid value!");
+				this.valueToolTip.ToolTipIcon = ToolTipIcon.Warning;
+				this.valueToolTip.Active = true;
+				e.Cancel = true;
+			}
+		}
 
+		private void hasteTextBox_Validated(object sender, EventArgs e)
+		{
+			string boxText = hasteTextBox.Text.Replace("%", "");
+			int hastePercentage;
+			bool result = Int32.TryParse(boxText, out hastePercentage);
+			if (result)
+			{
+				toolConfig.Khaos.HasteFactor = (hastePercentage / 100F);
+			}
+			hasteTextBox.BackColor = Color.White;
+			this.valueToolTip.Active = false;
 		}
 
 		private void hasteTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
 		{
-
+			string boxText = hasteTextBox.Text.Replace("%", "");
+			int hastePercentage;
+			bool result = Int32.TryParse(boxText, out hastePercentage);
+			if (!result || hastePercentage < 100 || hastePercentage > 1000)
+			{
+				this.hasteTextBox.Text = "";
+				this.hasteTextBox.BackColor = Color.Red;
+				this.valueToolTip.SetToolTip(speedTextBox, "Invalid value!");
+				this.valueToolTip.ToolTipIcon = ToolTipIcon.Warning;
+				this.valueToolTip.Active = true;
+				e.Cancel = true;
+			}
 		}
 
 		private void weakenTextBox_Validated(object sender, EventArgs e)
@@ -370,14 +421,58 @@ namespace SotnRandoTools
 			}
 		}
 
+		private void thirstTextBox_Validated(object sender, EventArgs e)
+		{
+			int thirstDrain;
+			bool result = Int32.TryParse(regenTextBox.Text, out thirstDrain);
+			if (result)
+			{
+				toolConfig.Khaos.RegenGainPerSecond = (uint) thirstDrain;
+			}
+			thirstTextBox.BackColor = Color.White;
+			this.valueToolTip.Active = false;
+		}
+
 		private void thirstTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
 		{
+			int thirstDrain;
+			bool result = Int32.TryParse(thirstTextBox.Text, out thirstDrain);
+			if (!result || thirstDrain < 1 || thirstDrain > 100)
+			{
+				this.thirstTextBox.Text = "";
+				this.thirstTextBox.BackColor = Color.Red;
+				this.valueToolTip.SetToolTip(regenTextBox, "Invalid value!");
+				this.valueToolTip.ToolTipIcon = ToolTipIcon.Warning;
+				this.valueToolTip.Active = true;
+				e.Cancel = true;
+			}
+		}
 
+		private void pandoraMinTextBox_Validated(object sender, EventArgs e)
+		{
+			int pandoraMinItems;
+			bool result = Int32.TryParse(pandoraMinTextBox.Text, out pandoraMinItems);
+			if (result)
+			{
+				toolConfig.Khaos.PandemoniumMinItems = pandoraMinItems;
+			}
+			pandoraMinTextBox.BackColor = Color.White;
+			this.valueToolTip.Active = false;
 		}
 
 		private void pandoraMinTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
 		{
-
+			int pandoraMinItems;
+			bool result = Int32.TryParse(pandoraMinTextBox.Text, out pandoraMinItems);
+			if (!result || pandoraMinItems < 0 || pandoraMinItems > 100)
+			{
+				this.pandoraMinTextBox.Text = "";
+				this.pandoraMinTextBox.BackColor = Color.Red;
+				this.valueToolTip.SetToolTip(pandoraMinTextBox, "Invalid value!");
+				this.valueToolTip.ToolTipIcon = ToolTipIcon.Warning;
+				this.valueToolTip.Active = true;
+				e.Cancel = true;
+			}
 		}
 
 		private void pandoraMaxTextBox_Validated(object sender, EventArgs e)
@@ -408,24 +503,5 @@ namespace SotnRandoTools
 		}
 
 		#endregion
-		private void thirstTextBox_TextChanged(object sender, EventArgs e)
-		{
-
-		}
-
-		private void crippleTextBox_TextChanged(object sender, EventArgs e)
-		{
-
-		}
-
-		private void pandoraMinTextBox_TextChanged(object sender, EventArgs e)
-		{
-
-		}
-
-		private void speedTextBox_TextChanged(object sender, EventArgs e)
-		{
-
-		}
 	}
 }

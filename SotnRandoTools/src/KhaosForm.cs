@@ -143,6 +143,17 @@ namespace SotnRandoTools
 				khaosControler.Unarmed();
 			}
 		}
+		private void turboModeButton_Click(object sender, EventArgs e)
+		{
+			if (toolConfig.Khaos.ControlPannelQueueActions)
+			{
+				khaosControler.EnqueueAction(new EventAddAction { Command = "turbomode", UserName = "Mayhem" });
+			}
+			else
+			{
+				khaosControler.TurboMode();
+			}
+		}
 		private void rushDownButton_Click(object sender, EventArgs e)
 		{
 			if (toolConfig.Khaos.ControlPannelQueueActions)
@@ -397,7 +408,7 @@ namespace SotnRandoTools
 		{
 			if (toolConfig.Khaos.ControlPannelQueueActions)
 			{
-				khaosControler.EnqueueAction(new EventAddAction { Command = "extrareach", UserName = "Mayhem" });
+				khaosControler.EnqueueAction(new EventAddAction { Command = "extrarange", UserName = "Mayhem" });
 			}
 			else
 			{
@@ -794,6 +805,11 @@ namespace SotnRandoTools
 		}
 
 		private void queueRadio_CheckedChanged_1(object sender, EventArgs e)
+		{
+
+		}
+
+		private void modePanel_Enter(object sender, EventArgs e)
 		{
 
 		}

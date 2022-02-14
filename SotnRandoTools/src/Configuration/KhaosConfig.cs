@@ -38,6 +38,7 @@ namespace SotnRandoTools.Configuration
 			MeterOnReset = 20;
 			QueueInterval = new System.TimeSpan(0, 0, 10);
 			RomhackMode = false;
+			enforceMinStats = true;
 			DynamicInterval = true;
 			KeepVladRelics = true;
 			Actions = new List<Action>
@@ -47,6 +48,7 @@ namespace SotnRandoTools.Configuration
 				new Action{Name="Max Mayhem", Enabled = true, Meter = 0, AlertPath = Paths.AlucardWhatSound},
 				new Action{Name="Hearts Only", Enabled = true, Meter = 6,  Duration = new System.TimeSpan(0, 1, 0), AlertPath = Paths.RichterLaughSound},
 				new Action{Name="Unarmed", Enabled = true, Meter = 6, Duration = new System.TimeSpan(0, 1, 0), AlertPath = Paths.AlucardWhatSound },
+				new Action{Name="Turbo Mode", Enabled = true, Meter = 4, Duration = new System.TimeSpan(0, 1, 0), AlertPath = Paths.AlucardWhatSound },
 				new Action{Name="Rushdown", Enabled = true, Meter = 6, Duration = new System.TimeSpan(0, 1, 0), AlertPath = Paths.AlucardWhatSound},
 				new Action{Name="Swap Stats", Enabled = true, Meter = 8, AlertPath = Paths.AlucardWhatSound},
 				new Action{Name="Swap Equipment", Enabled = true, Meter = 8, AlertPath = Paths.AlucardWhatSound},
@@ -68,7 +70,7 @@ namespace SotnRandoTools.Configuration
 				new Action{Name="Moderate Boon", Enabled = true, Meter = 4, AlertPath = Paths.FairyPotionSound},
 				new Action{Name="Time Stop", Enabled = true, Meter = 6, Duration = new System.TimeSpan(0, 1, 0), AlertPath = Paths.ZaWarudoSound},
 				new Action{Name="Spellcaster", Enabled = true, Meter = 6, Duration = new System.TimeSpan(0, 1, 0)},
-				new Action{Name="Face Tank", Enabled = true,  Meter = 6, AlertPath = Paths.BattleOrdersSound},
+				new Action{Name="Face Tank", Enabled = true,  Meter = 6, Duration = new System.TimeSpan(0, 1, 0), AlertPath = Paths.BattleOrdersSound},
 				new Action{Name="Extra Range", Enabled = true, Meter = 8, Duration = new System.TimeSpan(0, 1, 0), AlertPath = Paths.MeltySound},
 				new Action{Name="Summoner", Enabled = true,  Meter = 8, Duration = new System.TimeSpan(0, 1, 30), Interval = new System.TimeSpan(0, 0, 1), AlertPath = Paths.SwordBroSound},
 				new Action{Name="Major Boon", Enabled = true, Meter = 10, AlertPath = Paths.FairyPotionSound},
@@ -264,6 +266,8 @@ namespace SotnRandoTools.Configuration
 		public System.TimeSpan QueueInterval { get; set; }
 		public bool DynamicInterval { get; set; }
 		public bool KeepVladRelics { get; set; }
+
+		public bool enforceMinStats { get; set; }
 
 		#region Mayhem
 		public string[] PainTradeItemRewards { get; set; }

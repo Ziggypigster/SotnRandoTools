@@ -33,6 +33,7 @@ namespace SotnRandoTools
             this.startButton = new System.Windows.Forms.Button();
             this.khaosTabs = new System.Windows.Forms.TabControl();
             this.generalTab = new System.Windows.Forms.TabPage();
+            this.turboModeButton = new System.Windows.Forms.Button();
             this.hexButton = new System.Windows.Forms.Button();
             this.regenButton = new System.Windows.Forms.Button();
             this.ambushButton = new System.Windows.Forms.Button();
@@ -61,9 +62,6 @@ namespace SotnRandoTools
             this.maxMayhemButton = new System.Windows.Forms.Button();
             this.painTradeButton = new System.Windows.Forms.Button();
             this.minorTrapButton = new System.Windows.Forms.Button();
-            this.modePan = new System.Windows.Forms.GroupBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.slamButton = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.controlBox = new System.Windows.Forms.GroupBox();
@@ -101,7 +99,6 @@ namespace SotnRandoTools
             this.randomStatusButton = new System.Windows.Forms.Button();
             this.khaosTabs.SuspendLayout();
             this.generalTab.SuspendLayout();
-            this.modePan.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.controlBox.SuspendLayout();
             this.modePanel.SuspendLayout();
@@ -136,6 +133,7 @@ namespace SotnRandoTools
             // generalTab
             // 
             this.generalTab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
+            this.generalTab.Controls.Add(this.turboModeButton);
             this.generalTab.Controls.Add(this.hexButton);
             this.generalTab.Controls.Add(this.regenButton);
             this.generalTab.Controls.Add(this.ambushButton);
@@ -164,7 +162,6 @@ namespace SotnRandoTools
             this.generalTab.Controls.Add(this.maxMayhemButton);
             this.generalTab.Controls.Add(this.painTradeButton);
             this.generalTab.Controls.Add(this.minorTrapButton);
-            this.generalTab.Controls.Add(this.modePan);
             this.generalTab.Controls.Add(this.slamButton);
             this.generalTab.ForeColor = System.Drawing.Color.White;
             this.generalTab.Location = new System.Drawing.Point(4, 22);
@@ -173,6 +170,21 @@ namespace SotnRandoTools
             this.generalTab.Size = new System.Drawing.Size(418, 388);
             this.generalTab.TabIndex = 0;
             this.generalTab.Text = "Mayhem";
+            // 
+            // turboModeButton
+            // 
+            this.turboModeButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(21)))), ((int)(((byte)(57)))));
+            this.turboModeButton.FlatAppearance.BorderSize = 2;
+            this.turboModeButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
+            this.turboModeButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
+            this.turboModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.turboModeButton.Location = new System.Drawing.Point(3, 146);
+            this.turboModeButton.Name = "turboModeButton";
+            this.turboModeButton.Size = new System.Drawing.Size(134, 26);
+            this.turboModeButton.TabIndex = 60;
+            this.turboModeButton.Text = "Turbo Mode";
+            this.turboModeButton.UseVisualStyleBackColor = true;
+            this.turboModeButton.Click += new System.EventHandler(this.turboModeButton_Click);
             // 
             // hexButton
             // 
@@ -376,7 +388,7 @@ namespace SotnRandoTools
             this.unarmedButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
             this.unarmedButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
             this.unarmedButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.unarmedButton.Location = new System.Drawing.Point(3, 178);
+            this.unarmedButton.Location = new System.Drawing.Point(3, 114);
             this.unarmedButton.Name = "unarmedButton";
             this.unarmedButton.Size = new System.Drawing.Size(134, 26);
             this.unarmedButton.TabIndex = 46;
@@ -391,7 +403,7 @@ namespace SotnRandoTools
             this.rushdownButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
             this.rushdownButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
             this.rushdownButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rushdownButton.Location = new System.Drawing.Point(3, 210);
+            this.rushdownButton.Location = new System.Drawing.Point(3, 178);
             this.rushdownButton.Name = "rushdownButton";
             this.rushdownButton.Size = new System.Drawing.Size(134, 26);
             this.rushdownButton.TabIndex = 45;
@@ -481,7 +493,7 @@ namespace SotnRandoTools
             this.pandemoniumButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
             this.pandemoniumButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
             this.pandemoniumButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.pandemoniumButton.Location = new System.Drawing.Point(3, 338);
+            this.pandemoniumButton.Location = new System.Drawing.Point(3, 306);
             this.pandemoniumButton.Name = "pandemoniumButton";
             this.pandemoniumButton.Size = new System.Drawing.Size(134, 26);
             this.pandemoniumButton.TabIndex = 39;
@@ -496,7 +508,7 @@ namespace SotnRandoTools
             this.swapRelicsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
             this.swapRelicsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
             this.swapRelicsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.swapRelicsButton.Location = new System.Drawing.Point(3, 306);
+            this.swapRelicsButton.Location = new System.Drawing.Point(2, 274);
             this.swapRelicsButton.Name = "swapRelicsButton";
             this.swapRelicsButton.Size = new System.Drawing.Size(134, 26);
             this.swapRelicsButton.TabIndex = 38;
@@ -511,7 +523,7 @@ namespace SotnRandoTools
             this.swapEquipmentButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
             this.swapEquipmentButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
             this.swapEquipmentButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.swapEquipmentButton.Location = new System.Drawing.Point(3, 274);
+            this.swapEquipmentButton.Location = new System.Drawing.Point(3, 242);
             this.swapEquipmentButton.Name = "swapEquipmentButton";
             this.swapEquipmentButton.Size = new System.Drawing.Size(134, 26);
             this.swapEquipmentButton.TabIndex = 37;
@@ -526,7 +538,7 @@ namespace SotnRandoTools
             this.swapStatsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
             this.swapStatsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
             this.swapStatsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.swapStatsButton.Location = new System.Drawing.Point(3, 242);
+            this.swapStatsButton.Location = new System.Drawing.Point(3, 210);
             this.swapStatsButton.Name = "swapStatsButton";
             this.swapStatsButton.Size = new System.Drawing.Size(134, 26);
             this.swapStatsButton.TabIndex = 36;
@@ -541,7 +553,7 @@ namespace SotnRandoTools
             this.heartsOnlyButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
             this.heartsOnlyButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
             this.heartsOnlyButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.heartsOnlyButton.Location = new System.Drawing.Point(2, 146);
+            this.heartsOnlyButton.Location = new System.Drawing.Point(2, 82);
             this.heartsOnlyButton.Name = "heartsOnlyButton";
             this.heartsOnlyButton.Size = new System.Drawing.Size(134, 26);
             this.heartsOnlyButton.TabIndex = 35;
@@ -556,7 +568,7 @@ namespace SotnRandoTools
             this.maxMayhemButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
             this.maxMayhemButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
             this.maxMayhemButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.maxMayhemButton.Location = new System.Drawing.Point(2, 114);
+            this.maxMayhemButton.Location = new System.Drawing.Point(3, 50);
             this.maxMayhemButton.Name = "maxMayhemButton";
             this.maxMayhemButton.Size = new System.Drawing.Size(134, 26);
             this.maxMayhemButton.TabIndex = 34;
@@ -571,7 +583,7 @@ namespace SotnRandoTools
             this.painTradeButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
             this.painTradeButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
             this.painTradeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.painTradeButton.Location = new System.Drawing.Point(2, 82);
+            this.painTradeButton.Location = new System.Drawing.Point(3, 18);
             this.painTradeButton.Name = "painTradeButton";
             this.painTradeButton.Size = new System.Drawing.Size(134, 26);
             this.painTradeButton.TabIndex = 33;
@@ -593,41 +605,6 @@ namespace SotnRandoTools
             this.minorTrapButton.Text = "Minor Trap";
             this.minorTrapButton.UseVisualStyleBackColor = true;
             this.minorTrapButton.Click += new System.EventHandler(this.minorTrapButton_Click);
-            // 
-            // modePan
-            // 
-            this.modePan.Controls.Add(this.radioButton1);
-            this.modePan.Controls.Add(this.radioButton2);
-            this.modePan.ForeColor = System.Drawing.Color.White;
-            this.modePan.Location = new System.Drawing.Point(2, 5);
-            this.modePan.Name = "modePan";
-            this.modePan.Size = new System.Drawing.Size(134, 71);
-            this.modePan.TabIndex = 31;
-            this.modePan.TabStop = false;
-            this.modePan.Text = "Mode";
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(6, 41);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(101, 17);
-            this.radioButton1.TabIndex = 1;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Execute actions";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(6, 18);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(94, 17);
-            this.radioButton2.TabIndex = 0;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Queue actions";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
             // slamButton
             // 
@@ -657,7 +634,6 @@ namespace SotnRandoTools
             // 
             // controlBox
             // 
-            this.controlBox.Controls.Add(this.modePanel);
             this.controlBox.Controls.Add(this.button1);
             this.controlBox.Controls.Add(this.zawarudoButton);
             this.controlBox.Controls.Add(this.lordButton);
@@ -702,12 +678,13 @@ namespace SotnRandoTools
             this.modePanel.Controls.Add(this.instantRadio);
             this.modePanel.Controls.Add(this.queueRadio);
             this.modePanel.ForeColor = System.Drawing.Color.White;
-            this.modePanel.Location = new System.Drawing.Point(6, 20);
+            this.modePanel.Location = new System.Drawing.Point(304, 6);
             this.modePanel.Name = "modePanel";
             this.modePanel.Size = new System.Drawing.Size(134, 71);
             this.modePanel.TabIndex = 34;
             this.modePanel.TabStop = false;
             this.modePanel.Text = "Mode";
+            this.modePanel.Enter += new System.EventHandler(this.modePanel_Enter);
             // 
             // instantRadio
             // 
@@ -798,7 +775,7 @@ namespace SotnRandoTools
             this.kBurstButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
             this.kBurstButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
             this.kBurstButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.kBurstButton.Location = new System.Drawing.Point(6, 161);
+            this.kBurstButton.Location = new System.Drawing.Point(7, 97);
             this.kBurstButton.Name = "kBurstButton";
             this.kBurstButton.Size = new System.Drawing.Size(134, 26);
             this.kBurstButton.TabIndex = 27;
@@ -1023,7 +1000,7 @@ namespace SotnRandoTools
             this.pandorasBoxButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
             this.pandorasBoxButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
             this.pandorasBoxButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.pandorasBoxButton.Location = new System.Drawing.Point(6, 289);
+            this.pandorasBoxButton.Location = new System.Drawing.Point(6, 225);
             this.pandorasBoxButton.Name = "pandorasBoxButton";
             this.pandorasBoxButton.Size = new System.Drawing.Size(134, 26);
             this.pandorasBoxButton.TabIndex = 9;
@@ -1053,7 +1030,7 @@ namespace SotnRandoTools
             this.randomizeRelicsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
             this.randomizeRelicsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
             this.randomizeRelicsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.randomizeRelicsButton.Location = new System.Drawing.Point(6, 257);
+            this.randomizeRelicsButton.Location = new System.Drawing.Point(7, 193);
             this.randomizeRelicsButton.Name = "randomizeRelicsButton";
             this.randomizeRelicsButton.Size = new System.Drawing.Size(134, 26);
             this.randomizeRelicsButton.TabIndex = 7;
@@ -1083,7 +1060,7 @@ namespace SotnRandoTools
             this.gambleButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
             this.gambleButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
             this.gambleButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.gambleButton.Location = new System.Drawing.Point(6, 129);
+            this.gambleButton.Location = new System.Drawing.Point(6, 65);
             this.gambleButton.Name = "gambleButton";
             this.gambleButton.Size = new System.Drawing.Size(134, 26);
             this.gambleButton.TabIndex = 5;
@@ -1113,7 +1090,7 @@ namespace SotnRandoTools
             this.randomizeStatsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
             this.randomizeStatsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
             this.randomizeStatsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.randomizeStatsButton.Location = new System.Drawing.Point(6, 193);
+            this.randomizeStatsButton.Location = new System.Drawing.Point(4, 129);
             this.randomizeStatsButton.Name = "randomizeStatsButton";
             this.randomizeStatsButton.Size = new System.Drawing.Size(134, 26);
             this.randomizeStatsButton.TabIndex = 3;
@@ -1143,7 +1120,7 @@ namespace SotnRandoTools
             this.randomEquipmentButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
             this.randomEquipmentButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
             this.randomEquipmentButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.randomEquipmentButton.Location = new System.Drawing.Point(6, 225);
+            this.randomEquipmentButton.Location = new System.Drawing.Point(6, 161);
             this.randomEquipmentButton.Name = "randomEquipmentButton";
             this.randomEquipmentButton.Size = new System.Drawing.Size(134, 26);
             this.randomEquipmentButton.TabIndex = 1;
@@ -1158,7 +1135,7 @@ namespace SotnRandoTools
             this.randomStatusButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
             this.randomStatusButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
             this.randomStatusButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.randomStatusButton.Location = new System.Drawing.Point(6, 97);
+            this.randomStatusButton.Location = new System.Drawing.Point(6, 33);
             this.randomStatusButton.Name = "randomStatusButton";
             this.randomStatusButton.Size = new System.Drawing.Size(134, 26);
             this.randomStatusButton.TabIndex = 0;
@@ -1172,6 +1149,7 @@ namespace SotnRandoTools
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
             this.ClientSize = new System.Drawing.Size(450, 498);
+            this.Controls.Add(this.modePanel);
             this.Controls.Add(this.khaosTabs);
             this.Controls.Add(this.startButton);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -1186,8 +1164,6 @@ namespace SotnRandoTools
             this.Move += new System.EventHandler(this.KhaosForm_Move);
             this.khaosTabs.ResumeLayout(false);
             this.generalTab.ResumeLayout(false);
-            this.modePan.ResumeLayout(false);
-            this.modePan.PerformLayout();
             this.tabPage1.ResumeLayout(false);
             this.controlBox.ResumeLayout(false);
             this.modePanel.ResumeLayout(false);
@@ -1235,9 +1211,6 @@ namespace SotnRandoTools
 		private System.Windows.Forms.Button maxMayhemButton;
 		private System.Windows.Forms.Button painTradeButton;
 		private System.Windows.Forms.Button minorTrapButton;
-		private System.Windows.Forms.GroupBox modePan;
-		private System.Windows.Forms.RadioButton radioButton1;
-		private System.Windows.Forms.RadioButton radioButton2;
 		private System.Windows.Forms.Button confiscateButton;
 		private System.Windows.Forms.Button toughBossesButton;
 		private System.Windows.Forms.Button getJuggledButton;
@@ -1266,6 +1239,7 @@ namespace SotnRandoTools
 		private System.Windows.Forms.GroupBox modePanel;
 		private System.Windows.Forms.RadioButton instantRadio;
 		private System.Windows.Forms.RadioButton queueRadio;
+		private System.Windows.Forms.Button turboModeButton;
 	}
 }
 

@@ -32,6 +32,7 @@
 		public const string ToughBosses = "Tough Bosses";
 		public const string StatsDown = "Stats Down";
 		public const string Confiscate = "Confiscate";
+		public const string TurboMode = "Turbo Mode";
 		#endregion
 		#region Legacy
 		public const string KhaosStatus = "Random Status";
