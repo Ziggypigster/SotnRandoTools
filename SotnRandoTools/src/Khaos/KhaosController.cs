@@ -220,6 +220,7 @@ namespace SotnRandoTools.Khaos
 		private bool underwaterPaused = false;
 		private bool speedActive = false;
 		private bool speedOn = false;
+		private bool hexActive = false;
 		private bool heartsOnlyActive = false;
 		private bool unarmedActive = false;
 		private bool rushDownActive = false;
@@ -987,6 +988,10 @@ namespace SotnRandoTools.Khaos
 			preRushdownCon = 0;
 			preRushdownLevel = 0;
 			rushdownBible.Enable();
+			if (alucardApi.Subweapon == 0 || alucardApi.Subweapon == (Subweapon) 6)
+			{
+				alucardApi.Subweapon = (Subweapon) 5;
+			}
 
 			if (rushDownLevel == 1)
 			{
@@ -1867,15 +1872,15 @@ namespace SotnRandoTools.Khaos
 		}
 		public void Underwater(string user = "Mayhem")
 		{
-			speedLocked = true;
-			underwaterActive = true;
-			string name = KhaosActionNames.Underwater;
-
 			if (IsInRoomList(Constants.Khaos.EntranceCutsceneRooms))
 			{
 				queuedActions.Add(new QueuedAction { Name = KhaosActionNames.Underwater, LocksSpeed = true, Invoker = new MethodInvoker(() => Underwater(user)) });
 				return;
 			}
+
+			speedLocked = true;
+			underwaterActive = true;
+			string name = KhaosActionNames.Underwater;
 
 			bool meterFull = KhaosMeterFull();
 			float enhancedFactor = 1;
@@ -1939,18 +1944,18 @@ namespace SotnRandoTools.Khaos
 		}
 		public void Hex(string user = "Mayhem")
 		{
-
-			if (IsInRoomList(Constants.Khaos.EntranceCutsceneRooms))
+			if (IsInRoomList(Constants.Khaos.EntranceCutsceneRooms) || hexActive)
 			{
-				queuedActions.Add(new QueuedAction { Name = KhaosActionNames.Hex, Invoker = new MethodInvoker(() => Hex(user)) });
+				queuedActions.Add(new QueuedAction { Name = KhaosActionNames.Hex, ChangesStats=true, Invoker = new MethodInvoker(() => Hex(user)) });
+				return;
 			}
+			hexActive = true;
 
 			List<int> effectNumbers = new List<int>() { 1, 2, 3, 4};
 			bool meterFull = false;
 			
 			int max = effectNumbers.Count;
 			int min = 1;
-			slamJamUser = "";
 
 			if (sotnApi.AlucardApi.MaxtHp < 2)
 			{
@@ -2060,7 +2065,7 @@ namespace SotnRandoTools.Khaos
 		private void SlamJam(Object sender, EventArgs e)
 		{
 			++slamCount;
-			queuedActions.Add(new QueuedAction { Name = KhaosActionNames.Slam, Invoker = new MethodInvoker(() => Slam(slamJamUser, true)) });
+			queuedFastActions.Enqueue(new MethodInvoker(() => Slam(slamJamUser, true)));
 			int min = 15000 - (vladRelicsObtained * 500);
 			int max = 22500 - (vladRelicsObtained * 750);
 			int newInterval = rng.Next(min, max);
@@ -2069,7 +2074,7 @@ namespace SotnRandoTools.Khaos
 		private void SlamJamOff()
 		{
 			++slamCount;
-			queuedActions.Add(new QueuedAction { Name = KhaosActionNames.Slam, Invoker = new MethodInvoker(() => Slam(slamJamUser, true)) });
+			queuedFastActions.Enqueue(new MethodInvoker(() => Slam(slamJamUser, true)));
 			Console.WriteLine($"User was slammed: {slamCount} times");
 			slamCount = 0;
 			slamJamTickTimer.Interval = 300;
@@ -2078,7 +2083,6 @@ namespace SotnRandoTools.Khaos
 
 		private void HexOff(Object sender, EventArgs e)
 		{
-			//SetSpeed();
 			if (hpTaken>0||mpTaken>0||heartsTaken>0)
 			{
 				sotnApi.AlucardApi.MaxtHp += hpTaken;
@@ -2121,13 +2125,8 @@ namespace SotnRandoTools.Khaos
 			{
 				SlamJamOff();
 			}
-			else
-			{
-				slamCount = 0;
-				slamJamTickTimer.Interval = 300;
-				slamJamTickTimer.Stop();
-			}
 			hexTimer.Stop();
+			hexActive = false;
 		}
 
 		public void GetJuggled(string user = "Mayhem")
@@ -2840,7 +2839,7 @@ namespace SotnRandoTools.Khaos
 			speedTimer.Start();
 			
 			
-			Console.WriteLine($"{user} used {KhaosActionNames.Speed}");
+			//Console.WriteLine($"{user} used {name}");
 			notificationService.AddTimer(new Services.Models.ActionTimer
 			{
 				Name = name,
@@ -2853,7 +2852,7 @@ namespace SotnRandoTools.Khaos
 		}
 		private void SpeedOff(Object sender, EventArgs e)
 		{
-			hasteTimer.Stop();
+			speedTimer.Stop();
 			SetSpeed();
 			speedOverdriveOffTimer.Start();
 			superSpeed = false;
