@@ -189,7 +189,24 @@ namespace SotnRandoTools
 
 		public override bool AskSaveChanges() => true;
 
-		public override void Restart() { }
+		public override void Restart() 
+		{
+			if (trackerForm is not null && !trackerForm.IsDisposed)
+			{
+				trackerForm.Close();
+				trackerForm.Dispose();
+			}
+			if (khaosForm is not null && !khaosForm.IsDisposed)
+			{
+				khaosForm.Close();
+				khaosForm.Dispose();
+			}
+			if (coopForm is not null && !coopForm.IsDisposed)
+			{
+				coopForm.Close();
+				coopForm.Dispose();
+			}
+		}
 
 		public override void UpdateValues(ToolFormUpdateType type)
 		{

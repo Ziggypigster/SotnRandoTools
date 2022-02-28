@@ -104,6 +104,11 @@ namespace SotnRandoTools.Constants
 		{
 			new MapLocation{X = 49, Y = 20, SecondCastle = 0}
 		};
+		public static List<MapLocation> ClockRoom = new List<MapLocation>
+		{
+			new MapLocation{X = 32, Y = 26, SecondCastle = 0},
+			new MapLocation{X = 31, Y = 37, SecondCastle = 1}
+		};
 		public static List<MapLocation> RichterRooms = new List<MapLocation>
 		{
 			new MapLocation{X = 31, Y = 8, SecondCastle = 0},
@@ -156,7 +161,7 @@ namespace SotnRandoTools.Constants
 
 		public static List<SearchableActor> AcceptedHordeEnemies = new List<SearchableActor>
 		{
-						new SearchableActor { Name="Zombie", Hp = 1, Damage = 14, Sprite = 25776 },
+			new SearchableActor { Name="Zombie", Hp = 1, Damage = 14, Sprite = 25776 },
 			new SearchableActor { Name="Bat", Hp = 1, Damage = 16, Sprite = 25188 },
 			new SearchableActor { Name="Bone Scimitar", Hp = 18 , Damage = 5, Sprite = 23212  },
 			new SearchableActor { Name="Bloody Zombie", Hp = 24 , Damage = 10, Sprite = 42580  },
@@ -356,6 +361,8 @@ namespace SotnRandoTools.Constants
 			new SearchableActor {Name = "Granfaloon", Hp = 400, Damage = 30, Sprite = 6264},
 			new SearchableActor {Name = "Creature", Hp = 1100, Damage = 30, Sprite = 31032},
 			new SearchableActor {Name = "Death", Hp = 888, Damage = 35, Sprite = 46380},
+			new SearchableActor {Name = "Beelzebub", Hp = 2000, Damage = 60, Sprite = 11356},
+			new SearchableActor {Name = "Dracula", Hp = 10000, Damage = 39, Sprite = 56220},
 		};
 		public static List<SearchableActor> EnduranceRomhackBosses = new List<SearchableActor>
 		{
@@ -384,11 +391,13 @@ namespace SotnRandoTools.Constants
 			new SearchableActor {Name = "Granfaloon", Sprite = 6264},
 			new SearchableActor {Name = "Creature", Sprite = 31032},
 			new SearchableActor {Name = "Death", Sprite = 46380},
+			new SearchableActor {Name = "Beelzebub", Sprite = 11356},
+			new SearchableActor {Name = "Dracula", Sprite = 56220},
 		};
 		public static SearchableActor GalamothTorsoActor = new SearchableActor { Hp = 12000, Damage = 50, Sprite = 23936 };
 		public static SearchableActor GalamothHeadActor = new SearchableActor { Hp = 32767, Damage = 50, Sprite = 31516 };
 		public static SearchableActor GalamothPartsActors = new SearchableActor { Hp = 12000, Damage = 50, Sprite = 31516 };
-		public static SearchableActor ShaftActor = new SearchableActor { Hp = 10, Damage = 0, Sprite = 0 };
+		public static SearchableActor ShaftOrbActor = new SearchableActor { Hp = 10, Damage = 0, Sprite = 0 };
 		
 		public static string[] BuggyQuickSwapWeapons = {
 			"Shuriken",
@@ -475,6 +484,9 @@ namespace SotnRandoTools.Constants
 		#endregion
 
 		public static uint ShaftKhaosHp = 25;
+		public static uint ShaftMayhemHp = 22;
+		public static uint GalamothMayhemHp = 1500;
+		public static uint GalamothMayhemPositionOffset = 100;
 		public static uint GalamothKhaosHp = 2000;
 		public static uint GalamothKhaosPositionOffset = 100;
 		public static float HasteDashFactor = 1.8F;

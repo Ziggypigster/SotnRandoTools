@@ -10,6 +10,7 @@ namespace SotnRandoTools.Khaos.Models
 			Type = ActionType.Debuff;
 			ChangesStats = false;
 			ChangesWeapons = false;
+			ChangesWeaponQualities = false;
 			ChangesSubWeapons = false;
 			LocksWeapons = false;
 			LocksSpeed = false;
@@ -25,6 +26,7 @@ namespace SotnRandoTools.Khaos.Models
 		public bool LocksMana { get; set; }
 		public bool LocksHearts { get; set; }
 		public bool LocksWeapons { get; set; }
+		public bool ChangesWeaponQualities { get; set; }
 		public bool ChangesSubWeapons { get; set; }
 		public bool ChangesWeapons { get; set; }
 		public bool LocksInvincibility { get; set; }
