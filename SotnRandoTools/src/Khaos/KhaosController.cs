@@ -6757,6 +6757,7 @@ namespace SotnRandoTools.Khaos
 			if (shaftAddress > 0)
 			{
 				LiveActor shaft = actorApi.GetLiveActor(shaftAddress);
+				int bonusHP = (4 + (1 * vladRelicsObtained));
 
 				if (enduranceCount > 0)
 				{
@@ -6770,12 +6771,10 @@ namespace SotnRandoTools.Khaos
 					if (superEndurance)
 					{
 						shaft.Hp = (ushort) Math.Round(1.6 * (Constants.Khaos.ShaftKhaosHp));
-						//notificationService.AddMessage($"Super Endurance Richter");
 					}
 					else
 					{
 						shaft.Hp = (ushort) Math.Round(1.3 * (Constants.Khaos.ShaftKhaosHp));
-						//notificationService.AddMessage($"Endurance Richter");
 					}
 				}
 				else if(toughBossesCount > 0)
@@ -6783,12 +6782,15 @@ namespace SotnRandoTools.Khaos
 					toughBossesCount--;
 					toughBossesRoomX = gameApi.MapXPos;
 					toughBossesRoomY = gameApi.MapYPos;
-					int bonusHP = (4 + (2 * vladRelicsObtained));
 					if (toughBossesCount == 0)
 					{
 						toughBossesSpawnTimer.Stop();
 					}
-					if (superToughBosses) 
+					if (superToughBosses)
+					{
+						bonusHP *= 3;
+					}
+					else 
 					{
 						bonusHP *= 2;
 					}
@@ -6796,7 +6798,7 @@ namespace SotnRandoTools.Khaos
 				}
 				else
 				{
-					shaft.Hp = (uint)(Constants.Khaos.ShaftMayhemHp+vladRelicsObtained);
+					shaft.Hp = (uint)(Constants.Khaos.ShaftMayhemHp+bonusHP);
 				}
 
 				shaftHpSet = true;

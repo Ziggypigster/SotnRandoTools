@@ -484,7 +484,7 @@ namespace SotnRandoTools.Constants
 		#endregion
 
 		public static uint ShaftKhaosHp = 25;
-		public static uint ShaftMayhemHp = 22;
+		public static uint ShaftMayhemHp = 20;
 		public static uint GalamothMayhemHp = 1500;
 		public static uint GalamothMayhemPositionOffset = 100;
 		public static uint GalamothKhaosHp = 2000;
