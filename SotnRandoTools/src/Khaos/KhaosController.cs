@@ -6874,7 +6874,7 @@ namespace SotnRandoTools.Khaos
 					LiveActor galamothAnchor = actorApi.GetLiveActor(actor);
 					galamothAnchor.Xpos -= Constants.Khaos.GalamothMayhemPositionOffset;
 					galamothAnchor.Def = 0;
-					if((int)(galamothAnchor.Damage) > 5)
+					if((int)(galamothAnchor.Damage) > 10)
 					{
 						galamothAnchor.Damage -= (uint)(10-(2*vladRelicsObtained));
 					}
