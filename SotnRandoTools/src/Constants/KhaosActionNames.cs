@@ -26,6 +26,7 @@
 		public const string HPForMP = "HP for MP";
 		public const string Underwater = "Underwater";
 		public const string Slam = "Slam";
+		public const string SlamJam = "Slam Jam";
 		public const string Hex = "Hex";
 		public const string GetJuggled = "Get Juggled";
 		public const string Ambush = "Ambush";

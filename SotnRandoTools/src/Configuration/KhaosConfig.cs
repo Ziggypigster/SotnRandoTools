@@ -9,13 +9,33 @@ namespace SotnRandoTools.Configuration
 	{
 		public KhaosConfig()
 		{
+			#region General Tab
 			Alerts = true;
 			ControlPannelQueueActions = true;
 			Volume = 5;
 			NamesFilePath = Paths.NamesFilePath;
 			BotApiKey = "";
 
-			#region Mayhem Defaults
+			QueueInterval = new System.TimeSpan(0, 0, 10);
+			MeterOnReset = 25;
+			ContinuousWingsmash = false;
+			DynamicInterval = true;
+			RomhackMode = false;
+			BoostFamiliars = true;
+			GalamothIsRepositioned = true;
+			GalamothDefNerf = true;
+			#endregion
+
+			#region Settings Tab
+			NeutralMinLevel = 1;
+			NeutralStartLevel = 1;
+			NeutralMaxLevel = 3;
+			AllowNeutralLevelReset = true;
+
+			EnforceMinStats = true;
+			RestrictedRelicSwap = true;
+			KeepVladRelics = true;
+
 			StatsDownFactor = 0.4F;
 			UnderwaterFactor = 0.8F;
 			SpeedFactor = 3.2F;
@@ -23,6 +43,24 @@ namespace SotnRandoTools.Configuration
 			PandoraTrigger = 1200;
 			PandemoniumMinItems = 16;
 			PandemoniumMaxItems = 32;
+			#endregion
+
+			#region Difficulty Tab
+			CloneBossHPModifier = 2;
+			CloneBossDMGModifier = 2;
+			SingleBossHPModifier = 2;
+			SingleBossDMGModifier = 2;
+			GalamothBossHPModifier = 2;
+			GalamothBossDMGModifier = 2;
+			ShaftOrbHPModifier = 2;
+			SuperBossHPModifier = 2;
+			SuperBossDMGModifier = 2;
+			AmbushHPModifier = 2;
+			AmbushDMGModifier = 2;
+			SuperAmbushHPModifier = 2;
+			SuperAmbushDMGModifier = 2;
+			BlessingModifier = 2;
+			CurseModifier = 2;
 			#endregion
 
 			#region Legacy Defaults
@@ -34,13 +72,6 @@ namespace SotnRandoTools.Configuration
 			PandoraMinItems = 16;
 			PandoraMaxItems = 32;
 			#endregion
-
-			MeterOnReset = 20;
-			QueueInterval = new System.TimeSpan(0, 0, 10);
-			RomhackMode = false;
-			enforceMinStats = true;
-			DynamicInterval = true;
-			KeepVladRelics = true;
 			Actions = new List<Action>
 			{
 				//Mayhem
@@ -56,6 +87,7 @@ namespace SotnRandoTools.Configuration
 				new Action{Name="Pandemonium", Enabled = true, Meter = 12, AlertPath = Paths.AlucardWhatSound},
 				new Action{Name="Minor Trap", Enabled = true, Meter = 2, AlertPath = Paths.AlucardWhatSound},
 				new Action{Name="Slam", Enabled = true, Meter = 3, AlertPath = Paths.AlucardWhatSound},
+				new Action{Name="Slam Jam", Enabled = true, Meter = 3, Duration = new System.TimeSpan(0, 1, 0), AlertPath = Paths.DeathLaughSound},
 				new Action{Name="HP for MP", Enabled = true, Meter = 4, Duration = new System.TimeSpan(0, 1, 0), AlertPath = Paths.DeathLaughSound},
 				new Action{Name="Underwater", Enabled = true, Meter = 6, Duration = new System.TimeSpan(0, 1, 0), AlertPath = Paths.SlowWhatSound},
 				new Action{Name="Hex", Enabled = true, Meter = 8, Duration = new System.TimeSpan(0, 1, 0), AlertPath = Paths.DeathLaughSound},
@@ -106,7 +138,34 @@ namespace SotnRandoTools.Configuration
 				new Action{Name="Lord", Enabled = true,  Meter = 10, Duration = new System.TimeSpan(0, 1, 30), Interval = new System.TimeSpan(0, 0, 1), AlertPath = Paths.SwordBroSound},
 				new Action{Name="Four Beasts", Enabled = true,  Meter = 10, Duration = new System.TimeSpan(0, 1, 0)},	
 			};
-			PainTradeItemRewards = new string[]
+
+			alucardColors = new int[]
+			{
+				//"33024", Default coloring for reference
+				//00005, // Trihecaton - Red Alucard Skin, Gray Cape
+				//00038, // Trihecaton - Grey with yellow cape.
+				//00080, // Swamp Alucard
+				00517,//0205 - Dark Purple
+				00727,//02D7 - Game Boy Color-Card
+				00745,//02E9 - Shape Shifting Color (purple yellow or all blue)
+				33026,//8102 - All Black, Blue O
+				33028,//8104 - Redish?
+				33031,//8107 - Golden Bat
+				//33126, Used in speed overdrive
+				33137,//8171 - Classic Alucard
+				33152,//8180 - Bat Color
+				33154,//8182 - Halloween-O'Card
+				33155,//8183 - Normal Blue
+				33172,//8194 - Horrendous Blue and Orange
+				33182,//819E - Full Grey
+				33193,//81A9 - Orange with Yellow Outline
+				33216,//81C0 - Stained Glass Horrendous
+				33266,//81F2 - Feeling Yellow
+				33269,//81F5 - Ice
+				//33274,//81FA- Dark Grey, Used in Hex
+			};
+
+			painTradeItemRewards = new string[]
 			{
 				"Herald shield",
 				"Dark shield",
@@ -136,7 +195,7 @@ namespace SotnRandoTools.Configuration
 				"Gauntlet",
 				"Moonstone"
 			};
-			ModerateBoonItemRewards = new string[]
+			moderateBoonItemRewards = new string[]
 			{
 				"Fire shield",
 				"Iron shield",
@@ -169,7 +228,7 @@ namespace SotnRandoTools.Configuration
 				"Dark armor",
 				"Ring of Ares"
 			};
-			MajorBoonItemRewards = new string[]
+			majorBoonItemRewards = new string[]
 			{
 				"Mablung Sword",
 				"Masamune",
@@ -256,7 +315,6 @@ namespace SotnRandoTools.Configuration
 		}
 		public Point Location { get; set; }
 		public bool Alerts { get; set; }
-		public bool RomhackMode { get; set; }
 		public bool ControlPannelQueueActions { get; set; }
 		public int Volume { get; set; }
 		public string NamesFilePath { get; set; }
@@ -264,15 +322,48 @@ namespace SotnRandoTools.Configuration
 		public List<Action> Actions { get; set; }
 
 		public System.TimeSpan QueueInterval { get; set; }
+	
+
+		public bool BoostFamiliars { get; set; }
+		public bool ContinuousWingsmash { get; set; }
 		public bool DynamicInterval { get; set; }
+		public bool RomhackMode { get; set; }
+
+
+		public int NeutralMinLevel { get; set; }
+		public int NeutralStartLevel { get; set; }
+		public int NeutralMaxLevel { get; set; }
+		public bool AllowNeutralLevelReset { get; set; }
 		public bool KeepVladRelics { get; set; }
 
-		public bool enforceMinStats { get; set; }
+		public bool RestrictedRelicSwap { get; set; }
+
+		public bool EnforceMinStats { get; set; }
+
+		public int CloneBossHPModifier { get; set; }
+		public uint CloneBossDMGModifier { get; set; }
+		public int SingleBossHPModifier { get; set; }
+		public uint SingleBossDMGModifier { get; set; }
+		public int GalamothBossHPModifier { get; set; }
+		public uint GalamothBossDMGModifier { get; set; }
+		public bool GalamothIsRepositioned { get; set; }
+		public bool GalamothDefNerf { get; set; }
+
+		public int ShaftOrbHPModifier { get; set; }
+		public int SuperBossHPModifier { get; set; }
+		public uint SuperBossDMGModifier { get; set; }
+		public int AmbushHPModifier { get; set; }
+		public uint AmbushDMGModifier { get; set; }
+		public int SuperAmbushHPModifier { get; set; }
+		public uint SuperAmbushDMGModifier { get; set; }
+		public int BlessingModifier { get; set; }
+		public int CurseModifier { get; set; }
 
 		#region Mayhem
-		public string[] PainTradeItemRewards { get; set; }
-		public string[] ModerateBoonItemRewards { get; set; }
-		public string[] MajorBoonItemRewards { get; set; }
+		public int[] alucardColors { get; set; }
+		public string[] painTradeItemRewards { get; set; }
+		public string[] moderateBoonItemRewards { get; set; }
+		public string[] majorBoonItemRewards { get; set; }
 		public float StatsDownFactor { get; set; }
 		public float SpeedFactor { get; set; }
 		public float UnderwaterFactor { get; set; }
@@ -290,7 +381,61 @@ namespace SotnRandoTools.Configuration
 		public int PandoraMinItems { get; set; }
 		public int PandoraMaxItems { get; set; }
 		public int PandoraTrigger { get; set; }
+		public void Default() {
+			#region General Tab
+			Alerts = true;
+			ControlPannelQueueActions = true;
+			Volume = 5;
+			NamesFilePath = Paths.NamesFilePath;
+			BotApiKey = "";
 
+			QueueInterval = new System.TimeSpan(0, 0, 10);
+			MeterOnReset = 25;
+			ContinuousWingsmash = false;
+			DynamicInterval = true;
+			RomhackMode = false;
+			BoostFamiliars = true;
+			GalamothIsRepositioned = true;
+			GalamothDefNerf = true;
+			#endregion
+
+			#region Settings Tab
+			NeutralMinLevel = 1;
+			NeutralStartLevel = 1;
+			NeutralMaxLevel = 3;
+			AllowNeutralLevelReset = true;
+
+			EnforceMinStats = true;
+			RestrictedRelicSwap = true;
+			KeepVladRelics = true;
+
+			StatsDownFactor = 0.4F;
+			UnderwaterFactor = 0.8F;
+			SpeedFactor = 3.2F;
+			RegenGainPerSecond = 1;
+			PandoraTrigger = 1200;
+			PandemoniumMinItems = 16;
+			PandemoniumMaxItems = 32;
+			#endregion
+
+			#region Difficulty Tab
+			CloneBossHPModifier = 2;
+			CloneBossDMGModifier = 2;
+			SingleBossHPModifier = 2;
+			SingleBossDMGModifier = 2;
+			GalamothBossHPModifier = 2;
+			GalamothBossDMGModifier = 2;
+			ShaftOrbHPModifier = 2;
+			SuperBossHPModifier = 2;
+			SuperBossDMGModifier = 2;
+			AmbushHPModifier = 2;
+			AmbushDMGModifier = 2;
+			SuperAmbushHPModifier = 2;
+			SuperAmbushDMGModifier = 2;
+			BlessingModifier = 2;
+			CurseModifier = 2;
+			#endregion
+		}
 		public string[] LightHelpItemRewards { get; set; }
 		public string[] MediumHelpItemRewards { get; set; }
 		public string[] HeavyHelpItemRewards { get; set; }

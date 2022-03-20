@@ -794,21 +794,6 @@ namespace SotnRandoTools
 			khaosControler = null;
 		}
 
-		private void actionsGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-		{
-
-		}
-
-		private void radioButton2_CheckedChanged(object sender, EventArgs e)
-		{
-
-		}
-
-		private void queueRadio_CheckedChanged_1(object sender, EventArgs e)
-		{
-
-		}
-
 		private void modePanel_Enter(object sender, EventArgs e)
 		{
 
