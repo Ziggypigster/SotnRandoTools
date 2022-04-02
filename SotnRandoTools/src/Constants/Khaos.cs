@@ -208,7 +208,7 @@ namespace SotnRandoTools.Constants
 			new SearchableActor { Name="Blade Soldier", Hp = 16, Damage = 15, Sprite = 18404 },
 			new SearchableActor {Hp = 24, Damage = 12, Sprite = 20436 },
 			new SearchableActor { Name="Bloody Zombie Olrox's Quarters", Hp = 24, Damage = 10, Sprite = 15440 },
-			new SearchableActor { Name="Olrox Bat", Hp = 13, Damage = 21, Sprite = 64244 },
+			//new SearchableActor { Name="Olrox Bat", Hp = 13, Damage = 21, Sprite = 64244 },
 			new SearchableActor { Name="Olrox Skull", Hp = 15, Damage = 23, Sprite = 62980 },
 			new SearchableActor { Name="Spear Guard Caverns", Hp = 20, Damage = 12, Sprite = 49068 },
 			new SearchableActor { Name="Bat Caverns", Hp = 1, Damage = 16, Sprite = 36428 },
@@ -231,7 +231,7 @@ namespace SotnRandoTools.Constants
 			new SearchableActor { Name="Gold Medusa Head Death Wing's Lair", Hp = 12, Damage = 7, Sprite = 45800 },
 			new SearchableActor { Name="Ghost Dancer", Hp = 30, Damage = 56, Sprite = 43916 },
 			new SearchableActor { Name="Werewolf Inverted Colosseum", Hp = 280, Damage = 40, Sprite = 29328 },
-			new SearchableActor { Name="Zombie Trevor", Hp = 180, Damage = 40, Sprite = 37884 },
+			//new SearchableActor { Name="Zombie Trevor", Hp = 180, Damage = 40, Sprite = 37884 },
 			new SearchableActor {Hp = 10, Damage = 66, Sprite = 14076 },
 			new SearchableActor {Hp = 43, Damage = 10, Sprite = 2536 },
 			new SearchableActor {Hp = 12, Damage = 7, Sprite = 9876 },
@@ -398,7 +398,99 @@ namespace SotnRandoTools.Constants
 		public static SearchableActor GalamothHeadActor = new SearchableActor { Hp = 32767, Damage = 50, Sprite = 31516 };
 		public static SearchableActor GalamothPartsActors = new SearchableActor { Hp = 12000, Damage = 50, Sprite = 31516 };
 		public static SearchableActor ShaftOrbActor = new SearchableActor { Hp = 10, Damage = 0, Sprite = 0 };
-		
+
+		public static readonly string[] AcceptedMusicTrackTitles =
+   {
+			"lost painting",
+			"cursed sanctuary",
+			"requiem for the gods",
+			"rainbow cemetary",
+			"wood carving partita",
+			"crystal teardrops",
+			"marble galery",
+			"dracula castle",
+			"the tragic prince",
+			"tower of evil mist",
+			"doorway of spirits",
+			"dance of pearls",
+			"abandoned pit",
+			"heavenly doorway",
+			"festival of servants",
+			"dance of illusions",
+			"prologue",
+			"wandering ghosts",
+			"doorway to the abyss",
+			"metamorphosis",
+			"metamorphosis 2",
+			"dance of gold",
+			"enchanted banquet",
+			"prayer",
+			"death's ballad",
+			"blood relations",
+			"finale toccata",
+			"black banquet",
+			"silence",
+			"nocturne",
+			"moonlight nocturne"
+		};
+		public static readonly Dictionary<string, string> AlternateTrackTitles = new Dictionary<string, string>
+		{
+			{ "deaths ballad", "death's ballad" },
+			{ "death ballad", "death's ballad" },
+			{ "poetic death", "death's ballad" },
+			{ "illusionary dance", "dance of illusions" },
+			{ "dracula", "dance of illusions" },
+			{ "nocturne in the moonlight", "moonlight nocturne" },
+			{ "dracula's castle", "dracula castle" },
+			{ "draculas castle", "dracula castle" },
+			{ "castle entrance", "dracula castle" },
+			{ "entrance", "dracula castle" },
+			{ "tower of mist", "tower of evil mist" },
+			{ "outer wall", "tower of evil mist" },
+			{ "library", "wood carving partita" },
+			{ "alchemy lab", "dance of gold" },
+			{ "alchemy laboratory", "dance of gold" },
+			{ "chapel", "requiem for the gods" },
+			{ "royal chapel", "requiem for the gods" },
+			{ "crystal teardrop", "crystal teardrops" },
+			{ "caverns", "crystal teardrops" },
+			{ "underground caverns", "crystal teardrops" },
+			{ "departer way", "abandoned pit" },
+			{ "pit", "abandoned pit" },
+			{ "mines", "abandoned pit" },
+			{ "mine", "abandoned pit" },
+			{ "catacombs", "rainbow cemetary" },
+			{ "lost paintings", "lost painting" },
+			{ "antichapel", "lost painting" },
+			{ "reverse caverns", "lost painting" },
+			{ "forbidden library", "lost painting" },
+			{ "waltz of pearls", "dance of pearls" },
+			{ "olrox's quarters", "dance of pearls" },
+			{ "olroxs quarters", "dance of pearls" },
+			{ "olrox quarters", "dance of pearls" },
+			{ "cursed zone", "cursed sanctuary" },
+			{ "floating catacombs", "cursed sanctuary" },
+			{ "reverse catacombs", "cursed sanctuary" },
+			{ "demonic banquet", "enchanted banquet" },
+			{ "medusa", "enchanted banquet" },
+			{ "succubus", "enchanted banquet" },
+			{ "colosseum", "wandering ghosts" },
+			{ "wandering ghost", "wandering ghosts" },
+			{ "pitiful scion", "the tragic prince" },
+			{ "clock tower", "the tragic prince" },
+			{ "tragic prince", "the tragic prince" },
+			{ "alucard", "the tragic prince" },
+			{ "door to the abyss", "doorway to the abyss" },
+			{ "doorway to heaven", "heavenly doorway" },
+			{ "keep", "heavenly doorway" },
+			{ "castle keep", "heavenly doorway" },
+			{ "divine bloodlines", "blood relations" },
+			{ "strange bloodlines", "blood relations" },
+			{ "richter belmont", "blood relations" },
+			{ "richter", "blood relations" },
+		};
+
+
 		public static string[] BuggyQuickSwapWeapons = {
 			"Shuriken",
 			"Cross shuriken",
@@ -440,6 +532,46 @@ namespace SotnRandoTools.Constants
 			"Great sword",
 		};
 
+		public static int[] alucardColors =
+		{
+				//33024, 8100 - Default coloring for reference
+				//5, // Trihecaton - Red Alucard Skin, Gray Cape
+				//38, // Trihecaton - Grey with yellow cape.
+				//00080, // Swamp Alucard
+				//00517,//0205 - Dark Purple
+				727,//02D7 - Game Boy Color-Card
+				//00745,//02E9 - Shape Shifting Color (purple yellow or all blue)
+				33026,//8102 - All Black, Blue O
+				33028,//8104 - Redish?
+				33031,//8107 - Golden Bat
+				//33126, Used in speed overdrive
+				33137,//8171 - Classic Alucard
+				33152,//8180 - Bat Color
+				33154,//8182 - Halloween-O'Card
+				33155,//8183 - Normal Blue
+				33172,//8194 - Horrendous Blue and Orange
+				33182,//819E - Full Grey
+				33193,//81A9 - Orange with Yellow Outline
+				33216,//81C0 - Stained Glass Horrendous
+				33266,//81F2 - Feeling Yellow
+				33269,//81F5 - Ice
+				//33274,//81FA- Dark Grey, Used in Hex
+				33513,//82E9 - Shapeshift: Blue or Purple w/ Yellow Cape
+				33518,//82EE - Green Slime?
+		};
+
+		public static int[] richterColors =
+		{
+			//33056,// 8120 - Default coloring for reference
+			309,//0135 - Richter Alternate
+			330,//014A - 80s Punk
+			33057,// 8121 - Green Richter
+			33058,// 8122 - Sunburst Richter
+			33060,// 8124 - Monochrome Richter
+			33062,// 8126 - Washed Out Richter
+			33078,// 8136 - Red Richter
+			33079,// 8137 - Black Richter
+		};
 
 		public static int RichterRoomMapMinX = 31;
 		public static int RichterRoomMapMaxX = 34;

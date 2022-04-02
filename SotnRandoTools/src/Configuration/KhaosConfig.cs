@@ -139,32 +139,6 @@ namespace SotnRandoTools.Configuration
 				new Action{Name="Four Beasts", Enabled = true,  Meter = 10, Duration = new System.TimeSpan(0, 1, 0)},	
 			};
 
-			alucardColors = new int[]
-			{
-				//"33024", Default coloring for reference
-				//00005, // Trihecaton - Red Alucard Skin, Gray Cape
-				//00038, // Trihecaton - Grey with yellow cape.
-				//00080, // Swamp Alucard
-				00517,//0205 - Dark Purple
-				00727,//02D7 - Game Boy Color-Card
-				00745,//02E9 - Shape Shifting Color (purple yellow or all blue)
-				33026,//8102 - All Black, Blue O
-				33028,//8104 - Redish?
-				33031,//8107 - Golden Bat
-				//33126, Used in speed overdrive
-				33137,//8171 - Classic Alucard
-				33152,//8180 - Bat Color
-				33154,//8182 - Halloween-O'Card
-				33155,//8183 - Normal Blue
-				33172,//8194 - Horrendous Blue and Orange
-				33182,//819E - Full Grey
-				33193,//81A9 - Orange with Yellow Outline
-				33216,//81C0 - Stained Glass Horrendous
-				33266,//81F2 - Feeling Yellow
-				33269,//81F5 - Ice
-				//33274,//81FA- Dark Grey, Used in Hex
-			};
-
 			painTradeItemRewards = new string[]
 			{
 				"Herald shield",
@@ -360,7 +334,6 @@ namespace SotnRandoTools.Configuration
 		public int CurseModifier { get; set; }
 
 		#region Mayhem
-		public int[] alucardColors { get; set; }
 		public string[] painTradeItemRewards { get; set; }
 		public string[] moderateBoonItemRewards { get; set; }
 		public string[] majorBoonItemRewards { get; set; }

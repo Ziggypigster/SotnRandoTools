@@ -150,13 +150,13 @@ namespace SotnRandoTools
 			LoadCheats();
 
 			sotnApi = new SotnApi.Main.SotnApi(_maybeMemAPI);
-
 			actorApi = new ActorApi(_maybeMemAPI);
 			alucardApi = new AlucardApi(_maybeMemAPI);
 			gameApi = new GameApi(_maybeMemAPI);
 			renderingApi = new RenderingApi(_maybeMemAPI);
 			watchlistService = new WatchlistService(_memoryDomains, _emu?.SystemId, GlobalConfig);
-			inputService = new InputService(_maybeJoypadApi, alucardApi);
+			//inputService = new InputService(_maybeJoypadApi, alucardApi);
+			inputService = new InputService(_maybeJoypadApi, sotnApi);
 
 			Console.SetOut(log);
 		}

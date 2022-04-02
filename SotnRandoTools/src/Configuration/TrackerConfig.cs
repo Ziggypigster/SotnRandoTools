@@ -6,11 +6,12 @@ namespace SotnRandoTools.Configuration
 	{
 		public TrackerConfig()
 		{
-			ProgressionRelicsOnly = true;
-			GridLayout = false;
+			ProgressionRelicsOnly = false;
+			GridLayout = true;
 			AlwaysOnTop = false;
 			Locations = true;
 			SaveReplays = true;
+			EnableAutoSplitter = true;
 			CustomLocationsGuarded = true;
 			CustomLocationsEquipment = false;
 			CustomLocationsClassic = false;
@@ -22,6 +23,7 @@ namespace SotnRandoTools.Configuration
 		public bool AlwaysOnTop { get; set; }
 		public bool Locations { get; set; }
 		public bool SaveReplays { get; set; }
+		public bool EnableAutoSplitter { get; set; }
 		public string Username { get; set; }
 		public bool CustomLocationsGuarded { get; set; }
 		public bool CustomLocationsEquipment { get; set; }

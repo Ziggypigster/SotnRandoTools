@@ -4,6 +4,7 @@
 	{
 		public const int UpdateCooldownFrames = 8;
 		public const int InputBufferSize = 32;
+		public const int InputBufferSizeDash = 15;
 		public const string Author = "Ziggypigster";
 		public const string Website = "https://github.com/Ziggypigster/SotnRandoTools";
 		public const string StreamlabsSocketAddress = "ws://127.0.0.1:3337/streamlabs";

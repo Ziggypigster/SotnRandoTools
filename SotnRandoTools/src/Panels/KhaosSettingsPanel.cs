@@ -753,5 +753,10 @@ namespace SotnRandoTools
 		{
 			toolConfig.Khaos.BoostFamiliars = boostFamiliarsCheckBox.Checked;
 		}
+
+		private void comboBox6_SelectedIndexChanged(object sender, EventArgs e)
+		{
+
+		}
 	}
 }
