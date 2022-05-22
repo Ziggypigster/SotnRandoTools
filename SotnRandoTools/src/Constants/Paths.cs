@@ -2,7 +2,42 @@
 {
 	public static class Paths
 	{
-        public const string ItemPickupSound = "./ExternalTools/SotnRandoTools/Sounds/Item.mp3";
+
+		public const string PainTradeSound = "./ExternalTools/SotnRandoTools/Sounds/PainTrade.mp3";
+		public const string MaxMayhemSound = "./ExternalTools/SotnRandoTools/Sounds/MaxMayhem.mp3";
+		public const string HeartsOnlySound = "./ExternalTools/SotnRandoTools/Sounds/HeartsOnly.mp3";
+		public const string UnarmedSound = "./ExternalTools/SotnRandoTools/Sounds/Unarmed.mp3";
+		public const string TurboModeSound = "./ExternalTools/SotnRandoTools/Sounds/TurboMode.mp3";
+		public const string RushdownSound = "./ExternalTools/SotnRandoTools/Sounds/Rushdown.mp3";
+		public const string SwapStatsSound = "./ExternalTools/SotnRandoTools/Sounds/SwapStats.mp3";
+		public const string SwapEquipmentSound = "./ExternalTools/SotnRandoTools/Sounds/SwapEquipment.mp3";
+		public const string SwapRelicsSound = "./ExternalTools/SotnRandoTools/Sounds/SwapRelics.mp3";
+		public const string PandemoniumSound = "./ExternalTools/SotnRandoTools/Sounds/Pandemonium.mp3";
+		public const string MinorTrapSound = "./ExternalTools/SotnRandoTools/Sounds/MinorTrap.mp3";
+		public const string SlamSound = "./ExternalTools/SotnRandoTools/Sounds/Slam.mp3";
+		public const string SlamJamSound = "./ExternalTools/SotnRandoTools/Sounds/SlamJam.mp3";
+		public const string HPForMPSound = "./ExternalTools/SotnRandoTools/Sounds/HPForMP.mp3";
+		public const string UnderwaterSound = "./ExternalTools/SotnRandoTools/Sounds/Underwater.mp3";
+		public const string ModerateTrapSound = "./ExternalTools/SotnRandoTools/Sounds/ModerateTrap.mp3";
+		public const string HexSound = "./ExternalTools/SotnRandoTools/Sounds/Hex.mp3";
+		public const string GetJuggledSound = "./ExternalTools/SotnRandoTools/Sounds/GetJuggled.mp3";
+		public const string AmbushSound = "./ExternalTools/SotnRandoTools/Sounds/Ambush.mp3";
+		public const string ToughBossesSound = "./ExternalTools/SotnRandoTools/Sounds/ToughBosses.mp3";
+		public const string StatsDownSound = "./ExternalTools/SotnRandoTools/Sounds/StatsDown.mp3";
+		public const string ConfiscateSound = "./ExternalTools/SotnRandoTools/Sounds/Confiscate.mp3";
+		public const string MinorBoonSound = "./ExternalTools/SotnRandoTools/Sounds/MinorBoon.mp3";
+		public const string SpeedSound = "./ExternalTools/SotnRandoTools/Sounds/Speed.mp3";
+		public const string RegenSound = "./ExternalTools/SotnRandoTools/Sounds/Regen.mp3";
+		public const string ModerateBoonSound = "./ExternalTools/SotnRandoTools/Sounds/ModerateBoon.mp3";
+		public const string TimeStopSound = "./ExternalTools/SotnRandoTools/Sounds/TimeStop.mp3";
+		public const string SpellcasterSound = "./ExternalTools/SotnRandoTools/Sounds/Spellcaster.mp3";
+		public const string FaceTankSound = "./ExternalTools/SotnRandoTools/Sounds/FaceTank.mp3";
+		public const string ExtraRangeSound = "./ExternalTools/SotnRandoTools/Sounds/ExtraRange.mp3";
+		public const string SummonerSound = "./ExternalTools/SotnRandoTools/Sounds/Summoner.mp3";
+		public const string MajorBoonSound = "./ExternalTools/SotnRandoTools/Sounds/MajorBoon.mp3";
+
+		public const string ItemPickupSound = "./ExternalTools/SotnRandoTools/Sounds/Item.mp3";
+		/*
         public const string AlucardWhatSound = "./ExternalTools/SotnRandoTools/Sounds/AlucardWhat.mp3";
         public const string LibrarianThankYouSound = "./ExternalTools/SotnRandoTools/Sounds/LibrarianThankYou.mp3";
         public const string DeathLaughSound = "./ExternalTools/SotnRandoTools/Sounds/DeathLaugh.mp3";
@@ -19,8 +54,9 @@
         public const string SwordBroSound = "./ExternalTools/SotnRandoTools/Sounds/SwordBro.mp3";
         public const string AlreadyDeadSound = "./ExternalTools/SotnRandoTools/Sounds/AlreadyDead.mp3";
         public const string BattleOrdersSound = "./ExternalTools/SotnRandoTools/Sounds/BattleOrders.mp3";
+		*/
 
-        public const string NamesFilePath = "./ExternalTools/SotnRandoTools/Khaos/names.txt";
+		public const string NamesFilePath = "./ExternalTools/SotnRandoTools/Khaos/names.txt";
 
 		public const string SourceLink = "https://github.com/Ziggypigster/SotnRandoTools/";
 		public const string ReadmeLink = "https://github.com/Ziggypigster/SotnRandoTools/blob/main/README.md";

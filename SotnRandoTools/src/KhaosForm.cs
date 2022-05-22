@@ -15,9 +15,26 @@ namespace SotnRandoTools
 		private ICheatCollectionAdapter adaptedCheats;
 		private readonly IToolConfig toolConfig;
 		private KhaosController? khaosControler;
-		private bool started = false;
+		//private System.Windows.Forms.Timer countdownTimer;
 
-		public KhaosForm(IToolConfig toolConfig, CheatCollection cheats, ISotnApi sotnApi, IGameApi gameApi, IAlucardApi alucardApi, IActorApi actorApi, INotificationService notificationService, IInputService inputService)
+		private string heartOfVladLocation = String.Empty;
+		private string toothOfVladLocation = String.Empty;
+		private string ribOfVladLocation = String.Empty;
+		private string ringOfVladLocation = String.Empty;
+		private string eyeOfVladLocation = String.Empty;
+
+		private string batLocation = String.Empty;
+		private string mistLocation = String.Empty;
+		private string jewelLocation = String.Empty;
+		private string gravityBootsLocation = String.Empty;
+		private string leapstoneLocation = String.Empty;
+		private string mermanLocation = String.Empty;
+
+		private bool started = false;
+		private bool connected = false;
+
+
+		public KhaosForm(IToolConfig toolConfig, CheatCollection cheats, ISotnApi sotnApi, IGameApi gameApi, IAlucardApi alucardApi, INotificationService notificationService, IInputService inputService)
 		{
 			if (toolConfig is null) throw new ArgumentNullException(nameof(toolConfig));
 			if (cheats is null) throw new ArgumentNullException(nameof(cheats));
@@ -26,7 +43,7 @@ namespace SotnRandoTools
 			this.toolConfig = toolConfig;
 
 			adaptedCheats = new CheatCollectionAdapter(cheats);
-			khaosControler = new KhaosController(toolConfig, sotnApi, gameApi, alucardApi, actorApi, adaptedCheats, notificationService, inputService);
+			khaosControler = new KhaosController(toolConfig, sotnApi, adaptedCheats, notificationService, inputService);
 
 			InitializeComponent();
 			SuspendLayout();
@@ -88,26 +105,90 @@ namespace SotnRandoTools
 			{
 				started = false;
 				khaosControler.StopMayhem();
+				startButton.Enabled = false;
 				startButton.Text = "Start";
+				startButton.BackColor = System.Drawing.Color.FromArgb(17, 0, 17);
+				startButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(48, 20, 48);
+				connectButton.Enabled = true;
+				autoMayhemButton.Enabled = true;
+				connectButton.Text = "Connect Bot";
+				connectButton.BackColor = System.Drawing.Color.FromArgb(17, 0, 17);
+				connectButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(48, 20, 48);
+				autoMayhemButton.Text = "Start Auto Mayhem";
+				autoMayhemButton.BackColor = System.Drawing.Color.FromArgb(17, 0, 17);
+				autoMayhemButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(48, 20, 48);
 			}
 			else
 			{
 				started = true;
 				khaosControler.StartMayhem();
 				startButton.Text = "Stop";
+				startButton.BackColor = System.Drawing.Color.FromArgb(114, 32, 25);
+				startButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(169, 19, 7);
+				autoMayhemButton.Enabled = false;
+				connectButton.Enabled = false;
 			}
 		}
 
-		#region Neutral Effects
-		private void painTradeButton_Click(object sender, EventArgs e)
+		#region Debug Only
+		private void libraryButton_Click(object sender, EventArgs e)
 		{
 			if (toolConfig.Khaos.ControlPannelQueueActions)
 			{
-				khaosControler.EnqueueAction(new EventAddAction { Command = "paintrade", UserName = "Mayhem" });
+				khaosControler.EnqueueAction(new EventAddAction { Command = "library", UserName = "Mayhem" });
 			}
 			else
 			{
-				khaosControler.PainTrade();
+				khaosControler.Library();
+			}
+		}
+		private void rewindButton_Click(object sender, EventArgs e)
+		{
+			if (toolConfig.Khaos.ControlPannelQueueActions)
+			{
+				khaosControler.EnqueueAction(new EventAddAction { Command = "rewind", UserName = "Mayhem" });
+			}
+			else
+			{
+				khaosControler.Rewind();
+			}
+		}
+		private void minStatsButton_Click(object sender, EventArgs e)
+		{
+			if (toolConfig.Khaos.ControlPannelQueueActions)
+			{
+				khaosControler.EnqueueAction(new EventAddAction { Command = "minstats", UserName = "Mayhem" });
+			}
+			else
+			{
+				khaosControler.MinStats();
+			}
+		}
+
+		private void logCurrentRoomButton_Click(object sender, EventArgs e)
+		{
+			if (toolConfig.Khaos.ControlPannelQueueActions)
+			{
+				khaosControler.EnqueueAction(new EventAddAction { Command = "logcurrentroom", UserName = "Mayhem" });
+			}
+			else
+			{
+				khaosControler.LogCurrentRoom();
+			}
+		}
+
+		#endregion
+
+		#region Neutral Effects
+		private void merchantButton_Click(object sender, EventArgs e)
+		{
+			if (toolConfig.Khaos.ControlPannelQueueActions)
+			{
+				khaosControler.EnqueueAction(new EventAddAction { Command = "merchant", UserName = "Mayhem" });
+			}
+			else
+			{
+				khaosControler.Merchant();
 			}
 		}
 		private void maxMayhemButton_Click(object sender, EventArgs e)
@@ -327,6 +408,7 @@ namespace SotnRandoTools
 		#endregion
 
 		#region Good Effects
+
 		private void minorBoonButton_Click(object sender, EventArgs e)
 		{
 			if (toolConfig.Khaos.ControlPannelQueueActions)
@@ -338,6 +420,151 @@ namespace SotnRandoTools
 				khaosControler.MinorBoon();
 			}
 		}
+		private void minorEquipmentButton_Click(object sender, EventArgs e)
+		{
+			if (toolConfig.Khaos.ControlPannelQueueActions)
+			{
+				khaosControler.EnqueueAction(new EventAddAction { Command = "minorequipment", UserName = "Mayhem" });
+			}
+			else
+			{
+				khaosControler.MinorEquipment();
+			}
+		}
+		private void minorItemsButton_Click(object sender, EventArgs e)
+		{
+			if (toolConfig.Khaos.ControlPannelQueueActions)
+			{
+				khaosControler.EnqueueAction(new EventAddAction { Command = "minoritems", UserName = "Mayhem" });
+			}
+			else
+			{
+				khaosControler.MinorItems();
+			}
+		}
+		private void minorStatsButton_Click(object sender, EventArgs e)
+		{
+			if (toolConfig.Khaos.ControlPannelQueueActions)
+			{
+				khaosControler.EnqueueAction(new EventAddAction { Command = "minorstats", UserName = "Mayhem" });
+			}
+			else
+			{
+				khaosControler.MinorStats();
+			}
+		}
+		private void moderateBoonButton_Click(object sender, EventArgs e)
+		{
+			if (toolConfig.Khaos.ControlPannelQueueActions)
+			{
+				khaosControler.EnqueueAction(new EventAddAction { Command = "moderateboon", UserName = "Mayhem" });
+			}
+			else
+			{
+				khaosControler.ModerateBoon();
+			}
+		}
+		private void moderateEquipmentButton_Click(object sender, EventArgs e)
+		{
+			if (toolConfig.Khaos.ControlPannelQueueActions)
+			{
+				khaosControler.EnqueueAction(new EventAddAction { Command = "moderateequipment", UserName = "Mayhem" });
+			}
+			else
+			{
+				khaosControler.ModerateEquipment();
+			}
+		}
+		private void moderateItemsButton_Click(object sender, EventArgs e)
+		{
+			if (toolConfig.Khaos.ControlPannelQueueActions)
+			{
+				khaosControler.EnqueueAction(new EventAddAction { Command = "moderateitems", UserName = "Mayhem" });
+			}
+			else
+			{
+				khaosControler.ModerateItems();
+			}
+		}
+		private void moderateStatsButton_Click(object sender, EventArgs e)
+		{
+			if (toolConfig.Khaos.ControlPannelQueueActions)
+			{
+				khaosControler.EnqueueAction(new EventAddAction { Command = "moderatestats", UserName = "Mayhem" });
+			}
+			else
+			{
+				khaosControler.ModerateStats();
+			}
+		}
+		private void majorBoonButton_Click(object sender, EventArgs e)
+		{
+			if (toolConfig.Khaos.ControlPannelQueueActions)
+			{
+				khaosControler.EnqueueAction(new EventAddAction { Command = "majorboon", UserName = "Mayhem" });
+			}
+			else
+			{
+				khaosControler.MajorBoon();
+			}
+		}
+		private void majorEquipmentButton_Click(object sender, EventArgs e)
+		{
+			if (toolConfig.Khaos.ControlPannelQueueActions)
+			{
+				khaosControler.EnqueueAction(new EventAddAction { Command = "majorequipment", UserName = "Mayhem" });
+			}
+			else
+			{
+				khaosControler.MajorEquipment();
+			}
+		}
+		private void majorItemsButton_Click(object sender, EventArgs e)
+		{
+			if (toolConfig.Khaos.ControlPannelQueueActions)
+			{
+				khaosControler.EnqueueAction(new EventAddAction { Command = "majoritems", UserName = "Mayhem" });
+			}
+			else
+			{
+				khaosControler.MajorItems();
+			}
+		}
+		private void majorStatsButton_Click(object sender, EventArgs e)
+		{
+			if (toolConfig.Khaos.ControlPannelQueueActions)
+			{
+				khaosControler.EnqueueAction(new EventAddAction { Command = "majorstats", UserName = "Mayhem" });
+			}
+			else
+			{
+				khaosControler.MajorStats();
+			}
+		}
+		private void progressionStatsButton_Click(object sender, EventArgs e)
+		{
+			if (toolConfig.Khaos.ControlPannelQueueActions)
+			{
+				khaosControler.EnqueueAction(new EventAddAction { Command = "progressionstats", UserName = "Mayhem" });
+			}
+			else
+			{
+				khaosControler.ProgressionStats();
+			}
+		}
+		private void potionsButton_Click(object sender, EventArgs e)
+		{
+			if (toolConfig.Khaos.ControlPannelQueueActions)
+			{
+				khaosControler.EnqueueAction(new EventAddAction { Command = "potions", UserName = "Mayhem" });
+			}
+			else
+			{
+				khaosControler.GivePotions();
+			}
+		}
+
+
 		private void speedButton_Click(object sender, EventArgs e)
 		{
 			if (toolConfig.Khaos.ControlPannelQueueActions)
@@ -360,17 +587,45 @@ namespace SotnRandoTools
 				khaosControler.Regen();
 			}
 		}
-		private void moderateBoonButton_Click(object sender, EventArgs e)
+
+		private void itemsButton_Click(object sender, EventArgs e)
 		{
 			if (toolConfig.Khaos.ControlPannelQueueActions)
 			{
-				khaosControler.EnqueueAction(new EventAddAction { Command = "moderateboon", UserName = "Mayhem" });
+				khaosControler.EnqueueAction(new EventAddAction { Command = "items", UserName = "Mayhem" });
 			}
 			else
 			{
-				khaosControler.ModerateBoon();
+				khaosControler.GiveItems();
 			}
 		}
+
+		private void equipmentButton_Click(object sender, EventArgs e)
+		{
+			
+			if (toolConfig.Khaos.ControlPannelQueueActions)
+			{
+				khaosControler.EnqueueAction(new EventAddAction { Command = "equipment", UserName = "Mayhem" });
+			}
+			else
+			{
+				khaosControler.GiveEquipment();
+			}
+		}
+
+
+		private void buffButton_Click(object sender, EventArgs e)
+		{
+			if (toolConfig.Khaos.ControlPannelQueueActions)
+			{
+				khaosControler.EnqueueAction(new EventAddAction { Command = "buff", UserName = "Mayhem" });
+			}
+			else
+			{
+				khaosControler.GiveBuff();
+			}
+		}
+
 		private void timeStopButton_Click(object sender, EventArgs e)
 		{
 			if (toolConfig.Khaos.ControlPannelQueueActions)
@@ -380,6 +635,17 @@ namespace SotnRandoTools
 			else
 			{
 				khaosControler.TimeStop();
+			}
+		}
+		private void extraRangeButton_Click(object sender, EventArgs e)
+		{
+			if (toolConfig.Khaos.ControlPannelQueueActions)
+			{
+				khaosControler.EnqueueAction(new EventAddAction { Command = "extrarange", UserName = "Mayhem" });
+			}
+			else
+			{
+				khaosControler.ExtraRange();
 			}
 		}
 		private void faceTankButton_Click(object sender, EventArgs e)
@@ -404,17 +670,18 @@ namespace SotnRandoTools
 				khaosControler.SpellCaster();
 			}
 		}
-		private void extraRangeButton_Click(object sender, EventArgs e)
+		private void luckyButton_Click(object sender, EventArgs e)
 		{
 			if (toolConfig.Khaos.ControlPannelQueueActions)
 			{
-				khaosControler.EnqueueAction(new EventAddAction { Command = "extrarange", UserName = "Mayhem" });
+				khaosControler.EnqueueAction(new EventAddAction { Command = "lucky", UserName = "Mayhem" });
 			}
 			else
 			{
-				khaosControler.ExtraRange();
+				khaosControler.Lucky();
 			}
 		}
+
 		private void summonerButton_Click(object sender, EventArgs e)
 		{
 			if (toolConfig.Khaos.ControlPannelQueueActions)
@@ -426,361 +693,31 @@ namespace SotnRandoTools
 				khaosControler.Summoner();
 			}
 		}
-		private void majorBoonButton_Click(object sender, EventArgs e)
+		private void boonButton_Click(object sender, EventArgs e)
 		{
 			if (toolConfig.Khaos.ControlPannelQueueActions)
 			{
-				khaosControler.EnqueueAction(new EventAddAction { Command = "majorboon", UserName = "Mayhem" });
+				khaosControler.EnqueueAction(new EventAddAction { Command = "boon", UserName = "Mayhem" });
 			}
 			else
 			{
-				khaosControler.MajorBoon();
+				khaosControler.GiveBoon();
 			}
 		}
 
-		#endregion
+		private void progressionButton_Click(object sender, EventArgs e)
+		{
+			if (toolConfig.Khaos.ControlPannelQueueActions)
+			{
+				khaosControler.EnqueueAction(new EventAddAction { Command = "progression", UserName = "Mayhem" });
+			}
+			else
+			{
+				khaosControler.GiveProgression();
+			}
+		}
 
-		#region Khaotic effects
-		private void randomStatusButton_Click(object sender, EventArgs e)
-		{
-			if (toolConfig.Khaos.ControlPannelQueueActions)
-			{
-				khaosControler.EnqueueAction(new EventAddAction { Command = "kstatus", UserName = "Legacy" });
-			}
-			else
-			{
-				khaosControler.KhaosStatus();
-			}
-		}
-		private void randomEquipmentButton_Click(object sender, EventArgs e)
-		{
-			if (toolConfig.Khaos.ControlPannelQueueActions)
-			{
-				khaosControler.EnqueueAction(new EventAddAction { Command = "kequipment", UserName = "Legacy" });
-			}
-			else
-			{
 
-				khaosControler.KhaosEquipment();
-			}
-		}
-		private void randomizeStatsButton_Click(object sender, EventArgs e)
-		{
-			if (toolConfig.Khaos.ControlPannelQueueActions)
-			{
-				khaosControler.EnqueueAction(new EventAddAction { Command = "kstats", UserName = "Legacy" });
-			}
-			else
-			{
-
-				khaosControler.KhaosStats();
-			}
-		}
-		private void randomizeRelicsButton_Click(object sender, EventArgs e)
-		{
-			if (toolConfig.Khaos.ControlPannelQueueActions)
-			{
-				khaosControler.EnqueueAction(new EventAddAction { Command = "krelics", UserName = "Legacy" });
-			}
-			else
-			{
-
-				khaosControler.KhaosRelics();
-			}
-		}
-		private void pandorasBoxButton_Click(object sender, EventArgs e)
-		{
-			if (toolConfig.Khaos.ControlPannelQueueActions)
-			{
-				khaosControler.EnqueueAction(new EventAddAction { Command = "pandora", UserName = "Legacy" });
-			}
-			else
-			{
-
-				khaosControler.PandorasBox();
-			}
-		}
-		private void bankruptButton_Click(object sender, EventArgs e)
-		{
-			if (toolConfig.Khaos.ControlPannelQueueActions)
-			{
-				khaosControler.EnqueueAction(new EventAddAction { Command = "bankrupt", UserName = "Legacy" });
-			}
-			else
-			{
-				khaosControler.Bankrupt();
-			}
-		}
-		private void gambleButton_Click(object sender, EventArgs e)
-		{
-			if (toolConfig.Khaos.ControlPannelQueueActions)
-			{
-				khaosControler.EnqueueAction(new EventAddAction { Command = "gamble", UserName = "Legacy" });
-			}
-			else
-			{
-
-				khaosControler.Gamble();
-			}
-		}
-		private void kburstButton_Click(object sender, EventArgs e)
-		{
-			if (toolConfig.Khaos.ControlPannelQueueActions)
-			{
-				khaosControler.EnqueueAction(new EventAddAction { Command = "kburst", UserName = "Legacy" });
-			}
-			else
-			{
-
-				khaosControler.FillMeter();
-			}
-		}
-		#endregion
-		#region Debuffs
-
-		private void weakenButton_Click(object sender, EventArgs e)
-		{
-			if (toolConfig.Khaos.ControlPannelQueueActions)
-			{
-				khaosControler.EnqueueAction(new EventAddAction { Command = "weaken", UserName = "Legacy" });
-			}
-			else
-			{
-				khaosControler.Weaken();
-			}
-		}
-		private void respawnBossesButton_Click(object sender, EventArgs e)
-		{
-			if (toolConfig.Khaos.ControlPannelQueueActions)
-			{
-				khaosControler.EnqueueAction(new EventAddAction { Command = "respawnbosses", UserName = "Legacy" });
-			}
-			else
-			{
-				khaosControler.RespawnBosses();
-			}
-		}
-		private void subsonlyButton_Click(object sender, EventArgs e)
-		{
-			if (toolConfig.Khaos.ControlPannelQueueActions)
-			{
-				khaosControler.EnqueueAction(new EventAddAction { Command = "subsonly", UserName = "Legacy" });
-			}
-			else
-			{
-
-				khaosControler.SubweaponsOnly();
-			}
-		}
-		private void honestGamerButton_Click(object sender, EventArgs e)
-		{
-			if (toolConfig.Khaos.ControlPannelQueueActions)
-			{
-				khaosControler.EnqueueAction(new EventAddAction { Command = "honestgamer", UserName = "Legacy" });
-			}
-			else
-			{
-
-				khaosControler.HonestGamer();
-			}
-		}
-		private void bloodManaButton_Click(object sender, EventArgs e)
-		{
-			if (toolConfig.Khaos.ControlPannelQueueActions)
-			{
-				khaosControler.EnqueueAction(new EventAddAction { Command = "bloodmana", UserName = "Legacy" });
-			}
-			else
-			{
-				khaosControler.BloodMana();
-			}
-		}
-		private void thurstButton_Click(object sender, EventArgs e)
-		{
-			if (toolConfig.Khaos.ControlPannelQueueActions)
-			{
-				khaosControler.EnqueueAction(new EventAddAction { Command = "thirst", UserName = "Legacy" });
-			}
-			else
-			{
-				khaosControler.Thirst();
-			}
-		}
-		private void hordeButton_Click(object sender, EventArgs e)
-		{
-			if (toolConfig.Khaos.ControlPannelQueueActions)
-			{
-				khaosControler.EnqueueAction(new EventAddAction { Command = "horde", UserName = "Legacy" });
-			}
-			else
-			{
-				khaosControler.Horde();
-			}
-		}
-		private void enduranceButton_Click(object sender, EventArgs e)
-		{
-			if (toolConfig.Khaos.ControlPannelQueueActions)
-			{
-				khaosControler.EnqueueAction(new EventAddAction { Command = "endurance", UserName = "Legacy" });
-			}
-			else
-			{
-				khaosControler.Endurance();
-			}
-		}
-		private void crippleButton_Click(object sender, EventArgs e)
-		{
-			if (toolConfig.Khaos.ControlPannelQueueActions)
-			{
-				khaosControler.EnqueueAction(new EventAddAction { Command = "cripple", UserName = "Legacy" });
-			}
-			else
-			{
-
-				khaosControler.Cripple();
-			}
-		}
-		private void hnkButton_Click(object sender, EventArgs e)
-		{
-			if (toolConfig.Khaos.ControlPannelQueueActions)
-			{
-				khaosControler.EnqueueAction(new EventAddAction { Command = "hnk", UserName = "Legacy" });
-			}
-			else
-			{
-
-				khaosControler.HnK();
-			}
-		}
-		#endregion
-		#region Buffs
-		private void lightHelpButton_Click(object sender, EventArgs e)
-		{
-			if (toolConfig.Khaos.ControlPannelQueueActions)
-			{
-				khaosControler.EnqueueAction(new EventAddAction { Command = "lighthelp", UserName = "Legacy" });
-			}
-			else
-			{
-				khaosControler.LightHelp();
-			}
-		}
-		private void mediumHelpButton_Click(object sender, EventArgs e)
-		{
-			if (toolConfig.Khaos.ControlPannelQueueActions)
-			{
-				khaosControler.EnqueueAction(new EventAddAction { Command = "mediumhelp", UserName = "Legacy" });
-			}
-			else
-			{
-
-				khaosControler.MediumHelp();
-			}
-		}
-		private void heavyHelpButton_Click(object sender, EventArgs e)
-		{
-			if (toolConfig.Khaos.ControlPannelQueueActions)
-			{
-				khaosControler.EnqueueAction(new EventAddAction { Command = "heavyhelp", UserName = "Legacy" });
-			}
-			else
-			{
-
-				khaosControler.HeavytHelp();
-			}
-		}
-		private void battleOrdersButton_Click(object sender, EventArgs e)
-		{
-			if (toolConfig.Khaos.ControlPannelQueueActions)
-			{
-				khaosControler.EnqueueAction(new EventAddAction { Command = "battleorders", UserName = "Legacy" });
-			}
-			else
-			{
-
-				khaosControler.BattleOrders();
-			}
-		}
-		private void magicianButton_Click(object sender, EventArgs e)
-		{
-			if (toolConfig.Khaos.ControlPannelQueueActions)
-			{
-				khaosControler.EnqueueAction(new EventAddAction { Command = "magician", UserName = "Legacy" });
-			}
-			else
-			{
-
-				khaosControler.Magician();
-			}
-		}
-		private void meltyButton_Click(object sender, EventArgs e)
-		{
-			if (toolConfig.Khaos.ControlPannelQueueActions)
-			{
-				khaosControler.EnqueueAction(new EventAddAction { Command = "melty", UserName = "Legacy" });
-			}
-			else
-			{
-
-				khaosControler.MeltyBlood();
-			}
-		}
-		private void vampireButton_Click(object sender, EventArgs e)
-		{
-			if (toolConfig.Khaos.ControlPannelQueueActions)
-			{
-				khaosControler.EnqueueAction(new EventAddAction { Command = "vampire", UserName = "Legacy" });
-			}
-			else
-			{
-
-				khaosControler.Vampire();
-			}
-		}
-		private void fourBeastsButton_Click(object sender, EventArgs e)
-		{
-			if (toolConfig.Khaos.ControlPannelQueueActions)
-			{
-				khaosControler.EnqueueAction(new EventAddAction { Command = "fourbeasts", UserName = "Legacy" });
-			}
-			else
-			{
-				khaosControler.FourBeasts();
-			}
-		}
-		private void zawarudoButton_Click(object sender, EventArgs e)
-		{
-			if (toolConfig.Khaos.ControlPannelQueueActions)
-			{
-				khaosControler.EnqueueAction(new EventAddAction { Command = "zawarudo", UserName = "Legacy" });
-			}
-			else
-			{
-				khaosControler.ZaWarudo();
-			}
-		}
-		private void hasteButton_Click(object sender, EventArgs e)
-		{
-			if (toolConfig.Khaos.ControlPannelQueueActions)
-			{
-				khaosControler.EnqueueAction(new EventAddAction { Command = "haste", UserName = "Legacy" });
-			}
-			else
-			{
-				khaosControler.Haste();
-			}
-		}
-		private void lordButton_Click(object sender, EventArgs e)
-		{
-			if (toolConfig.Khaos.ControlPannelQueueActions)
-			{
-				khaosControler.EnqueueAction(new EventAddAction { Command = "lord", UserName = "Legacy" });
-			}
-			else
-			{
-				khaosControler.Lord();
-			}
-		}
 		#endregion
 
 		private void KhaosForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -798,5 +735,77 @@ namespace SotnRandoTools
 		{
 
 		}
+
+		private void autoMayhemButton_Click(object sender, EventArgs e)
+		{
+			if(khaosControler.AutoMayhemOn == true)
+			{
+				khaosControler.AutoMayhemOn = false;
+				autoMayhemButton.Text = "Start Auto Mayhem";
+				autoMayhemButton.BackColor = System.Drawing.Color.FromArgb(17, 0, 17);
+				autoMayhemButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(48, 20, 48);
+				if (!connected)
+				{
+					startButton.Enabled = false;
+				}
+			}
+			else
+			{
+				khaosControler.AutoMayhemOn = true;
+				startButton.Enabled = true;
+				autoMayhemButton.Text = "Stop Auto Mayhem";
+				connectButton.Text = "Connect Bot";
+				connected = false;
+				connectButton.BackColor = System.Drawing.Color.FromArgb(17, 0, 17);
+				connectButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(48, 20, 48);
+				autoMayhemButton.BackColor = System.Drawing.Color.FromArgb(93, 56, 147);
+				autoMayhemButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(145, 70, 255);
+			}
+		}
+
+		private void connectButton_Click(object sender, EventArgs e)
+		{
+			if (connected)
+			{
+				connectButton.Text = "Connect Bot";
+				//channelPointsController.Disconnect();
+				connected = false;
+				connectButton.BackColor = System.Drawing.Color.FromArgb(17, 0, 17);
+				connectButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(48, 20, 48);
+				if (!khaosControler.AutoMayhemOn)
+				{
+					startButton.Enabled = false;
+				}
+			}
+			else
+			{
+				//bool result;
+				//bool result = await channelPointsController.Connect();
+				//if (result)
+				startButton.Enabled = true;
+				connectButton.Text = "Disconnect Bot";
+				connected = true;
+				connectButton.BackColor = System.Drawing.Color.FromArgb(93, 56, 147);
+				connectButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(145, 70, 255);
+				khaosControler.AutoMayhemOn = false;
+				autoMayhemButton.Text = "Start Auto Mayhem";
+				autoMayhemButton.BackColor = System.Drawing.Color.FromArgb(17, 0, 17);
+				autoMayhemButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(48, 20, 48);
+			}
+		}
+
+		private void moderateTrapButton_Click(object sender, EventArgs e)
+		{
+			if (toolConfig.Khaos.ControlPannelQueueActions)
+			{
+				khaosControler.EnqueueAction(new EventAddAction { Command = "moderatetrap", UserName = "Mayhem" });
+			}
+			else
+			{
+				khaosControler.ModerateTrap();
+			}
+		}
+
+
 	}
 }

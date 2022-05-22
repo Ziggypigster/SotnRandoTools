@@ -63,7 +63,7 @@ namespace SotnRandoTools
 		});
 		private Config GlobalConfig => (_maybeEmuAPI as EmulationApi ?? throw new Exception("required API wasn't fulfilled")).ForbiddenConfigReference;
 
-		private ActorApi? actorApi;
+		//private ActorApi? actorApi;
 		private AlucardApi? alucardApi;
 		private GameApi? gameApi;
 		private RenderingApi? renderingApi;
@@ -150,7 +150,7 @@ namespace SotnRandoTools
 			LoadCheats();
 
 			sotnApi = new SotnApi.Main.SotnApi(_maybeMemAPI);
-			actorApi = new ActorApi(_maybeMemAPI);
+			//actorApi = new ActorApi(_maybeMemAPI);
 			alucardApi = new AlucardApi(_maybeMemAPI);
 			gameApi = new GameApi(_maybeMemAPI);
 			renderingApi = new RenderingApi(_maybeMemAPI);
@@ -171,15 +171,15 @@ namespace SotnRandoTools
 			this.MainForm.CheatList.Load(_memoryDomains, Paths.CheatsPath, false);
 			this.MainForm.CheatList.DisableAll();
 
-			/*var checkCheat = this.MainForm.CheatList.Where(x => x.Name == "AlucardAttackHitbox2Width").FirstOrDefault();
+			/*
+			var checkCheat = this.MainForm.CheatList.Where(x => x.Name == "AlucardAttackHitbox2Width").FirstOrDefault();
 
 			if (checkCheat is null)
 			{
 				File.Copy(Paths.CheatsBackupPath, Paths.CheatsPath);
 				this.MainForm.CheatList.Load(_memoryDomains, Paths.CheatsPath, false);
 				this.MainForm.CheatList.DisableAll();
-			}
-			*/
+			}*/			
 
 			if (khaosForm is not null)
 			{
@@ -267,9 +267,9 @@ namespace SotnRandoTools
 				}
 			}
 
-			actorApi = null;
-			alucardApi = null;
-			gameApi = null;
+			//actorApi = null;
+			//alucardApi = null;
+			//gameApi = null;
 			renderingApi = null;
 			sotnApi = null;
 			watchlistService = null;
@@ -293,28 +293,28 @@ namespace SotnRandoTools
 
 		private void khaosChatLaunch_Click(object sender, EventArgs e)
 		{
-			if (khaosForm is not null && gameApi is not null && alucardApi is not null && actorApi is not null && sotnApi is not null)
+			if (khaosForm is not null && sotnApi is not null)
 			{
 				khaosForm.Close();
-				khaosForm = new KhaosForm(toolConfig, this.MainForm.CheatList, sotnApi, gameApi, alucardApi, actorApi, notificationService, inputService);
+				khaosForm = new KhaosForm(toolConfig, this.MainForm.CheatList, sotnApi, gameApi, alucardApi, notificationService, inputService);
 				khaosForm.Show();
 			}
-			else if (khaosForm is null && gameApi is not null && alucardApi is not null && actorApi is not null && sotnApi is not null)
+			else if (khaosForm is null && sotnApi is not null)
 			{
-				khaosForm = new KhaosForm(toolConfig, this.MainForm.CheatList, sotnApi, gameApi, alucardApi, actorApi, notificationService, inputService);
+				khaosForm = new KhaosForm(toolConfig, this.MainForm.CheatList, sotnApi, gameApi, alucardApi, notificationService, inputService);
 				khaosForm.Show();
 			}
 		}
 
 		private void multiplayerLaunch_Click(object sender, EventArgs e)
 		{
-			if (coopForm is not null && gameApi is not null && alucardApi is not null && watchlistService is not null && _maybeJoypadApi is not null)
+			if (coopForm is not null && watchlistService is not null && _maybeJoypadApi is not null)
 			{
 				coopForm.Close();
-				coopForm = new CoopForm(toolConfig, watchlistService, inputService, gameApi, alucardApi, _maybeJoypadApi, notificationService);
+				coopForm = new CoopForm(toolConfig, watchlistService, inputService,  gameApi, alucardApi, _maybeJoypadApi, notificationService);
 				coopForm.Show();
 			}
-			else if (coopForm is null && gameApi is not null && alucardApi is not null && watchlistService is not null && _maybeJoypadApi is not null)
+			else if (coopForm is null && watchlistService is not null && _maybeJoypadApi is not null)
 			{
 				coopForm = new CoopForm(toolConfig, watchlistService, inputService, gameApi, alucardApi, _maybeJoypadApi, notificationService);
 				coopForm.Show();

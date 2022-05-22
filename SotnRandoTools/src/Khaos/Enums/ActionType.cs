@@ -2,8 +2,8 @@
 {
 	public enum ActionType
 	{
-		Khaotic,
-		Debuff,
-		Buff
+		Neutral,
+		Curse,
+		Blessing
 	}
 }

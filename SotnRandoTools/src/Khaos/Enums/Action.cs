@@ -1,6 +1,6 @@
 ﻿namespace SotnRandoTools.Khaos.Enums
 {
-	public enum Action
+	public enum ActionName
 	{
 		KhaosStatus,
 		KhaosBurst,

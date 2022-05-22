@@ -7,7 +7,8 @@ namespace SotnRandoTools.Khaos.Models
 	{
 		public QueuedAction()
 		{
-			Type = ActionType.Debuff;
+			Type = ActionType.Curse;
+			ChangesAlucardEffects = false;
 			ChangesStats = false;
 			ChangesWeapons = false;
 			ChangesWeaponQualities = false;
@@ -29,6 +30,7 @@ namespace SotnRandoTools.Khaos.Models
 		public bool ChangesWeaponQualities { get; set; }
 		public bool ChangesSubWeapons { get; set; }
 		public bool ChangesWeapons { get; set; }
+		public bool ChangesAlucardEffects { get; set; }
 		public bool LocksInvincibility { get; set; }
 		public bool LocksSpawning { get; set; }
 	}

@@ -170,7 +170,7 @@ namespace SotnRandoTools.Services
 				guiApi.ClearGraphics();
 				if (messageQueue.Count > 0)
 				{
-					while (TextRenderer.MeasureText(messageQueue[0], new Font("Arial", fontSize)).Width > (scaledTextbox.Width - (20 * scale)))
+					while (TextRenderer.MeasureText(messageQueue[0], new Font("Arial", fontSize)).Width > (scaledTextbox.Width - (18 * scale)))
 					{
 						fontSize--;
 					}
@@ -232,13 +232,13 @@ namespace SotnRandoTools.Services
 				}
 				switch (action.Type)
 				{
-					case ActionType.Khaotic:
+					case ActionType.Neutral:
 						guiApi.DrawImage(scaledIconEye, xpos + (col * scaledIconEye.Width) + (1 * scale), ypos + (row * scaledIconEye.Height) + (1 * scale), scaledIconEye.Width, scaledIconEye.Height, true);
 						break;
-					case ActionType.Debuff:
+					case ActionType.Curse:
 						guiApi.DrawImage(scaledIconSkull, xpos + (col * scaledIconSkull.Width) + (1 * scale), ypos + (row * scaledIconSkull.Height) + (1 * scale), scaledIconSkull.Width, scaledIconSkull.Height, true);
 						break;
-					case ActionType.Buff:
+					case ActionType.Blessing:
 						guiApi.DrawImage(scaledIconFairy, xpos + (col * scaledIconFairy.Width) + (1 * scale), ypos + (row * scaledIconFairy.Height) + (1 * scale), scaledIconFairy.Width, scaledIconFairy.Height, true);
 						break;
 					default:
@@ -257,13 +257,13 @@ namespace SotnRandoTools.Services
 				guiApi.DrawPie(xpos + (1 * scale), ypos + (row * (scaledIconEye.Height + (3 * scale))) + (10 * scale), scaledIconEye.Width + (3 * scale), scaledIconEye.Width + (3 * scale), 0, timerPie, timerPieColor, timerPieColor);
 				switch (timer.Type)
 				{
-					case ActionType.Khaotic:
+					case ActionType.Neutral:
 						guiApi.DrawImage(scaledIconEye, xpos + (3 * scale), ypos + (row * (scaledIconEye.Height + (3 * scale))) + (13 * scale), scaledIconEye.Width, scaledIconEye.Height, true);
 						break;
-					case ActionType.Debuff:
+					case ActionType.Curse:
 						guiApi.DrawImage(scaledIconSkull, xpos + (3 * scale), ypos + (row * (scaledIconEye.Height + (3 * scale))) + (13 * scale), scaledIconSkull.Width, scaledIconSkull.Height, true);
 						break;
-					case ActionType.Buff:
+					case ActionType.Blessing:
 						guiApi.DrawImage(scaledIconFairy, xpos + (3 * scale), ypos + (row * (scaledIconEye.Height + (3 * scale))) + (13 * scale), scaledIconFairy.Width, scaledIconFairy.Height, true);
 						break;
 					default:
