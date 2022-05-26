@@ -166,6 +166,7 @@ namespace SotnRandoTools.Khaos
 		private int autoMoodType;
 		private int autoMoodLevel;
 		private int autoMoodLevelMax;
+		private bool autoAllowSmartLogic = false;
 		private bool autoMoodMandatory = false;
 		private bool allowPity = false;
 		
@@ -286,6 +287,7 @@ namespace SotnRandoTools.Khaos
 		private bool rushDownActive = false;
 
 		private bool HPForMPActive = false;
+		private bool HPForMPActivePaused = false;
 		private bool hexActive = false;
 		private bool hexHPMPHActive = false;
 		private bool hexHPMPHPaused = false;
@@ -306,7 +308,6 @@ namespace SotnRandoTools.Khaos
 		private bool buffConHPActive = false;
 		private bool buffIntMPActive = false;
 		private bool buffLckNeutralActive = false;
-
 
 		private bool alucardEffectsLocked = false;
 		private bool subWeaponsLocked = false;
@@ -3105,13 +3106,18 @@ namespace SotnRandoTools.Khaos
 
 			uint currentMaxMp = sotnApi.AlucardApi.MaxtMp;
 
-			if (currentMaxMp < storedMaxMp)
+			if (HPForMPActivePaused)
+			{
+				storedMaxMp = currentMaxMp;
+				spentMp = 0;
+				return;
+			}
+			else if (currentMaxMp < storedMaxMp)
 			{
 				storedMaxMp = currentMaxMp;
 				return;
 			}
-
-			if (spentMp > 0)
+			else if (spentMp > 0)
 			{
 				uint currentHp = sotnApi.AlucardApi.CurrentHp;
 				if (currentHp > spentMp)
@@ -3589,15 +3595,16 @@ namespace SotnRandoTools.Khaos
 			mpTaken = sotnApi.AlucardApi.MaxtMp / 2;
 			heartsTaken = sotnApi.AlucardApi.MaxtHearts / 2;
 
-			if (sotnApi.AlucardApi.MaxtHp - hpTaken > 0)
+			HPForMPActivePaused = true;
+
+			if ((sotnApi.AlucardApi.MaxtHp - hpTaken) > 0)
 			{
 				sotnApi.AlucardApi.MaxtHp -= hpTaken;
 			}
-			if (sotnApi.AlucardApi.MaxtHp / 2 < sotnApi.AlucardApi.CurrentHp / 2)
+			if (sotnApi.AlucardApi.MaxtHp < sotnApi.AlucardApi.CurrentHp / 2)
 			{
-				sotnApi.AlucardApi.CurrentHp = sotnApi.AlucardApi.MaxtHp / 2;
+				sotnApi.AlucardApi.CurrentHp = sotnApi.AlucardApi.MaxtHp;
 			}
-
 			else if (sotnApi.AlucardApi.CurrentHp > 1)
 			{
 				sotnApi.AlucardApi.CurrentHp /= 2;
@@ -3605,7 +3612,7 @@ namespace SotnRandoTools.Khaos
 			if (sotnApi.AlucardApi.MaxtMp - mpTaken > 0)
 			{
 				sotnApi.AlucardApi.MaxtMp -= mpTaken;
-				if (!mpLocked && sotnApi.AlucardApi.CurrentMp > 1)
+				if ((!mpLocked || HPForMPActive) && (sotnApi.AlucardApi.CurrentMp > 1))
 				{
 					sotnApi.AlucardApi.CurrentMp /= 2;
 				}
@@ -3618,6 +3625,12 @@ namespace SotnRandoTools.Khaos
 					sotnApi.AlucardApi.CurrentHearts /= 2;
 				}
 			}
+
+			storedMaxMp = sotnApi.AlucardApi.MaxtMp;
+			storedMp = sotnApi.AlucardApi.CurrentMp;
+			spentMp = 0;
+
+			HPForMPActivePaused = false;
 		}
 		private void HexTakeStats()
 		{
@@ -4630,15 +4643,22 @@ namespace SotnRandoTools.Khaos
 			}
 
 			//Zig- Enforce minimum max and current stats
+			HPForMPActivePaused = true;
+
 			sotnApi.AlucardApi.MaxtHp = newMaxHp < adjustedMinHP ? adjustedMinHP : newMaxHp;
 			sotnApi.AlucardApi.MaxtMp = newMaxMp < minMP ? minMP : newMaxMp;
 			sotnApi.AlucardApi.MaxtHearts = newMaxHearts < minHearts ? minHearts : newMaxHearts;
 
 			sotnApi.AlucardApi.CurrentHp = newCurrentHp < 1 ? 1 : newCurrentHp;
-			if (!mpLocked)
+			if (!mpLocked || HPForMPActive)
 			{
 				sotnApi.AlucardApi.CurrentMp = newCurrentMp < 1 ? 1 : newCurrentMp;
 			}
+
+			storedMaxMp = sotnApi.AlucardApi.MaxtMp;
+			storedMp = sotnApi.AlucardApi.CurrentMp;
+
+			HPForMPActivePaused = false;
 
 			if (!heartsLocked == true)
 			{
@@ -6214,7 +6234,7 @@ namespace SotnRandoTools.Khaos
 			notificationService.AddMessage(message);
 			if (superBuffIntMP)
 			{
-				notificationService.AddMessage("{user} equipped Mojo mail");
+				notificationService.AddMessage($"{user} equipped Mojo mail");
 			}
 
 			Alert(KhaosActionNames.BuffIntMP);
@@ -6688,7 +6708,15 @@ namespace SotnRandoTools.Khaos
 			{
 				allowPity = true;
 				accelTime.PokeValue(5);
-				
+				if (!givenStatsPaused)
+				{
+					takeHPGiven();
+					takeSTRGiven();
+					takeCONGiven();
+					takeINTGiven();
+					takeLCKGiven();
+					givenStatsPaused = true;
+				}
 			}
 			else
 			{
@@ -7205,7 +7233,7 @@ namespace SotnRandoTools.Khaos
 					}
 					break;
 				case "potions":
-					commandAction = toolConfig.Khaos.Actions.Where(a => a.Name == KhaosActionNames.MinorBoon).FirstOrDefault();
+					commandAction = toolConfig.Khaos.Actions.Where(a => a.Name == KhaosActionNames.Potions).FirstOrDefault();
 					if (commandAction is not null && ((!AutoMayhemOn && commandAction.Enabled) || (AutoMayhemOn && commandAction.AutoMayhemEnabled)))
 					{
 						queuedFastActions.Enqueue(new MethodInvoker(() => GivePotions(user)));
@@ -8171,7 +8199,11 @@ namespace SotnRandoTools.Khaos
 				spentMp = (int) storedMp - (int) currentMp;
 			}
 			storedMp = currentMp;
-			HPForMPUpdate();
+
+			if (!HPForMPActivePaused)
+			{
+				HPForMPUpdate();
+			}
 		}
 		private void CheckDashInput()
 		{

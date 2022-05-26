@@ -13,6 +13,7 @@ namespace SotnRandoTools
 		private BindingSource actionsAlertsSource = new();
 		private BindingSource actionsOtherSource = new();
 		private BindingSource actionsAutoSource = new();
+		private bool pauseDifficultyChange = false;
 
 		public KhaosSettingsPanel(IToolConfig toolConfig, INotificationService notificationService)
 		{
@@ -56,7 +57,7 @@ namespace SotnRandoTools
 			allowMayhemPityCheckBox.Checked = toolConfig.Khaos.autoAllowMayhemPity;
 			allowMayhemRageCheckBox.Checked = toolConfig.Khaos.autoAllowMayhemRage;
 
-			autoEnableCheckBox.Checked = toolConfig.Khaos.autoEnableSmartLogic;
+			//allowSmartLogicCheckBox.Checked = toolConfig.Khaos.autoEnableSmartLogic;
 			allowBlessingsCheckBox.Checked = toolConfig.Khaos.autoAllowBlessings;
 			allowNeutralsCheckBox.Checked = toolConfig.Khaos.autoAllowNeutrals;
 			allowCursesCheckBox.Checked = toolConfig.Khaos.autoAllowCurses;
@@ -636,8 +637,18 @@ namespace SotnRandoTools
 		{
 			toolConfig.Khaos.autoMayhemDifficulty = autoMayhemDifficultyComboBox.SelectedIndex;
 			setDifficulty();
+			pauseDifficultyChange = true;
 			KhaosSettingsPanel_Load(sender, e);
+			pauseDifficultyChange = false;
 		}
+		private void setCustomDifficulty()
+		{
+			if (!pauseDifficultyChange)
+			{
+				toolConfig.Khaos.autoMayhemDifficulty = 0;
+			}
+		}
+
 		private void setDifficulty()
 		{	
 			switch (toolConfig.Khaos.autoMayhemDifficulty)
@@ -797,6 +808,8 @@ namespace SotnRandoTools
 		private void moodSwingsComboBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			toolConfig.Khaos.autoMoodSwings = autoMoodSwingsComboBox.SelectedIndex;
+			setCustomDifficulty();
+			KhaosSettingsPanel_Load(sender, e);
 		}
 
 		private void autoPerfectMayhemTriggerTextBox_Validated(object sender, EventArgs e)
@@ -807,6 +820,8 @@ namespace SotnRandoTools
 			if (result)
 			{
 				toolConfig.Khaos.autoPerfectMayhemTrigger = (int) (autoRelicThreshold);
+				setCustomDifficulty();
+				KhaosSettingsPanel_Load(sender, e);
 			}
 			autoPerfectMayhemTriggerTextBox.BackColor = Color.White;
 			this.valueToolTip.Active = false;
@@ -844,110 +859,239 @@ namespace SotnRandoTools
 			}
 		}
 
+		private void allowSmartLogicCheckBox_CheckedChanged(object sender, EventArgs e)
+		{
+			//toolConfig.Khaos.autoAllowSmartLogic = allowSmartLogicCheckBox.Checked;
+			setCustomDifficulty();
+			KhaosSettingsPanel_Load(sender, e);
+		}
+
+
 		private void allowNeutralsCheckBox_CheckedChanged(object sender, EventArgs e)
 		{
 			toolConfig.Khaos.autoAllowNeutrals = allowNeutralsCheckBox.Checked;
+			setCustomDifficulty();
+			KhaosSettingsPanel_Load(sender, e);
 		}
 
 		private void allowCursesCheckBox_CheckedChanged(object sender, EventArgs e)
 		{
 			toolConfig.Khaos.autoAllowCurses = allowCursesCheckBox.Checked;
+			setCustomDifficulty();
+			KhaosSettingsPanel_Load(sender, e);
 		}
 
 		private void allowBlessingsCheckBox_CheckedChanged(object sender, EventArgs e)
 		{
 			toolConfig.Khaos.autoAllowBlessings = allowBlessingsCheckBox.Checked;
+			setCustomDifficulty();
+			KhaosSettingsPanel_Load(sender, e);
+		}
+		private void allowPerfectMayhemCheckBox_CheckedChanged(object sender, EventArgs e)
+		{
+			toolConfig.Khaos.autoAllowPerfectMayhem = allowPerfectMayhemCheckbox.Checked;
+			setCustomDifficulty();
+			KhaosSettingsPanel_Load(sender, e);
 		}
 
 		private void allowMayhemPityCheckBox_CheckedChanged(object sender, EventArgs e)
 		{
 			toolConfig.Khaos.autoAllowMayhemPity = allowMayhemPityCheckBox.Checked;
+			setCustomDifficulty();
+			KhaosSettingsPanel_Load(sender, e);
 		}
 
 		private void allowMayhemRageCheckBox_CheckedChanged(object sender, EventArgs e)
 		{
 			toolConfig.Khaos.autoAllowMayhemRage = allowMayhemRageCheckBox.Checked;
+			setCustomDifficulty();
+			KhaosSettingsPanel_Load(sender, e);
 		}
 
 		private void cmdConsistencyComboBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			toolConfig.Khaos.autoCommandConsistency = autoCommandConsistencyComboBox.SelectedIndex;
+			setCustomDifficulty();
+			KhaosSettingsPanel_Load(sender, e);
 		}
 
 		private void cmdSpeedComboBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			toolConfig.Khaos.autoCommandSpeed = autoCommandSpeedComboBox.SelectedIndex;
+			setCustomDifficulty();
+			KhaosSettingsPanel_Load(sender, e);
 		}
 
 		private void blessingsWeightTextBox_Validated(object sender, EventArgs e)
 		{
-
+			int weight;
+			bool result = Int32.TryParse(blessingsWeightTextBox.Text, out weight);
+			if (result)
+			{
+				toolConfig.Khaos.autoBlessingWeight = weight;
+				setCustomDifficulty();
+				KhaosSettingsPanel_Load(sender, e);
+			}
+			blessingsWeightTextBox.BackColor = Color.White;
+			this.valueToolTip.Active = false;
 		}
 
 		private void blessingsWeightTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
 		{
-
+			int weight;
+			bool result = Int32.TryParse(blessingsWeightTextBox.Text, out weight);
+			if (!result || weight < 0 || weight > 21)
+			{
+				this.blessingsWeightTextBox.Text = "";
+				this.blessingsWeightTextBox.BackColor = Color.Red;
+				this.valueToolTip.SetToolTip(blessingsWeightTextBox, "Invalid value!");
+				this.valueToolTip.ToolTipIcon = ToolTipIcon.Warning;
+				this.valueToolTip.Active = true;
+				e.Cancel = true;
+			}
 		}
 
 		private void neutralsWeightTextBox_Validated(object sender, EventArgs e)
 		{
-
+			int weight;
+			bool result = Int32.TryParse(neutralsWeightTextBox.Text, out weight);
+			if (result)
+			{
+				toolConfig.Khaos.autoNeutralWeight = weight;
+				setCustomDifficulty();
+				KhaosSettingsPanel_Load(sender, e);
+			}
+			neutralsWeightTextBox.BackColor = Color.White;
+			this.valueToolTip.Active = false;
 		}
 
 		private void neutralsWeightTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
 		{
-
+			int weight;
+			bool result = Int32.TryParse(neutralsWeightTextBox.Text, out weight);
+			if (!result || weight < 0 || weight > 21)
+			{
+				this.neutralsWeightTextBox.Text = "";
+				this.neutralsWeightTextBox.BackColor = Color.Red;
+				this.valueToolTip.SetToolTip(neutralsWeightTextBox, "Invalid value!");
+				this.valueToolTip.ToolTipIcon = ToolTipIcon.Warning;
+				this.valueToolTip.Active = true;
+				e.Cancel = true;
+			}
 		}
 
 		private void cursesWeightTextBox_Validated(object sender, EventArgs e)
 		{
-
+			int weight;
+			bool result = Int32.TryParse(cursesWeightTextBox.Text, out weight);
+			if (result)
+			{
+				toolConfig.Khaos.autoCurseWeight = weight;
+				setCustomDifficulty();
+				KhaosSettingsPanel_Load(sender, e);
+			}
+			cursesWeightTextBox.BackColor = Color.White;
+			this.valueToolTip.Active = false;
 		}
 
 		private void cursesWeightTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
 		{
-
+			int weight;
+			bool result = Int32.TryParse(cursesWeightTextBox.Text, out weight);
+			if (!result || weight < 0 || weight > 21)
+			{
+				this.cursesWeightTextBox.Text = "";
+				this.cursesWeightTextBox.BackColor = Color.Red;
+				this.valueToolTip.SetToolTip(neutralsWeightTextBox, "Invalid value!");
+				this.valueToolTip.ToolTipIcon = ToolTipIcon.Warning;
+				this.valueToolTip.Active = true;
+				e.Cancel = true;
+			}
 		}
 
 		private void blessingsMoodTextBox_Validated(object sender, EventArgs e)
 		{
-
+			string boxText = blessingsMoodTextBox.Text.Replace("%", "");
+			int mood;
+			bool result = Int32.TryParse(boxText, out mood);
+			if (result)
+			{
+				toolConfig.Khaos.autoBlessingMood = (int) (mood);
+				setCustomDifficulty();
+				KhaosSettingsPanel_Load(sender, e);
+			}
+			blessingsMoodTextBox.BackColor = Color.White;
+			this.valueToolTip.Active = false;
 		}
 
 		private void blessingsMoodTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
 		{
-
+			string boxText = blessingsMoodTextBox.Text.Replace("%", "");
+			int mood;
+			bool result = Int32.TryParse(boxText, out mood);
+			if (!result || mood < 0 || mood > 21)
+			{
+				this.blessingsMoodTextBox.Text = "";
+				this.blessingsMoodTextBox.BackColor = Color.Red;
+				this.valueToolTip.SetToolTip(cursesMoodTextBox, "Invalid value!");
+				this.valueToolTip.ToolTipIcon = ToolTipIcon.Warning;
+				this.valueToolTip.Active = true;
+				e.Cancel = true;
+			}
 		}
 
 		private void neutralsMoodTextBox_Validated(object sender, EventArgs e)
 		{
-
+			string boxText = neutralsMoodTextBox.Text.Replace("%", "");
+			int mood;
+			bool result = Int32.TryParse(boxText, out mood);
+			if (result)
+			{
+				toolConfig.Khaos.autoNeutralMood = (int) (mood);
+				setCustomDifficulty();
+				KhaosSettingsPanel_Load(sender, e);
+			}
+			neutralsMoodTextBox.BackColor = Color.White;
+			this.valueToolTip.Active = false;
 		}
 
 		private void neutralsMoodTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
 		{
-
+			string boxText = neutralsMoodTextBox.Text.Replace("%", "");
+			int mood;
+			bool result = Int32.TryParse(boxText, out mood);
+			if (!result || mood < 0 || mood > 21)
+			{
+				this.neutralsMoodTextBox.Text = "";
+				this.neutralsMoodTextBox.BackColor = Color.Red;
+				this.valueToolTip.SetToolTip(cursesMoodTextBox, "Invalid value!");
+				this.valueToolTip.ToolTipIcon = ToolTipIcon.Warning;
+				this.valueToolTip.Active = true;
+				e.Cancel = true;
+			}
 		}
 
 		private void cursesMoodTextBox_Validated(object sender, EventArgs e)
 		{
 			string boxText = cursesMoodTextBox.Text.Replace("%", "");
-			int cursesMood;
-			bool result = Int32.TryParse(boxText, out cursesMood);
+			int mood;
+			bool result = Int32.TryParse(boxText, out mood);
 			if (result)
 			{
-				toolConfig.Khaos.autoCurseMood = (int) (cursesMood);
+				toolConfig.Khaos.autoCurseMood = (int) (mood);
+				setCustomDifficulty();
+				KhaosSettingsPanel_Load(sender, e);
 			}
-			autoPerfectMayhemTriggerTextBox.BackColor = Color.White;
+			cursesMoodTextBox.BackColor = Color.White;
 			this.valueToolTip.Active = false;
 		}
 
 		private void cursesMoodTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
 		{
 			string boxText = cursesMoodTextBox.Text.Replace("%", "");
-			int cursesMood;
-			bool result = Int32.TryParse(boxText, out cursesMood);
-			if (!result || cursesMood < 0 || cursesMood > 100)
+			int mood;
+			bool result = Int32.TryParse(boxText, out mood);
+			if (!result || mood < 0 || mood > 21)
 			{
 				this.cursesMoodTextBox.Text = "";
 				this.cursesMoodTextBox.BackColor = Color.Red;
@@ -960,62 +1104,176 @@ namespace SotnRandoTools
 
 		private void blessingsMinTextBox_Validated(object sender, EventArgs e)
 		{
-
+			int amount;
+			bool result = Int32.TryParse(blessingsMinTextBox.Text, out amount);
+			if (result)
+			{
+				toolConfig.Khaos.autoBlessingMax = amount;
+				setCustomDifficulty();
+				KhaosSettingsPanel_Load(sender, e);
+			}
+			blessingsMinTextBox.BackColor = Color.White;
+			this.valueToolTip.Active = false;
 		}
 
 		private void blessingsMinTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
 		{
-
+			int amount;
+			bool result = Int32.TryParse(blessingsMinTextBox.Text, out amount);
+			if (!result || amount < 0 || amount > 10)
+			{
+				this.blessingsMinTextBox.Text = "";
+				this.blessingsMinTextBox.BackColor = Color.Red;
+				this.valueToolTip.SetToolTip(blessingsMinTextBox, "Invalid value!");
+				this.valueToolTip.ToolTipIcon = ToolTipIcon.Warning;
+				this.valueToolTip.Active = true;
+				e.Cancel = true;
+			}
 		}
 
 		private void neutralsMinTextBox_Validated(object sender, EventArgs e)
 		{
-
+			int amount;
+			bool result = Int32.TryParse(neutralsMinTextBox.Text, out amount);
+			if (result)
+			{
+				toolConfig.Khaos.autoNeutralMax = amount;
+				setCustomDifficulty();
+				KhaosSettingsPanel_Load(sender, e);
+			}
+			neutralsMinTextBox.BackColor = Color.White;
+			this.valueToolTip.Active = false;
 		}
 
 		private void neutralsMinTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
 		{
-
+			int amount;
+			bool result = Int32.TryParse(neutralsMinTextBox.Text, out amount);
+			if (!result || amount < 0 || amount > 10)
+			{
+				this.neutralsMinTextBox.Text = "";
+				this.neutralsMinTextBox.BackColor = Color.Red;
+				this.valueToolTip.SetToolTip(neutralsMinTextBox, "Invalid value!");
+				this.valueToolTip.ToolTipIcon = ToolTipIcon.Warning;
+				this.valueToolTip.Active = true;
+				e.Cancel = true;
+			}
 		}
 
 		private void cursesMinTextBox_Validated(object sender, EventArgs e)
 		{
-
+			int amount;
+			bool result = Int32.TryParse(cursesMinTextBox.Text, out amount);
+			if (result)
+			{
+				toolConfig.Khaos.autoCurseMax = amount;
+				setCustomDifficulty();
+				KhaosSettingsPanel_Load(sender, e);
+			}
+			cursesMinTextBox.BackColor = Color.White;
+			this.valueToolTip.Active = false;
 		}
 
 		private void cursesMinTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
 		{
-
+			int amount;
+			bool result = Int32.TryParse(cursesMinTextBox.Text, out amount);
+			if (!result || amount < 0 || amount > 10)
+			{
+				this.cursesMinTextBox.Text = "";
+				this.cursesMinTextBox.BackColor = Color.Red;
+				this.valueToolTip.SetToolTip(cursesMinTextBox, "Invalid value!");
+				this.valueToolTip.ToolTipIcon = ToolTipIcon.Warning;
+				this.valueToolTip.Active = true;
+				e.Cancel = true;
+			}
 		}
 
 		private void blessingsMaxTextBox_Validated(object sender, EventArgs e)
 		{
-
+			int amount;
+			bool result = Int32.TryParse(blessingsMaxTextBox.Text, out amount);
+			if (result)
+			{
+				toolConfig.Khaos.autoBlessingMax = amount;
+				setCustomDifficulty();
+				KhaosSettingsPanel_Load(sender, e);
+			}
+			blessingsMaxTextBox.BackColor = Color.White;
+			this.valueToolTip.Active = false;
 		}
 
 		private void blessingsMaxTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
 		{
-
+			int amount;
+			bool result = Int32.TryParse(blessingsMaxTextBox.Text, out amount);
+			if (!result || amount < 0 || amount > 10)
+			{
+				this.blessingsMaxTextBox.Text = "";
+				this.blessingsMaxTextBox.BackColor = Color.Red;
+				this.valueToolTip.SetToolTip(blessingsMaxTextBox, "Invalid value!");
+				this.valueToolTip.ToolTipIcon = ToolTipIcon.Warning;
+				this.valueToolTip.Active = true;
+				e.Cancel = true;
+			}
 		}
 
 		private void neutralsMaxTextBox_Validated(object sender, EventArgs e)
 		{
-
+			int amount;
+			bool result = Int32.TryParse(neutralsMaxTextBox.Text, out amount);
+			if (result)
+			{
+				toolConfig.Khaos.autoNeutralMax = amount;
+				setCustomDifficulty();
+				KhaosSettingsPanel_Load(sender, e);
+			}
+			neutralsMaxTextBox.BackColor = Color.White;
+			this.valueToolTip.Active = false;
 		}
 
 		private void neutralsMaxTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
 		{
-
+			int amount;
+			bool result = Int32.TryParse(neutralsMaxTextBox.Text, out amount);
+			if (!result || amount < 0 || amount > 10)
+			{
+				this.neutralsMaxTextBox.Text = "";
+				this.neutralsMaxTextBox.BackColor = Color.Red;
+				this.valueToolTip.SetToolTip(neutralsMaxTextBox, "Invalid value!");
+				this.valueToolTip.ToolTipIcon = ToolTipIcon.Warning;
+				this.valueToolTip.Active = true;
+				e.Cancel = true;
+			}
 		}
 
 		private void cursesMaxTextBox_Validated(object sender, EventArgs e)
 		{
-
+			int amount;
+			bool result = Int32.TryParse(cursesMaxTextBox.Text, out amount);
+			if (result)
+			{
+				toolConfig.Khaos.autoCurseMax = amount;
+				setCustomDifficulty();
+				KhaosSettingsPanel_Load(sender, e);
+			}
+			cursesMaxTextBox.BackColor = Color.White;
+			this.valueToolTip.Active = false;
 		}
 
 		private void cursesMaxTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
 		{
-
+			int amount;
+			bool result = Int32.TryParse(cursesMaxTextBox.Text, out amount);
+			if (!result || amount < 0 || amount > 10)
+			{
+				this.cursesMaxTextBox.Text = "";
+				this.cursesMaxTextBox.BackColor = Color.Red;
+				this.valueToolTip.SetToolTip(cursesMaxTextBox, "Invalid value!");
+				this.valueToolTip.ToolTipIcon = ToolTipIcon.Warning;
+				this.valueToolTip.Active = true;
+				e.Cancel = true;
+			}
 		}
 
 		private void autoMayhemGridView_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
