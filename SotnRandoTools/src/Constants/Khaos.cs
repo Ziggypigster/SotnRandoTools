@@ -158,6 +158,29 @@ namespace SotnRandoTools.Constants
 		{
 			new MapLocation{X = 46, Y = 24, SecondCastle = 0}
 		};
+		public static List<MapLocation> UnderwaterBugRooms = new List<MapLocation>
+		{ // X is Left to Right, Y is top to bottom
+			new MapLocation{X = 40, Y = 12, SecondCastle = 0}, //First Castle Warps + Hallways
+			new MapLocation{X = 39, Y = 12, SecondCastle = 0},
+			new MapLocation{X = 37, Y = 21, SecondCastle = 0},
+			new MapLocation{X = 36, Y = 21, SecondCastle = 0},
+			new MapLocation{X = 15, Y = 38, SecondCastle = 0},
+			new MapLocation{X = 16, Y = 38, SecondCastle = 0},
+			new MapLocation{X = 35, Y = 44, SecondCastle = 0},
+			new MapLocation{X = 34, Y = 44, SecondCastle = 0},
+			new MapLocation{X = 59, Y = 17, SecondCastle = 0},
+			new MapLocation{X = 60, Y = 17, SecondCastle = 0},
+			new MapLocation{X = 23, Y = 51, SecondCastle = 0}, //2nd Castle Warps + Hallways
+			new MapLocation{X = 24, Y = 42, SecondCastle = 1},
+			new MapLocation{X = 26, Y = 42, SecondCastle = 1},
+			new MapLocation{X = 27, Y = 38, SecondCastle = 1},
+			new MapLocation{X = 46, Y = 25, SecondCastle = 1},
+			new MapLocation{X = 47, Y = 25, SecondCastle = 1},
+			new MapLocation{X = 28, Y = 19, SecondCastle = 1},
+			new MapLocation{X = 29, Y = 19, SecondCastle = 1},
+			new MapLocation{X = 4, Y = 46, SecondCastle = 1},
+			new MapLocation{X = 3, Y = 46, SecondCastle = 1},
+		};
 		public static List<MapLocation> MistGateRoom = new List<MapLocation>
 		{
 			new MapLocation{X = 46, Y = 21, SecondCastle = 0}, //Library
@@ -168,6 +191,16 @@ namespace SotnRandoTools.Constants
 			new MapLocation{X = 3, Y = 36, SecondCastle = 1}, //Reverse Library
 			new MapLocation{X = 3, Y = 36, SecondCastle = 1}, //Reverse Silver Ring
 			new MapLocation{X = 3, Y = 36, SecondCastle = 1}, //Reverse Outer Wall
+		};
+		public static List<MapLocation> RewindBanRoom = new List<MapLocation>
+		{
+			new MapLocation{X = 40, Y = 39, SecondCastle = 0}, //Scylla Room 
+			//new MapLocation{X = 31, Y = 30, SecondCastle = 1}, //???
+		};
+		public static List<MapLocation> RewindUnbanRoom = new List<MapLocation>
+		{
+			new MapLocation{X = 39, Y = 39, SecondCastle = 0}, //Outside Scylla Room
+			new MapLocation{X = 50, Y = 20, SecondCastle = 0}, //Room Outside Librarian
 		};
 		public static List<MapLocation> GalamothRooms = new List<MapLocation>
 		{
@@ -561,30 +594,66 @@ namespace SotnRandoTools.Constants
 
 		public static int[] alucardColors =
 		{
-				//33024, 8100 - Default coloring for reference
-				//5, // Trihecaton - Red Alucard Skin, Gray Cape
-				//38, // Trihecaton - Grey with yellow cape.
-				//00080, // Swamp Alucard
-				//00517,//0205 - Dark Purple
-				//727,//02D7 - Game Boy Color-Card
-				//00745,//02E9 - Shape Shifting Color (purple yellow or all blue)
-				33026,//8102 - All Black, Blue O
-				33028,//8104 - Redish?
-				33031,//8107 - Golden Bat
-				//33126, Used in speed overdrive
-				33137,//8171 - Classic Alucard
-				33152,//8180 - Bat Color
-				33154,//8182 - Halloween-O'Card
-				33155,//8183 - Normal Blue
-				33172,//8194 - Horrendous Blue and Orange
-				33182,//819E - Full Grey
-				33193,//81A9 - Orange with Yellow Outline
-				33216,//81C0 - Stained Glass Horrendous
-				33266,//81F2 - Feeling Yellow
-				33269,//81F5 - Ice
-				//33274,//81FA- Dark Grey, Used in Hex
-				//33513,//82E9 - Shapeshift: Blue or Purple w/ Yellow Cape
-				//33518,//82EE - Green Slime?
+			//33024, 8100 - Default coloring for reference
+			//33126, Used in speed overdrive
+
+			33026,//8102 - All Black, Blue Outline
+			33030,//8106 - Sunny
+			33137,//8171 - Classic Alucard
+			33152,//8180 - Red Highlight Bat Color
+			33154,//8182 - Halloween-O'Card
+			33155,//8183 - Normal Blue
+			33193,//81A9 - Orange with Yellow Outline
+			33216,//81C0 - Stained Glass Horrendous
+			33266,//81F2 - Dark Yellow, Red Cape
+			33456,//82B0 - Purple as Heck
+			33467,//82BB - PurpleCard w/ Red Cape
+			
+		};
+
+		public static int[] alucardColorsFirstCastle =
+		{
+			33028,//8104 - Redish
+			33031,//8107 - Golden Bat
+			33153,//8181 - Grey + Red
+			33172,//8194 - Horrendous Blue and Orange
+			33173,//8195 - Dark Grey, Blue Cape
+			33183,//819F - Grey
+			33269,//81F5 - Ice
+		};
+
+		public static int[] alucardColorsSecondCastle =
+		{
+			33027,//8103 - All Black, Grey Outline
+			33032,//8108 - Dark Yellow
+			33033,//8109 - Gold Bat Alt.
+			33157,//8185 - Teal + Grey
+			33177,//8199 - Less Horrendous Blue and Orange
+			33182,//819E - Dark Grey
+			33198,//81AE - Feeling Dark Orange
+			
+			//33088,//8140 - Purple Tint Alucard	
+			//33090,//8142 - Grey / Green / Blue	
+			//33092,//8144 - Feeling Orange
+			//33093,//8145 - Feeling Blue
+			//33232,//81D0 - Alt. Vanilla Look
+			//33234,//81D2 -Grey w/ Pink
+			//33265,//81F1 - Feeling Purple
+			//33274,//81FA- Dark Grey, Used in Hex
+			//33281,//8201 - Clay w/ Hidden Red Cape
+			//33281,//8208 - Clay w/ Hidden Red Cape
+			//33320,//8228 - Vanilla w/ Green Cape
+			//33336,//8238 - Hot Dog Cape
+			//33337,//8239 - Feeling Blue
+			//33339,//823B - Feeling Pale Blue
+			//33337,//8239 - Bright Yellow
+			//33357,//824D - Feeling Green
+			//33365,//8255 - Muddy Purple
+			//33383,//8267 - Feeling Gold
+			//33472,//82C0 - Ghost Alucard
+			//33496,//82D7 - Game Boy Color-Card
+			//33513,//82E9 - Shapeshift: Blue or Purple w/ Yellow Cape
+			//33518,//82EE - Green Slime?
 		};
 
 		public static int[] richterColors =
@@ -643,6 +712,7 @@ namespace SotnRandoTools.Constants
 		public static uint Rushdown1Con = 600u;
 		//public static uint RushdownDefense = 60u;
 		public static uint Rushdown2Con = 12000u;
+		public static uint StatOverflowLimit = 50000u;
 		#endregion
 
 		#region Legacy

@@ -92,6 +92,9 @@ namespace SotnRandoTools
 			regenTextBox.Text = toolConfig.Khaos.RegenGainPerSecond.ToString();
 			pandemoniumMinTextBox.Text = toolConfig.Khaos.PandemoniumMinItems.ToString();
 			pandemoniumMaxTextBox.Text = toolConfig.Khaos.PandemoniumMaxItems.ToString();
+
+			nerfUnderwaterCheckbox.Checked = toolConfig.Khaos.NerfUnderwater;
+			enforceMinStatsCheckbox.Checked = toolConfig.Khaos.EnforceMinStats;
 			keepVladRelicsCheckbox.Checked = toolConfig.Khaos.KeepVladRelics;
 			restrictedRelicSwapCheckBox.Checked = toolConfig.Khaos.RestrictedRelicSwap;
 
@@ -345,6 +348,12 @@ namespace SotnRandoTools
 				e.Cancel = true;
 			}
 		}
+
+		private void nerfUnderwaterCheckbox_CheckedChanged(object sender, EventArgs e)
+		{
+			toolConfig.Khaos.NerfUnderwater = nerfUnderwaterCheckbox.Checked;
+		}
+
 
 		private void progressionGivesVladCheckbox_CheckedChanged(object sender, EventArgs e)
 		{

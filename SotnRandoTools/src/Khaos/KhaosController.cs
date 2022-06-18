@@ -215,6 +215,38 @@ namespace SotnRandoTools.Khaos
 		private bool buffIntMPHolyGlasses = false;
 		private bool buffLckNeutralHolyGlasses = false;
 
+		//Debug
+		private bool allowFirstCastleRewind = true;
+		private bool allowSecondCastleRewind = false;
+		private bool isAlucardColorFirstCastle = false;
+		private bool isAlucardColorSecondCastle = false;
+		
+		bool WarpEntrance = false;
+		bool WarpMines = false;
+		bool WarpOuterWall = false;
+		bool WarpKeep = false;
+		bool WarpOlrox = false;
+		bool WarpInvertedEntrance = false;
+		bool WarpInvertedMines = false;
+		bool WarpInvertedOuterWall = false;
+		bool WarpInvertedKeep = false;
+		bool WarpInvertedOlrox = false;
+		bool OuterWallElevator = false;
+		bool EntranceToMarble = false;
+		bool AlchemyElevator = false;
+		bool ChapelStatue = false;
+		bool ColosseumElevator = false;
+		bool ColosseumToChapel = false;
+		bool MarbleBlueDoor = false;
+		bool CavernsSwitchAndBridge = false;
+		bool EntranceToCaverns = false;
+		bool EntranceWarp = false;
+		bool FirstClockRoomDoor = false;
+		bool SecondClockRoomDoor = false;
+		bool FirstDemonButton = false;
+		bool SecondDemonButton = false;
+		bool KeepStairs = false;
+
 		//Buff
 		private uint hpGiven = 0;
 		private uint strGiven = 0;
@@ -263,6 +295,7 @@ namespace SotnRandoTools.Khaos
 		private int pandemoniumLevel = 1;
 		private int regenLevel = 0;
 
+		private float underwaterBaseFactor = 1F;
 		private float underwaterMayhemFactor = 1F;
 		private bool underwaterActive = false;
 		private bool underwaterPaused = false;
@@ -355,7 +388,7 @@ namespace SotnRandoTools.Khaos
 
 		private int richterColor = 33056;
 		private int alucardColor = 33024;
-		private int maxPreviousAlucardColors = 5;
+		private int maxPreviousAlucardColors = 6;
 		List<int> previousAlucardColors = new List<int>();
 		private bool resetColorWhenAlucard = false;
 		#endregion
@@ -1150,31 +1183,79 @@ namespace SotnRandoTools.Khaos
 		{
 			notificationService.AddMessage($"{user} used {KhaosActionNames.LogCurrentRoom}");
 
-			Console.WriteLine($"Debug - Room Co-ordinates: X {sotnApi.GameApi.RoomX}, Y {sotnApi.GameApi.RoomY}; alucardMapX={sotnApi.AlucardApi.MapX}, alucardMapY{sotnApi.AlucardApi.MapY} ");
-			Console.WriteLine($"Debug - Equipment: Left ={sotnApi.AlucardApi.LeftHand}, Right = Weapon: {sotnApi.AlucardApi.RightHand}, Armor = {sotnApi.AlucardApi.Armor}");
+			Console.WriteLine($"Debug - Is2ndCastle:{alucardSecondCastle}; Room Co-ordinates: X{sotnApi.GameApi.RoomX}, Y{sotnApi.GameApi.RoomY}; alucardMapX{sotnApi.AlucardApi.MapX}, alucardMapY{sotnApi.AlucardApi.MapY} ");
+			Console.WriteLine($"Debug - Equipment: Left ={sotnApi.AlucardApi.LeftHand}, Right = {sotnApi.AlucardApi.RightHand}, Armor = {sotnApi.AlucardApi.Armor}");
 		}
 		public void Rewind(string user = "Mayhem")
 		{
+			if (sotnApi.GameApi.IsInMenu() || IsInRoomList(Constants.Khaos.RewindBanRoom) || (!alucardSecondCastle && !allowFirstCastleRewind) || (alucardSecondCastle && !allowSecondCastleRewind))
+			{
+				queuedFastActions.Enqueue(new MethodInvoker(() => Rewind(user)));
+				//queuedActions.Add(new QueuedAction { Name = KhaosActionNames.Rewind, Type = ActionType.Neutral, Invoker = new MethodInvoker(() => Rewind())});
+				return;
+			}
 			notificationService.AddMessage($"{user} used {KhaosActionNames.Rewind}");
+
+			WarpEntrance = sotnApi.AlucardApi.WarpEntrance;
+			WarpMines = sotnApi.AlucardApi.WarpMines;
+			WarpOuterWall = sotnApi.AlucardApi.WarpOuterWall;
+			WarpKeep = sotnApi.AlucardApi.WarpKeep;
+			WarpOlrox = sotnApi.AlucardApi.WarpOlrox;
+			WarpInvertedEntrance = sotnApi.AlucardApi.WarpInvertedEntrance;
+			WarpInvertedMines = sotnApi.AlucardApi.WarpInvertedMines;
+			WarpInvertedOuterWall = sotnApi.AlucardApi.WarpInvertedOuterWall;
+			WarpInvertedKeep = sotnApi.AlucardApi.WarpInvertedKeep;
+			WarpInvertedOlrox = sotnApi.AlucardApi.WarpInvertedOlrox;
+			OuterWallElevator = sotnApi.AlucardApi.OuterWallElevator;
+			EntranceToMarble = sotnApi.AlucardApi.EntranceToMarble;
+			AlchemyElevator = sotnApi.AlucardApi.AlchemyElevator;
+			ChapelStatue = sotnApi.AlucardApi.ChapelStatue;
+			ColosseumElevator = sotnApi.AlucardApi.ColosseumElevator;
+			ColosseumToChapel = sotnApi.AlucardApi.ColosseumToChapel;
+			MarbleBlueDoor = sotnApi.AlucardApi.MarbleBlueDoor;
+			CavernsSwitchAndBridge = sotnApi.AlucardApi.CavernsSwitchAndBridge;
+			EntranceToCaverns = sotnApi.AlucardApi.EntranceToCaverns;
+			EntranceWarp = sotnApi.AlucardApi.EntranceWarp;
+			FirstClockRoomDoor = sotnApi.AlucardApi.FirstClockRoomDoor;
+			SecondClockRoomDoor = sotnApi.AlucardApi.SecondClockRoomDoor;
+			FirstDemonButton = sotnApi.AlucardApi.FirstDemonButton;
+			SecondDemonButton = sotnApi.AlucardApi.SecondDemonButton;
+			KeepStairs = sotnApi.AlucardApi.KeepStairs;
+
+
+
+
+
+
 			rewind.Enable();
 			rewindTimer.Start();
 		}
 		public void MinStats(string user = "Mayhem")
 		{
 			notificationService.AddMessage($"{user} used {KhaosActionNames.MinStats}");
-
-			sotnApi.AlucardApi.MaxtHp = minHP;
-			sotnApi.AlucardApi.MaxtMp = minMP;
 			sotnApi.AlucardApi.MaxtHearts = minHearts;
 
-			sotnApi.AlucardApi.CurrentHp = minHP;
+			HPForMPActivePaused = true;
+
+			sotnApi.AlucardApi.MaxtMp = minMP;
 			sotnApi.AlucardApi.CurrentMp = minMP;
+			storedMaxMp = sotnApi.AlucardApi.MaxtMp;
+			storedMp = sotnApi.AlucardApi.CurrentMp;
+
+			HPForMPActivePaused = false;
+
+			sotnApi.AlucardApi.MaxtHp = minHP + hpGiven;
+
+			sotnApi.AlucardApi.CurrentHp = minHP;
 			sotnApi.AlucardApi.CurrentHearts = minHearts;
 
-			sotnApi.AlucardApi.Str = minStr;
-			sotnApi.AlucardApi.Con = minCon;
-			sotnApi.AlucardApi.Int = minInt;
-			sotnApi.AlucardApi.Lck = minLck;
+			sotnApi.AlucardApi.Str = minStr + strGiven;
+			sotnApi.AlucardApi.Con = minCon + conGiven;
+			sotnApi.AlucardApi.Int = minInt + intGiven;
+			sotnApi.AlucardApi.Lck = minLck + lckGiven;
+
+			sotnApi.AlucardApi.Level = 1;
+			sotnApi.AlucardApi.Experiecne = 0;
 		}
 		public void Library(string user = "Mayhem")
 		{
@@ -1190,6 +1271,33 @@ namespace SotnRandoTools.Khaos
 		{
 			//notificationService.AddMessage($"{KhaosActionNames.Rewind} Off");
 			rewind.Disable();
+
+			sotnApi.AlucardApi.WarpEntrance = WarpEntrance;
+			sotnApi.AlucardApi.WarpMines = WarpMines;
+			sotnApi.AlucardApi.WarpOuterWall = WarpOuterWall;
+			sotnApi.AlucardApi.WarpKeep = WarpKeep;
+			sotnApi.AlucardApi.WarpOlrox = WarpOlrox;
+			sotnApi.AlucardApi.WarpInvertedEntrance = WarpInvertedEntrance;
+			sotnApi.AlucardApi.WarpInvertedMines = WarpInvertedMines;
+			sotnApi.AlucardApi.WarpInvertedOuterWall = WarpInvertedOuterWall;
+			sotnApi.AlucardApi.WarpInvertedKeep = WarpInvertedKeep;
+			sotnApi.AlucardApi.WarpInvertedOlrox = WarpInvertedOlrox;
+			sotnApi.AlucardApi.OuterWallElevator = OuterWallElevator;
+			sotnApi.AlucardApi.EntranceToMarble = EntranceToMarble;
+			sotnApi.AlucardApi.AlchemyElevator = AlchemyElevator;
+			sotnApi.AlucardApi.ChapelStatue = ChapelStatue;
+			sotnApi.AlucardApi.ColosseumElevator = ColosseumElevator;
+			sotnApi.AlucardApi.ColosseumToChapel = ColosseumToChapel;
+			sotnApi.AlucardApi.MarbleBlueDoor = MarbleBlueDoor;
+			sotnApi.AlucardApi.CavernsSwitchAndBridge = CavernsSwitchAndBridge;
+			sotnApi.AlucardApi.EntranceToCaverns = EntranceToCaverns;
+			sotnApi.AlucardApi.EntranceWarp = EntranceWarp;
+			sotnApi.AlucardApi.FirstClockRoomDoor = FirstClockRoomDoor;
+			sotnApi.AlucardApi.SecondClockRoomDoor = SecondClockRoomDoor;
+			sotnApi.AlucardApi.FirstDemonButton = FirstDemonButton;
+			sotnApi.AlucardApi.SecondDemonButton = SecondDemonButton;
+			sotnApi.AlucardApi.KeepStairs = KeepStairs;
+
 			rewindTimer.Stop();
 		}
 
@@ -1300,12 +1408,26 @@ namespace SotnRandoTools.Khaos
 					{
 						sotnApi.AlucardApi.CurrentHp = 1;
 					}
-					sotnApi.AlucardApi.MaxtHp -= subtractHPGiven;
+					if(sotnApi.AlucardApi.MaxtHp > subtractHPGiven)
+					{
+						sotnApi.AlucardApi.MaxtHp -= subtractHPGiven;
+					}
+					else
+					{
+						sotnApi.AlucardApi.MaxtHp = minHP;
+					}
 				}
 			}
 			else
 			{
-				sotnApi.AlucardApi.MaxtHp -= hpGiven;
+				if(sotnApi.AlucardApi.MaxtHp > hpGiven)
+				{
+					sotnApi.AlucardApi.MaxtHp -= hpGiven;
+				}
+				else
+				{
+					sotnApi.AlucardApi.MaxtHp = minHP;
+				}
 				if (sotnApi.AlucardApi.CurrentHp > hpGiven)
 				{
 					sotnApi.AlucardApi.CurrentHp -= hpGiven;
@@ -1318,86 +1440,154 @@ namespace SotnRandoTools.Khaos
 				hpGiven = 0;
 			}
 		}
-		public void takeSTRGiven(uint subtractSTRGiven = 0)
+		public void takeSTRGiven(uint subtractStatGiven = 0)
 		{
-			if (subtractSTRGiven > 0)
+			uint statCheck = sotnApi.AlucardApi.Str;
+			uint minStat = minStr;
+
+			if (subtractStatGiven > 0)
 			{
 				if (givenStatsPaused)
 				{
-					strGivenPaused -= subtractSTRGiven;
+					strGivenPaused -= subtractStatGiven;
 				}
 				else 
 				{
-					sotnApi.AlucardApi.Str -= subtractSTRGiven;
-					strGiven -= subtractSTRGiven;
+					if(statCheck > subtractStatGiven && statCheck - subtractStatGiven > minStat)
+					{
+						sotnApi.AlucardApi.Str = statCheck - subtractStatGiven;
+					}
+					else
+					{
+						sotnApi.AlucardApi.Str = minStat;
+					}
+					strGiven = strGiven > subtractStatGiven ? strGiven - subtractStatGiven : 0;
 				}				
 			}
 			else
 			{
-				sotnApi.AlucardApi.Str -= strGiven;
+				if(statCheck > strGiven && statCheck - strGiven > minStat)
+				{
+					sotnApi.AlucardApi.Str = statCheck - strGiven;
+				}
+				else
+				{
+					sotnApi.AlucardApi.Str = minStat;
+				}
 				strGivenPaused = strGiven;
 				strGiven = 0;
 			}
 		}
-		public void takeCONGiven(uint subtractCONGiven = 0)
+		public void takeCONGiven(uint subtractStatGiven = 0)
 		{
-			if (subtractCONGiven > 0)
+			uint statCheck = sotnApi.AlucardApi.Con;
+			uint minStat = minCon;
+
+			if (subtractStatGiven > 0)
 			{
 				if (givenStatsPaused)
 				{
-					conGivenPaused -= subtractCONGiven;
+					conGivenPaused -= subtractStatGiven;
 				}
 				else
 				{
-					sotnApi.AlucardApi.Con -= subtractCONGiven;
-					conGiven -= subtractCONGiven;
+					if (statCheck > subtractStatGiven && statCheck - subtractStatGiven > minStat)
+					{
+						sotnApi.AlucardApi.Con = statCheck - subtractStatGiven;
+					}
+					else
+					{
+						sotnApi.AlucardApi.Con = minStat;
+					}
+					conGiven = conGiven > subtractStatGiven ? conGiven - subtractStatGiven : 0;
 				}
 			}
 			else
 			{
-				sotnApi.AlucardApi.Con -= conGiven;
+				if (statCheck > conGiven && statCheck - conGiven > minStat)
+				{
+					sotnApi.AlucardApi.Con = statCheck - conGiven;
+				}
+				else
+				{
+					sotnApi.AlucardApi.Con = minStat;
+				}
 				conGivenPaused = conGiven;
 				conGiven = 0;
 			}
 		}
-		public void takeINTGiven(uint subtractINTGiven = 0)
+		public void takeINTGiven(uint subtractStatGiven = 0)
 		{
-			if (subtractINTGiven > 0)
+			uint statCheck = sotnApi.AlucardApi.Int;
+			uint minStat = minInt; 
+
+			if (subtractStatGiven > 0)
 			{
 				if (givenStatsPaused)
 				{
-					intGivenPaused -= subtractINTGiven;
+					intGivenPaused -= subtractStatGiven;
 				}
 				else
 				{
-					sotnApi.AlucardApi.Int -= subtractINTGiven;
-					intGiven -= subtractINTGiven;
+					if (statCheck > subtractStatGiven && statCheck - subtractStatGiven > minStat)
+					{
+						sotnApi.AlucardApi.Int = statCheck - subtractStatGiven;
+					}
+					else
+					{
+						sotnApi.AlucardApi.Int = minStat;
+					}
+					intGiven = intGiven > subtractStatGiven ? intGiven - subtractStatGiven : 0;
 				}
 			}
 			else
 			{
-				sotnApi.AlucardApi.Int -= intGiven;
+				if (statCheck > intGiven && statCheck - intGiven > minStat)
+				{
+					sotnApi.AlucardApi.Int = statCheck - intGiven;
+				}
+				else
+				{
+					sotnApi.AlucardApi.Int = minStat;
+				}
 				intGivenPaused = intGiven;
 				intGiven = 0;
 			}
 		}
-		public void takeLCKGiven(uint subtractLCKGiven = 0)
+		public void takeLCKGiven(uint subtractStatGiven = 0)
 		{
-			if (subtractLCKGiven > 0)
+			uint statCheck = sotnApi.AlucardApi.Lck;
+			uint minStat = minLck;
+
+			if (subtractStatGiven > 0)
 			{
 				if (givenStatsPaused)
 				{
-					lckGivenPaused -= subtractLCKGiven;
+					intGivenPaused -= subtractStatGiven;
 				}
 				else
 				{
-					sotnApi.AlucardApi.Lck -= subtractLCKGiven;
-					lckGiven -= subtractLCKGiven;
+					if (statCheck > subtractStatGiven && statCheck - subtractStatGiven > minStat)
+					{
+						sotnApi.AlucardApi.Lck = statCheck - subtractStatGiven;
+					}
+					else
+					{
+						sotnApi.AlucardApi.Lck = minStat;
+					}
+					lckGiven = lckGiven > subtractStatGiven ? lckGiven - subtractStatGiven : 0;
 				}
 			}
 			else
 			{
-				sotnApi.AlucardApi.Lck -= lckGiven;
+				if (statCheck > lckGiven && statCheck - lckGiven > minStat)
+				{
+					sotnApi.AlucardApi.Lck = statCheck - lckGiven;
+				}
+				else
+				{
+					sotnApi.AlucardApi.Lck = minLck;
+				}
 				lckGivenPaused = lckGiven;
 				lckGiven = 0;
 			}
@@ -1618,7 +1808,7 @@ namespace SotnRandoTools.Khaos
 		{
 			//alucardApi.Armor = (uint)Equipment.Items.IndexOf("Axe Lord armor");
 			//Equipment.Items.IndexOf("Axe Lord armor");
-			//alucardApi.GrantItemByName("Axe Lord armor");
+			sotnApi.AlucardApi.GrantItemByName("Axe Lord armor");
 
 			maxMayhemLevel = checkLockedNeutralLevel(maxMayhemLevel);
 
@@ -1723,12 +1913,45 @@ namespace SotnRandoTools.Khaos
 		{
 			int color;
 
-			if (sotnApi.GameApi.InAlucardMode()) 
+			if (sotnApi.GameApi.InAlucardMode())
 			{
 				color = alucardColor;
-				while (color == alucardColor || previousAlucardColors.Contains(color))
+				bool useFirstCastleColor = false;
+				bool useSecondCastleColor = false;
+				int roll = rng.Next(1, 4);
+				if (roll == 1)
 				{
-					color = Constants.Khaos.alucardColors[rng.Next(0, Constants.Khaos.alucardColors.Length)];
+					if (alucardSecondCastle)
+					{
+						useSecondCastleColor = true;
+					}
+					else
+					{
+						useFirstCastleColor = true;
+					}
+				}
+
+				isAlucardColorFirstCastle = alucardSecondCastle == true ? false : true;
+				isAlucardColorSecondCastle = alucardSecondCastle == true ? true: false;
+
+				if (useFirstCastleColor) {
+					while (color == alucardColor || previousAlucardColors.Contains(color))
+					{
+						color = Constants.Khaos.alucardColorsFirstCastle[rng.Next(0, Constants.Khaos.alucardColorsFirstCastle.Length)];
+					}
+				}
+				else if (useSecondCastleColor){
+					while (color == alucardColor || previousAlucardColors.Contains(color))
+					{
+						color = Constants.Khaos.alucardColorsSecondCastle[rng.Next(0, Constants.Khaos.alucardColorsSecondCastle.Length)];
+					}
+				}
+				else
+				{
+					while (color == alucardColor || previousAlucardColors.Contains(color))
+					{
+						color = Constants.Khaos.alucardColors[rng.Next(0, Constants.Khaos.alucardColors.Length)];
+					}
 				}
 
 				alucardColor = color;
@@ -1857,7 +2080,7 @@ namespace SotnRandoTools.Khaos
 			manaCheat.Disable();
 			sotnApi.AlucardApi.CurrentMp = sotnApi.AlucardApi.MaxtMp;
 			hearts.Disable();
-			if (gasCloudTaken)
+			if (gasCloudTaken && !unarmedActive)
 			{
 				sotnApi.AlucardApi.GrantRelic(Relic.GasCloud, true);
 				gasCloudTaken = false;
@@ -1948,6 +2171,11 @@ namespace SotnRandoTools.Khaos
 					grantedTempFlight = true;
 				}
 			}
+			if (sotnApi.AlucardApi.HasRelic(Relic.GasCloud))
+			{
+				sotnApi.AlucardApi.TakeRelic(Relic.GasCloud);
+				gasCloudTaken = true;
+			}
 			if (grantedTempFlight && !sotnApi.AlucardApi.HasRelic(Relic.GravityBoots))
 			{
 				sotnApi.AlucardApi.GrantRelic(Relic.GravityBoots, true);
@@ -1973,6 +2201,11 @@ namespace SotnRandoTools.Khaos
 			{
 				sotnApi.AlucardApi.GrantRelic(Relic.PowerOfMist, true);
 				powerOfMistTaken = false;
+			}
+			if (gasCloudTaken && (!heartsOnlyActive))
+			{
+				sotnApi.AlucardApi.GrantRelic(Relic.GasCloud, true);
+				gasCloudTaken = false;
 			}
 			if (grantedTempFlight)
 			{
@@ -2333,38 +2566,49 @@ namespace SotnRandoTools.Khaos
 			uint maxHearts = sotnApi.AlucardApi.MaxtHearts;
 			uint currentHearts = sotnApi.AlucardApi.CurrentHearts;
 
-			uint str = sotnApi.AlucardApi.Str;
-			uint con = sotnApi.AlucardApi.Con;
-			uint intel = sotnApi.AlucardApi.Int;
-			uint lck = sotnApi.AlucardApi.Lck;
-
 			uint tempHPRemoved = 0;
 			uint tempStrRemoved = 0;
 			uint tempConRemoved = 0;
 			uint tempIntRemoved = 0;
 			uint tempLckRemoved = 0;
 
-			bool statsPaused = givenStatsPaused;
+			uint str = sotnApi.AlucardApi.Str;
+			uint con = sotnApi.AlucardApi.Con;
+			uint intel = sotnApi.AlucardApi.Int;
+			uint lck = sotnApi.AlucardApi.Lck;
 
+			bool statsPaused = givenStatsPaused;
+			
 			if (!statsPaused)
 			{
-				
-				maxHp -= hpGiven;
-				str -= strGiven;
-				con -= conGiven;
-				intel -= intGiven;
-				lck -= lckGiven;
-
 				tempHPRemoved = hpGiven;
 				tempStrRemoved = strGiven;
 				tempConRemoved = conGiven;
 				tempIntRemoved = intGiven;
 				tempLckRemoved = lckGiven;
+
+				maxHp -= tempHPRemoved;
+				str -= tempStrRemoved;
+				con -= tempConRemoved;
+				intel -= tempIntRemoved;
+				lck -= tempLckRemoved;
 			}
 
-			Console.WriteLine($"Swap Stats givenStats (Pause = {statsPaused}): {hpGiven};{strGiven};{conGiven};{intGiven};{lckGiven};");
+			//Stat sanity check.
+
+			str = str > Constants.Khaos.StatOverflowLimit ? minStr : str;
+			con = con > Constants.Khaos.StatOverflowLimit ? minCon : con;
+			intel = intel > Constants.Khaos.StatOverflowLimit ? minInt : intel;
+			lck = lck > Constants.Khaos.StatOverflowLimit ? minLck : lck;
+
+			Console.WriteLine($"RandomizeStats: initialStats: HP={maxHp};STR={str};CON={con};INT={intel};LCK={lck};");
+			Console.WriteLine($"RandomizeStats: givenStats(Pause = {statsPaused}): HP={hpGiven};STR={strGiven};CON={conGiven};INT={intGiven};LCK={lckGiven};");
+			Console.WriteLine($"RandomizeStats: removedStats: HP={tempHPRemoved};STR={tempStrRemoved};CON={tempConRemoved};INT={tempIntRemoved};LCK={tempLckRemoved};");
 
 			//Zig - Increase stat pool check to compensate for higher minimum stats
+
+
+
 			uint statPool = str + con + intel + lck > 28 ? str + con + intel + lck - 28 : 28;
 			uint offset = (uint) ((rng.NextDouble() / 4) * statPool);
 
@@ -2403,7 +2647,7 @@ namespace SotnRandoTools.Khaos
 			uint ActualStatPool = (uint) 28 + newStr + newCon + newInt + newLck;
 			if (ActualStatPool < CalculatedStatPool)
 			{
-				uint roundingOffset = (uint)(CalculatedStatPool - ActualStatPool);
+				uint roundingOffset = (uint)(CalculatedStatPool > ActualStatPool ? CalculatedStatPool - ActualStatPool : 0);
 				int roundPoolRoll = rng.Next(1, 5);
 				if (roundPoolRoll == 1)
 				{
@@ -2432,7 +2676,7 @@ namespace SotnRandoTools.Khaos
 			uint minPoints = (uint) 110;
 			uint pointsPool = maxHp + maxMana > minPoints ? maxHp + maxMana - minPoints : maxHp + maxMana;
 
-			Console.WriteLine($"{pointsPool}={maxHp}+{maxMana}+/-{minPoints}; {statPool} ={str}+{con}+{intel}+{lck}+/-{offset}; {newStr},{newCon},{newInt},{newLck};");
+			Console.WriteLine($"RandomizeStats: HPMPPool({pointsPool})={maxHp}+{maxMana}+/-{minPoints}; StatPool({statPool})={str}+{con}+{intel}+{lck}+/-{offset}, -28; {newStr},{newCon},{newInt},{newLck};");
 
 			if (maxHp + maxMana < minPoints)
 			{
@@ -2467,7 +2711,7 @@ namespace SotnRandoTools.Khaos
 			}
 			if (heartsLocked)
 			{
-				Console.WriteLine("Skipping Swap Stats Hearts re-roll due to hearts lock.");
+				Console.WriteLine("RandomizeStats: Skipping Hearts re-roll due to hearts lock.");
 			}
 			else
 			{
@@ -3124,7 +3368,7 @@ namespace SotnRandoTools.Khaos
 				{
 					sotnApi.AlucardApi.CurrentHp -= (uint) spentMp;
 					sotnApi.AlucardApi.CurrentMp += (uint) spentMp;
-					Console.WriteLine($"MP Taken");
+					//Console.WriteLine($"MP Taken");
 				}
 				else
 				{
@@ -3156,7 +3400,21 @@ namespace SotnRandoTools.Khaos
 			string name = KhaosActionNames.Underwater;
 
 			bool meterFull = MayhemMeterFull();
+			float underwaterSuperFactor;
 			underwaterMayhemFactor = 1F;
+
+			if (toolConfig.Khaos.NerfUnderwater)
+			{
+				underwaterBaseFactor = 1F;
+				underwaterSuperFactor = toolConfig.Khaos.UnderwaterFactor;
+			}
+			else
+			{
+				underwaterBaseFactor = toolConfig.Khaos.UnderwaterFactor;
+				underwaterMayhemFactor = 1F;
+				underwaterSuperFactor = Constants.Khaos.SuperUnderwaterFactor;
+			}
+			
 			if (meterFull)
 			{
 				name = "Super " + name;
@@ -3164,7 +3422,7 @@ namespace SotnRandoTools.Khaos
 				SpendMayhemMeter();
 			}
 			sotnApi.AlucardApi.GrantRelic(Relic.HolySymbol, true);
-			SetSpeed((float)toolConfig.Khaos.UnderwaterFactor * underwaterMayhemFactor);
+			SetSpeed((float) underwaterBaseFactor * underwaterMayhemFactor);
 			underwaterPhysics.PokeValue(144);
 			underwaterPhysics.Enable();
 
@@ -3272,6 +3530,71 @@ namespace SotnRandoTools.Khaos
 				notificationService.AddMessage(message);	
 			}
 		}
+
+
+		public void Trap(string user = "Mayhem")
+		{
+			int roll = rollCurseCommandCategory();
+
+			switch (roll)
+			{
+				case 1:
+					MinorTrap(user);
+					break;
+				case 2:
+					ModerateTrap(user);
+					break;
+				case 3:
+					MajorTrap();
+					break;
+			}
+		}
+
+		public int rollCurseCommandCategory()
+		{
+			int result = 1;
+			int baseMinorThreshold = 14;
+			int baseModerateThreshold = 5;
+			int baseMajorThreshold = 1;
+
+			int baseAdjustment = (int)(vladRelicsObtained * .5 * toolConfig.Khaos.CurseModifier);
+
+			if (baseAdjustment > 0) 
+			{
+				baseMinorThreshold -= baseAdjustment;
+				baseModerateThreshold = baseModerateThreshold - (baseAdjustment - baseAdjustment / 5);
+				baseMajorThreshold += baseAdjustment / 5;
+			}
+
+			int minorThreshold = baseMinorThreshold;
+			int moderateThreshold = minorThreshold + baseModerateThreshold;
+			int majorThreshold = moderateThreshold + baseMajorThreshold;
+
+			int roll = rng.Next(1, 21);
+			if (roll <= minorThreshold)
+			{
+				result = 1;
+			}
+			else if (roll <= moderateThreshold)
+			{
+				result = 2;
+			}
+			else if (roll <= majorThreshold)
+			{
+				result = 3;
+			}
+
+			if (result == 3)
+			{
+				roll = 10;
+				result = 2;
+			}
+
+			Console.WriteLine($"Rolling Curse Category: Roll={roll},Minor<={minorThreshold},Mod<={moderateThreshold},Major<={majorThreshold};Result={result}");
+			return result;
+		}
+
+
 		public void ModerateTrap(string user = "Mayhem")
 		{
 			List<int> effectNumbers = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8};
@@ -3430,7 +3753,11 @@ namespace SotnRandoTools.Khaos
 				Alert(KhaosActionNames.ModerateTrap);
 		}
 
-		public void Hex(string user = "Mayhem", bool allowMulti = false, bool isSuper = false)
+		public void MajorTrap(string user = "Mayhem")
+		{
+		}
+
+			public void Hex(string user = "Mayhem", bool allowMulti = false, bool isSuper = false)
 		{
 			List<int> effectNumbers = new List<int>() {1, 2, 3, 4};
 			bool meterFull = MayhemMeterFull();
@@ -3533,9 +3860,23 @@ namespace SotnRandoTools.Khaos
 			Alert(KhaosActionNames.Hex);
 		}
 
-		private void UpdateVisualEffect(int color = 33024)
+		private void UpdateVisualEffect(bool isRichterColor = false, int color = 33024)
 		{
-			if (sotnApi.GameApi.InAlucardMode())
+			if (isRichterColor)
+			{
+				if (alucardColor != 33056)
+				{
+					playerPaletteCheat.PokeValue(richterColor);
+					playerPaletteCheat.Enable();
+				}
+				else
+				{
+					playerPaletteCheat.Disable();
+					playerPaletteCheat.PokeValue(33056);
+					playerPaletteCheat.Enable();
+				}
+			}
+			else
 			{
 				if (overdriveOn)
 				{
@@ -3571,20 +3912,6 @@ namespace SotnRandoTools.Khaos
 						playerPaletteCheat.PokeValue(color);
 						playerPaletteCheat.Enable();
 					}
-				}
-			}
-			else 
-			{
-				if (alucardColor != 33056)
-				{
-					playerPaletteCheat.PokeValue(richterColor);
-					playerPaletteCheat.Enable();
-				}
-				else
-				{
-					playerPaletteCheat.Disable();
-					playerPaletteCheat.PokeValue(33056);
-					playerPaletteCheat.Enable();
 				}
 			}
 		}
@@ -3922,7 +4249,7 @@ namespace SotnRandoTools.Khaos
 				sotnApi.AlucardApi.GrantRelic(Relic.SwordCard, true);
 				swordCardTaken = false;
 			}
-			if (gasCloudTaken == true && (!heartsOnlyActive))
+			if (gasCloudTaken == true && (!heartsOnlyActive && !unarmedActive))
 			{
 				sotnApi.AlucardApi.GrantRelic(Relic.GasCloud, true);
 				gasCloudTaken = false;
@@ -4252,7 +4579,7 @@ namespace SotnRandoTools.Khaos
 					}
 				}
 
-				Console.WriteLine($"Alucard position: Map - {sotnApi.AlucardApi.MapX},{sotnApi.AlucardApi.MapY}, AlucardMap - {alucardMapX}, {alucardMapY}; Screen - {sotnApi.AlucardApi.ScreenX},{sotnApi.AlucardApi.ScreenY}; Enemy Position: {ambushEnemies[enemyIndex].Xpos},{ambushEnemies[enemyIndex].Ypos}");
+				Console.WriteLine($"Ambush: Map - X{sotnApi.AlucardApi.MapX},Y{sotnApi.AlucardApi.MapY}, AlucardMap - X{alucardMapX},Y{alucardMapY}; Screen - X{sotnApi.AlucardApi.ScreenX},Y{sotnApi.AlucardApi.ScreenY}; Enemy Position: X{ambushEnemies[enemyIndex].Xpos},Y{ambushEnemies[enemyIndex].Ypos}");
 
 				ambushEnemies[enemyIndex].Palette += (ushort) rng.Next(1, 10);
 				if (!IsInRoomList(Constants.Khaos.ClockRoom))
@@ -4629,11 +4956,17 @@ namespace SotnRandoTools.Khaos
 			}
 			else
 			{
-				newMaxHp = (uint) ((sotnApi.AlucardApi.MaxtHp - hpGiven) * toolConfig.Khaos.StatsDownFactor * enhancedFactor) + hpGiven;
-				newStr = (uint)((sotnApi.AlucardApi.Str - strGiven) * toolConfig.Khaos.StatsDownFactor * enhancedFactor) + strGiven;
-				newCon = (uint)((sotnApi.AlucardApi.Con - conGiven) * toolConfig.Khaos.StatsDownFactor * enhancedFactor) + conGiven;
-				newInt = (uint)((sotnApi.AlucardApi.Int - intGiven) * toolConfig.Khaos.StatsDownFactor * enhancedFactor) + intGiven;
-				newLck = (uint)((sotnApi.AlucardApi.Lck - lckGiven) * toolConfig.Khaos.StatsDownFactor * enhancedFactor) + lckGiven;
+				uint baseHP = sotnApi.AlucardApi.MaxtHp > hpGiven ? sotnApi.AlucardApi.MaxtHp - hpGiven : minHP;
+				uint baseStr = sotnApi.AlucardApi.Str > strGiven ? sotnApi.AlucardApi.Str - strGiven : minStr;
+				uint baseCon = sotnApi.AlucardApi.Con > conGiven ? sotnApi.AlucardApi.Con - conGiven : minCon;
+				uint baseInt = sotnApi.AlucardApi.Int > intGiven ? sotnApi.AlucardApi.Int - intGiven : minInt;
+				uint baseLck = sotnApi.AlucardApi.Lck > lckGiven ? sotnApi.AlucardApi.Lck - lckGiven : minLck;
+
+				newMaxHp = (uint) ((baseHP) * toolConfig.Khaos.StatsDownFactor * enhancedFactor) + hpGiven;
+				newStr = (uint)((baseStr) * toolConfig.Khaos.StatsDownFactor * enhancedFactor) + strGiven;
+				newCon = (uint)((baseCon) * toolConfig.Khaos.StatsDownFactor * enhancedFactor) + conGiven;
+				newInt = (uint)((baseInt) * toolConfig.Khaos.StatsDownFactor * enhancedFactor) + intGiven;
+				newLck = (uint)((baseLck) * toolConfig.Khaos.StatsDownFactor * enhancedFactor) + lckGiven;
 
 				adjustedMinHP += hpGiven;
 				adjustedMinStr += strGiven;
@@ -4974,7 +5307,7 @@ namespace SotnRandoTools.Khaos
 				result = 3;
 			}
 
-			Console.WriteLine($"Rolling Category: Roll={roll},Minor<={minorThreshold},Mod<={moderateThreshold},Major<={majorThreshold},Result<={result}");
+			Console.WriteLine($"Rolling Category: Roll={roll},Minor<={minorThreshold},Mod<={moderateThreshold},Major<={majorThreshold};Result={result}");
 			return result;
 		}
 
@@ -5051,9 +5384,9 @@ namespace SotnRandoTools.Khaos
 			isValidRelic = false;
 			relic = Relic.FireOfBat;
 
-			bool hasSoulOfBat = sotnApi.AlucardApi.HasRelic(Relic.SoulOfBat) ? true : false;
-			bool hasEchoOfBat = sotnApi.AlucardApi.HasRelic(Relic.EchoOfBat) ? true : false;
-			bool hasFireOfBat = sotnApi.AlucardApi.HasRelic(Relic.FireOfBat) ? true : false;
+			bool hasSoulOfBat = (sotnApi.AlucardApi.HasRelic(Relic.SoulOfBat) || soulOfBatTaken) ? true : false;
+			bool hasEchoOfBat = (sotnApi.AlucardApi.HasRelic(Relic.EchoOfBat) || echoOfBatTaken) ? true : false;
+			bool hasFireOfBat = (sotnApi.AlucardApi.HasRelic(Relic.FireOfBat) || fireOfBatTaken) ? true : false;
 
 			if (hasSoulOfBat)
 			{
@@ -5104,11 +5437,11 @@ namespace SotnRandoTools.Khaos
 			isValidRelic = false;
 			relic = Relic.FireOfBat;
 
-			bool hasSoulOfWolf = sotnApi.AlucardApi.HasRelic(Relic.SoulOfWolf) ? true : false;
-			bool hasPowerOfWolf = sotnApi.AlucardApi.HasRelic(Relic.PowerOfWolf) ? true : false;
-			bool hasSkillOfWolf = sotnApi.AlucardApi.HasRelic(Relic.SkillOfWolf) ? true : false;
-			bool hasFormOfMist = sotnApi.AlucardApi.HasRelic(Relic.FormOfMist) ? true : false;
-			bool hasGasCloud = sotnApi.AlucardApi.HasRelic(Relic.GasCloud) ? true : false;
+			bool hasSoulOfWolf = (sotnApi.AlucardApi.HasRelic(Relic.SoulOfWolf) || soulOfWolfTaken) ? true : false;
+			bool hasPowerOfWolf = (sotnApi.AlucardApi.HasRelic(Relic.PowerOfWolf) || powerOfWolfTaken) ? true : false;
+			bool hasSkillOfWolf = (sotnApi.AlucardApi.HasRelic(Relic.SkillOfWolf) || skillOfWolfTaken) ? true : false;
+			bool hasFormOfMist = sotnApi.AlucardApi.HasRelic(Relic.FormOfMist)  ? true : false;
+			bool hasGasCloud = (sotnApi.AlucardApi.HasRelic(Relic.GasCloud) || gasCloudTaken) ? true : false;
 
 			if (hasSoulOfWolf)
 			{
@@ -5149,16 +5482,14 @@ namespace SotnRandoTools.Khaos
 					}
 					relicIndex = rng.Next(0, maxLength);
 				}
-				relic = Constants.Khaos.MinorBoonRelics[relicIndex];
+				relic = Constants.Khaos.ModerateBoonRelics[relicIndex];
 			}
 			Console.WriteLine($"{KhaosActionNames.ModerateRelic} rolled: rel={relic}, isValidRelic={isValidRelic}");
 		}
 		public void MajorRelic(out Relic relic, out bool isValidRelic)
 		{
 			/*
-			Check for Missing Bat Power Ups:
-			If Soul of Bat, no Echo of Bat: Echo of Bat
-			If Soul of Bat, no Fire of Bat: Fire of Bat
+			Give Flight Relic if able
 			*/
 
 			isValidRelic = false;
@@ -5184,7 +5515,7 @@ namespace SotnRandoTools.Khaos
 					}
 					relicIndex = rng.Next(0, maxLength);
 				}
-				relic = Constants.Khaos.MinorBoonRelics[relicIndex];
+				relic = Constants.Khaos.MajorBoonRelics[relicIndex];
 			}
 			Console.WriteLine($"{KhaosActionNames.MajorRelic} rolled: rel={relic}, isValidRelic={isValidRelic}");
 		}
@@ -5194,7 +5525,7 @@ namespace SotnRandoTools.Khaos
 			Check for missing Castle 1 Checks:
 				If Jewel of Open, no Merman Statue: Give Merman
 				If Merman Staute, no Jewel of Open: Give Jewel of Open
-				If no Leap Stone, Gravity Boots, Form of Mist, Power of Mist, OR Soul of Wolf: Soul of Wolf
+				If no Leap Stone, Gravity Boots, Form of Mist, Power of Mist, Soul of Wolf, OR Soul of Bat: Soul of Wolf
 			Check for missing Flight:
 				If Soul of Wolf, no Gravity Boots: Gravity Boots
 				If Leapstone, no Gravity: Give Gravity.
@@ -5223,19 +5554,19 @@ namespace SotnRandoTools.Khaos
 
 			bool hasJewelOfOpen = sotnApi.AlucardApi.HasRelic(Relic.JewelOfOpen) ? true : false;
 			bool hasMermanStatue = sotnApi.AlucardApi.HasRelic(Relic.MermanStatue) ? true : false;
-			bool hasDemonCard = sotnApi.AlucardApi.HasRelic(Relic.DemonCard) ? true : false;
-			bool hasNoseDevilCard = sotnApi.AlucardApi.HasRelic(Relic.NoseDevilCard) ? true : false;
-			bool hasSoulOfWolf = sotnApi.AlucardApi.HasRelic(Relic.SoulOfWolf) ? true : false;
+			bool hasDemonCard = (sotnApi.AlucardApi.HasRelic(Relic.DemonCard)|| demonCardTaken) ? true : false;
+			bool hasNoseDevilCard = (sotnApi.AlucardApi.HasRelic(Relic.NoseDevilCard) || noseDevilCardTaken) ? true : false;
+			bool hasSoulOfWolf = (sotnApi.AlucardApi.HasRelic(Relic.SoulOfWolf) || soulOfWolfTaken) ? true : false;
 			bool hasFormOfMist = sotnApi.AlucardApi.HasRelic(Relic.FormOfMist) ? true : false;
-			bool hasPowerOfMist = sotnApi.AlucardApi.HasRelic(Relic.PowerOfMist) ? true : false;
-			bool hasSoulOfBat = sotnApi.AlucardApi.HasRelic(Relic.SoulOfBat) ? true : false;
+			bool hasPowerOfMist = (sotnApi.AlucardApi.HasRelic(Relic.PowerOfMist) || powerOfMistTaken) ? true : false;
+			bool hasSoulOfBat = (sotnApi.AlucardApi.HasRelic(Relic.SoulOfBat) || soulOfBatTaken) ? true : false;
 			bool hasGravityBoots = sotnApi.AlucardApi.HasRelic(Relic.GravityBoots) ? true : false;
 			bool hasLeapStone = sotnApi.AlucardApi.HasRelic(Relic.LeapStone) ? true : false;
-			bool hasHeartOfVlad = sotnApi.AlucardApi.HasRelic(Relic.SoulOfWolf) ? true : false;
-			bool hasToothOfVlad = sotnApi.AlucardApi.HasRelic(Relic.FormOfMist) ? true : false;
-			bool hasRingOfVlad = sotnApi.AlucardApi.HasRelic(Relic.SoulOfBat) ? true : false;
-			bool hasEyeOfVlad = sotnApi.AlucardApi.HasRelic(Relic.GravityBoots) ? true : false;
-			bool hasRibOfVlad = sotnApi.AlucardApi.HasRelic(Relic.LeapStone) ? true : false;
+			bool hasHeartOfVlad = (sotnApi.AlucardApi.HasRelic(Relic.SoulOfWolf) || heartOfVladTaken) ? true : false;
+			bool hasToothOfVlad = (sotnApi.AlucardApi.HasRelic(Relic.FormOfMist) || toothOfVladTaken) ? true : false;
+			bool hasRingOfVlad = (sotnApi.AlucardApi.HasRelic(Relic.SoulOfBat) || ringOfVladTaken) ? true : false;
+			bool hasEyeOfVlad = (sotnApi.AlucardApi.HasRelic(Relic.GravityBoots) || eyeOfVladTaken) ? true : false;
+			bool hasRibOfVlad = (sotnApi.AlucardApi.HasRelic(Relic.LeapStone) || ribOfVladTaken) ? true : false;
 
 			bool hasHolyGlasses = sotnApi.AlucardApi.HasItemInInventory("Holy glasses") || Equipment.Items[(int) (sotnApi.AlucardApi.Helm + Equipment.HandCount + 1)] == "Holy glasses" ? true : false;
 			bool hasSpikebreaker = sotnApi.AlucardApi.HasItemInInventory("Spike Breaker") || Equipment.Items[(int) (sotnApi.AlucardApi.Armor + Equipment.HandCount + 1)] == "Spike Breaker" ? true : false;
@@ -5256,7 +5587,7 @@ namespace SotnRandoTools.Khaos
 				relic = Relic.JewelOfOpen;
 				isValidRelic = true;
 			}
-			else if (!hasLeapStone && !hasGravityBoots && !hasFormOfMist && !hasPowerOfMist && !hasSoulOfWolf)
+			else if (!hasLeapStone && !hasGravityBoots && !hasFormOfMist && !hasPowerOfMist && !hasSoulOfWolf && !hasSoulOfBat)
 			{
 				relic = Relic.SoulOfWolf;
 				isValidRelic = true;
@@ -5350,19 +5681,19 @@ namespace SotnRandoTools.Khaos
 			relic = Relic.FireOfBat;
 			isValidRelic = false;
 
-			bool hasSoulOfWolf = sotnApi.AlucardApi.HasRelic(Relic.SoulOfWolf) ? true : false;
+			bool hasSoulOfWolf = (sotnApi.AlucardApi.HasRelic(Relic.SoulOfWolf) || soulOfWolfTaken) ? true : false;
 			bool hasFormOfMist = sotnApi.AlucardApi.HasRelic(Relic.FormOfMist) ? true : false;
-			bool hasPowerOfMist = sotnApi.AlucardApi.HasRelic(Relic.PowerOfMist) ? true : false;
+			bool hasPowerOfMist = (sotnApi.AlucardApi.HasRelic(Relic.PowerOfMist) || powerOfMistTaken) ? true : false;
 			bool hasSoulOfBat = sotnApi.AlucardApi.HasRelic(Relic.SoulOfBat) ? true : false;
 			bool hasGravityBoots = sotnApi.AlucardApi.HasRelic(Relic.GravityBoots) ? true : false;
-			bool hasLeapStone = sotnApi.AlucardApi.HasRelic(Relic.LeapStone) ? true : false;
+			bool hasLeapStone = (sotnApi.AlucardApi.HasRelic(Relic.LeapStone)) ? true : false;
 			
-			if(hasSoulOfWolf && !hasGravityBoots)
+			if (hasSoulOfWolf && !hasGravityBoots)
 			{
 				relic = Relic.GravityBoots;
 				isValidRelic = true;
 			}
-			if(hasLeapStone && !hasGravityBoots)
+			else if (hasLeapStone && !hasGravityBoots)
 			{
 				relic = Relic.GravityBoots;
 				isValidRelic = true;
@@ -5442,7 +5773,7 @@ namespace SotnRandoTools.Khaos
 
 			if(hasHolyGlasses)
 			{
-				RandomizeModeratePotion();
+				RandomizeModeratePotion(user);
 			}
 			else
 			{
@@ -6624,6 +6955,7 @@ namespace SotnRandoTools.Khaos
 				sotnApi.AlucardApi.GrantItemByName("Manna prism");
 				sotnApi.AlucardApi.GrantItemByName("Manna prism");
 				sotnApi.AlucardApi.GrantItemByName("Elixir");
+				sotnApi.AlucardApi.GrantItemByName("Elixir");
 				RollRewards(out relic, out categoryRoll, out isValidRelic, out message, isSuper, isStatsOnly);
 				GiveRewards(user, relic, isValidRelic, message);
 				statRoll += categoryRoll;
@@ -6635,10 +6967,15 @@ namespace SotnRandoTools.Khaos
 			if (isSuper)
 			{
 				notificationService.AddMessage($"{user}: 5 Mana prism");
-				notificationService.AddMessage($"{user}: 1 Elixir");
+				notificationService.AddMessage($"{user}: 2 Elixir");
 			}
 
 			statRoll += categoryRoll;
+
+			if (hasHolyGlasses)
+			{
+				statRoll += 2;
+			}
 
 			if (statRoll > 0)
 			{
@@ -6746,7 +7083,39 @@ namespace SotnRandoTools.Khaos
 					accelTime.PokeValue(5);
 				}
 
-				if(sotnApi.GameApi.CanSave())
+				if (sotnApi.GameApi.SecondCastle)
+				{
+					if (isAlucardColorFirstCastle)
+					{
+						UpdatePlayerColor();
+						UpdateVisualEffect();
+					}
+
+					if(!allowSecondCastleRewind && ((sotnApi.GameApi.CanSave() && alucardMapY != 54) || IsInRoomList(Constants.Khaos.LoadingRooms)))
+					{
+						allowSecondCastleRewind = true;
+					}
+						allowFirstCastleRewind = true;
+				}
+				else
+				{
+					if (isAlucardColorSecondCastle)
+					{
+						UpdatePlayerColor();
+						UpdateVisualEffect();
+					}
+					if (allowFirstCastleRewind && IsInRoomList(Constants.Khaos.RewindBanRoom))
+					{
+						allowFirstCastleRewind = false;
+					}
+					else if (!allowFirstCastleRewind && (IsInRoomList(Constants.Khaos.LoadingRooms) || IsInRoomList(Constants.Khaos.RewindUnbanRoom)))
+					{
+						allowFirstCastleRewind = true;
+					}
+					allowSecondCastleRewind = false;
+				}
+
+				if (sotnApi.GameApi.CanSave())
 				{
 					if (!givenStatsPaused) 
 					{
@@ -6851,7 +7220,7 @@ namespace SotnRandoTools.Khaos
 					if (!underwaterPaused && (sotnApi.GameApi.CanWarp() || IsInRoomList(Constants.Khaos.ClockRoom) || IsInRoomList(Constants.Khaos.MistGateRoom) || !sotnApi.AlucardApi.HasControl()))
 					{
 						underwaterPaused = true;
-						underwaterPhysics.PokeValue(5);
+						underwaterPhysics.PokeValue(0);
 						if (IsInRoomList(Constants.Khaos.ClockRoom) || IsInRoomList(Constants.Khaos.MistGateRoom) || !sotnApi.AlucardApi.HasControl())
 						{
 							SetSpeed((float)1);
@@ -6861,8 +7230,12 @@ namespace SotnRandoTools.Khaos
 					{
 						underwaterPaused = false;
 						underwaterPhysics.PokeValue(144);
-						SetSpeed((float) toolConfig.Khaos.UnderwaterFactor * underwaterMayhemFactor);
+						SetSpeed((float) underwaterBaseFactor * underwaterMayhemFactor);
 					}
+				}
+				else if (IsInRoomList(Constants.Khaos.MistGateRoom))
+				{
+					underwaterPhysics.PokeValue(0);
 				}
 
 				bool holyGlassesCheck = false;
@@ -7146,6 +7519,13 @@ namespace SotnRandoTools.Khaos
 						queuedActions.Add(new QueuedAction { Name = "Underwater", LocksSpeed = true, Invoker = new MethodInvoker(() => Underwater(user)) });
 					}
 					break;
+				case "trap":
+					commandAction = toolConfig.Khaos.Actions.Where(a => a.Name == KhaosActionNames.Trap).FirstOrDefault();
+					if (commandAction is not null && ((!AutoMayhemOn && commandAction.Enabled) || (AutoMayhemOn && commandAction.AutoMayhemEnabled)))
+					{
+						queuedFastActions.Enqueue(new MethodInvoker(() => Trap(user)));
+					}
+					break;
 				case "moderatetrap":
 					commandAction = toolConfig.Khaos.Actions.Where(a => a.Name == KhaosActionNames.ModerateTrap).FirstOrDefault();
 					if (commandAction is not null && ((!AutoMayhemOn && commandAction.Enabled) || (AutoMayhemOn && commandAction.AutoMayhemEnabled)))
@@ -7179,6 +7559,13 @@ namespace SotnRandoTools.Khaos
 					if (commandAction is not null && ((!AutoMayhemOn && commandAction.Enabled) || (AutoMayhemOn && commandAction.AutoMayhemEnabled)))
 					{
 						queuedActions.Add(new QueuedAction { Name = "Ambush", LocksSpawning = true, Invoker = new MethodInvoker(() => Ambush(user)) });
+					}
+					break;
+				case "majortrap":
+					commandAction = toolConfig.Khaos.Actions.Where(a => a.Name == KhaosActionNames.MajorTrap).FirstOrDefault();
+					if (commandAction is not null && ((!AutoMayhemOn && commandAction.Enabled) || (AutoMayhemOn && commandAction.AutoMayhemEnabled)))
+					{
+						queuedFastActions.Enqueue(new MethodInvoker(() => MajorTrap(user)));
 					}
 					break;
 				case "toughbosses":
@@ -7634,7 +8021,7 @@ namespace SotnRandoTools.Khaos
 				alucardMapX = sotnApi.AlucardApi.MapX;
 				alucardMapY = sotnApi.AlucardApi.MapY;
 
-				if (sotnApi.GameApi.InAlucardMode() && sotnApi.GameApi.CanMenu() && sotnApi.AlucardApi.CurrentHp > 0 && !sotnApi.GameApi.CanSave() && !IsInRoomList(Constants.Khaos.RichterRooms) && !IsInRoomList(Constants.Khaos.LoadingRooms))
+				if (sotnApi.GameApi.InAlucardMode() && sotnApi.GameApi.CanMenu() && sotnApi.AlucardApi.CurrentHp > 0 && !sotnApi.GameApi.CanSave() && !IsInRoomList(Constants.Khaos.RichterRooms) && !IsInRoomList(Constants.Khaos.LoadingRooms) && !IsInRoomList(Constants.Khaos.ClockRoom) && !IsInRoomList(Constants.Khaos.ShopRoom))
 				{
 					int index = 0;
 					bool actionUnlocked = true;
@@ -7706,7 +8093,7 @@ namespace SotnRandoTools.Khaos
 
 			bool keepRichterRoom = IsInKeepRichterRoom();
 			bool galamothRoom = IsInGalamothRoom();
-			if (sotnApi.GameApi.InAlucardMode() && sotnApi.AlucardApi.HasControl() && sotnApi.AlucardApi.HasHitbox() && sotnApi.GameApi.CanMenu() && sotnApi.AlucardApi.CurrentHp > 0 && !sotnApi.GameApi.CanSave() && !keepRichterRoom && !sotnApi.GameApi.InTransition && !sotnApi.GameApi.IsLoading && !sotnApi.AlucardApi.IsInvincible() && !IsInRoomList(Constants.Khaos.LoadingRooms) && alucardMapX < 99)
+			if (sotnApi.GameApi.InAlucardMode() && sotnApi.AlucardApi.HasControl() && sotnApi.AlucardApi.HasHitbox() && sotnApi.GameApi.CanMenu() && sotnApi.AlucardApi.CurrentHp > 0 && !sotnApi.GameApi.CanSave() && !keepRichterRoom && !sotnApi.GameApi.InTransition && !sotnApi.GameApi.IsLoading && !sotnApi.AlucardApi.IsInvincible() && !IsInRoomList(Constants.Khaos.LoadingRooms) && !IsInRoomList(Constants.Khaos.ClockRoom) && !IsInRoomList(Constants.Khaos.ClockRoom) && !IsInRoomList(Constants.Khaos.ShopRoom) && alucardMapX< 99)
 			{
 				shaftHpSet = false;
 				if (queuedFastActions.Count > 0)
@@ -7822,6 +8209,8 @@ namespace SotnRandoTools.Khaos
 			hitbox.HitboxHeight = 255;
 			hitbox.HitboxWidth = 255;
 			hitbox.AutoToggle = 1;
+
+
 			hitbox.Damage = (ushort) (sotnApi.AlucardApi.Def + 2);
 			hitbox.DamageTypeA = (uint) Entities.Slam;
 			sotnApi.EntityApi.SpawnEntity(hitbox);
@@ -7898,7 +8287,7 @@ namespace SotnRandoTools.Khaos
 			else
 			{
 				UpdatePlayerColor();
-				UpdateVisualEffect();
+				UpdateVisualEffect(true);
 				resetColorWhenAlucard = true;
 			}
 			
@@ -7969,6 +8358,7 @@ namespace SotnRandoTools.Khaos
 				inMainMenu = sotnApi.GameApi.Status == SotnApi.Constants.Values.Game.Status.MainMenu;
 				if (inMainMenu)
 				{
+					//resetColorWhenAlucard = true;
 					GainMayhemMeter((short) toolConfig.Khaos.MeterOnReset);
 					accelTime.PokeValue(5);
 					turboMode.Disable();
@@ -8224,14 +8614,9 @@ namespace SotnRandoTools.Khaos
 				}
 			}
 		}
-		private void CheckExperience()
-		{
-			uint currentExperiecne = sotnApi.AlucardApi.Experiecne;
-			//gainedExperiecne = (int) currentExperiecne - (int) storedExperiecne;
-			//storedExperiecne = currentExperiecne;
-		}
 		private void CheckWingsmashActive()
 		{
+			//uint test = SotnApi.Constants.Values.Alucard.States.Bat;
 			//bool wingsmashActive = sotnApi.AlucardApi.Action == SotnApi.Constants.Values.Alucard.States.Bat;
 			//gainedExperiecne = (int) currentExperiecne - (int) storedExperiecne;
 			//storedExperiecne = currentExperiecne;

@@ -394,6 +394,31 @@ namespace SotnRandoTools
 				khaosControler.Slam();
 			}
 		}
+
+		private void trapButton_Click(object sender, EventArgs e)
+		{
+			if (toolConfig.Khaos.ControlPannelQueueActions)
+			{
+				khaosControler.EnqueueAction(new EventAddAction { Command = "trap", UserName = "Mayhem" });
+			}
+			else
+			{
+				khaosControler.Trap();
+			}
+		}
+
+		private void majorTrapButton_Click(object sender, EventArgs e)
+		{
+			if (toolConfig.Khaos.ControlPannelQueueActions)
+			{
+				khaosControler.EnqueueAction(new EventAddAction { Command = "majortrap", UserName = "Mayhem" });
+			}
+			else
+			{
+				khaosControler.MajorTrap();
+			}
+		}
+
 		private void hexButton_Click(object sender, EventArgs e)
 		{
 			if (toolConfig.Khaos.ControlPannelQueueActions)

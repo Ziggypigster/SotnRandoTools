@@ -287,6 +287,7 @@ namespace SotnRandoTools.Configuration
 		public int NeutralStartLevel { get; set; }
 		public int NeutralMaxLevel { get; set; }
 		public bool AllowNeutralLevelReset { get; set; }
+		public bool NerfUnderwater { get; set; }
 		public bool ProgressionGivesVlad { get; set; }
 		public bool KeepVladRelics { get; set; }
 
@@ -434,10 +435,11 @@ namespace SotnRandoTools.Configuration
 			Actions = new List<Action>
 			{
 				//Debug Commands
-				new Action{Command = "logcurrentroom", Name="Log Current Room", AutoMayhemEnabled = false, Enabled = true, Meter = 4, Type = (int)Khaos.Enums.ActionType.Neutral, Cooldown = new System.TimeSpan(0, 0, 0), StartsOnCooldown = false },
-				new Action{Command = "rewind", Name="Rewind", AutoMayhemEnabled = false, Enabled = true, Meter = 6, Duration = new System.TimeSpan(0, 0, 1), Type = (int)Khaos.Enums.ActionType.Neutral, Cooldown = new System.TimeSpan(0, 6, 0), StartsOnCooldown = true},
-				new Action{Command = "minstats", Name="Min Stats", AutoMayhemEnabled = false, Enabled = true, Meter = 8, Duration = new System.TimeSpan(0, 0, 1), Type = (int)Khaos.Enums.ActionType.Neutral, Cooldown = new System.TimeSpan(0, 10, 0), StartsOnCooldown = false},
-				new Action{Command = "library", Name="Library", AutoMayhemEnabled = false, Enabled = true, Meter = 8, Duration = new System.TimeSpan(0, 0, 7), Type = (int)Khaos.Enums.ActionType.Neutral, Cooldown = new System.TimeSpan(0, 12, 0), StartsOnCooldown = false},
+				new Action{Command = "logcurrentroom", Name="Log Current Room", AutoMayhemEnabled = false, Enabled = true, Meter = 0, Type = (int)Khaos.Enums.ActionType.Neutral, Cooldown = new System.TimeSpan(0, 0, 0), StartsOnCooldown = false },
+				new Action{Command = "rewind", Name="Rewind", AutoMayhemEnabled = false, Enabled = true, Meter = 8, Duration = new System.TimeSpan(0, 0, 1), Type = (int)Khaos.Enums.ActionType.Neutral, Cooldown = new System.TimeSpan(0, 8, 0), StartsOnCooldown = true},
+				new Action{Command = "library", Name="Library", AutoMayhemEnabled = false, Enabled = true, Meter = 10, Duration = new System.TimeSpan(0, 0, 7), Type = (int)Khaos.Enums.ActionType.Neutral, Cooldown = new System.TimeSpan(0, 10, 0), StartsOnCooldown = false},
+				new Action{Command = "minstats", Name="Min Stats", AutoMayhemEnabled = false, Enabled = true, Meter = 12, Duration = new System.TimeSpan(0, 0, 1), Type = (int)Khaos.Enums.ActionType.Neutral, Cooldown = new System.TimeSpan(0, 10, 0), StartsOnCooldown = false},
+
 				//Normal Commands
 				new Action{Command = "merchant", Name="Merchant", AutoMayhemEnabled = true, Enabled = true, Meter = 4, AlertPath = Paths.PainTradeSound, Type = (int)Khaos.Enums.ActionType.Neutral, Cooldown = new System.TimeSpan(0, 0, 0), StartsOnCooldown = false },
 				new Action{Command = "maxmayhem", Name="Max Mayhem", AutoMayhemEnabled = true, Enabled = true, Meter = 0, AlertPath = Paths.MaxMayhemSound, Type = (int)Khaos.Enums.ActionType.Neutral, Cooldown = new System.TimeSpan(0, 2, 0), StartsOnCooldown = true},
@@ -454,9 +456,11 @@ namespace SotnRandoTools.Configuration
 				new Action{Command = "slamjam", Name="Slam Jam", AutoMayhemEnabled = false, Enabled = true, Meter = 3, Duration = new System.TimeSpan(0, 1, 0), AlertPath = Paths.SlamJamSound, Type = (int)Khaos.Enums.ActionType.Curse, Cooldown = new System.TimeSpan(0, 8, 0), StartsOnCooldown = true},
 				new Action{Command = "hpformp", Name="HP for MP", AutoMayhemEnabled = true, Enabled = true, Meter = 4, Duration = new System.TimeSpan(0, 1, 0), AlertPath = Paths.HPForMPSound, Type = (int)Khaos.Enums.ActionType.Curse, Cooldown = new System.TimeSpan(0, 2, 30), StartsOnCooldown = false},
 				new Action{Command = "underwater", Name="Underwater", AutoMayhemEnabled = true, Enabled = true, Meter = 6, Duration = new System.TimeSpan(0, 0, 45), AlertPath = Paths.UnderwaterSound, Type = (int)Khaos.Enums.ActionType.Curse, Cooldown = new System.TimeSpan(0, 2, 30), StartsOnCooldown = false},
+				new Action{Command = "trap", Name="Trap", AutoMayhemEnabled = true, Enabled = true, Meter = 6, AlertPath = Paths.ModerateTrapSound, Type = (int)Khaos.Enums.ActionType.Curse, Cooldown = new System.TimeSpan(0, 0, 0), StartsOnCooldown = false},
 				new Action{Command = "moderatetrap", Name="Moderate Trap", AutoMayhemEnabled = true, Enabled = true, Meter = 6, AlertPath = Paths.ModerateTrapSound, Type = (int)Khaos.Enums.ActionType.Curse, Cooldown = new System.TimeSpan(0, 0, 0), StartsOnCooldown = false},
 				new Action{Command = "hex", Name="Hex", AutoMayhemEnabled = true, Enabled = true, Meter = 8, Duration = new System.TimeSpan(0, 1, 0), AlertPath = Paths.HexSound, Type = (int)Khaos.Enums.ActionType.Curse, Cooldown = new System.TimeSpan(0, 0, 10), StartsOnCooldown = false},
 				new Action{Command = "getjuggled", Name="Get Juggled", AutoMayhemEnabled = true, Enabled = true, Meter = 8, Duration = new System.TimeSpan(0, 1, 0), AlertPath = Paths.GetJuggledSound, Type = (int)Khaos.Enums.ActionType.Curse, Cooldown = new System.TimeSpan(0, 6, 0), StartsOnCooldown = false},
+				new Action{Command = "majortrap", Name="Major Trap", AutoMayhemEnabled = true, Enabled = true, Meter = 8, AlertPath = Paths.ModerateTrapSound, Type = (int)Khaos.Enums.ActionType.Curse, Cooldown = new System.TimeSpan(0, 0, 0), StartsOnCooldown = false},
 				new Action{Command = "ambush", Name="Ambush", AutoMayhemEnabled = true, Enabled = true, Meter = 8, Duration = new System.TimeSpan(0, 1, 15), Interval = new System.TimeSpan(0, 0, 1), AlertPath = Paths.AmbushSound, Type = (int)Khaos.Enums.ActionType.Curse, Cooldown = new System.TimeSpan(0, 5, 10), StartsOnCooldown = false},
 				new Action{Command = "toughbosses", Name="Tough Bosses", AutoMayhemEnabled = true, Enabled = true, Meter = 10, AlertPath = Paths.ToughBossesSound, Type = (int)Khaos.Enums.ActionType.Curse, Cooldown = new System.TimeSpan(0, 4, 0), StartsOnCooldown = true},
 				new Action{Command = "statsdown", Name="Stats Down", AutoMayhemEnabled = true, Enabled = true, Meter = 12, AlertPath = Paths.StatsDownSound, Type = (int)Khaos.Enums.ActionType.Curse, Cooldown = new System.TimeSpan(0, 6, 0), StartsOnCooldown = true},
@@ -468,7 +472,6 @@ namespace SotnRandoTools.Configuration
 				new Action{Command = "minorequipment", Name="Minor Equipment", AutoMayhemEnabled = true, Enabled = true, Meter = 4, AlertPath = Paths.ModerateBoonSound, Type = (int)Khaos.Enums.ActionType.Blessing, Cooldown = new System.TimeSpan(0, 2, 0), StartsOnCooldown = false},
 				new Action{Command = "minoritems", Name="Minor Items", AutoMayhemEnabled = true, Enabled = true, Meter = 4, AlertPath = Paths.ModerateBoonSound, Type = (int)Khaos.Enums.ActionType.Blessing, Cooldown = new System.TimeSpan(0, 1, 30), StartsOnCooldown = false},
 				new Action{Command = "minorstats", Name="Minor Stats", AutoMayhemEnabled = true, Enabled = true, Meter = 4, AlertPath = Paths.ModerateBoonSound, Type = (int)Khaos.Enums.ActionType.Blessing, Cooldown = new System.TimeSpan(0, 1, 0), StartsOnCooldown = false},
-				new Action{Command = "moderateequipment", Name="Moderate Equipment", AutoMayhemEnabled = true, Enabled = true, Meter = 6, AlertPath = Paths.ModerateBoonSound, Type = (int)Khaos.Enums.ActionType.Blessing, Cooldown = new System.TimeSpan(0, 6, 0), StartsOnCooldown = false},
 				new Action{Command = "items", Name="Items", AutoMayhemEnabled = false, Enabled = true, Meter = 6, AlertPath = Paths.ModerateBoonSound, Type = (int)Khaos.Enums.ActionType.Blessing, Cooldown = new System.TimeSpan(0, 6, 0), StartsOnCooldown = true},
 				new Action{Command = "equipment", Name="Equipment", AutoMayhemEnabled = false, Enabled = true, Meter = 6, AlertPath = Paths.ModerateBoonSound, Type = (int)Khaos.Enums.ActionType.Blessing, Cooldown = new System.TimeSpan(0, 6, 0), StartsOnCooldown = false},
 				new Action{Command = "boon", Name="Boon", AutoMayhemEnabled = false, Enabled = true, Meter = 6, AlertPath = Paths.ModerateBoonSound, Type = (int)Khaos.Enums.ActionType.Blessing, Cooldown = new System.TimeSpan(0, 6, 0), StartsOnCooldown = false},
@@ -482,7 +485,6 @@ namespace SotnRandoTools.Configuration
 				new Action{Command = "facetank", Name="Face Tank", AutoMayhemEnabled = true, Enabled = true,  Meter = 8, Duration = new System.TimeSpan(0, 1, 0), AlertPath = Paths.FaceTankSound, Type = (int)Khaos.Enums.ActionType.Blessing, Cooldown = new System.TimeSpan(0, 1, 0), StartsOnCooldown = false},
 				new Action{Command = "extrarange", Name="Extra Range", AutoMayhemEnabled = true, Enabled = true, Meter = 8, Duration = new System.TimeSpan(0, 1, 0), AlertPath = Paths.ExtraRangeSound, Type = (int)Khaos.Enums.ActionType.Blessing, Cooldown = new System.TimeSpan(0, 0, 20), StartsOnCooldown = false},
 				new Action{Command = "lucky", Name="Lucky", AutoMayhemEnabled = true, Enabled = true, Meter = 8, Duration = new System.TimeSpan(0, 1, 0),Type = (int)Khaos.Enums.ActionType.Blessing, Cooldown = new System.TimeSpan(0, 0, 20), StartsOnCooldown = false},
-				new Action{Command = "timestop", Name="Time Stop", AutoMayhemEnabled = true, Enabled = true, Meter = 8, Duration = new System.TimeSpan(0, 1, 0), AlertPath = Paths.TimeStopSound, Type = (int)Khaos.Enums.ActionType.Blessing, Cooldown = new System.TimeSpan(0, 0, 10), StartsOnCooldown = false},
 				new Action{Command = "summoner", Name="Summoner", AutoMayhemEnabled = true, Enabled = true,  Meter = 8, Duration = new System.TimeSpan(0, 1, 15), Interval = new System.TimeSpan(0, 0, 1), AlertPath = Paths.SummonerSound, Type = (int)Khaos.Enums.ActionType.Blessing, Cooldown = new System.TimeSpan(0, 5, 0), StartsOnCooldown = true},
 				new Action{Command = "majorboon", Name="Major Boon", AutoMayhemEnabled = false, Enabled = true, Meter = 10, AlertPath = Paths.MajorBoonSound,Type = (int)Khaos.Enums.ActionType.Blessing, Cooldown = new System.TimeSpan(0, 60, 0), StartsOnCooldown = true},
 				new Action{Command = "majorequipment", Name="Major Equipment", AutoMayhemEnabled = true, Enabled = true, Meter = 10, AlertPath = Paths.MajorBoonSound,Type = (int)Khaos.Enums.ActionType.Blessing, Cooldown = new System.TimeSpan(0, 4, 0), StartsOnCooldown = true},

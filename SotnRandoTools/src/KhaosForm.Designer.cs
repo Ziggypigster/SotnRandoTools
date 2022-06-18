@@ -38,7 +38,6 @@ namespace SotnRandoTools
             this.itemsButton = new System.Windows.Forms.Button();
             this.boonButton = new System.Windows.Forms.Button();
             this.buffButton = new System.Windows.Forms.Button();
-            this.moderateTrapButton = new System.Windows.Forms.Button();
             this.turboModeButton = new System.Windows.Forms.Button();
             this.hexButton = new System.Windows.Forms.Button();
             this.regenButton = new System.Windows.Forms.Button();
@@ -62,9 +61,9 @@ namespace SotnRandoTools
             this.heartsOnlyButton = new System.Windows.Forms.Button();
             this.maxMayhemButton = new System.Windows.Forms.Button();
             this.merchantButton = new System.Windows.Forms.Button();
-            this.minorTrapButton = new System.Windows.Forms.Button();
             this.slamButton = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.minStatsButton = new System.Windows.Forms.Button();
             this.progressionStatsButton = new System.Windows.Forms.Button();
             this.libraryButton = new System.Windows.Forms.Button();
             this.extraRangeButton = new System.Windows.Forms.Button();
@@ -90,7 +89,10 @@ namespace SotnRandoTools
             this.queueRadio = new System.Windows.Forms.RadioButton();
             this.connectButton = new System.Windows.Forms.Button();
             this.autoMayhemButton = new System.Windows.Forms.Button();
-            this.minStatsButton = new System.Windows.Forms.Button();
+            this.moderateTrapButton = new System.Windows.Forms.Button();
+            this.minorTrapButton = new System.Windows.Forms.Button();
+            this.trapButton = new System.Windows.Forms.Button();
+            this.majorTrapButton = new System.Windows.Forms.Button();
             this.khaosTabs.SuspendLayout();
             this.generalTab.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -127,12 +129,12 @@ namespace SotnRandoTools
             // generalTab
             // 
             this.generalTab.BackColor = System.Drawing.Color.Black;
+            this.generalTab.Controls.Add(this.trapButton);
             this.generalTab.Controls.Add(this.porgressionButton);
             this.generalTab.Controls.Add(this.equipmentButton);
             this.generalTab.Controls.Add(this.itemsButton);
             this.generalTab.Controls.Add(this.boonButton);
             this.generalTab.Controls.Add(this.buffButton);
-            this.generalTab.Controls.Add(this.moderateTrapButton);
             this.generalTab.Controls.Add(this.turboModeButton);
             this.generalTab.Controls.Add(this.hexButton);
             this.generalTab.Controls.Add(this.regenButton);
@@ -156,7 +158,6 @@ namespace SotnRandoTools
             this.generalTab.Controls.Add(this.heartsOnlyButton);
             this.generalTab.Controls.Add(this.maxMayhemButton);
             this.generalTab.Controls.Add(this.merchantButton);
-            this.generalTab.Controls.Add(this.minorTrapButton);
             this.generalTab.Controls.Add(this.slamButton);
             this.generalTab.ForeColor = System.Drawing.SystemColors.ControlText;
             this.generalTab.Location = new System.Drawing.Point(4, 22);
@@ -246,22 +247,6 @@ namespace SotnRandoTools
             this.buffButton.UseVisualStyleBackColor = true;
             this.buffButton.Click += new System.EventHandler(this.buffButton_Click);
             // 
-            // moderateTrapButton
-            // 
-            this.moderateTrapButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(21)))), ((int)(((byte)(57)))));
-            this.moderateTrapButton.FlatAppearance.BorderSize = 2;
-            this.moderateTrapButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
-            this.moderateTrapButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
-            this.moderateTrapButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.moderateTrapButton.ForeColor = System.Drawing.Color.White;
-            this.moderateTrapButton.Location = new System.Drawing.Point(141, 146);
-            this.moderateTrapButton.Name = "moderateTrapButton";
-            this.moderateTrapButton.Size = new System.Drawing.Size(134, 26);
-            this.moderateTrapButton.TabIndex = 61;
-            this.moderateTrapButton.Text = "Moderate Trap";
-            this.moderateTrapButton.UseVisualStyleBackColor = true;
-            this.moderateTrapButton.Click += new System.EventHandler(this.moderateTrapButton_Click);
-            // 
             // turboModeButton
             // 
             this.turboModeButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(21)))), ((int)(((byte)(57)))));
@@ -286,7 +271,7 @@ namespace SotnRandoTools
             this.hexButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
             this.hexButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.hexButton.ForeColor = System.Drawing.Color.White;
-            this.hexButton.Location = new System.Drawing.Point(141, 178);
+            this.hexButton.Location = new System.Drawing.Point(140, 146);
             this.hexButton.Name = "hexButton";
             this.hexButton.Size = new System.Drawing.Size(134, 26);
             this.hexButton.TabIndex = 59;
@@ -318,7 +303,7 @@ namespace SotnRandoTools
             this.ambushButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
             this.ambushButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ambushButton.ForeColor = System.Drawing.Color.White;
-            this.ambushButton.Location = new System.Drawing.Point(141, 242);
+            this.ambushButton.Location = new System.Drawing.Point(140, 210);
             this.ambushButton.Name = "ambushButton";
             this.ambushButton.Size = new System.Drawing.Size(134, 26);
             this.ambushButton.TabIndex = 57;
@@ -334,7 +319,7 @@ namespace SotnRandoTools
             this.statsDownButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
             this.statsDownButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.statsDownButton.ForeColor = System.Drawing.Color.White;
-            this.statsDownButton.Location = new System.Drawing.Point(141, 306);
+            this.statsDownButton.Location = new System.Drawing.Point(141, 274);
             this.statsDownButton.Name = "statsDownButton";
             this.statsDownButton.Size = new System.Drawing.Size(134, 26);
             this.statsDownButton.TabIndex = 56;
@@ -350,7 +335,7 @@ namespace SotnRandoTools
             this.summonerButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
             this.summonerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.summonerButton.ForeColor = System.Drawing.Color.White;
-            this.summonerButton.Location = new System.Drawing.Point(281, 242);
+            this.summonerButton.Location = new System.Drawing.Point(279, 242);
             this.summonerButton.Name = "summonerButton";
             this.summonerButton.Size = new System.Drawing.Size(134, 26);
             this.summonerButton.TabIndex = 54;
@@ -446,7 +431,7 @@ namespace SotnRandoTools
             this.confiscateButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
             this.confiscateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.confiscateButton.ForeColor = System.Drawing.Color.White;
-            this.confiscateButton.Location = new System.Drawing.Point(141, 338);
+            this.confiscateButton.Location = new System.Drawing.Point(141, 306);
             this.confiscateButton.Name = "confiscateButton";
             this.confiscateButton.Size = new System.Drawing.Size(134, 26);
             this.confiscateButton.TabIndex = 44;
@@ -462,7 +447,7 @@ namespace SotnRandoTools
             this.toughBossesButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
             this.toughBossesButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.toughBossesButton.ForeColor = System.Drawing.Color.White;
-            this.toughBossesButton.Location = new System.Drawing.Point(141, 274);
+            this.toughBossesButton.Location = new System.Drawing.Point(141, 242);
             this.toughBossesButton.Name = "toughBossesButton";
             this.toughBossesButton.Size = new System.Drawing.Size(134, 26);
             this.toughBossesButton.TabIndex = 43;
@@ -478,7 +463,7 @@ namespace SotnRandoTools
             this.getJuggledButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
             this.getJuggledButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.getJuggledButton.ForeColor = System.Drawing.Color.White;
-            this.getJuggledButton.Location = new System.Drawing.Point(142, 210);
+            this.getJuggledButton.Location = new System.Drawing.Point(140, 178);
             this.getJuggledButton.Name = "getJuggledButton";
             this.getJuggledButton.Size = new System.Drawing.Size(134, 26);
             this.getJuggledButton.TabIndex = 42;
@@ -494,7 +479,7 @@ namespace SotnRandoTools
             this.underwaterButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
             this.underwaterButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.underwaterButton.ForeColor = System.Drawing.Color.White;
-            this.underwaterButton.Location = new System.Drawing.Point(141, 82);
+            this.underwaterButton.Location = new System.Drawing.Point(140, 50);
             this.underwaterButton.Name = "underwaterButton";
             this.underwaterButton.Size = new System.Drawing.Size(134, 26);
             this.underwaterButton.TabIndex = 41;
@@ -510,7 +495,7 @@ namespace SotnRandoTools
             this.hpForMPButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
             this.hpForMPButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.hpForMPButton.ForeColor = System.Drawing.Color.White;
-            this.hpForMPButton.Location = new System.Drawing.Point(141, 50);
+            this.hpForMPButton.Location = new System.Drawing.Point(140, 18);
             this.hpForMPButton.Name = "hpForMPButton";
             this.hpForMPButton.Size = new System.Drawing.Size(134, 26);
             this.hpForMPButton.TabIndex = 40;
@@ -630,22 +615,6 @@ namespace SotnRandoTools
             this.merchantButton.UseVisualStyleBackColor = true;
             this.merchantButton.Click += new System.EventHandler(this.merchantButton_Click);
             // 
-            // minorTrapButton
-            // 
-            this.minorTrapButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(21)))), ((int)(((byte)(57)))));
-            this.minorTrapButton.FlatAppearance.BorderSize = 2;
-            this.minorTrapButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
-            this.minorTrapButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
-            this.minorTrapButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.minorTrapButton.ForeColor = System.Drawing.Color.White;
-            this.minorTrapButton.Location = new System.Drawing.Point(141, 18);
-            this.minorTrapButton.Name = "minorTrapButton";
-            this.minorTrapButton.Size = new System.Drawing.Size(134, 26);
-            this.minorTrapButton.TabIndex = 32;
-            this.minorTrapButton.Text = "Minor Trap";
-            this.minorTrapButton.UseVisualStyleBackColor = true;
-            this.minorTrapButton.Click += new System.EventHandler(this.minorTrapButton_Click);
-            // 
             // slamButton
             // 
             this.slamButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(21)))), ((int)(((byte)(57)))));
@@ -654,7 +623,7 @@ namespace SotnRandoTools
             this.slamButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
             this.slamButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.slamButton.ForeColor = System.Drawing.Color.White;
-            this.slamButton.Location = new System.Drawing.Point(141, 114);
+            this.slamButton.Location = new System.Drawing.Point(140, 82);
             this.slamButton.Name = "slamButton";
             this.slamButton.Size = new System.Drawing.Size(134, 26);
             this.slamButton.TabIndex = 30;
@@ -665,6 +634,9 @@ namespace SotnRandoTools
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.Black;
+            this.tabPage1.Controls.Add(this.majorTrapButton);
+            this.tabPage1.Controls.Add(this.minorTrapButton);
+            this.tabPage1.Controls.Add(this.moderateTrapButton);
             this.tabPage1.Controls.Add(this.minStatsButton);
             this.tabPage1.Controls.Add(this.progressionStatsButton);
             this.tabPage1.Controls.Add(this.libraryButton);
@@ -691,6 +663,22 @@ namespace SotnRandoTools
             this.tabPage1.Size = new System.Drawing.Size(418, 388);
             this.tabPage1.TabIndex = 1;
             this.tabPage1.Text = "Debug";
+            // 
+            // minStatsButton
+            // 
+            this.minStatsButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(21)))), ((int)(((byte)(57)))));
+            this.minStatsButton.FlatAppearance.BorderSize = 2;
+            this.minStatsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
+            this.minStatsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
+            this.minStatsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.minStatsButton.ForeColor = System.Drawing.Color.White;
+            this.minStatsButton.Location = new System.Drawing.Point(3, 83);
+            this.minStatsButton.Name = "minStatsButton";
+            this.minStatsButton.Size = new System.Drawing.Size(134, 26);
+            this.minStatsButton.TabIndex = 84;
+            this.minStatsButton.Text = "Min Stats";
+            this.minStatsButton.UseVisualStyleBackColor = true;
+            this.minStatsButton.Click += new System.EventHandler(this.minStatsButton_Click);
             // 
             // progressionStatsButton
             // 
@@ -1079,21 +1067,69 @@ namespace SotnRandoTools
             this.autoMayhemButton.UseVisualStyleBackColor = true;
             this.autoMayhemButton.Click += new System.EventHandler(this.autoMayhemButton_Click);
             // 
-            // minStatsButton
+            // moderateTrapButton
             // 
-            this.minStatsButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(21)))), ((int)(((byte)(57)))));
-            this.minStatsButton.FlatAppearance.BorderSize = 2;
-            this.minStatsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
-            this.minStatsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
-            this.minStatsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.minStatsButton.ForeColor = System.Drawing.Color.White;
-            this.minStatsButton.Location = new System.Drawing.Point(3, 83);
-            this.minStatsButton.Name = "minStatsButton";
-            this.minStatsButton.Size = new System.Drawing.Size(134, 26);
-            this.minStatsButton.TabIndex = 84;
-            this.minStatsButton.Text = "Min Stats";
-            this.minStatsButton.UseVisualStyleBackColor = true;
-            this.minStatsButton.Click += new System.EventHandler(this.minStatsButton_Click);
+            this.moderateTrapButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(21)))), ((int)(((byte)(57)))));
+            this.moderateTrapButton.FlatAppearance.BorderSize = 2;
+            this.moderateTrapButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
+            this.moderateTrapButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
+            this.moderateTrapButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.moderateTrapButton.ForeColor = System.Drawing.Color.White;
+            this.moderateTrapButton.Location = new System.Drawing.Point(3, 243);
+            this.moderateTrapButton.Name = "moderateTrapButton";
+            this.moderateTrapButton.Size = new System.Drawing.Size(134, 26);
+            this.moderateTrapButton.TabIndex = 85;
+            this.moderateTrapButton.Text = "Moderate Trap";
+            this.moderateTrapButton.UseVisualStyleBackColor = true;
+            this.moderateTrapButton.Click += new System.EventHandler(this.moderateTrapButton_Click);
+            // 
+            // minorTrapButton
+            // 
+            this.minorTrapButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(21)))), ((int)(((byte)(57)))));
+            this.minorTrapButton.FlatAppearance.BorderSize = 2;
+            this.minorTrapButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
+            this.minorTrapButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
+            this.minorTrapButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.minorTrapButton.ForeColor = System.Drawing.Color.White;
+            this.minorTrapButton.Location = new System.Drawing.Point(3, 211);
+            this.minorTrapButton.Name = "minorTrapButton";
+            this.minorTrapButton.Size = new System.Drawing.Size(134, 26);
+            this.minorTrapButton.TabIndex = 86;
+            this.minorTrapButton.Text = "Minor Trap";
+            this.minorTrapButton.UseVisualStyleBackColor = true;
+            this.minorTrapButton.Click += new System.EventHandler(this.minorTrapButton_Click);
+            // 
+            // trapButton
+            // 
+            this.trapButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(21)))), ((int)(((byte)(57)))));
+            this.trapButton.FlatAppearance.BorderSize = 2;
+            this.trapButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
+            this.trapButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
+            this.trapButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.trapButton.ForeColor = System.Drawing.Color.White;
+            this.trapButton.Location = new System.Drawing.Point(140, 114);
+            this.trapButton.Name = "trapButton";
+            this.trapButton.Size = new System.Drawing.Size(134, 26);
+            this.trapButton.TabIndex = 69;
+            this.trapButton.Text = "Trap";
+            this.trapButton.UseVisualStyleBackColor = true;
+            this.trapButton.Click += new System.EventHandler(this.trapButton_Click);
+            // 
+            // majorTrapButton
+            // 
+            this.majorTrapButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(21)))), ((int)(((byte)(57)))));
+            this.majorTrapButton.FlatAppearance.BorderSize = 2;
+            this.majorTrapButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
+            this.majorTrapButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
+            this.majorTrapButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.majorTrapButton.ForeColor = System.Drawing.Color.White;
+            this.majorTrapButton.Location = new System.Drawing.Point(3, 274);
+            this.majorTrapButton.Name = "majorTrapButton";
+            this.majorTrapButton.Size = new System.Drawing.Size(134, 26);
+            this.majorTrapButton.TabIndex = 87;
+            this.majorTrapButton.Text = "Major Trap";
+            this.majorTrapButton.UseVisualStyleBackColor = true;
+            this.majorTrapButton.Click += new System.EventHandler(this.majorTrapButton_Click);
             // 
             // KhaosForm
             // 
@@ -1132,7 +1168,6 @@ namespace SotnRandoTools
 		private System.Windows.Forms.Button slamButton;
 		private System.Windows.Forms.Button maxMayhemButton;
 		private System.Windows.Forms.Button merchantButton;
-		private System.Windows.Forms.Button minorTrapButton;
 		private System.Windows.Forms.Button confiscateButton;
 		private System.Windows.Forms.Button toughBossesButton;
 		private System.Windows.Forms.Button getJuggledButton;
@@ -1159,7 +1194,6 @@ namespace SotnRandoTools
 		private System.Windows.Forms.Button turboModeButton;
 		private System.Windows.Forms.Button connectButton;
 		private System.Windows.Forms.Button autoMayhemButton;
-		private System.Windows.Forms.Button moderateTrapButton;
 		private System.Windows.Forms.TabPage tabPage1;
 		private System.Windows.Forms.Button luckyButton;
 		private System.Windows.Forms.Button spellCasterButton;
@@ -1187,6 +1221,10 @@ namespace SotnRandoTools
 		private System.Windows.Forms.Button libraryButton;
 		private System.Windows.Forms.Button progressionStatsButton;
 		private System.Windows.Forms.Button minStatsButton;
+		private System.Windows.Forms.Button minorTrapButton;
+		private System.Windows.Forms.Button moderateTrapButton;
+		private System.Windows.Forms.Button trapButton;
+		private System.Windows.Forms.Button majorTrapButton;
 	}
 }
 
