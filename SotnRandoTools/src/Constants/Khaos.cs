@@ -202,13 +202,43 @@ namespace SotnRandoTools.Constants
 			new MapLocation{X = 39, Y = 39, SecondCastle = 0}, //Outside Scylla Room
 			new MapLocation{X = 50, Y = 20, SecondCastle = 0}, //Room Outside Librarian
 		};
-		public static List<MapLocation> GalamothRooms = new List<MapLocation>
+
+		public static List<MapLocation> SummonerBanZone = new List<MapLocation>
 		{
-			new MapLocation{X = 44, Y = 12, SecondCastle = 1},
-			new MapLocation{X = 45, Y = 12, SecondCastle = 1},
-			new MapLocation{X = 44, Y = 13, SecondCastle = 1},
-			new MapLocation{X = 45, Y = 13, SecondCastle = 1},
+			new MapLocation{X = 29, Y = 37, SecondCastle = 0},
+			new MapLocation{X = 28, Y = 37, SecondCastle = 0},
+			new MapLocation{X = 27, Y = 37, SecondCastle = 0},
+			new MapLocation{X = 26, Y = 37, SecondCastle = 0},
 		};
+
+		public static List<MapLocation> HolyGlassesZone = new List<MapLocation>
+		{
+			new MapLocation{X = 32, Y = 28, SecondCastle = 0},
+			new MapLocation{X = 32, Y = 29, SecondCastle = 0},
+			new MapLocation{X = 32, Y = 30, SecondCastle = 0},
+			new MapLocation{X = 31, Y = 30, SecondCastle = 0},
+			new MapLocation{X = 31, Y = 31, SecondCastle = 0},
+			new MapLocation{X = 31, Y = 32, SecondCastle = 0},
+			new MapLocation{X = 32, Y = 32, SecondCastle = 0},
+			new MapLocation{X = 33, Y = 32, SecondCastle = 0},
+			new MapLocation{X = 33, Y = 31, SecondCastle = 0},
+			new MapLocation{X = 33, Y = 30, SecondCastle = 0},
+		};
+
+		public static List<MapLocation> OlroxZone = new List<MapLocation>
+		{
+			new MapLocation{X = 24, Y = 16, SecondCastle = 0},
+			new MapLocation{X = 23, Y = 16, SecondCastle = 0},
+			new MapLocation{X = 22, Y = 16, SecondCastle = 0},
+			new MapLocation{X = 21, Y = 16, SecondCastle = 0},
+			new MapLocation{X = 20, Y = 16, SecondCastle = 0},
+			new MapLocation{X = 20, Y = 17, SecondCastle = 0},
+			new MapLocation{X = 19, Y = 17, SecondCastle = 0},
+			new MapLocation{X = 19, Y = 16, SecondCastle = 0},
+			new MapLocation{X = 18, Y = 16, SecondCastle = 0},
+			new MapLocation{X = 17, Y = 16, SecondCastle = 0},
+		};
+
 		public static List<MapLocation> LesserDemonZone = new List<MapLocation>
 		{
 			new MapLocation{X = 45, Y = 20, SecondCastle = 0},
@@ -217,6 +247,29 @@ namespace SotnRandoTools.Constants
 			new MapLocation{X = 48, Y = 20, SecondCastle = 0},
 			new MapLocation{X = 48, Y = 19, SecondCastle = 0},
 			new MapLocation{X = 47, Y = 19, SecondCastle = 0}
+		};
+
+		public static List<MapLocation> AkmodanZone = new List<MapLocation>
+		{
+			new MapLocation{X = 39, Y = 47, SecondCastle = 1},
+			new MapLocation{X = 40, Y = 47, SecondCastle = 1},
+			new MapLocation{X = 41, Y = 47, SecondCastle = 1},
+			new MapLocation{X = 42, Y = 47, SecondCastle = 1},
+			new MapLocation{X = 43, Y = 47, SecondCastle = 1},
+			new MapLocation{X = 43, Y = 46, SecondCastle = 1},
+			new MapLocation{X = 44, Y = 46, SecondCastle = 1},
+			new MapLocation{X = 44, Y = 47, SecondCastle = 1},
+			new MapLocation{X = 45, Y = 47, SecondCastle = 1},
+			new MapLocation{X = 46, Y = 47, SecondCastle = 1},
+			new MapLocation{X = 47, Y = 47, SecondCastle = 1},
+		};
+
+		public static List<MapLocation> GalamothRooms = new List<MapLocation>
+		{
+			new MapLocation{X = 44, Y = 12, SecondCastle = 1},
+			new MapLocation{X = 45, Y = 12, SecondCastle = 1},
+			new MapLocation{X = 44, Y = 13, SecondCastle = 1},
+			new MapLocation{X = 45, Y = 13, SecondCastle = 1},
 		};
 
 		public static List<SearchableActor> AcceptedAmbushEnemies = new List<SearchableActor>
@@ -313,40 +366,40 @@ namespace SotnRandoTools.Constants
 		{
 			new SearchableActor {AiId = 25776 },
 			new SearchableActor {AiId = 25188 },
-			new SearchableActor {AiId = 23212  },
-			new SearchableActor {AiId = 42580  },
-			new SearchableActor {AiId = 4612 },
-			new SearchableActor {AiId = 14308  },
-			new SearchableActor {AiId = 31064  },
+			new SearchableActor {AiId = 23212 },
+			new SearchableActor {AiId = 42580 },
+			new SearchableActor {AiId = 4612  },
+			new SearchableActor {AiId = 14308 },
+			new SearchableActor {AiId = 31064 },
 			new SearchableActor {AiId = 24516 },
 			new SearchableActor {AiId = 26412 },
-			new SearchableActor {AiId = 17852  },
-			new SearchableActor {AiId = 46300  },
+			new SearchableActor {AiId = 17852 },
+			new SearchableActor {AiId = 46300 },
 			new SearchableActor {AiId = 48588 },
-			new SearchableActor {AiId = 30320  },
+			new SearchableActor {AiId = 30320 },
 			new SearchableActor {AiId = 26360 },
-			new SearchableActor {AiId = 48588  },
-			new SearchableActor {AiId = 51080  },
-			new SearchableActor {AiId = 52040  },
+			new SearchableActor {AiId = 48588 },
+			new SearchableActor {AiId = 51080 },
+			new SearchableActor {AiId = 52040 },
 			new SearchableActor {AiId = 54896 },
-			new SearchableActor {AiId = 14964  },
-			new SearchableActor {AiId = 60200  },
+			new SearchableActor {AiId = 14964 },
+			new SearchableActor {AiId = 60200 },
 			new SearchableActor {AiId = 22572 },
 			new SearchableActor {AiId = 49236 },
-			new SearchableActor {AiId = 772  },
+			new SearchableActor {AiId = 772   },
 			new SearchableActor {AiId = 56172 },
 			new SearchableActor {AiId = 64000 },
 			new SearchableActor {AiId = 18916 },
 			new SearchableActor {AiId = 1432  },
 			new SearchableActor {AiId = 59616 },
-			new SearchableActor {AiId = 916  },
+			new SearchableActor {AiId = 916   },
 			new SearchableActor {AiId = 43308 },
 			new SearchableActor {AiId = 50472 },
 			new SearchableActor {AiId = 34488 },
 			new SearchableActor {AiId = 38568 },
-			new SearchableActor {AiId = 16344  },
+			new SearchableActor {AiId = 16344 },
 			new SearchableActor {AiId = 14276 },
-			new SearchableActor {AiId = 12196  },
+			new SearchableActor {AiId = 12196 },
 			new SearchableActor {AiId = 15756 },
 			new SearchableActor {AiId = 18060 },
 			new SearchableActor {AiId = 21864 },
@@ -360,7 +413,7 @@ namespace SotnRandoTools.Constants
 			new SearchableActor {AiId = 33464 },
 			new SearchableActor {AiId = 33204 },
 			new SearchableActor {AiId = 38856 },
-			new SearchableActor {AiId = 8932 },
+			new SearchableActor {AiId = 8932  },
 			new SearchableActor {AiId = 64232 },
 			new SearchableActor {AiId = 22344 },
 			new SearchableActor {AiId = 17300 },
@@ -375,8 +428,8 @@ namespace SotnRandoTools.Constants
 			new SearchableActor {AiId = 43916 },
 			new SearchableActor {AiId = 29328 },
 			new SearchableActor {AiId = 14076 },
-			new SearchableActor {AiId = 2536 },
-			new SearchableActor {AiId = 9876 },
+			new SearchableActor {AiId = 2536  },
+			new SearchableActor {AiId = 9876  },
 			new SearchableActor {AiId = 27132 },
 			new SearchableActor {AiId = 64648 },
 			new SearchableActor {AiId = 33952 },
@@ -668,8 +721,31 @@ namespace SotnRandoTools.Constants
 			33078,// 8136 - Red Richter
 			33079,// 8137 - Black Richter
 			33138,// 8172 - Legend of Richter
+			33177,// 8199 - Yeti Richter
+			33184,// 81A0 - Orange Richter
 			33199,// 81AF - Grey Richter
-			33272,// 81F9 - Zombie Richter
+			33273,// 81F9 - Zombie Richter
+		};
+
+		public static int[] enemyRichterColors =
+		{
+			309,//0235 - Richter Alternate
+			33138,// 8172 - Legend of Richter
+			33199,// 81AF - Grey Richter
+			33273,// 81F9 - Zombie Richter
+			33184,// 81A0 - Orange Richter
+			33056,// 8220 - Default Richter
+			33057,// 8221 - Green Richter
+			33058,// 8222 - Sunburst Richter
+			33060,// 8224 - Monochrome Richter
+			33062,// 8226 - Washed Out Richter
+			33078,// 8236 - Red Richter
+			33079,// 8237 - Black Richter
+			//Enemy Richter Only
+			33030,// 8106 - Sunburst Richter
+			33089,// 8141 - Sunburnt Richter
+			33090,// 8142 - Frozen Richter
+			33138,// 8199 - Yeti Richter
 		};
 
 		public static int RichterRoomMapMinX = 31;
@@ -695,9 +771,12 @@ namespace SotnRandoTools.Constants
 		public static int SpeedQueueIntervalStart = 8;
 		public static uint SuperRegenExtraGain = 2u;
 		public static int BoonItemRetryCount = 15;
+		
+		public static uint AxeArmorStr = 30u;
+		public static uint AxeArmorCon = 100u;
+		public static uint AxeArmorInt = 20u;
+
 		public static float BuffHPMultiplier = 2F;
-
-
 		public static uint BuffStrDarkMetamorphosis = 90;
 		public static uint BuffStr = 10u;
 		public static uint BuffCon = 100u;
@@ -713,6 +792,12 @@ namespace SotnRandoTools.Constants
 		//public static uint RushdownDefense = 60u;
 		public static uint Rushdown2Con = 12000u;
 		public static uint StatOverflowLimit = 50000u;
+
+		public const uint FireBallSpeedLeft = 0xFFFF;
+		public const uint FireBallSpeedRight = 0x0000;
+		public const string FireBallSpeedName = "FireBallSpeed";
+
+
 		#endregion
 
 		#region Legacy
@@ -720,9 +805,15 @@ namespace SotnRandoTools.Constants
 		public static int FastQueueIntervalStart = 8;
 		//public static uint SuperThirstExtraDrain = 2u;
 		public static int HelpItemRetryCount = 15;
+
+		public static readonly SearchableActor SpiritActor = new SearchableActor { Hp = 0, AiId = 39012 };
+		public const uint SpiritPalette = 0x5B;
+		public const uint SpiritLockOn = 2;
+		public const string SpiritLockOnName = "SpiritLockOn";
+
+		public static readonly List<byte> FireballEntityBytes = new List<byte> { 0x00, 0xC0, 0xB2, 0x00, 0x00, 0x00, 0xB3, 0x00, 0x00, 0x80, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x96, 0x00, 0x1A, 0x00, 0xDC, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x10, 0x08, 0x00, 0x00, 0x03, 0x00, 0x02, 0x00, 0x00, 0x00, 0x28, 0x00, 0x00, 0x80, 0x00, 0x00, 0x04, 0x04, 0x00, 0x14, 0x00, 0x00, 0x98, 0x07, 0x0B, 0x80, 0x04, 0x00, 0x01, 0x00, 0x09, 0x00, 0x05, 0x00, 0x08 };
+		public static readonly List<byte> DarkFireballEntityBytes = new List<byte> { 0xE0, 0xBE, 0x7D, 0x00, 0x00, 0x00, 0xAF, 0x00, 0x00, 0x00, 0x00, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x96, 0x00, 0x1B, 0x00, 0x40, 0x78, 0x12, 0x80, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x10, 0x08, 0x00, 0x00, 0x03, 0x00, 0x02, 0x00, 0x00, 0x00, 0x21, 0x00, 0x00, 0x80, 0x00, 0x00, 0x08, 0x08, 0x00, 0x04, 0x00, 0x00, 0xC8, 0x07, 0x0B, 0x80, 0x17, 0x00, 0x01, 0x00, 0x09, 0x00, 0x09, 0x00, 0x08 };
 		#endregion
-
-
 
 		public static uint ShaftKhaosHp = 25;
 		public static uint ShaftMayhemHp = 20;

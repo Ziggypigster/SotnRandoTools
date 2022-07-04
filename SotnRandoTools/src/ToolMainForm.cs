@@ -14,6 +14,16 @@ using SotnRandoTools.Constants;
 using SotnRandoTools.Services;
 using SotnRandoTools.Services.Adapters;
 
+
+using System.ComponentModel;
+using System.Linq;
+using SotnApi.Interfaces;
+using SotnRandoTools.Configuration.Interfaces;
+using SotnRandoTools.Khaos;
+using SotnRandoTools.Khaos.Interfaces;
+using SotnRandoTools.Khaos.Models;
+using SotnRandoTools.Services.Models;
+
 namespace SotnRandoTools
 {
 	[ExternalTool("Symphony of the Night Randomizer Tools", Description = "A collection of tools to enhance the SotN randomizer experience.", LoadAssemblyFiles = new[] { "./SotnRandoTools/SotnApi.dll", "./SotnRandoTools/SimpleTCP.dll", "./SotnRandoTools/WatsonWebsocket.dll" })]
@@ -150,13 +160,18 @@ namespace SotnRandoTools
 			LoadCheats();
 
 			sotnApi = new SotnApi.Main.SotnApi(_maybeMemAPI);
-			//actorApi = new ActorApi(_maybeMemAPI);
 			alucardApi = new AlucardApi(_maybeMemAPI);
 			gameApi = new GameApi(_maybeMemAPI);
 			renderingApi = new RenderingApi(_maybeMemAPI);
 			watchlistService = new WatchlistService(_memoryDomains, _emu?.SystemId, GlobalConfig);
-			//inputService = new InputService(_maybeJoypadApi, alucardApi);
 			inputService = new InputService(_maybeJoypadApi, sotnApi);
+			/*
+			if (khaosSettingsPanel is not null)
+			{
+				khaosSettingsPanel.NotificationService = notificationService;
+			}
+			*/
+
 
 			Console.SetOut(log);
 		}
@@ -179,11 +194,12 @@ namespace SotnRandoTools
 				File.Copy(Paths.CheatsBackupPath, Paths.CheatsPath);
 				this.MainForm.CheatList.Load(_memoryDomains, Paths.CheatsPath, false);
 				this.MainForm.CheatList.DisableAll();
-			}*/			
+			}*/
 
 			if (khaosForm is not null)
 			{
-				khaosForm.AdaptedCheats = new CheatCollectionAdapter(this.MainForm.CheatList);
+				//khaosForm.AdaptedCheats = new CheatCollectionAdapter(this.MainForm.CheatList);
+				khaosForm.AdaptedCheats = new CheatCollectionAdapter(this.MainForm.CheatList, _memoryDomains);
 			}
 		}
 
@@ -259,14 +275,19 @@ namespace SotnRandoTools
 			}
 
 			string logPath = Paths.LogsPath + DateTime.Now.ToString("dd-MM-yy hh-mm-ss") + ".txt";
-			if (!File.Exists(logPath))
+
+
+			if (!toolConfig.Khaos.DisableLogs)
 			{
-				using (StreamWriter w = File.AppendText(logPath))
+				if (!File.Exists(logPath))
 				{
-					w.Write(log.ToString());
+					using (StreamWriter w = File.AppendText(logPath))
+					{
+						w.Write(log.ToString());
+					}
 				}
 			}
-
+			
 			//actorApi = null;
 			//alucardApi = null;
 			//gameApi = null;
@@ -293,6 +314,7 @@ namespace SotnRandoTools
 
 		private void khaosChatLaunch_Click(object sender, EventArgs e)
 		{
+			/*
 			if (khaosForm is not null && sotnApi is not null)
 			{
 				khaosForm.Close();
@@ -303,7 +325,18 @@ namespace SotnRandoTools
 			{
 				khaosForm = new KhaosForm(toolConfig, this.MainForm.CheatList, sotnApi, gameApi, alucardApi, notificationService, inputService);
 				khaosForm.Show();
+			}*/
+			if (sotnApi is not null)
+			{
+				if (khaosForm is not null)
+				{
+					khaosForm.Close();
+					khaosForm.Dispose();
+				}
+				khaosForm = new KhaosForm(toolConfig, this.MainForm.CheatList, sotnApi, gameApi, alucardApi, notificationService, inputService, _memoryDomains);
+				khaosForm.Show();
 			}
+
 		}
 
 		private void multiplayerLaunch_Click(object sender, EventArgs e)

@@ -12,6 +12,7 @@ namespace SotnRandoTools.Coop.Enums
 		WarpSecondCastle,
 		Shortcut,
 		Settings,
-		Location
+		Location,
+		Mayhem
 	}
 }

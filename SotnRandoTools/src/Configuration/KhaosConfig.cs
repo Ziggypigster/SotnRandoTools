@@ -238,6 +238,9 @@ namespace SotnRandoTools.Configuration
 		public bool faerieScrollOn { get; set; }
 		public bool cubeOfZoeOn { get; set; }
 
+		public bool DisableLogs { get; set; }
+		public bool OpenEntranceDoor { get; set; }
+		public bool BoostAxeArmor{ get; set; }
 		public bool BoostFamiliars { get; set; }
 		public bool ContinuousWingsmash { get; set; }
 		public bool DynamicInterval { get; set; }
@@ -291,6 +294,7 @@ namespace SotnRandoTools.Configuration
 		public bool ProgressionGivesVlad { get; set; }
 		public bool KeepVladRelics { get; set; }
 
+		public bool RestrictedItemSwap { get; set; }
 		public bool RestrictedRelicSwap { get; set; }
 
 		public bool EnforceMinStats { get; set; }
@@ -347,11 +351,17 @@ namespace SotnRandoTools.Configuration
 
 			spiritOrbOn = true;
 			faerieScrollOn = true;
-			BoostFamiliars = true;
+			cubeOfZoeOn = false;
 
-			ContinuousWingsmash = false;
 			DynamicInterval = true;
 			RomhackMode = false;
+			DisableLogs = false;
+
+			BoostAxeArmor = true;
+			BoostFamiliars = true;
+			ContinuousWingsmash = false;
+			OpenEntranceDoor = false;
+			
 			#endregion
 
 			#region Auto-Mayhem Tab
@@ -393,6 +403,7 @@ namespace SotnRandoTools.Configuration
 			AllowNeutralLevelReset = true;
 
 			EnforceMinStats = true;
+			RestrictedItemSwap = true;
 			RestrictedRelicSwap = true;
 			KeepVladRelics = true;
 

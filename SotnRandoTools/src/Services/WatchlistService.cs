@@ -26,6 +26,7 @@ namespace SotnRandoTools.Services
 			if (memoryDomains is null) throw new ArgumentNullException(nameof(memoryDomains));
 			if (systemId is null) throw new ArgumentNullException("SystemID");
 			if (systemId == "") throw new ArgumentException($"Parameter {nameof(systemId)} is empty!");
+			
 			this.systemId = systemId;
 			this.memoryDomains = memoryDomains;
 			this.GlobalConfig = GlobalConfig;

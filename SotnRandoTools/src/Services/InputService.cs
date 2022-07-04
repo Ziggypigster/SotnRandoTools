@@ -47,7 +47,21 @@ namespace SotnRandoTools.Services
 			},
 			Activator = null
 		};
+
+		private Input releaseJump = new Input
+		{
+			MotionSequence = new List<Dictionary<string, object>>
+			{
+				new Dictionary<string, object> {[InputKeys.Cross] = true},
+				new Dictionary<string, object> {[InputKeys.Cross] = true},
+				new Dictionary<string, object> {[InputKeys.Cross] = true},
+				new Dictionary<string, object> {[InputKeys.Cross] = false}
+			},
+			Activator = null
+		};
+
 		private bool numashockCore = true;
+		private string crossKey = PlaystationInputKeys.Cross;
 		private string leftKey = PlaystationInputKeys.Left;
 		private string rightKey = PlaystationInputKeys.Right;
 
@@ -108,6 +122,8 @@ namespace SotnRandoTools.Services
 				inputHistory[inputHistory.Count - 1].Add(InputKeys.Forward, Convert.ToBoolean(inputHistory[inputHistory.Count - 1][rightKey]));
 				inputHistory[inputHistory.Count - 1].Add(InputKeys.Back, Convert.ToBoolean(inputHistory[inputHistory.Count - 1][leftKey]));
 			}
+			
+			//inputHistory[inputHistory.Count - 1].Add(InputKeys.Cross, Convert.ToBoolean(inputHistory[inputHistory.Count - 1][crossKey]));
 
 			moveHistory.Add(new Dictionary<string, bool>());
 
@@ -137,6 +153,16 @@ namespace SotnRandoTools.Services
 			{
 				moveHistory[moveHistory.Count - 1].Add(InputKeys.Dash, false);
 			}
+
+			/*
+			if (ReadInput(releaseJump, Globals.InputBufferSizeDash))
+			{
+				moveHistory[moveHistory.Count - 1].Add(InputKeys.ReleaseJump, true);
+			}
+			else
+			{
+				moveHistory[moveHistory.Count - 1].Add(InputKeys.ReleaseJump, false);
+			}*/
 
 			if (moveHistory.Count > 120)
 			{
@@ -178,6 +204,35 @@ namespace SotnRandoTools.Services
 				}
 
 				if (Convert.ToBoolean(inputHistory[inputHistory.Count - 1 - i][buttonKey]) == true)
+				{
+					return true;
+				}
+			}
+			return false;
+		}
+
+		public bool ButtonReleased(string button, int frames)
+		{
+			string buttonKey = button;
+			bool heldButton = false;
+
+			if (!numashockCore)
+			{
+				buttonKey = PlaystationInputKeys.OctoshockKeys[button];
+			}
+
+			for (int i = 0; i < frames; i++)
+			{
+				if (inputHistory.Count < frames)
+				{
+					return false;
+				}
+
+				if (Convert.ToBoolean(inputHistory[inputHistory.Count - 1 - i][buttonKey]) == true)
+				{
+					heldButton = true;
+				}
+				else if (heldButton == true)
 				{
 					return true;
 				}

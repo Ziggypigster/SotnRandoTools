@@ -41,10 +41,13 @@ namespace SotnRandoTools
 			faerieScrollOnCheckbox.Checked = toolConfig.Khaos.faerieScrollOn;
 			cubeOfZoeOnCheckbox.Checked = toolConfig.Khaos.cubeOfZoeOn;
 
+			openEntranceDoorCheckBox.Checked = toolConfig.Khaos.OpenEntranceDoor;
+			boostAxeArmorCheckBox.Checked = toolConfig.Khaos.BoostAxeArmor;
 			boostFamiliarsCheckBox.Checked = toolConfig.Khaos.BoostFamiliars;
 			continuousWingSmashCheckBox.Checked = toolConfig.Khaos.ContinuousWingsmash;
 			dynamicIntervalCheckBox.Checked = toolConfig.Khaos.DynamicInterval;
 			romhackModeCheckBox.Checked = toolConfig.Khaos.RomhackMode;
+			disableLogsCheckBox.Checked = toolConfig.Khaos.DisableLogs;
 
 			//Auto-Mayhem
 			autoMayhemDifficultyComboBox.SelectedIndex = toolConfig.Khaos.autoMayhemDifficulty;
@@ -84,7 +87,7 @@ namespace SotnRandoTools
 			neutralMinLevelTextBox.Text = toolConfig.Khaos.NeutralMinLevel.ToString();
 			neutralStartLevelTextBox.Text = toolConfig.Khaos.NeutralStartLevel.ToString();
 			neutralMaxLevelTextBox.Text = toolConfig.Khaos.NeutralMaxLevel.ToString();
-			allowNeutralLevelResetCheckbox.Checked = toolConfig.Khaos.AllowNeutralLevelReset;
+			allowNeutralLevelResetCheckBox.Checked = toolConfig.Khaos.AllowNeutralLevelReset;
 
 			underwaterTextBox.Text = (toolConfig.Khaos.UnderwaterFactor * 100) + "%";
 			speedTextBox.Text = (toolConfig.Khaos.SpeedFactor * 100) + "%";
@@ -96,6 +99,7 @@ namespace SotnRandoTools
 			nerfUnderwaterCheckbox.Checked = toolConfig.Khaos.NerfUnderwater;
 			enforceMinStatsCheckbox.Checked = toolConfig.Khaos.EnforceMinStats;
 			keepVladRelicsCheckbox.Checked = toolConfig.Khaos.KeepVladRelics;
+			restrictedItemSwapCheckBox.Checked = toolConfig.Khaos.RestrictedItemSwap;
 			restrictedRelicSwapCheckBox.Checked = toolConfig.Khaos.RestrictedRelicSwap;
 
 			//Enemy
@@ -115,6 +119,11 @@ namespace SotnRandoTools
 			superAmbushHPComboBox.SelectedIndex = (int) toolConfig.Khaos.SuperAmbushHPModifier;
 			superAmbushDMGComboBox.SelectedIndex = (int) toolConfig.Khaos.SuperAmbushDMGModifier;
 
+
+			actionsAlertsSource = new();
+			actionsOtherSource = new();
+			actionsAutoSource = new();
+
 			foreach (var action in toolConfig.Khaos.Actions)
 			{
 				actionsAlertsSource.Add(action);
@@ -123,11 +132,12 @@ namespace SotnRandoTools
 			}
 			alertsGridView.AutoGenerateColumns = false;
 			alertsGridView.DataSource = actionsAlertsSource;
+			alertsGridView.CellClick -= AlertsGridView_BrowseClick;
 			alertsGridView.CellClick += AlertsGridView_BrowseClick;
 			actionsGridView.AutoGenerateColumns = false;
 			actionsGridView.DataSource = actionsOtherSource;
 			autoMayhemGridView.AutoGenerateColumns = false;
-			autoMayhemGridView.DataSource = actionsAutoSource;
+			autoMayhemGridView.DataSource = actionsOtherSource;
 		}
 
 		private void AlertsGridView_BrowseClick(object sender, DataGridViewCellEventArgs e)
@@ -221,6 +231,11 @@ namespace SotnRandoTools
 		private void romhackModeCheckBox_CheckedChanged(object sender, EventArgs e)
 		{
 			toolConfig.Khaos.RomhackMode = romhackModeCheckBox.Checked;
+		}
+
+		private void disableLogsCheckBox_CheckedChanged(object sender, EventArgs e)
+		{
+			toolConfig.Khaos.DisableLogs = disableLogsCheckBox.Checked;
 		}
 
 		private void resetToDefaultButton_Click(object sender, EventArgs e)
@@ -347,6 +362,11 @@ namespace SotnRandoTools
 				this.valueToolTip.Active = true;
 				e.Cancel = true;
 			}
+		}
+
+		private void allowNeutralLevelResetCheckBox_CheckedChanged(object sender, EventArgs e)
+		{
+			toolConfig.Khaos.AllowNeutralLevelReset = allowNeutralLevelResetCheckBox.Checked;
 		}
 
 		private void nerfUnderwaterCheckbox_CheckedChanged(object sender, EventArgs e)
@@ -541,13 +561,20 @@ namespace SotnRandoTools
 				e.Cancel = true;
 			}
 		}
-		#endregion
 
-		#region Enemy Tab
+		private void restrictedItemSwapCheckBox_CheckedChange(object sender, EventArgs e)
+		{
+			toolConfig.Khaos.RestrictedItemSwap = restrictedItemSwapCheckBox.Checked;
+		}
+
 		private void restrictedRelicSwapCheckBox_CheckedChange(object sender, EventArgs e)
 		{
 			toolConfig.Khaos.RestrictedRelicSwap = restrictedRelicSwapCheckBox.Checked;
 		}
+
+		#endregion
+
+		#region Enemy Tab
 		private void cloneBossHPComboBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			toolConfig.Khaos.CloneBossHPModifier = cloneBossHPComboBox.SelectedIndex;
@@ -580,7 +607,7 @@ namespace SotnRandoTools
 
 		private void galamothDefNerfCheckBox_CheckChanged(object sender, EventArgs e)
 		{
-			toolConfig.Khaos.GalamothIsRepositioned = galamothDefNerfCheckBox.Checked;
+			toolConfig.Khaos.GalamothDefNerf = galamothDefNerfCheckBox.Checked;
 		}
 
 		private void galamothIsRepositionedCheckBox_CheckChanged(object sender, EventArgs e)
@@ -609,17 +636,28 @@ namespace SotnRandoTools
 		}
 		private void superAmbushHPComboBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			toolConfig.Khaos.AmbushHPModifier = ambushHPComboBox.SelectedIndex;
+			toolConfig.Khaos.SuperAmbushHPModifier = superAmbushHPComboBox.SelectedIndex;
 		}
 		private void superAmbushDMGComboBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			toolConfig.Khaos.AmbushDMGModifier = (uint) ambushDMGComboBox.SelectedIndex;
+			toolConfig.Khaos.SuperAmbushDMGModifier = (uint) superAmbushDMGComboBox.SelectedIndex;
 		}
 		#endregion
 
 		private void blessingComboBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			toolConfig.Khaos.BlessingModifier = blessingComboBox.SelectedIndex;
+		}
+
+		private void openEntranceDoorCheckBox_CheckChanged(object sender, EventArgs e)
+		{
+			toolConfig.Khaos.OpenEntranceDoor = openEntranceDoorCheckBox.Checked;
+		}
+
+
+		private void boostAxeArmorCheckBox_CheckChanged(object sender, EventArgs e)
+		{
+			toolConfig.Khaos.BoostAxeArmor = boostAxeArmorCheckBox.Checked;
 		}
 
 		private void boostFamiliarsCheckBox_CheckChanged(object sender, EventArgs e)
@@ -837,22 +875,6 @@ namespace SotnRandoTools
 		}
 
 		private void autoPerfectMayhemTriggerTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-		{
-			string boxText = autoPerfectMayhemTriggerTextBox.Text.Replace("%", "");
-			int autoRelicThreshold;
-			bool result = Int32.TryParse(boxText, out autoRelicThreshold);
-			if (!result || autoRelicThreshold < 0 || autoRelicThreshold > 10000)
-			{
-				this.autoPerfectMayhemTriggerTextBox.Text = "";
-				this.autoPerfectMayhemTriggerTextBox.BackColor = Color.Red;
-				this.valueToolTip.SetToolTip(autoPerfectMayhemTriggerTextBox, "Invalid value!");
-				this.valueToolTip.ToolTipIcon = ToolTipIcon.Warning;
-				this.valueToolTip.Active = true;
-				e.Cancel = true;
-			}
-		}
-
-		private void autoRelicThresholdTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
 		{
 			string boxText = autoPerfectMayhemTriggerTextBox.Text.Replace("%", "");
 			int autoRelicThreshold;
@@ -1243,6 +1265,7 @@ namespace SotnRandoTools
 
 		private void neutralsMaxTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
 		{
+			
 			int amount;
 			bool result = Int32.TryParse(neutralsMaxTextBox.Text, out amount);
 			if (!result || amount < 0 || amount > 10)
@@ -1291,6 +1314,11 @@ namespace SotnRandoTools
 		}
 
 		private void allowNeutralLevelResetCheckbox_CheckedChanged(object sender, EventArgs e)
+		{
+
+		}
+
+		private void alertsGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
 		{
 
 		}

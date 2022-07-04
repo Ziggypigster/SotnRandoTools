@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using BizHawk.Client.Common;
+using BizHawk.Emulation.Common;
 using SotnApi.Interfaces;
 using SotnRandoTools.Configuration.Interfaces;
 using SotnRandoTools.Khaos;
@@ -34,15 +35,16 @@ namespace SotnRandoTools
 		private bool connected = false;
 
 
-		public KhaosForm(IToolConfig toolConfig, CheatCollection cheats, ISotnApi sotnApi, IGameApi gameApi, IAlucardApi alucardApi, INotificationService notificationService, IInputService inputService)
+		public KhaosForm(IToolConfig toolConfig, CheatCollection cheats, ISotnApi sotnApi, IGameApi gameApi, IAlucardApi alucardApi, INotificationService notificationService, IInputService inputService, IMemoryDomains memoryDomains)
 		{
 			if (toolConfig is null) throw new ArgumentNullException(nameof(toolConfig));
 			if (cheats is null) throw new ArgumentNullException(nameof(cheats));
 			if (toolConfig is null) throw new ArgumentNullException(nameof(toolConfig));
 			if (cheats == null) throw new ArgumentNullException(nameof(cheats));
 			this.toolConfig = toolConfig;
+			if (memoryDomains == null) throw new ArgumentNullException(nameof(memoryDomains));
 
-			adaptedCheats = new CheatCollectionAdapter(cheats);
+			adaptedCheats = new CheatCollectionAdapter(cheats, memoryDomains);
 			khaosControler = new KhaosController(toolConfig, sotnApi, adaptedCheats, notificationService, inputService);
 
 			InitializeComponent();
@@ -153,6 +155,12 @@ namespace SotnRandoTools
 				khaosControler.Rewind();
 			}
 		}
+
+		private void forcedRewindButton_Click(object sender, EventArgs e)
+		{
+			khaosControler.Rewind("Mayhem", false);
+		}
+
 		private void minStatsButton_Click(object sender, EventArgs e)
 		{
 			if (toolConfig.Khaos.ControlPannelQueueActions)
@@ -162,6 +170,18 @@ namespace SotnRandoTools
 			else
 			{
 				khaosControler.MinStats();
+			}
+		}
+
+		private void axeArmorButton_Click(object sender, EventArgs e)
+		{
+			if (toolConfig.Khaos.ControlPannelQueueActions)
+			{
+				khaosControler.EnqueueAction(new EventAddAction { Command = "axearmor", UserName = "Mayhem" });
+			}
+			else
+			{
+				khaosControler.AxeArmor();
 			}
 		}
 
@@ -831,6 +851,6 @@ namespace SotnRandoTools
 			}
 		}
 
-
+		
 	}
 }

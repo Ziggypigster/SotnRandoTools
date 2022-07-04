@@ -4,6 +4,7 @@
 	{
 		#region Mayhem
 		public const string LogCurrentRoom = "Log Current Room";
+		public const string AxeArmor = "Axe Armor";
 		public const string Rewind = "Rewind";
 		public const string Library = "Library";
 		public const string MinStats = "Min Stats";
