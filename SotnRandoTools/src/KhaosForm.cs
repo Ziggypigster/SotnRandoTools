@@ -189,7 +189,8 @@ namespace SotnRandoTools
 		{
 			if (toolConfig.Khaos.ControlPannelQueueActions)
 			{
-				khaosControler.EnqueueAction(new EventAddAction { Command = "logcurrentroom", UserName = "Mayhem" });
+				khaosControler.LogCurrentRoom();
+				//khaosControler.EnqueueAction(new EventAddAction { Command = "logcurrentroom", UserName = "Mayhem" });
 			}
 			else
 			{

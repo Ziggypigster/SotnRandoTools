@@ -108,7 +108,7 @@ namespace SotnRandoTools
 			{
 				string configJson = File.ReadAllText(Paths.ConfigPath);
 				toolConfig = JsonConvert.DeserializeObject<ToolConfig>(configJson,
-					new JsonSerializerSettings { ObjectCreationHandling = ObjectCreationHandling.Replace }) ?? new ToolConfig();
+					new JsonSerializerSettings { ObjectCreationHandling = ObjectCreationHandling.Replace, MissingMemberHandling = MissingMemberHandling.Ignore}) ?? new ToolConfig();
 			}
 			else
 			{

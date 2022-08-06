@@ -240,6 +240,7 @@ namespace SotnRandoTools.Configuration
 
 		public bool DisableLogs { get; set; }
 		public bool OpenEntranceDoor { get; set; }
+		public bool PermaAxeArmor { get; set; }
 		public bool BoostAxeArmor{ get; set; }
 		public bool BoostFamiliars { get; set; }
 		public bool ContinuousWingsmash { get; set; }
@@ -357,6 +358,7 @@ namespace SotnRandoTools.Configuration
 			RomhackMode = false;
 			DisableLogs = false;
 
+			PermaAxeArmor = false;
 			BoostAxeArmor = true;
 			BoostFamiliars = true;
 			ContinuousWingsmash = false;

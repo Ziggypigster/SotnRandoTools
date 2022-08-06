@@ -42,6 +42,7 @@ namespace SotnRandoTools
 			cubeOfZoeOnCheckbox.Checked = toolConfig.Khaos.cubeOfZoeOn;
 
 			openEntranceDoorCheckBox.Checked = toolConfig.Khaos.OpenEntranceDoor;
+			permaAxeArmorCheckBox.Checked = toolConfig.Khaos.PermaAxeArmor;
 			boostAxeArmorCheckBox.Checked = toolConfig.Khaos.BoostAxeArmor;
 			boostFamiliarsCheckBox.Checked = toolConfig.Khaos.BoostFamiliars;
 			continuousWingSmashCheckBox.Checked = toolConfig.Khaos.ContinuousWingsmash;
@@ -654,6 +655,10 @@ namespace SotnRandoTools
 			toolConfig.Khaos.OpenEntranceDoor = openEntranceDoorCheckBox.Checked;
 		}
 
+		private void permaAxeArmorCheckBox_CheckChanged(object sender, EventArgs e)
+		{
+			toolConfig.Khaos.PermaAxeArmor = permaAxeArmorCheckBox.Checked;
+		}
 
 		private void boostAxeArmorCheckBox_CheckChanged(object sender, EventArgs e)
 		{
@@ -677,7 +682,7 @@ namespace SotnRandoTools
 
 		private void cubeOfZoeCheckBox_CheckChanged(object sender, EventArgs e)
 		{
-			toolConfig.Khaos.faerieScrollOn = faerieScrollOnCheckbox.Checked;
+			toolConfig.Khaos.cubeOfZoeOn = cubeOfZoeOnCheckbox.Checked;
 		}
 
 		private void difficultyComboBox_SelectedIndexChanged(object sender, EventArgs e)
