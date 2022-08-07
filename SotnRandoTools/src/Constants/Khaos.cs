@@ -844,11 +844,14 @@ namespace SotnRandoTools.Constants
 		public static int AxeArmorFlightUpSpeed = -200000;
 
 		//Wolf
-		public static int AxeArmorWolfBaseAcceleration = 2250;
-		public static int AxeArmorWolfMaxAcceleration = 3500;
-		public static int AxeArmorWolfMinRunSpeed = 200000;
-		public static int AxeArmorWolfMaxRunSpeed = 370000;
-		public static int AxeArmorWolfMaxDashSpeed = 460000;
+		public static int AxeArmorWolfBaseAcceleration = 4000;
+		public static int AxeArmorWolfMaxAcceleration = 6000;
+		public static int AxeArmorWolfBaseDeacceleration = 2250;
+		public static int AxeArmorWolfMaxDeacceleration = 3500;
+		public static int AxeArmorWolfMinStopSpeed = 140000;
+		public static int AxeArmorWolfMinRunSpeed = 260000;
+		public static int AxeArmorWolfMaxRunSpeed = 380000;
+		public static int AxeArmorWolfMaxDashSpeed = 500000;
 
 
 		//2400,1000,1000
