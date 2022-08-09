@@ -305,7 +305,6 @@ namespace SotnRandoTools.Khaos
 
 		private int axeArmorFrameStart = 0;
 		private int axeArmorFrameDelay = 32;
-		private int itemUsageCooldown = 0;
 		private int facePlantCooldown = 0;
 		private int axeArmorSuperMPRegenCooldown = 0;
 		private int axeArmorHeartsRegenCooldown = 0;
@@ -329,6 +328,8 @@ namespace SotnRandoTools.Khaos
 		private int mistBoostMaxDuration = 10;
 		private int minAirTime = 2;
 
+		private uint storedLeftHand = 0;
+		private uint storedRightHand = 0;
 		private uint storedAxeArmorMaxHearts = 0;
 		private uint storedAxeArmorHearts = 0;
 		private uint storedAxeArmorMaxMP = 0;
@@ -1430,7 +1431,7 @@ namespace SotnRandoTools.Khaos
 						&& (currentActor.AiId != 57040 && currentActor.AiId != 21792) //Library Door, Reverse Coliseum
 						&& (currentActor.AiId != 19652 && currentActor.AiId != 24104) // Outer Wall Hidden Floor, Reverse Outer Wall
 						&& (currentActor.AiId != 11544 && currentActor.AiId != 16712 && currentActor.AiId != 16912) // Reverse Olrox Platform, Olrox Areas 
-						&& (currentActor.AiId != 18816 && currentActor.AiId != 32796) //Cavern Platform, Merman Statue Gate
+						&& (currentActor.AiId != 18816 && currentActor.AiId != 32796 && currentActor.AiId != 7144) //Cavern Platform, Merman Statue Gate
 						)
 					{
 						cheats.AddCheat(currentActor.Address + 86, 0, "Remove Entity", WatchSize.Byte);
@@ -4837,6 +4838,8 @@ namespace SotnRandoTools.Khaos
 			uint currentMp = sotnApi.AlucardApi.CurrentMp;
 
 			hasAxeArmorStoredResources = true;
+			storedLeftHand = sotnApi.AlucardApi.LeftHand;
+			storedRightHand = sotnApi.AlucardApi.RightHand;
 			storedAxeArmorMaxHearts = maxHearts;
 			storedAxeArmorHearts = hearts;
 			storedAxeArmorMaxMP = maxMp;
@@ -4845,6 +4848,8 @@ namespace SotnRandoTools.Khaos
 			sotnApi.AlucardApi.MaxtHearts = 1;
 			sotnApi.AlucardApi.CurrentHearts = 0;
 			sotnApi.AlucardApi.CurrentMp = 0;
+			sotnApi.AlucardApi.RightHand = 0;
+			sotnApi.AlucardApi.LeftHand = 0;
 		}
 		private void AxeArmorReturnResources()
 		{
@@ -4852,12 +4857,20 @@ namespace SotnRandoTools.Khaos
 			sotnApi.AlucardApi.CurrentHearts = storedAxeArmorHearts;
 			sotnApi.AlucardApi.MaxtMp = storedAxeArmorMaxMP;
 			sotnApi.AlucardApi.CurrentMp = storedAxeArmorMP;
+			sotnApi.AlucardApi.RightHand = storedRightHand;
+			sotnApi.AlucardApi.LeftHand = storedLeftHand;
+
 			storedAxeArmorMaxMP = 0;
 			storedAxeArmorMP = 0;
 			storedAxeArmorHearts = 0;
 			storedAxeArmorMaxHearts = 0;
+			storedLeftHand = 0;
+			storedRightHand = 0;
 			hasAxeArmorStoredResources = false;
-			itemUsageCooldown = 3;
+			if (useItemCooldown < 1)
+			{
+				useItemCooldown = 1;
+			}
 		}
 
 		private void AxeArmorReturnRelics()
@@ -9883,7 +9896,7 @@ namespace SotnRandoTools.Khaos
 					if ((inputService.ButtonPressed(PlaystationInputKeys.Up, Globals.UpdateCooldownFrames)
 						|| inputService.ButtonHeld(PlaystationInputKeys.Up))
 						&& !IsInRoomList(Constants.Khaos.ShopRoom)
-						&& !inputService.ButtonPressed(PlaystationInputKeys.Down, Globals.UpdateCooldownFrames)
+						//&& !inputService.ButtonPressed(PlaystationInputKeys.Down, Globals.UpdateCooldownFrames)
 						&& !inputService.ButtonPressed(PlaystationInputKeys.Left, 32)
 						&& !inputService.ButtonPressed(PlaystationInputKeys.Right, 32)
 						&& !inputService.ButtonPressed(PlaystationInputKeys.Square, 32)
@@ -9950,11 +9963,12 @@ namespace SotnRandoTools.Khaos
 					|| inputService.ButtonHeld(PlaystationInputKeys.Down))
 					&& !IsInRoomList(Constants.Khaos.ShopRoom)
 					//&& !sotnApi.GameApi.CanSave()
-					&& !inputService.ButtonPressed(PlaystationInputKeys.Up, Globals.UpdateCooldownFrames)
+					//&& !inputService.ButtonPressed(PlaystationInputKeys.Up, Globals.UpdateCooldownFrames)
 					&& !inputService.ButtonPressed(PlaystationInputKeys.Left, 32)
 					&& !inputService.ButtonPressed(PlaystationInputKeys.Right, 32)
-					&& !inputService.ButtonPressed(PlaystationInputKeys.Cross, 32)
+					&& !inputService.ButtonPressed(PlaystationInputKeys.Square, 32)
 					&& !inputService.ButtonPressed(PlaystationInputKeys.Triangle, 32)
+					&& !inputService.ButtonPressed(PlaystationInputKeys.Cross, 32)
 					&& !inputService.ButtonPressed(PlaystationInputKeys.Circle, 32)
 					&& !inputService.ButtonPressed(PlaystationInputKeys.L1, 32)
 					&& !inputService.ButtonPressed(PlaystationInputKeys.R1, 32)
@@ -9971,7 +9985,7 @@ namespace SotnRandoTools.Khaos
 							{
 								smoothCrouch.Enable();
 							}
-								if (!hasAxeArmorStoredResources)
+							if (!hasAxeArmorStoredResources)
 							{
 								AxeArmorTakeResources();
 							}
@@ -10888,113 +10902,159 @@ namespace SotnRandoTools.Khaos
 
 		private void CheckAxeArmorHeldItems()
 		{
-			bool isValid = false;
+			bool isValidItem = false;
+			bool equippedDuplicator = false;
+			int subWeaponCooldown = 0;
 
-			if (itemUsageCooldown == 0 && !hasAxeArmorStoredResources)
+			if (useItemCooldown == 0 && !sotnApi.GameApi.CanSave())
 			{
-				bool equippedDuplicator = Equipment.Items[(int) (sotnApi.AlucardApi.Accessory1 + Equipment.HandCount + 1)] == "Duplicator" || Equipment.Items[(int) (sotnApi.AlucardApi.Accessory2 + Equipment.HandCount + 1)] == "Duplicator";
+				equippedDuplicator = Equipment.Items[(int) (sotnApi.AlucardApi.Accessory1 + Equipment.HandCount + 1)] == "Duplicator" || Equipment.Items[(int) (sotnApi.AlucardApi.Accessory2 + Equipment.HandCount + 1)] == "Duplicator";
 
 				if (inputService.ButtonPressed(PlaystationInputKeys.Square, Globals.UpdateCooldownFrames))
-				{
-					if (sotnApi.AlucardApi.RightHand == (uint) Equipment.Items.IndexOf("Library card"))
 					{
-						Library("You",true);
-						isValid = true;
-					}
-					else if (sotnApi.AlucardApi.RightHand == (uint) Equipment.Items.IndexOf("Elixir"))
-					{
-						sotnApi.AlucardApi.ActivatePotion(Potion.Elixir);
-						isValid = true;
-					}
-					else if (sotnApi.AlucardApi.RightHand == (uint) Equipment.Items.IndexOf("High potion"))
-					{
-						sotnApi.AlucardApi.ActivatePotion(Potion.HighPotion);
-						isValid = true;
-					}
-					else if (sotnApi.AlucardApi.RightHand == (uint) Equipment.Items.IndexOf("Potion"))
-					{
-						sotnApi.AlucardApi.ActivatePotion(Potion.Potion);
-						isValid = true;
-					}
-					else if (sotnApi.AlucardApi.RightHand == (uint) Equipment.Items.IndexOf("Manna prism"))
-					{
-						sotnApi.AlucardApi.ActivatePotion(Potion.Mannaprism);
-						isValid = true;
-					}
-					else if (sotnApi.AlucardApi.RightHand == (uint) Equipment.Items.IndexOf("Shield potion"))
-					{
-						sotnApi.AlucardApi.ActivatePotion(Potion.ShieldPotion);
-						isValid = true;
-					}
-					else if (sotnApi.AlucardApi.RightHand == (uint) Equipment.Items.IndexOf("Luck potion"))
-					{
-						sotnApi.AlucardApi.ActivatePotion(Potion.LuckPotion);
-						isValid = true;
-					}
-					if (isValid)
-					{
-						if (!equippedDuplicator)
+						if (sotnApi.AlucardApi.RightHand == (uint) Equipment.Items.IndexOf("Library card"))
 						{
-							sotnApi.AlucardApi.RightHand = (uint) Equipment.Items.IndexOf("empty hand");
+							Library("You", true);
+							isValidItem = true;
 						}
-						itemUsageCooldown = 35;
+						else if (sotnApi.AlucardApi.RightHand == (uint) Equipment.Items.IndexOf("Elixir"))
+						{
+							sotnApi.AlucardApi.ActivatePotion(Potion.Elixir);
+							isValidItem = true;
+						}
+						else if (sotnApi.AlucardApi.RightHand == (uint) Equipment.Items.IndexOf("High potion"))
+						{
+							sotnApi.AlucardApi.ActivatePotion(Potion.HighPotion);
+							isValidItem = true;
+						}
+						else if (sotnApi.AlucardApi.RightHand == (uint) Equipment.Items.IndexOf("Potion"))
+						{
+							sotnApi.AlucardApi.ActivatePotion(Potion.Potion);
+							isValidItem = true;
+						}
+						else if (sotnApi.AlucardApi.RightHand == (uint) Equipment.Items.IndexOf("Manna prism"))
+						{
+							sotnApi.AlucardApi.ActivatePotion(Potion.Mannaprism);
+							isValidItem = true;
+						}
+						else if (sotnApi.AlucardApi.RightHand == (uint) Equipment.Items.IndexOf("Shield potion"))
+						{
+							sotnApi.AlucardApi.ActivatePotion(Potion.ShieldPotion);
+							isValidItem = true;
+						}
+						else if (sotnApi.AlucardApi.RightHand == (uint) Equipment.Items.IndexOf("Luck potion"))
+						{
+							sotnApi.AlucardApi.ActivatePotion(Potion.LuckPotion);
+							isValidItem = true;
+						}
+						if (isValidItem == true)
+						{
+							string itemName = "";
+
+							if (hasAxeArmorStoredResources)
+							{
+								itemName = Equipment.Items[(int) (storedRightHand)];
+							}
+							else
+							{
+								itemName = Equipment.Items[(int) (sotnApi.AlucardApi.RightHand)];
+							}
+
+							if (!equippedDuplicator)
+							{
+								if(sotnApi.AlucardApi.HasItemInInventory(itemName))
+								{
+									sotnApi.AlucardApi.TakeOneItemByName(itemName);
+								}
+								else
+								{
+									storedRightHand = 0;
+									sotnApi.AlucardApi.RightHand = (uint) Equipment.Items.IndexOf("empty hand");
+								} 
+							}
+						}
 					}
-				}
 				else if (inputService.ButtonPressed(PlaystationInputKeys.Circle, Globals.UpdateCooldownFrames))
-				{
-					if (sotnApi.AlucardApi.LeftHand == (uint) Equipment.Items.IndexOf("Library card"))
 					{
-						Library("You", true);
-						isValid = true;
-					}
-					else if (sotnApi.AlucardApi.LeftHand == (uint) Equipment.Items.IndexOf("Elixir"))
-					{
-						sotnApi.AlucardApi.ActivatePotion(Potion.Elixir);
-						isValid = true;
-					}
-					else if (sotnApi.AlucardApi.LeftHand == (uint) Equipment.Items.IndexOf("High potion"))
-					{
-						sotnApi.AlucardApi.ActivatePotion(Potion.HighPotion);
-						isValid = true;
-					}
-					else if (sotnApi.AlucardApi.LeftHand == (uint) Equipment.Items.IndexOf("Potion"))
-					{
-						sotnApi.AlucardApi.ActivatePotion(Potion.Potion);
-						isValid = true;
-					}
-					else if (sotnApi.AlucardApi.LeftHand == (uint) Equipment.Items.IndexOf("Manna prism"))
-					{
-						sotnApi.AlucardApi.ActivatePotion(Potion.Mannaprism);
-						isValid = true;
-					}
-					else if (sotnApi.AlucardApi.LeftHand == (uint) Equipment.Items.IndexOf("Shield potion"))
-					{
-						sotnApi.AlucardApi.ActivatePotion(Potion.ShieldPotion);
-						isValid = true;
-					}
-					else if (sotnApi.AlucardApi.LeftHand == (uint) Equipment.Items.IndexOf("Luck potion"))
-					{
-						sotnApi.AlucardApi.ActivatePotion(Potion.LuckPotion);
-						isValid = true;
-					}
-					if (isValid)
-					{
-						if (!equippedDuplicator)
+						if (sotnApi.AlucardApi.LeftHand == (uint) Equipment.Items.IndexOf("Library card"))
 						{
-							sotnApi.AlucardApi.LeftHand = (uint) Equipment.Items.IndexOf("empty hand");
+							Library("You", true);
+							isValidItem = true;
 						}
-						itemUsageCooldown = 35;
+						else if (sotnApi.AlucardApi.LeftHand == (uint) Equipment.Items.IndexOf("Elixir"))
+						{
+							sotnApi.AlucardApi.ActivatePotion(Potion.Elixir);
+							isValidItem = true;
+						}
+						else if (sotnApi.AlucardApi.LeftHand == (uint) Equipment.Items.IndexOf("High potion"))
+						{
+							sotnApi.AlucardApi.ActivatePotion(Potion.HighPotion);
+							isValidItem = true;
+						}
+						else if (sotnApi.AlucardApi.LeftHand == (uint) Equipment.Items.IndexOf("Potion"))
+						{
+							sotnApi.AlucardApi.ActivatePotion(Potion.Potion);
+							isValidItem = true;
+						}
+						else if (sotnApi.AlucardApi.LeftHand == (uint) Equipment.Items.IndexOf("Manna prism"))
+						{
+							sotnApi.AlucardApi.ActivatePotion(Potion.Mannaprism);
+							isValidItem = true;
+						}
+						else if (sotnApi.AlucardApi.LeftHand == (uint) Equipment.Items.IndexOf("Shield potion"))
+						{
+							sotnApi.AlucardApi.ActivatePotion(Potion.ShieldPotion);
+							isValidItem = true;
+						}
+						else if (sotnApi.AlucardApi.LeftHand == (uint) Equipment.Items.IndexOf("Luck potion"))
+						{
+							sotnApi.AlucardApi.ActivatePotion(Potion.LuckPotion);
+							isValidItem = true;
+						}
+						if (isValidItem == true)
+						{
+							subWeaponCooldown = 40;
+							string itemName = "";
+
+							if (hasAxeArmorStoredResources)
+							{
+								itemName = Equipment.Items[(int) (storedLeftHand)];
+							}
+							else
+							{
+								itemName = Equipment.Items[(int) (sotnApi.AlucardApi.LeftHand)];
+							}
+
+							if (!equippedDuplicator)
+							{
+								if (sotnApi.AlucardApi.HasItemInInventory(itemName))
+								{
+									sotnApi.AlucardApi.TakeOneItemByName(itemName);
+								}
+								else
+								{
+									storedLeftHand = 0;
+									sotnApi.AlucardApi.LeftHand = (uint) Equipment.Items.IndexOf("empty hand");
+								}
+							}
+						}
 					}
+			}
+			else if (useItemCooldown > 0)
+			{
+				useItemCooldown -= 1;
+			}
+			if (isValidItem) 
+			{
+				if (equippedDuplicator)
+				{
+					useItemCooldown = 160;
 				}
-			}
-			else if (itemUsageCooldown > 0)
-			{
-				--itemUsageCooldown;
-			}
-			if (isValid) 
-			{
-				minHoldUpTime = 35;
-				minHoldDownTime = 35;
+				else
+				{
+					useItemCooldown = 40;
+				}
+				heartGlobalCooldown += subWeaponCooldown; // add to subweapon global cooldown
 			}
 		}
 
