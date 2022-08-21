@@ -64,6 +64,7 @@ namespace SotnRandoTools
             this.merchantButton = new System.Windows.Forms.Button();
             this.slamButton = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.axeArmorButton = new System.Windows.Forms.Button();
             this.forcedRewindButton = new System.Windows.Forms.Button();
             this.majorTrapButton = new System.Windows.Forms.Button();
             this.minorTrapButton = new System.Windows.Forms.Button();
@@ -94,7 +95,6 @@ namespace SotnRandoTools
             this.queueRadio = new System.Windows.Forms.RadioButton();
             this.connectButton = new System.Windows.Forms.Button();
             this.autoMayhemButton = new System.Windows.Forms.Button();
-            this.axeArmorButton = new System.Windows.Forms.Button();
             this.khaosTabs.SuspendLayout();
             this.generalTab.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -684,6 +684,22 @@ namespace SotnRandoTools
             this.tabPage1.TabIndex = 1;
             this.tabPage1.Text = "Debug";
             // 
+            // axeArmorButton
+            // 
+            this.axeArmorButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(21)))), ((int)(((byte)(57)))));
+            this.axeArmorButton.FlatAppearance.BorderSize = 2;
+            this.axeArmorButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
+            this.axeArmorButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
+            this.axeArmorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.axeArmorButton.ForeColor = System.Drawing.Color.White;
+            this.axeArmorButton.Location = new System.Drawing.Point(3, 115);
+            this.axeArmorButton.Name = "axeArmorButton";
+            this.axeArmorButton.Size = new System.Drawing.Size(134, 26);
+            this.axeArmorButton.TabIndex = 89;
+            this.axeArmorButton.Text = "Axe Armor";
+            this.axeArmorButton.UseVisualStyleBackColor = true;
+            this.axeArmorButton.Click += new System.EventHandler(this.axeArmorButton_Click);
+            // 
             // forcedRewindButton
             // 
             this.forcedRewindButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(21)))), ((int)(((byte)(57)))));
@@ -1118,6 +1134,7 @@ namespace SotnRandoTools
             this.queueRadio.TabStop = true;
             this.queueRadio.Text = "Queue actions";
             this.queueRadio.UseVisualStyleBackColor = true;
+            this.queueRadio.CheckedChanged += new System.EventHandler(this.queueRadio_CheckedChanged);
             // 
             // connectButton
             // 
@@ -1150,22 +1167,6 @@ namespace SotnRandoTools
             this.autoMayhemButton.Text = "Start Auto Mayhem";
             this.autoMayhemButton.UseVisualStyleBackColor = true;
             this.autoMayhemButton.Click += new System.EventHandler(this.autoMayhemButton_Click);
-            // 
-            // axeArmorButton
-            // 
-            this.axeArmorButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(21)))), ((int)(((byte)(57)))));
-            this.axeArmorButton.FlatAppearance.BorderSize = 2;
-            this.axeArmorButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
-            this.axeArmorButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
-            this.axeArmorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.axeArmorButton.ForeColor = System.Drawing.Color.White;
-            this.axeArmorButton.Location = new System.Drawing.Point(3, 115);
-            this.axeArmorButton.Name = "axeArmorButton";
-            this.axeArmorButton.Size = new System.Drawing.Size(134, 26);
-            this.axeArmorButton.TabIndex = 89;
-            this.axeArmorButton.Text = "Axe Armor";
-            this.axeArmorButton.UseVisualStyleBackColor = true;
-            this.axeArmorButton.Click += new System.EventHandler(this.axeArmorButton_Click);
             // 
             // KhaosForm
             // 

@@ -42,10 +42,14 @@ namespace SotnRandoTools
 			cubeOfZoeOnCheckbox.Checked = toolConfig.Khaos.cubeOfZoeOn;
 
 			openEntranceDoorCheckBox.Checked = toolConfig.Khaos.OpenEntranceDoor;
+			continuousWingSmashCheckBox.Checked = toolConfig.Khaos.ContinuousWingsmash;
+			disableMayhemMeterCheckBox.Checked = toolConfig.Khaos.DisableMayhemMeter;
+			boostFamiliarsCheckBox.Checked = toolConfig.Khaos.BoostFamiliars;
+
 			permaAxeArmorCheckBox.Checked = toolConfig.Khaos.PermaAxeArmor;
 			boostAxeArmorCheckBox.Checked = toolConfig.Khaos.BoostAxeArmor;
-			boostFamiliarsCheckBox.Checked = toolConfig.Khaos.BoostFamiliars;
-			continuousWingSmashCheckBox.Checked = toolConfig.Khaos.ContinuousWingsmash;
+			axeArmorTipsCheckBox.Checked = toolConfig.Khaos.AxeArmorTips;
+			
 			dynamicIntervalCheckBox.Checked = toolConfig.Khaos.DynamicInterval;
 			romhackModeCheckBox.Checked = toolConfig.Khaos.RomhackMode;
 			disableLogsCheckBox.Checked = toolConfig.Khaos.DisableLogs;
@@ -654,10 +658,19 @@ namespace SotnRandoTools
 		{
 			toolConfig.Khaos.OpenEntranceDoor = openEntranceDoorCheckBox.Checked;
 		}
+		private void disableMayhemMeterCheckBox_CheckedChanged(object sender, EventArgs e)
+		{
+			toolConfig.Khaos.DisableMayhemMeter = disableMayhemMeterCheckBox.Checked;
+		}
 
 		private void permaAxeArmorCheckBox_CheckChanged(object sender, EventArgs e)
 		{
 			toolConfig.Khaos.PermaAxeArmor = permaAxeArmorCheckBox.Checked;
+		}
+
+		private void axeArmorTipCheckBox_CheckChanged(object sender, EventArgs e)
+		{
+			toolConfig.Khaos.AxeArmorTips = axeArmorTipsCheckBox.Checked;
 		}
 
 		private void boostAxeArmorCheckBox_CheckChanged(object sender, EventArgs e)
@@ -1327,5 +1340,6 @@ namespace SotnRandoTools
 		{
 
 		}
+
 	}
 }

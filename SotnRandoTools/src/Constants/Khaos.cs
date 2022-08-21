@@ -120,6 +120,12 @@ namespace SotnRandoTools.Constants
 		{
 			new MapLocation{X = 49, Y = 20, SecondCastle = 0}
 		};
+		public static List<MapLocation> AxeArmorPreventFormShiftRooms = new List<MapLocation>
+		{
+			new MapLocation{X = 43, Y = 47, SecondCastle = 1},
+			new MapLocation{X = 44, Y = 47, SecondCastle = 1},
+		};
+
 		public static List<MapLocation> ClockRoom = new List<MapLocation>
 		{
 			new MapLocation{X = 32, Y = 26, SecondCastle = 0},
@@ -131,6 +137,26 @@ namespace SotnRandoTools.Constants
 			new MapLocation{X = 32, Y = 8, SecondCastle = 0},
 			new MapLocation{X = 33, Y = 8, SecondCastle = 0},
 			new MapLocation{X = 34, Y = 8, SecondCastle = 0},
+		};
+
+		public static List<MapLocation> DisableFastFallRooms = new List<MapLocation>
+		{
+			new MapLocation{X = 30, Y = 12, SecondCastle = 0}, //AxeArmor Hallway
+			new MapLocation{X = 31, Y = 12, SecondCastle = 0},
+			new MapLocation{X = 32, Y = 12, SecondCastle = 0},
+			new MapLocation{X = 33, Y = 12, SecondCastle = 0},
+			new MapLocation{X = 34, Y = 12, SecondCastle = 0},
+			new MapLocation{X = 35, Y = 12, SecondCastle = 0},
+			new MapLocation{X = 36, Y = 12, SecondCastle = 0},
+			new MapLocation{X = 27, Y = 51, SecondCastle = 1}, //Reverse Castle AxeArmor
+			new MapLocation{X = 28, Y = 51, SecondCastle = 1},
+			new MapLocation{X = 29, Y = 51, SecondCastle = 1},
+			new MapLocation{X = 30, Y = 51, SecondCastle = 1},
+			new MapLocation{X = 31, Y = 51, SecondCastle = 1},
+			new MapLocation{X = 32, Y = 51, SecondCastle = 1},
+			new MapLocation{X = 36, Y = 53, SecondCastle = 1}, //Reverse Clocktower
+			new MapLocation{X = 44, Y = 53, SecondCastle = 1},
+			new MapLocation{X = 49, Y = 51, SecondCastle = 1},
 		};
 		public static List<MapLocation> EntranceCutsceneRooms = new List<MapLocation>
 		{
@@ -193,6 +219,23 @@ namespace SotnRandoTools.Constants
 		{
 			new MapLocation{X = 22, Y = 37, SecondCastle = 0}, //Cavern Switch Room
 		};
+		public static List<MapLocation> JewelSwordRooms = new List<MapLocation>
+		{
+			new MapLocation{X = 11, Y = 40, SecondCastle = 0},
+			new MapLocation{X = 12, Y = 40, SecondCastle = 0},
+			new MapLocation{X = 13, Y = 40, SecondCastle = 0},
+			new MapLocation{X = 10, Y = 41, SecondCastle = 0}, // Actual Jewel Sword Location
+			new MapLocation{X = 11, Y = 41, SecondCastle = 0},
+			new MapLocation{X = 12, Y = 41, SecondCastle = 0},
+			new MapLocation{X = 13, Y = 41, SecondCastle = 0},
+			new MapLocation{X = 50, Y = 22, SecondCastle = 1},
+			new MapLocation{X = 51, Y = 22, SecondCastle = 1},
+			new MapLocation{X = 52, Y = 22, SecondCastle = 1},
+			new MapLocation{X = 53, Y = 22, SecondCastle = 1},// Actual Reverse Jewel Sword Location
+			new MapLocation{X = 50, Y = 23, SecondCastle = 1},
+			new MapLocation{X = 51, Y = 23, SecondCastle = 1},
+			new MapLocation{X = 52, Y = 23, SecondCastle = 1},
+		};
 
 		public static List<MapLocation> BatLightRooms = new List<MapLocation>
 		{
@@ -220,6 +263,10 @@ namespace SotnRandoTools.Constants
 		public static List<MapLocation> RewindBanRoom = new List<MapLocation>
 		{
 			new MapLocation{X = 40, Y = 39, SecondCastle = 0}, //Scylla Room 
+			new MapLocation{X = 57, Y = 23, SecondCastle = 0}, //Doppleganger Room
+			new MapLocation{X = 58, Y = 23, SecondCastle = 0}, //Doppleganger Room
+			new MapLocation{X = 5, Y = 40, SecondCastle = 1}, //Reverse Doppleganger Room
+			new MapLocation{X = 6, Y = 40, SecondCastle = 1}, //Reverse Doppleganger Room
 			//new MapLocation{X = 31, Y = 30, SecondCastle = 1}, //???
 		};
 		public static List<MapLocation> RewindUnbanRoom = new List<MapLocation>
@@ -800,7 +847,7 @@ namespace SotnRandoTools.Constants
 		public static uint AxeArmorStr = 10u;
 		//public static uint AxeArmorCon = 200u;
 		public static uint AxeArmorInt = 10u;
-		public static int AxeArmorKickyFeetDamageType = 2;
+		public static int AxeArmorKickyFeetDamageType = 1;
 		public static int AxeArmorVanillaJumpSpeed = 190;
 		public static int AxeArmorBaseJumpSpeed = 200;
 		public static int AxeArmorMaxJumpSpeed = 255;
@@ -865,10 +912,13 @@ namespace SotnRandoTools.Constants
 		public static int DisableLeftClip = 5634;
 
 
-		public static int AxeArmorEffectStartAddress = 477476;
+		public static int AxeArmorHand1EffectAddress = 476724;
+		public static int AxeArmorHand2EffectAddress = 476912;
+		public static int AxeArmorEffectStartAddress = 477100;
 		//public static int AxeArmorHeartStartAddress = 477852;
 		public static int AxeArmorHeartStartAddress = 477476;
 
+		public const string AxeArmorLibrary = "AxeArmorLibrary";
 		public const string AxeArmorHeartName = "AxeArmorHeart";
 		public const string AxeArmorHeartLockName = "AxeArmorHeartLock";
 		public const string AxeArmorEffectName = "AxeArmorEffect";
@@ -1001,6 +1051,7 @@ namespace SotnRandoTools.Constants
 		#endregion
 
 		public static uint ShaftKhaosHp = 25;
+		public static uint ShaftAxeArmorHp = 10;
 		public static uint ShaftMayhemHp = 20;
 		public static uint GalamothMayhemHp = 1500;
 		public static uint GalamothMayhemPositionOffset = 100;
