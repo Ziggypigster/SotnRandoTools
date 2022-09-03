@@ -436,84 +436,92 @@ namespace SotnRandoTools.Constants
 		};
 		public static List<SearchableActor> AcceptedRomhackAmbushEnemies = new List<SearchableActor>
 		{
-			new SearchableActor {AiId = 25776 },
-			new SearchableActor {AiId = 25188 },
-			new SearchableActor {AiId = 23212 },
-			new SearchableActor {AiId = 42580 },
-			new SearchableActor {AiId = 4612  },
-			new SearchableActor {AiId = 14308 },
-			new SearchableActor {AiId = 31064 },
-			new SearchableActor {AiId = 24516 },
-			new SearchableActor {AiId = 26412 },
-			new SearchableActor {AiId = 17852 },
-			new SearchableActor {AiId = 46300 },
-			new SearchableActor {AiId = 48588 },
-			new SearchableActor {AiId = 30320 },
-			new SearchableActor {AiId = 26360 },
-			new SearchableActor {AiId = 48588 },
-			new SearchableActor {AiId = 51080 },
-			new SearchableActor {AiId = 52040 },
-			new SearchableActor {AiId = 54896 },
-			new SearchableActor {AiId = 14964 },
-			new SearchableActor {AiId = 60200 },
-			new SearchableActor {AiId = 22572 },
-			new SearchableActor {AiId = 49236 },
-			new SearchableActor {AiId = 772   },
-			new SearchableActor {AiId = 56172 },
-			new SearchableActor {AiId = 64000 },
-			new SearchableActor {AiId = 18916 },
-			new SearchableActor {AiId = 1432  },
-			new SearchableActor {AiId = 59616 },
-			new SearchableActor {AiId = 916   },
-			new SearchableActor {AiId = 43308 },
-			new SearchableActor {AiId = 50472 },
-			new SearchableActor {AiId = 34488 },
-			new SearchableActor {AiId = 38568 },
-			new SearchableActor {AiId = 16344 },
-			new SearchableActor {AiId = 14276 },
-			new SearchableActor {AiId = 12196 },
-			new SearchableActor {AiId = 15756 },
-			new SearchableActor {AiId = 18060 },
-			new SearchableActor {AiId = 21864 },
-			new SearchableActor {AiId = 11068 },
-			new SearchableActor {AiId = 18404 },
-			new SearchableActor {AiId = 20436 },
-			new SearchableActor {AiId = 15440 },
-			new SearchableActor {AiId = 49068 },
-			new SearchableActor {AiId = 36428 },
-			new SearchableActor {AiId = 31116 },
-			new SearchableActor {AiId = 33464 },
-			new SearchableActor {AiId = 33204 },
-			new SearchableActor {AiId = 38856 },
-			new SearchableActor {AiId = 8932  },
-			new SearchableActor {AiId = 64232 },
-			new SearchableActor {AiId = 22344 },
-			new SearchableActor {AiId = 17300 },
-			new SearchableActor {AiId = 10100 },
-			new SearchableActor {AiId = 48728 },
-			new SearchableActor {AiId = 45404 },
-			new SearchableActor {AiId = 54652 },
-			new SearchableActor {AiId = 18024 },
-			new SearchableActor {AiId = 24640 },
-			new SearchableActor {AiId = 14584 },
-			new SearchableActor {AiId = 45800 },
-			new SearchableActor {AiId = 43916 },
-			new SearchableActor {AiId = 29328 },
-			new SearchableActor {AiId = 14076 },
-			new SearchableActor {AiId = 2536  },
-			new SearchableActor {AiId = 9876  },
-			new SearchableActor {AiId = 27132 },
-			new SearchableActor {AiId = 64648 },
-			new SearchableActor {AiId = 33952 },
-			new SearchableActor {AiId = 39840 },
-			new SearchableActor {AiId = 38772 },
-			new SearchableActor {AiId = 27600 },
-			new SearchableActor {AiId = 23676 },
-			new SearchableActor {AiId = 43228 },
-			new SearchableActor {AiId = 33052 },
-			new SearchableActor {AiId = 15412 },
-			new SearchableActor {AiId = 7536  },
-			new SearchableActor {AiId = 8684  }
+			new SearchableActor { AiId = 25776 },
+			new SearchableActor { AiId = 25188 },
+			new SearchableActor { AiId = 23212 },
+			new SearchableActor { AiId = 42580 },
+			new SearchableActor { AiId = 4612  },
+			new SearchableActor { AiId = 14308 },
+			new SearchableActor { AiId = 31064 },
+			new SearchableActor { AiId = 24516 },
+			new SearchableActor { AiId = 26412 },
+			new SearchableActor { AiId = 17852 },
+			new SearchableActor { AiId = 46300 },
+			new SearchableActor { AiId = 48588 },
+			new SearchableActor { AiId = 30320 },
+			new SearchableActor { AiId = 26360 },
+			new SearchableActor { AiId = 48588 },
+			new SearchableActor { AiId = 51080 },
+			new SearchableActor { AiId = 52040 },
+			new SearchableActor { AiId = 54896 },
+			new SearchableActor { AiId = 14964 },
+			new SearchableActor { AiId = 60200 },
+			new SearchableActor { AiId = 22572 },
+			new SearchableActor { AiId = 22536 },
+			new SearchableActor { AiId = 49236 },
+			new SearchableActor { AiId = 772   },
+			new SearchableActor { AiId = 56172 },
+			new SearchableActor { AiId = 64000 },
+			new SearchableActor { AiId = 1432  },
+			new SearchableActor { AiId = 59616 },
+			new SearchableActor { AiId = 916   },
+			new SearchableActor { AiId = 952   },
+			new SearchableActor { AiId = 43308 },
+			new SearchableActor { AiId = 49128 },
+			new SearchableActor { AiId = 50472 },
+			new SearchableActor { AiId = 34488 },
+			new SearchableActor { AiId = 38568 },
+			new SearchableActor { AiId = 16344 },
+			new SearchableActor { AiId = 14276 },
+			new SearchableActor { AiId = 12196 },
+			new SearchableActor { AiId = 15756 },
+			new SearchableActor { AiId = 16340 },
+			new SearchableActor { AiId = 18060 },
+			new SearchableActor { AiId = 21864 },
+			new SearchableActor { AiId = 11068 },
+			new SearchableActor { AiId = 18404 },
+			new SearchableActor { AiId = 20436 },
+			new SearchableActor { AiId = 15440 },
+			//new SearchableActor { Name="Olrox Bat", Hp = 13, Damage = 21, AiId = 64244 },
+			new SearchableActor { AiId = 62980 },
+			new SearchableActor { AiId = 49068 },
+			new SearchableActor { AiId = 36428 },
+			new SearchableActor { AiId = 31116 },
+			//new SearchableActor { Name="Trapped Spear Guard Caverns", Hp = 20, Damage = 12, AiId = 33464 },
+			new SearchableActor { AiId = 33204 },
+			new SearchableActor { AiId = 38856 },
+			new SearchableActor { AiId = 8932  },
+			new SearchableActor { AiId = 64232 },
+			new SearchableActor { AiId = 22344 },
+			new SearchableActor { AiId = 17872 },
+			new SearchableActor { AiId = 10100 },
+			new SearchableActor { AiId = 48728 },
+			new SearchableActor { AiId = 45404 },
+			new SearchableActor { AiId = 54652 },
+			new SearchableActor { AiId = 18024 },
+			new SearchableActor { AiId = 24640 },
+			new SearchableActor { AiId = 14584 },
+			new SearchableActor { AiId = 45836 },
+			new SearchableActor { AiId = 45800 },
+			new SearchableActor { AiId = 43916 },
+			new SearchableActor { AiId = 29328 },
+			//new SearchableActor { Name="Zombie Trevor", Hp = 180, Damage = 40, AiId = 37884 },
+			new SearchableActor { AiId = 14076 },
+			new SearchableActor { AiId = 2536  },
+			new SearchableActor { AiId = 9876  },
+			new SearchableActor { AiId = 27132 },
+			new SearchableActor { AiId = 64648 },
+			new SearchableActor { AiId = 33952 },
+			new SearchableActor { AiId = 39840 },
+			new SearchableActor { AiId = 38772 },
+			new SearchableActor { AiId = 27600 },
+			new SearchableActor { AiId = 23676 },
+			new SearchableActor { AiId= 50968  },
+			new SearchableActor { AiId = 43228 },
+			new SearchableActor { AiId = 33052 },
+			new SearchableActor { AiId = 15412 },
+			new SearchableActor { AiId = 7536  },
+			new SearchableActor { AiId = 8684  }
 		};
 		public static List<SearchableActor> EnduranceBosses = new List<SearchableActor>
 		{
@@ -820,6 +828,288 @@ namespace SotnRandoTools.Constants
 			33138,// 8199 - Yeti Richter
 		};
 
+		
+
+		public static int[] axeArmorStone =
+		{
+			114,	//Stone Sword
+			13,		//Medusa Shield
+		};
+
+		public static int[] axeArmorCutDark =
+		{
+			//110,	//Mormegeil
+			83,		//Tyrfing
+		};
+
+		public static int[] axeArmorOneHandedCut =
+		{
+			86,		//Gladius
+			87,		//Scimitar
+			88,		//Cutlass
+			89,		//Saber
+			90,		//Falchion
+			91,		//Broadsword
+			92,		//Bekatowa
+			93,		//Damascus Sword
+			94,		//Hunter Sword
+			96,		//Bastard Sword
+			99,		//Talwar
+			104,	//Sword of Hador
+			105,	//Luminus
+			106,	//Harper
+			108,	//Gram
+			118,	//Dark Blade
+			125,	//Badelaire
+			124,	//Mablung
+			126,	//Sword Familiar
+		};
+
+		public static int[] axeArmorOneHandedDoubleCut =
+		{
+			//Short Swords
+			19,		//Short sword
+			109,	//Jewel sword
+			28,		//Shotel
+			23,		//Rapier
+			22,		//Were bane
+			//Swords
+			168,	//Alucart Sword
+			121,	//Gurthang
+			122,	//Mourneblade
+			123,	//Alucard Sword
+		};
+
+		public static int[] axeArmorOneHandedTripleCut =
+		{
+			18,		//Basilard
+			20,		//Combat Knife
+			136,	//Holbein
+			163,	//Vorpal
+		};
+
+		public static int[] axeArmorTwoHandedCut =
+		{
+			98,		//Claymore
+			101,	//Flamberge
+			17,		//Sword of Dawn
+			95,		//Estoc
+			103,	//Zwei Hander
+			107,	//Obsidian Sword
+			127,	//Greatsword
+			100,	//Katana
+		};
+
+		public static int[] axeArmorTwoHandedDoubleCut =
+		{
+			139,	//Osafune Katana
+			165,	//Yasatsuna
+			140,	//Masamune
+		};
+
+		public static int[] axeArmorTwoHandedCurse =
+		{
+			26,		//Red Rust
+			84,		//Namakura
+			141,	//Muramasa
+		};
+
+		public static int[] axeArmorTwoHandedHit =
+		{
+			27,		//Takemitsu
+		};
+
+		public static int[] axeArmorTwoHandedDoubleHit =
+		{
+			21,		//Nunchaku
+		};
+
+		public static int[] axeArmorOneHandedHit =
+		{
+			128,	//Mace
+			129,	//Morning Star
+			4,		//Shield Rod
+		};
+		public static int[] axeArmorOneHandedDoubleHit =
+		{
+			131,	//Star Flail
+			132,	//Moon Rod
+		};
+		public static int[] axeArmorOneHandedTripleHit =
+		{
+			85,		//Knuckle Duster
+			137,	//Blue Knuckles
+			97,		//Jewel Knuckles
+			102,	//Iron Fist
+			120,	//Fist of Tulkas
+		};
+
+		public static int[] axeArmorThrowableWeapon =
+		{
+			133,	//Chakram
+			119,	//Heaven Sword
+			143,	//Rune Sword
+		};
+
+		public static int[] axeArmorShields =
+		{
+			167,	//Alucart Shield
+			5,		//Leather Shield
+			6,		//Knight Shield
+			7,		//Iron Shield
+			8,		//AxeLord Shield
+			9,		//Herald Shield
+			10,		//Dark Shield
+			11,		//Goddess Shield
+			12,		//Shaman Shield
+			13,		//Medusa Shield
+			14,		//Skull Shield
+			15,		//Fire Shield
+			16,		//Alucard Shield	
+		};
+
+		public static int[] axeArmorProjectiles =
+		{
+			1,		//Monster vial 1
+			2,		//Monster vial 2
+			3,		//Monster vial 3
+			24,		//Karma Coin
+			25,		//Magic Missile
+			71,		//Neutron Bomb
+			72,		//Power of Sire
+			73,		//Pentagram
+			74,		//Bat Pentagram
+			75,		//Shuriken
+			76,		//Cross Shuriken
+			77,		//Buffalo star
+			78,		//Flame star
+			79,		//TNT
+			80,		//Bwaka Knife
+			81,		//Boomerang
+			82,		//Javelin
+			134,	//Fire boomerang
+			135,	//Iron ball
+			138,	//Dynamite
+		};
+
+		public static int[] axeArmorProjectilesCut =
+		{
+			25,		//Magic Missile
+			75,		//Shuriken
+			76,		//Cross Shuriken
+			77,		//Buffalo star
+			80,		//Bwaka Knife
+		};
+
+		public static int[] axeArmorProjectilesDoubleCut =
+		{
+			82,		//Javelin
+		};
+
+		public static int[] axeArmorProjectilesHit =
+		{
+			71,		//Neutron Bomb
+			73,		//Pentagram
+			74,		//Bat Pentagram
+			135,	//Iron ball
+		};
+
+		public static int[] axeArmorProjectilesDoubleHit =
+		{
+			81,		//Boomerang
+		};
+
+		public static int[] axeArmorProjectilesTripleHit =
+		{
+			1,		//Monster vial 1
+			2,		//Monster vial 2
+			3,		//Monster vial 3
+		};
+
+		public static int[] axeArmorProjectilesQuadrupleHit =
+		{
+			72,		//Power of Sire
+		};
+
+		public static int[] axeArmorProjectilesThunder =
+		{
+			24,		//Karma Coin
+		};
+
+		public static int[] axeArmorProjectilesFire =
+		{
+			78,		//Flame star
+			79,		//TNT
+		};
+
+		public static int[] axeArmorProjectilesDoubleFire =
+		{
+			134,	//Fire boomerang
+		};
+
+		public static int[] axeArmorProjectilesTripleFire =
+		{
+			138,	//Dynamite
+		};
+
+		public static int[] axeArmorFoodMinorHealing =
+		{ // 20 HP
+			32,		//Grapes
+			29,		//Orange
+			31,		//Banana
+			34,		//Pineapple
+			30,		//Apple
+			33,		//Strawberry
+			65,		//Chinese Bun
+			58,		//Green Tea
+			39,		//Shortcake
+			40,		//Tart
+			64,		//Red Bean Bun
+			38,		//Cheesecake
+			43,		//Ice Cream
+			57,		//Barley Tea
+			41,		//Parfait
+			42,		//Pudding
+			63,		//Pork Bun
+			47,		//Cheese
+			44,		//Frankfurter
+			56,		//Grape Juice
+			45,		//Hamburger
+			61,		//Miso Soup
+		};
+
+		public static int[] axeArmorFoodModerateHealing =
+		{ // 32 HP
+			46,		//Pizza
+			48,		//Ham and Eggs
+			49,		//Omelette
+			50,		//Morning Set
+			51,		//Lunch A
+			52,		//Lunch B
+			55,		//Spaghetti
+			53,		//Curry Rice
+			54,		//Gyros Plate
+			66,		//Dim Sum Set
+			59,		//Ramen
+			60,		//Natou Soup
+			37,		//Shittake
+			59,		//Natou
+		};
+
+		public static int[] axeArmorFoodMajorHealing =
+		{ // 80 HP
+			35,		//Peanuts
+			67,		//Pot Roast
+			69,		//Turkey
+		};
+
+		public static int[] axeArmorFoodMaxHealing =
+		{ // 100 HP
+			68,		//Sirloin
+			62,		//Sushi
+			36,		//Toadstool
+		};
+
 		public static int RichterRoomMapMinX = 31;
 		public static int RichterRoomMapMaxX = 34;
 		public static int RichterRoomMapY = 8;
@@ -995,10 +1285,10 @@ namespace SotnRandoTools.Constants
 			0x00, 0x00, 0x00, 0x00, 
 			0x00, 0x00, 0x10, 0x08, 
 			0x00, 0x00, 0x03, 0x00, //60
-			0x02, 0x00, 0x00, 0x00, //64 = Damage 
-			0x21, 0x00, 0x00, 0x80, //66-67 = Damage Type
-			0x00, 0x00, 0x08, 0x08, //71=72 = Hitbox
-			0x00, 0x14, 0x00, 0x00, //74 04->14 = Damage Interval
+			0x02, 0x00, 0x00, 0x00, //66 = Damage 
+			0x21, 0x00, 0x00, 0x80, //68-69 = Damage Type
+			0x00, 0x00, 0x08, 0x08, //74=75 = Hitbox
+			0x00, 0x14, 0x00, 0x00, //78 04->14 = Damage Interval
 			0xC8, 0x07, 0x0B, 0x80, 
 			0x17, 0x00, 0x01, 0x00, 
 			0x09, 0x00, 0x09, 0x00, 
