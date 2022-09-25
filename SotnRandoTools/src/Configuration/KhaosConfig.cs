@@ -234,6 +234,7 @@ namespace SotnRandoTools.Configuration
 		public string BotApiKey { get; set; }
 		public System.TimeSpan QueueInterval { get; set; }
 
+		public int QuickSettings { get; set; }
 		public bool spiritOrbOn { get; set; }
 		public bool faerieScrollOn { get; set; }
 		public bool cubeOfZoeOn { get; set; }
@@ -341,6 +342,55 @@ namespace SotnRandoTools.Configuration
 		public int PandemoniumMinItems { get; set; }
 		public int PandemoniumMaxItems { get; set; }
 
+
+		public void SetQuickSettings() 
+		{
+			switch (QuickSettings)
+			{
+				case 1: //Mayhem
+					spiritOrbOn = true;
+					faerieScrollOn = true;
+					cubeOfZoeOn = false;
+
+					DisableMayhemMeter = false;
+					PermaAxeArmor = false;
+					BoostAxeArmor = false;
+					AxeArmorTips = false;
+					BoostFamiliars = true;
+					ContinuousWingsmash = false;
+					OpenEntranceDoor = false;
+					break;
+				case 2: //Axe Armor
+					spiritOrbOn = true;
+					faerieScrollOn = false;
+					cubeOfZoeOn = false;
+
+					DisableMayhemMeter = true;
+					PermaAxeArmor = true;
+					BoostAxeArmor = true;
+					AxeArmorTips = true;
+					BoostFamiliars = false;
+					ContinuousWingsmash = false;
+					OpenEntranceDoor = false;
+					break;
+				case 3: //Axe Armor w/ Cube
+					spiritOrbOn = true;
+					faerieScrollOn = false;
+					cubeOfZoeOn = true;
+
+					DisableMayhemMeter = true;
+					PermaAxeArmor = true;
+					BoostAxeArmor = true;
+					AxeArmorTips = true;
+					BoostFamiliars = false;
+					ContinuousWingsmash = false;
+					OpenEntranceDoor = false;
+					break;
+				default:
+					break;
+			}
+		}
+
 		public void DefaultSettings()
 		{
 			#region General Tab
@@ -352,20 +402,12 @@ namespace SotnRandoTools.Configuration
 			QueueInterval = new System.TimeSpan(0, 0, 10);
 			MeterOnReset = 25;
 
-			spiritOrbOn = true;
-			faerieScrollOn = true;
-			cubeOfZoeOn = false;
-
 			DynamicInterval = true;
 			RomhackMode = false;
 			DisableLogs = false;
 
-			DisableMayhemMeter = false;
-			PermaAxeArmor = false;
-			BoostAxeArmor = true;
-			BoostFamiliars = true;
-			ContinuousWingsmash = false;
-			OpenEntranceDoor = false;
+			QuickSettings = 1;
+			SetQuickSettings();
 			
 			#endregion
 

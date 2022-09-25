@@ -30,44 +30,50 @@ namespace SotnRandoTools
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle61 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle62 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle64 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle63 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle65 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle66 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle70 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle67 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle68 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle69 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle71 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle72 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle75 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle73 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle74 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             this.khaosPanelTitle = new System.Windows.Forms.Label();
             this.divider = new System.Windows.Forms.Label();
             this.saveButton = new System.Windows.Forms.Button();
             this.khaosTabs = new System.Windows.Forms.TabControl();
             this.generalTab = new System.Windows.Forms.TabPage();
-            this.mayhemGeneralGroupBox = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.quickSettingsComboBox = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.romhackModeCheckBox = new System.Windows.Forms.CheckBox();
+            this.disableLogsCheckBox = new System.Windows.Forms.CheckBox();
+            this.generalTabControl = new System.Windows.Forms.TabControl();
+            this.General = new System.Windows.Forms.TabPage();
+            this.disableMayhemMeterCheckBox = new System.Windows.Forms.CheckBox();
             this.axeArmorTipsCheckBox = new System.Windows.Forms.CheckBox();
             this.permaAxeArmorCheckBox = new System.Windows.Forms.CheckBox();
             this.boostAxeArmorCheckBox = new System.Windows.Forms.CheckBox();
-            this.openEntranceDoorCheckBox = new System.Windows.Forms.CheckBox();
-            this.disableLogsCheckBox = new System.Windows.Forms.CheckBox();
             this.cubeOfZoeOnCheckbox = new System.Windows.Forms.CheckBox();
             this.faerieScrollOnCheckbox = new System.Windows.Forms.CheckBox();
             this.spiritOrbOnCheckbox = new System.Windows.Forms.CheckBox();
+            this.Mayhem = new System.Windows.Forms.TabPage();
+            this.openEntranceDoorCheckBox = new System.Windows.Forms.CheckBox();
             this.boostFamiliarsCheckBox = new System.Windows.Forms.CheckBox();
             this.meterOnResetLabel = new System.Windows.Forms.Label();
             this.meterOnResetTextBox = new System.Windows.Forms.TextBox();
             this.continuousWingSmashCheckBox = new System.Windows.Forms.CheckBox();
             this.dynamicIntervalCheckBox = new System.Windows.Forms.CheckBox();
-            this.romhackModeCheckBox = new System.Windows.Forms.CheckBox();
             this.queueLabel = new System.Windows.Forms.Label();
             this.queueTextBox = new System.Windows.Forms.TextBox();
-            this.audioBox = new System.Windows.Forms.GroupBox();
+            this.Sounds = new System.Windows.Forms.TabPage();
             this.volumeLabel = new System.Windows.Forms.Label();
             this.volumeTrackBar = new System.Windows.Forms.TrackBar();
             this.alertsCheckbox = new System.Windows.Forms.CheckBox();
@@ -195,11 +201,13 @@ namespace SotnRandoTools
             this.namesFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.valueToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.resetToDefaultButton = new System.Windows.Forms.Button();
-            this.disableMayhemMeterCheckBox = new System.Windows.Forms.CheckBox();
             this.khaosTabs.SuspendLayout();
             this.generalTab.SuspendLayout();
-            this.mayhemGeneralGroupBox.SuspendLayout();
-            this.audioBox.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.generalTabControl.SuspendLayout();
+            this.General.SuspendLayout();
+            this.Mayhem.SuspendLayout();
+            this.Sounds.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.volumeTrackBar)).BeginInit();
             this.autoMayhem.SuspendLayout();
             this.smartLogicCheckbox.SuspendLayout();
@@ -276,8 +284,8 @@ namespace SotnRandoTools
             // generalTab
             // 
             this.generalTab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
-            this.generalTab.Controls.Add(this.mayhemGeneralGroupBox);
-            this.generalTab.Controls.Add(this.audioBox);
+            this.generalTab.Controls.Add(this.groupBox3);
+            this.generalTab.Controls.Add(this.generalTabControl);
             this.generalTab.ForeColor = System.Drawing.Color.White;
             this.generalTab.Location = new System.Drawing.Point(4, 22);
             this.generalTab.Name = "generalTab";
@@ -286,39 +294,118 @@ namespace SotnRandoTools
             this.generalTab.TabIndex = 0;
             this.generalTab.Text = "General";
             // 
-            // mayhemGeneralGroupBox
+            // groupBox3
             // 
-            this.mayhemGeneralGroupBox.Controls.Add(this.disableMayhemMeterCheckBox);
-            this.mayhemGeneralGroupBox.Controls.Add(this.axeArmorTipsCheckBox);
-            this.mayhemGeneralGroupBox.Controls.Add(this.permaAxeArmorCheckBox);
-            this.mayhemGeneralGroupBox.Controls.Add(this.boostAxeArmorCheckBox);
-            this.mayhemGeneralGroupBox.Controls.Add(this.disableLogsCheckBox);
-            this.mayhemGeneralGroupBox.Controls.Add(this.cubeOfZoeOnCheckbox);
-            this.mayhemGeneralGroupBox.Controls.Add(this.faerieScrollOnCheckbox);
-            this.mayhemGeneralGroupBox.Controls.Add(this.spiritOrbOnCheckbox);
-            this.mayhemGeneralGroupBox.Controls.Add(this.boostFamiliarsCheckBox);
-            this.mayhemGeneralGroupBox.Controls.Add(this.meterOnResetLabel);
-            this.mayhemGeneralGroupBox.Controls.Add(this.meterOnResetTextBox);
-            this.mayhemGeneralGroupBox.Controls.Add(this.continuousWingSmashCheckBox);
-            this.mayhemGeneralGroupBox.Controls.Add(this.dynamicIntervalCheckBox);
-            this.mayhemGeneralGroupBox.Controls.Add(this.romhackModeCheckBox);
-            this.mayhemGeneralGroupBox.Controls.Add(this.queueLabel);
-            this.mayhemGeneralGroupBox.Controls.Add(this.queueTextBox);
-            this.mayhemGeneralGroupBox.ForeColor = System.Drawing.Color.White;
-            this.mayhemGeneralGroupBox.Location = new System.Drawing.Point(6, 100);
-            this.mayhemGeneralGroupBox.Name = "mayhemGeneralGroupBox";
-            this.mayhemGeneralGroupBox.Size = new System.Drawing.Size(360, 159);
-            this.mayhemGeneralGroupBox.TabIndex = 22;
-            this.mayhemGeneralGroupBox.TabStop = false;
-            this.mayhemGeneralGroupBox.Text = "General";
+            this.groupBox3.BackColor = System.Drawing.Color.Black;
+            this.groupBox3.Controls.Add(this.quickSettingsComboBox);
+            this.groupBox3.Controls.Add(this.label3);
+            this.groupBox3.Controls.Add(this.romhackModeCheckBox);
+            this.groupBox3.Controls.Add(this.disableLogsCheckBox);
+            this.groupBox3.ForeColor = System.Drawing.Color.White;
+            this.groupBox3.Location = new System.Drawing.Point(3, 6);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(365, 59);
+            this.groupBox3.TabIndex = 65;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "General";
+            // 
+            // quickSettingsComboBox
+            // 
+            this.quickSettingsComboBox.AutoCompleteCustomSource.AddRange(new string[] {
+            "\"Base SotN\"",
+            "\"Easier\"",
+            "\"Normal\"",
+            "\"Hard\"",
+            "\"Hardest\""});
+            this.quickSettingsComboBox.FormattingEnabled = true;
+            this.quickSettingsComboBox.Items.AddRange(new object[] {
+            "Custom",
+            "Mayhem",
+            "Axe Armor",
+            "Axe Armor (Items)"});
+            this.quickSettingsComboBox.Location = new System.Drawing.Point(112, 20);
+            this.quickSettingsComboBox.Name = "quickSettingsComboBox";
+            this.quickSettingsComboBox.Size = new System.Drawing.Size(121, 21);
+            this.quickSettingsComboBox.TabIndex = 43;
+            this.quickSettingsComboBox.SelectedIndexChanged += new System.EventHandler(this.quickSettingsComboBox_SelectedIndexChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(10, 24);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(79, 13);
+            this.label3.TabIndex = 16;
+            this.label3.Text = "Quick Settings:";
+            // 
+            // romhackModeCheckBox
+            // 
+            this.romhackModeCheckBox.AutoSize = true;
+            this.romhackModeCheckBox.Location = new System.Drawing.Point(254, 13);
+            this.romhackModeCheckBox.Name = "romhackModeCheckBox";
+            this.romhackModeCheckBox.Size = new System.Drawing.Size(98, 17);
+            this.romhackModeCheckBox.TabIndex = 68;
+            this.romhackModeCheckBox.Text = "Romhack Mode";
+            this.romhackModeCheckBox.UseVisualStyleBackColor = true;
+            this.romhackModeCheckBox.CheckedChanged += new System.EventHandler(this.romhackModeCheckBox_CheckedChanged);
+            // 
+            // disableLogsCheckBox
+            // 
+            this.disableLogsCheckBox.AutoSize = true;
+            this.disableLogsCheckBox.Location = new System.Drawing.Point(254, 32);
+            this.disableLogsCheckBox.Name = "disableLogsCheckBox";
+            this.disableLogsCheckBox.Size = new System.Drawing.Size(85, 17);
+            this.disableLogsCheckBox.TabIndex = 76;
+            this.disableLogsCheckBox.Text = "Disable Logs";
+            this.disableLogsCheckBox.UseVisualStyleBackColor = true;
+            this.disableLogsCheckBox.CheckedChanged += new System.EventHandler(this.disableLogsCheckBox_CheckedChanged);
+            // 
+            // generalTabControl
+            // 
+            this.generalTabControl.Controls.Add(this.General);
+            this.generalTabControl.Controls.Add(this.Mayhem);
+            this.generalTabControl.Controls.Add(this.Sounds);
+            this.generalTabControl.Location = new System.Drawing.Point(6, 71);
+            this.generalTabControl.Name = "generalTabControl";
+            this.generalTabControl.SelectedIndex = 0;
+            this.generalTabControl.Size = new System.Drawing.Size(362, 188);
+            this.generalTabControl.TabIndex = 61;
+            // 
+            // General
+            // 
+            this.General.BackColor = System.Drawing.Color.Black;
+            this.General.Controls.Add(this.disableMayhemMeterCheckBox);
+            this.General.Controls.Add(this.axeArmorTipsCheckBox);
+            this.General.Controls.Add(this.permaAxeArmorCheckBox);
+            this.General.Controls.Add(this.boostAxeArmorCheckBox);
+            this.General.Controls.Add(this.cubeOfZoeOnCheckbox);
+            this.General.Controls.Add(this.faerieScrollOnCheckbox);
+            this.General.Controls.Add(this.spiritOrbOnCheckbox);
+            this.General.Location = new System.Drawing.Point(4, 22);
+            this.General.Name = "General";
+            this.General.Padding = new System.Windows.Forms.Padding(3);
+            this.General.Size = new System.Drawing.Size(354, 162);
+            this.General.TabIndex = 0;
+            this.General.Text = "General";
+            // 
+            // disableMayhemMeterCheckBox
+            // 
+            this.disableMayhemMeterCheckBox.AutoSize = true;
+            this.disableMayhemMeterCheckBox.Location = new System.Drawing.Point(211, 6);
+            this.disableMayhemMeterCheckBox.Name = "disableMayhemMeterCheckBox";
+            this.disableMayhemMeterCheckBox.Size = new System.Drawing.Size(134, 17);
+            this.disableMayhemMeterCheckBox.TabIndex = 80;
+            this.disableMayhemMeterCheckBox.Text = "Disable Mayhem Meter";
+            this.disableMayhemMeterCheckBox.UseVisualStyleBackColor = true;
+            this.disableMayhemMeterCheckBox.CheckedChanged += new System.EventHandler(this.disableMayhemMeterCheckBox_CheckedChanged);
             // 
             // axeArmorTipsCheckBox
             // 
             this.axeArmorTipsCheckBox.AutoSize = true;
-            this.axeArmorTipsCheckBox.Location = new System.Drawing.Point(215, 130);
+            this.axeArmorTipsCheckBox.Location = new System.Drawing.Point(211, 75);
             this.axeArmorTipsCheckBox.Name = "axeArmorTipsCheckBox";
             this.axeArmorTipsCheckBox.Size = new System.Drawing.Size(99, 17);
-            this.axeArmorTipsCheckBox.TabIndex = 63;
+            this.axeArmorTipsCheckBox.TabIndex = 79;
             this.axeArmorTipsCheckBox.Text = "Axe Armor Tips";
             this.axeArmorTipsCheckBox.UseVisualStyleBackColor = true;
             this.axeArmorTipsCheckBox.CheckedChanged += new System.EventHandler(this.axeArmorTipCheckBox_CheckChanged);
@@ -326,10 +413,10 @@ namespace SotnRandoTools
             // permaAxeArmorCheckBox
             // 
             this.permaAxeArmorCheckBox.AutoSize = true;
-            this.permaAxeArmorCheckBox.Location = new System.Drawing.Point(215, 84);
+            this.permaAxeArmorCheckBox.Location = new System.Drawing.Point(211, 29);
             this.permaAxeArmorCheckBox.Name = "permaAxeArmorCheckBox";
             this.permaAxeArmorCheckBox.Size = new System.Drawing.Size(102, 17);
-            this.permaAxeArmorCheckBox.TabIndex = 62;
+            this.permaAxeArmorCheckBox.TabIndex = 78;
             this.permaAxeArmorCheckBox.Text = "Axe Armor Only";
             this.permaAxeArmorCheckBox.UseVisualStyleBackColor = true;
             this.permaAxeArmorCheckBox.CheckedChanged += new System.EventHandler(this.permaAxeArmorCheckBox_CheckChanged);
@@ -337,45 +424,21 @@ namespace SotnRandoTools
             // boostAxeArmorCheckBox
             // 
             this.boostAxeArmorCheckBox.AutoSize = true;
-            this.boostAxeArmorCheckBox.Location = new System.Drawing.Point(215, 107);
+            this.boostAxeArmorCheckBox.Location = new System.Drawing.Point(211, 52);
             this.boostAxeArmorCheckBox.Name = "boostAxeArmorCheckBox";
             this.boostAxeArmorCheckBox.Size = new System.Drawing.Size(107, 17);
-            this.boostAxeArmorCheckBox.TabIndex = 61;
+            this.boostAxeArmorCheckBox.TabIndex = 77;
             this.boostAxeArmorCheckBox.Text = "Boost Axe Armor";
             this.boostAxeArmorCheckBox.UseVisualStyleBackColor = true;
             this.boostAxeArmorCheckBox.CheckedChanged += new System.EventHandler(this.boostAxeArmorCheckBox_CheckChanged);
             // 
-            // openEntranceDoorCheckBox
-            // 
-            this.openEntranceDoorCheckBox.AutoSize = true;
-            this.openEntranceDoorCheckBox.Enabled = false;
-            this.openEntranceDoorCheckBox.Location = new System.Drawing.Point(9, 65);
-            this.openEntranceDoorCheckBox.Name = "openEntranceDoorCheckBox";
-            this.openEntranceDoorCheckBox.Size = new System.Drawing.Size(124, 17);
-            this.openEntranceDoorCheckBox.TabIndex = 60;
-            this.openEntranceDoorCheckBox.Text = "Open Entrance Door";
-            this.openEntranceDoorCheckBox.UseVisualStyleBackColor = true;
-            this.openEntranceDoorCheckBox.Visible = false;
-            this.openEntranceDoorCheckBox.CheckedChanged += new System.EventHandler(this.openEntranceDoorCheckBox_CheckChanged);
-            // 
-            // disableLogsCheckBox
-            // 
-            this.disableLogsCheckBox.AutoSize = true;
-            this.disableLogsCheckBox.Location = new System.Drawing.Point(109, 130);
-            this.disableLogsCheckBox.Name = "disableLogsCheckBox";
-            this.disableLogsCheckBox.Size = new System.Drawing.Size(85, 17);
-            this.disableLogsCheckBox.TabIndex = 59;
-            this.disableLogsCheckBox.Text = "Disable Logs";
-            this.disableLogsCheckBox.UseVisualStyleBackColor = true;
-            this.disableLogsCheckBox.CheckedChanged += new System.EventHandler(this.disableLogsCheckBox_CheckedChanged);
-            // 
             // cubeOfZoeOnCheckbox
             // 
             this.cubeOfZoeOnCheckbox.AutoSize = true;
-            this.cubeOfZoeOnCheckbox.Location = new System.Drawing.Point(6, 130);
+            this.cubeOfZoeOnCheckbox.Location = new System.Drawing.Point(6, 52);
             this.cubeOfZoeOnCheckbox.Name = "cubeOfZoeOnCheckbox";
             this.cubeOfZoeOnCheckbox.Size = new System.Drawing.Size(102, 17);
-            this.cubeOfZoeOnCheckbox.TabIndex = 58;
+            this.cubeOfZoeOnCheckbox.TabIndex = 75;
             this.cubeOfZoeOnCheckbox.Text = "Cube of Zoe On";
             this.cubeOfZoeOnCheckbox.UseVisualStyleBackColor = true;
             this.cubeOfZoeOnCheckbox.CheckedChanged += new System.EventHandler(this.cubeOfZoeCheckBox_CheckChanged);
@@ -383,10 +446,10 @@ namespace SotnRandoTools
             // faerieScrollOnCheckbox
             // 
             this.faerieScrollOnCheckbox.AutoSize = true;
-            this.faerieScrollOnCheckbox.Location = new System.Drawing.Point(6, 107);
+            this.faerieScrollOnCheckbox.Location = new System.Drawing.Point(6, 29);
             this.faerieScrollOnCheckbox.Name = "faerieScrollOnCheckbox";
             this.faerieScrollOnCheckbox.Size = new System.Drawing.Size(101, 17);
-            this.faerieScrollOnCheckbox.TabIndex = 57;
+            this.faerieScrollOnCheckbox.TabIndex = 74;
             this.faerieScrollOnCheckbox.Text = "Faerie Scroll On";
             this.faerieScrollOnCheckbox.UseVisualStyleBackColor = true;
             this.faerieScrollOnCheckbox.CheckedChanged += new System.EventHandler(this.faerieScrollOnCheckBox_CheckChanged);
@@ -394,21 +457,51 @@ namespace SotnRandoTools
             // spiritOrbOnCheckbox
             // 
             this.spiritOrbOnCheckbox.AutoSize = true;
-            this.spiritOrbOnCheckbox.Location = new System.Drawing.Point(6, 84);
+            this.spiritOrbOnCheckbox.Location = new System.Drawing.Point(6, 6);
             this.spiritOrbOnCheckbox.Name = "spiritOrbOnCheckbox";
             this.spiritOrbOnCheckbox.Size = new System.Drawing.Size(88, 17);
-            this.spiritOrbOnCheckbox.TabIndex = 56;
+            this.spiritOrbOnCheckbox.TabIndex = 73;
             this.spiritOrbOnCheckbox.Text = "Spirit Orb On";
             this.spiritOrbOnCheckbox.UseVisualStyleBackColor = true;
             this.spiritOrbOnCheckbox.CheckedChanged += new System.EventHandler(this.spiritOrbOnCheckBox_CheckChanged);
             // 
+            // Mayhem
+            // 
+            this.Mayhem.BackColor = System.Drawing.Color.Black;
+            this.Mayhem.Controls.Add(this.openEntranceDoorCheckBox);
+            this.Mayhem.Controls.Add(this.boostFamiliarsCheckBox);
+            this.Mayhem.Controls.Add(this.meterOnResetLabel);
+            this.Mayhem.Controls.Add(this.meterOnResetTextBox);
+            this.Mayhem.Controls.Add(this.continuousWingSmashCheckBox);
+            this.Mayhem.Controls.Add(this.dynamicIntervalCheckBox);
+            this.Mayhem.Controls.Add(this.queueLabel);
+            this.Mayhem.Controls.Add(this.queueTextBox);
+            this.Mayhem.Location = new System.Drawing.Point(4, 22);
+            this.Mayhem.Name = "Mayhem";
+            this.Mayhem.Size = new System.Drawing.Size(354, 162);
+            this.Mayhem.TabIndex = 2;
+            this.Mayhem.Text = "Mayhem";
+            // 
+            // openEntranceDoorCheckBox
+            // 
+            this.openEntranceDoorCheckBox.AutoSize = true;
+            this.openEntranceDoorCheckBox.Enabled = false;
+            this.openEntranceDoorCheckBox.Location = new System.Drawing.Point(6, 136);
+            this.openEntranceDoorCheckBox.Name = "openEntranceDoorCheckBox";
+            this.openEntranceDoorCheckBox.Size = new System.Drawing.Size(124, 17);
+            this.openEntranceDoorCheckBox.TabIndex = 80;
+            this.openEntranceDoorCheckBox.Text = "Open Entrance Door";
+            this.openEntranceDoorCheckBox.UseVisualStyleBackColor = true;
+            this.openEntranceDoorCheckBox.Visible = false;
+            this.openEntranceDoorCheckBox.CheckedChanged += new System.EventHandler(this.openEntranceDoorCheckBox_CheckChanged);
+            // 
             // boostFamiliarsCheckBox
             // 
             this.boostFamiliarsCheckBox.AutoSize = true;
-            this.boostFamiliarsCheckBox.Location = new System.Drawing.Point(215, 61);
+            this.boostFamiliarsCheckBox.Location = new System.Drawing.Point(6, 90);
             this.boostFamiliarsCheckBox.Name = "boostFamiliarsCheckBox";
             this.boostFamiliarsCheckBox.Size = new System.Drawing.Size(97, 17);
-            this.boostFamiliarsCheckBox.TabIndex = 55;
+            this.boostFamiliarsCheckBox.TabIndex = 79;
             this.boostFamiliarsCheckBox.Text = "Boost Familiars";
             this.boostFamiliarsCheckBox.UseVisualStyleBackColor = true;
             this.boostFamiliarsCheckBox.CheckedChanged += new System.EventHandler(this.boostFamiliarsCheckBox_CheckChanged);
@@ -416,28 +509,28 @@ namespace SotnRandoTools
             // meterOnResetLabel
             // 
             this.meterOnResetLabel.AutoSize = true;
-            this.meterOnResetLabel.Location = new System.Drawing.Point(10, 54);
+            this.meterOnResetLabel.Location = new System.Drawing.Point(3, 43);
             this.meterOnResetLabel.Name = "meterOnResetLabel";
             this.meterOnResetLabel.Size = new System.Drawing.Size(85, 13);
-            this.meterOnResetLabel.TabIndex = 20;
+            this.meterOnResetLabel.TabIndex = 77;
             this.meterOnResetLabel.Text = "Meter on Reset:";
             // 
             // meterOnResetTextBox
             // 
-            this.meterOnResetTextBox.Location = new System.Drawing.Point(109, 51);
+            this.meterOnResetTextBox.Location = new System.Drawing.Point(102, 40);
             this.meterOnResetTextBox.Name = "meterOnResetTextBox";
             this.meterOnResetTextBox.Size = new System.Drawing.Size(54, 21);
-            this.meterOnResetTextBox.TabIndex = 21;
+            this.meterOnResetTextBox.TabIndex = 78;
             this.meterOnResetTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.meterOnResetTextBox_Validating);
             this.meterOnResetTextBox.Validated += new System.EventHandler(this.meterOnResetTextBox_Validated);
             // 
             // continuousWingSmashCheckBox
             // 
             this.continuousWingSmashCheckBox.AutoSize = true;
-            this.continuousWingSmashCheckBox.Location = new System.Drawing.Point(215, 15);
+            this.continuousWingSmashCheckBox.Location = new System.Drawing.Point(6, 113);
             this.continuousWingSmashCheckBox.Name = "continuousWingSmashCheckBox";
             this.continuousWingSmashCheckBox.Size = new System.Drawing.Size(137, 17);
-            this.continuousWingSmashCheckBox.TabIndex = 19;
+            this.continuousWingSmashCheckBox.TabIndex = 76;
             this.continuousWingSmashCheckBox.Text = "Continuous Wingsmash";
             this.continuousWingSmashCheckBox.UseVisualStyleBackColor = true;
             this.continuousWingSmashCheckBox.CheckedChanged += new System.EventHandler(this.continuousWingSmashCheckBox_CheckChanged);
@@ -445,72 +538,60 @@ namespace SotnRandoTools
             // dynamicIntervalCheckBox
             // 
             this.dynamicIntervalCheckBox.AutoSize = true;
-            this.dynamicIntervalCheckBox.Location = new System.Drawing.Point(109, 84);
+            this.dynamicIntervalCheckBox.Location = new System.Drawing.Point(6, 67);
             this.dynamicIntervalCheckBox.Name = "dynamicIntervalCheckBox";
             this.dynamicIntervalCheckBox.Size = new System.Drawing.Size(105, 17);
-            this.dynamicIntervalCheckBox.TabIndex = 15;
+            this.dynamicIntervalCheckBox.TabIndex = 73;
             this.dynamicIntervalCheckBox.Text = "Dynamic interval";
             this.dynamicIntervalCheckBox.UseVisualStyleBackColor = true;
             this.dynamicIntervalCheckBox.CheckedChanged += new System.EventHandler(this.dynamicIntervalCheckBox_CheckedChanged);
             // 
-            // romhackModeCheckBox
-            // 
-            this.romhackModeCheckBox.AutoSize = true;
-            this.romhackModeCheckBox.Location = new System.Drawing.Point(109, 107);
-            this.romhackModeCheckBox.Name = "romhackModeCheckBox";
-            this.romhackModeCheckBox.Size = new System.Drawing.Size(98, 17);
-            this.romhackModeCheckBox.TabIndex = 18;
-            this.romhackModeCheckBox.Text = "Romhack Mode";
-            this.romhackModeCheckBox.UseVisualStyleBackColor = true;
-            this.romhackModeCheckBox.CheckedChanged += new System.EventHandler(this.romhackModeCheckBox_CheckedChanged);
-            // 
             // queueLabel
             // 
             this.queueLabel.AutoSize = true;
-            this.queueLabel.Location = new System.Drawing.Point(10, 27);
+            this.queueLabel.Location = new System.Drawing.Point(3, 16);
             this.queueLabel.Name = "queueLabel";
             this.queueLabel.Size = new System.Drawing.Size(84, 13);
-            this.queueLabel.TabIndex = 16;
+            this.queueLabel.TabIndex = 74;
             this.queueLabel.Text = "Queue Interval:";
             // 
             // queueTextBox
             // 
-            this.queueTextBox.Location = new System.Drawing.Point(109, 24);
+            this.queueTextBox.Location = new System.Drawing.Point(102, 13);
             this.queueTextBox.Name = "queueTextBox";
             this.queueTextBox.Size = new System.Drawing.Size(54, 21);
-            this.queueTextBox.TabIndex = 17;
+            this.queueTextBox.TabIndex = 75;
             this.queueTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.queueTextBox_Validating);
             this.queueTextBox.Validated += new System.EventHandler(this.queueTextBox_Validated);
             // 
-            // audioBox
+            // Sounds
             // 
-            this.audioBox.Controls.Add(this.volumeLabel);
-            this.audioBox.Controls.Add(this.volumeTrackBar);
-            this.audioBox.Controls.Add(this.alertsCheckbox);
-            this.audioBox.Controls.Add(this.openEntranceDoorCheckBox);
-            this.audioBox.ForeColor = System.Drawing.Color.White;
-            this.audioBox.Location = new System.Drawing.Point(6, 6);
-            this.audioBox.Name = "audioBox";
-            this.audioBox.Size = new System.Drawing.Size(361, 91);
-            this.audioBox.TabIndex = 1;
-            this.audioBox.TabStop = false;
-            this.audioBox.Text = "Sound";
+            this.Sounds.BackColor = System.Drawing.Color.Black;
+            this.Sounds.Controls.Add(this.volumeLabel);
+            this.Sounds.Controls.Add(this.volumeTrackBar);
+            this.Sounds.Controls.Add(this.alertsCheckbox);
+            this.Sounds.Location = new System.Drawing.Point(4, 22);
+            this.Sounds.Name = "Sounds";
+            this.Sounds.Padding = new System.Windows.Forms.Padding(3);
+            this.Sounds.Size = new System.Drawing.Size(354, 162);
+            this.Sounds.TabIndex = 1;
+            this.Sounds.Text = "Sounds";
             // 
             // volumeLabel
             // 
             this.volumeLabel.AutoSize = true;
-            this.volumeLabel.Location = new System.Drawing.Point(6, 46);
+            this.volumeLabel.Location = new System.Drawing.Point(6, 39);
             this.volumeLabel.Name = "volumeLabel";
             this.volumeLabel.Size = new System.Drawing.Size(41, 13);
-            this.volumeLabel.TabIndex = 2;
+            this.volumeLabel.TabIndex = 5;
             this.volumeLabel.Text = "Volume";
             // 
             // volumeTrackBar
             // 
-            this.volumeTrackBar.Location = new System.Drawing.Point(53, 43);
+            this.volumeTrackBar.Location = new System.Drawing.Point(53, 36);
             this.volumeTrackBar.Name = "volumeTrackBar";
             this.volumeTrackBar.Size = new System.Drawing.Size(302, 45);
-            this.volumeTrackBar.TabIndex = 1;
+            this.volumeTrackBar.TabIndex = 4;
             this.volumeTrackBar.TickFrequency = 0;
             this.volumeTrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
             this.volumeTrackBar.Value = 10;
@@ -519,10 +600,10 @@ namespace SotnRandoTools
             // alertsCheckbox
             // 
             this.alertsCheckbox.AutoSize = true;
-            this.alertsCheckbox.Location = new System.Drawing.Point(9, 20);
+            this.alertsCheckbox.Location = new System.Drawing.Point(6, 13);
             this.alertsCheckbox.Name = "alertsCheckbox";
             this.alertsCheckbox.Size = new System.Drawing.Size(214, 17);
-            this.alertsCheckbox.TabIndex = 0;
+            this.alertsCheckbox.TabIndex = 3;
             this.alertsCheckbox.Text = "Enable audio alerts on action activation";
             this.alertsCheckbox.UseVisualStyleBackColor = true;
             this.alertsCheckbox.CheckedChanged += new System.EventHandler(this.alertsCheckbox_CheckedChanged);
@@ -1841,20 +1922,20 @@ namespace SotnRandoTools
             this.alertsGridView.AllowUserToDeleteRows = false;
             this.alertsGridView.AllowUserToResizeColumns = false;
             this.alertsGridView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle61.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
-            this.alertsGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle61;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
+            this.alertsGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.alertsGridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
             this.alertsGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.alertsGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             this.alertsGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle62.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle62.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle62.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle62.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle62.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle62.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle62.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.alertsGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle62;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.alertsGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.alertsGridView.ColumnHeadersHeight = 20;
             this.alertsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.alertsGridView.ColumnHeadersVisible = false;
@@ -1862,14 +1943,14 @@ namespace SotnRandoTools
             this.ActionName,
             this.AlertPath,
             this.Browse});
-            dataGridViewCellStyle64.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle64.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle64.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle64.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle64.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
-            dataGridViewCellStyle64.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle64.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.alertsGridView.DefaultCellStyle = dataGridViewCellStyle64;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.alertsGridView.DefaultCellStyle = dataGridViewCellStyle4;
             this.alertsGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
             this.alertsGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
             this.alertsGridView.Location = new System.Drawing.Point(3, 3);
@@ -1885,9 +1966,9 @@ namespace SotnRandoTools
             // ActionName
             // 
             this.ActionName.DataPropertyName = "Name";
-            dataGridViewCellStyle63.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle63.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
-            this.ActionName.DefaultCellStyle = dataGridViewCellStyle63;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
+            this.ActionName.DefaultCellStyle = dataGridViewCellStyle3;
             this.ActionName.HeaderText = "Name";
             this.ActionName.Name = "ActionName";
             this.ActionName.ReadOnly = true;
@@ -1927,20 +2008,20 @@ namespace SotnRandoTools
             this.actionsGridView.AllowUserToDeleteRows = false;
             this.actionsGridView.AllowUserToResizeColumns = false;
             this.actionsGridView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle65.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
-            this.actionsGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle65;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
+            this.actionsGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.actionsGridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
             this.actionsGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.actionsGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             this.actionsGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle66.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle66.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
-            dataGridViewCellStyle66.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle66.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle66.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
-            dataGridViewCellStyle66.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle66.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.actionsGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle66;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.actionsGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.actionsGridView.ColumnHeadersHeight = 20;
             this.actionsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.actionsGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -1948,14 +2029,14 @@ namespace SotnRandoTools
             this.AlertEnabled,
             this.Duration,
             this.Meter});
-            dataGridViewCellStyle70.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle70.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle70.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle70.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle70.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
-            dataGridViewCellStyle70.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle70.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.actionsGridView.DefaultCellStyle = dataGridViewCellStyle70;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.actionsGridView.DefaultCellStyle = dataGridViewCellStyle10;
             this.actionsGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
             this.actionsGridView.EnableHeadersVisualStyles = false;
             this.actionsGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
@@ -1971,9 +2052,9 @@ namespace SotnRandoTools
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.DataPropertyName = "Name";
-            dataGridViewCellStyle67.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle67.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
-            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle67;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
+            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle7;
             this.dataGridViewTextBoxColumn1.HeaderText = "Name";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
@@ -1993,9 +2074,9 @@ namespace SotnRandoTools
             // Duration
             // 
             this.Duration.DataPropertyName = "Duration";
-            dataGridViewCellStyle68.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle68.NullValue = null;
-            this.Duration.DefaultCellStyle = dataGridViewCellStyle68;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.NullValue = null;
+            this.Duration.DefaultCellStyle = dataGridViewCellStyle8;
             this.Duration.HeaderText = "Duration";
             this.Duration.MaxInputLength = 8;
             this.Duration.Name = "Duration";
@@ -2004,8 +2085,8 @@ namespace SotnRandoTools
             // Meter
             // 
             this.Meter.DataPropertyName = "Meter";
-            dataGridViewCellStyle69.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Meter.DefaultCellStyle = dataGridViewCellStyle69;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Meter.DefaultCellStyle = dataGridViewCellStyle9;
             this.Meter.HeaderText = "Mayhem Meter";
             this.Meter.MaxInputLength = 2;
             this.Meter.Name = "Meter";
@@ -2028,20 +2109,20 @@ namespace SotnRandoTools
             this.autoMayhemGridView.AllowUserToDeleteRows = false;
             this.autoMayhemGridView.AllowUserToResizeColumns = false;
             this.autoMayhemGridView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle71.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
-            this.autoMayhemGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle71;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
+            this.autoMayhemGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
             this.autoMayhemGridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
             this.autoMayhemGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.autoMayhemGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             this.autoMayhemGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle72.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle72.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
-            dataGridViewCellStyle72.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle72.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle72.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
-            dataGridViewCellStyle72.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle72.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.autoMayhemGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle72;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.autoMayhemGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.autoMayhemGridView.ColumnHeadersHeight = 20;
             this.autoMayhemGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.autoMayhemGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -2049,14 +2130,14 @@ namespace SotnRandoTools
             this.dataGridViewCheckBoxColumn1,
             this.dataGridViewTextBoxColumn3,
             this.startOnCooldown});
-            dataGridViewCellStyle75.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle75.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle75.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle75.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle75.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
-            dataGridViewCellStyle75.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle75.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.autoMayhemGridView.DefaultCellStyle = dataGridViewCellStyle75;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.autoMayhemGridView.DefaultCellStyle = dataGridViewCellStyle15;
             this.autoMayhemGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
             this.autoMayhemGridView.EnableHeadersVisualStyles = false;
             this.autoMayhemGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
@@ -2073,9 +2154,9 @@ namespace SotnRandoTools
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.DataPropertyName = "Name";
-            dataGridViewCellStyle73.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle73.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
-            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle73;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
+            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle13;
             this.dataGridViewTextBoxColumn2.HeaderText = "Name";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
@@ -2095,9 +2176,9 @@ namespace SotnRandoTools
             // dataGridViewTextBoxColumn3
             // 
             this.dataGridViewTextBoxColumn3.DataPropertyName = "Cooldown";
-            dataGridViewCellStyle74.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle74.NullValue = null;
-            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle74;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.NullValue = null;
+            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle14;
             this.dataGridViewTextBoxColumn3.HeaderText = "Cooldown";
             this.dataGridViewTextBoxColumn3.MaxInputLength = 8;
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
@@ -2139,17 +2220,6 @@ namespace SotnRandoTools
             this.resetToDefaultButton.UseVisualStyleBackColor = true;
             this.resetToDefaultButton.Click += new System.EventHandler(this.resetToDefaultButton_Click);
             // 
-            // disableMayhemMeterCheckBox
-            // 
-            this.disableMayhemMeterCheckBox.AutoSize = true;
-            this.disableMayhemMeterCheckBox.Location = new System.Drawing.Point(215, 38);
-            this.disableMayhemMeterCheckBox.Name = "disableMayhemMeterCheckBox";
-            this.disableMayhemMeterCheckBox.Size = new System.Drawing.Size(134, 17);
-            this.disableMayhemMeterCheckBox.TabIndex = 64;
-            this.disableMayhemMeterCheckBox.Text = "Disable Mayhem Meter";
-            this.disableMayhemMeterCheckBox.UseVisualStyleBackColor = true;
-            this.disableMayhemMeterCheckBox.CheckedChanged += new System.EventHandler(this.disableMayhemMeterCheckBox_CheckedChanged);
-            // 
             // KhaosSettingsPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -2167,10 +2237,15 @@ namespace SotnRandoTools
             this.Load += new System.EventHandler(this.KhaosSettingsPanel_Load);
             this.khaosTabs.ResumeLayout(false);
             this.generalTab.ResumeLayout(false);
-            this.mayhemGeneralGroupBox.ResumeLayout(false);
-            this.mayhemGeneralGroupBox.PerformLayout();
-            this.audioBox.ResumeLayout(false);
-            this.audioBox.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.generalTabControl.ResumeLayout(false);
+            this.General.ResumeLayout(false);
+            this.General.PerformLayout();
+            this.Mayhem.ResumeLayout(false);
+            this.Mayhem.PerformLayout();
+            this.Sounds.ResumeLayout(false);
+            this.Sounds.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.volumeTrackBar)).EndInit();
             this.autoMayhem.ResumeLayout(false);
             this.autoMayhem.PerformLayout();
@@ -2213,10 +2288,6 @@ namespace SotnRandoTools
         private System.Windows.Forms.Button saveButton;
 		private System.Windows.Forms.TabControl khaosTabs;
 		private System.Windows.Forms.TabPage generalTab;
-		private System.Windows.Forms.GroupBox audioBox;
-		private System.Windows.Forms.CheckBox alertsCheckbox;
-		private System.Windows.Forms.Label volumeLabel;
-		private System.Windows.Forms.TrackBar volumeTrackBar;
 		private System.Windows.Forms.TabPage inputTab;
 		private System.Windows.Forms.TabPage alertsTab;
 		private System.Windows.Forms.TabPage actionSettings;
@@ -2234,19 +2305,11 @@ namespace SotnRandoTools
 		private System.Windows.Forms.DataGridViewButtonColumn Browse;
 		private System.Windows.Forms.GroupBox botApiKeyBox;
 		private System.Windows.Forms.TextBox botApiKey;
-		private System.Windows.Forms.CheckBox romhackModeCheckBox;
-		private System.Windows.Forms.TextBox queueTextBox;
-		private System.Windows.Forms.Label queueLabel;
-		private System.Windows.Forms.CheckBox dynamicIntervalCheckBox;
 		private System.Windows.Forms.TabPage commandTab;
-		private System.Windows.Forms.GroupBox mayhemGeneralGroupBox;
 		private System.Windows.Forms.TabPage enemyTab;
 		private System.Windows.Forms.Label galamothLabel;
 		private System.Windows.Forms.Label singleBossLabel;
 		private System.Windows.Forms.Label cloneBossLabel;
-		private System.Windows.Forms.Label meterOnResetLabel;
-		private System.Windows.Forms.TextBox meterOnResetTextBox;
-		private System.Windows.Forms.CheckBox continuousWingSmashCheckBox;
 		private System.Windows.Forms.ComboBox ambushHPComboBox;
 		private System.Windows.Forms.ComboBox galamothDMGComboBox;
 		private System.Windows.Forms.ComboBox singleBossDMGComboBox;
@@ -2271,7 +2334,6 @@ namespace SotnRandoTools
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.CheckBox galamothIsRepositionedCheckBox;
 		private System.Windows.Forms.CheckBox galamothDefNerfCheckBox;
-		private System.Windows.Forms.CheckBox boostFamiliarsCheckBox;
 		private System.Windows.Forms.TabPage autoMayhem;
 		private System.Windows.Forms.CheckBox allowMayhemPityCheckBox;
 		private System.Windows.Forms.CheckBox allowPerfectMayhemCheckbox;
@@ -2308,17 +2370,12 @@ namespace SotnRandoTools
 		private System.Windows.Forms.TextBox autoPerfectMayhemTriggerTextBox;
 		private System.Windows.Forms.Label mayhemFluxTriggerLabel;
 		private System.Windows.Forms.Label cmdConsistencyLabel;
-		private System.Windows.Forms.CheckBox faerieScrollOnCheckbox;
-		private System.Windows.Forms.CheckBox spiritOrbOnCheckbox;
-		private System.Windows.Forms.CheckBox cubeOfZoeOnCheckbox;
 		private System.Windows.Forms.TabPage autoActionSettings;
 		private System.Windows.Forms.DataGridView autoMayhemGridView;
 		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
 		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn startOnCooldown;
-		private System.Windows.Forms.CheckBox disableLogsCheckBox;
-		private System.Windows.Forms.CheckBox openEntranceDoorCheckBox;
 		private System.Windows.Forms.TabControl commandTabs;
 		private System.Windows.Forms.TabPage categoryPage;
 		private System.Windows.Forms.GroupBox neutralSettingsGroupBox;
@@ -2355,9 +2412,32 @@ namespace SotnRandoTools
 		private System.Windows.Forms.Label underwaterLabel;
 		private System.Windows.Forms.GroupBox groupBox2;
 		private System.Windows.Forms.CheckBox progressionGivesVladCheckbox;
-		private System.Windows.Forms.CheckBox boostAxeArmorCheckBox;
-		private System.Windows.Forms.CheckBox permaAxeArmorCheckBox;
-		private System.Windows.Forms.CheckBox axeArmorTipsCheckBox;
+		private System.Windows.Forms.TabControl generalTabControl;
+		private System.Windows.Forms.TabPage General;
+		private System.Windows.Forms.TabPage Sounds;
+		private System.Windows.Forms.GroupBox groupBox3;
+		private System.Windows.Forms.ComboBox quickSettingsComboBox;
+		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.CheckBox disableMayhemMeterCheckBox;
+		private System.Windows.Forms.CheckBox axeArmorTipsCheckBox;
+		private System.Windows.Forms.CheckBox permaAxeArmorCheckBox;
+		private System.Windows.Forms.CheckBox boostAxeArmorCheckBox;
+		private System.Windows.Forms.CheckBox disableLogsCheckBox;
+		private System.Windows.Forms.CheckBox cubeOfZoeOnCheckbox;
+		private System.Windows.Forms.CheckBox faerieScrollOnCheckbox;
+		private System.Windows.Forms.CheckBox spiritOrbOnCheckbox;
+		private System.Windows.Forms.CheckBox romhackModeCheckBox;
+		private System.Windows.Forms.TabPage Mayhem;
+		private System.Windows.Forms.CheckBox openEntranceDoorCheckBox;
+		private System.Windows.Forms.CheckBox boostFamiliarsCheckBox;
+		private System.Windows.Forms.Label meterOnResetLabel;
+		private System.Windows.Forms.TextBox meterOnResetTextBox;
+		private System.Windows.Forms.CheckBox continuousWingSmashCheckBox;
+		private System.Windows.Forms.CheckBox dynamicIntervalCheckBox;
+		private System.Windows.Forms.Label queueLabel;
+		private System.Windows.Forms.TextBox queueTextBox;
+		private System.Windows.Forms.Label volumeLabel;
+		private System.Windows.Forms.TrackBar volumeTrackBar;
+		private System.Windows.Forms.CheckBox alertsCheckbox;
 	}
 }

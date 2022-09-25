@@ -37,6 +37,7 @@ namespace SotnRandoTools
 			meterOnResetTextBox.Text = toolConfig.Khaos.MeterOnReset.ToString();
 			enforceMinStatsCheckbox.Checked = toolConfig.Khaos.EnforceMinStats;
 
+			quickSettingsComboBox.SelectedIndex = toolConfig.Khaos.QuickSettings;
 			spiritOrbOnCheckbox.Checked = toolConfig.Khaos.spiritOrbOn;
 			faerieScrollOnCheckbox.Checked = toolConfig.Khaos.faerieScrollOn;
 			cubeOfZoeOnCheckbox.Checked = toolConfig.Khaos.cubeOfZoeOn;
@@ -225,6 +226,8 @@ namespace SotnRandoTools
 		private void dynamicIntervalCheckBox_CheckedChanged(object sender, EventArgs e)
 		{
 			toolConfig.Khaos.DynamicInterval = dynamicIntervalCheckBox.Checked;
+			setCustomQuickSettings();
+			KhaosSettingsPanel_Load(sender, e);
 		}
 
 		private void botApiKey_TextChanged(object sender, EventArgs e)
@@ -233,6 +236,16 @@ namespace SotnRandoTools
 		}
 
 		#region General
+		private void quickSettingsComboBox_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			toolConfig.Khaos.QuickSettings = quickSettingsComboBox.SelectedIndex;
+			pauseDifficultyChange = true;
+			setCustomQuickSettings();
+			toolConfig.Khaos.SetQuickSettings();
+			KhaosSettingsPanel_Load(sender, e);
+			pauseDifficultyChange = false;
+		}
+
 		private void romhackModeCheckBox_CheckedChanged(object sender, EventArgs e)
 		{
 			toolConfig.Khaos.RomhackMode = romhackModeCheckBox.Checked;
@@ -252,6 +265,8 @@ namespace SotnRandoTools
 		private void continuousWingSmashCheckBox_CheckChanged(object sender, EventArgs e)
 		{
 			toolConfig.Khaos.ContinuousWingsmash = continuousWingSmashCheckBox.Checked;
+			setCustomQuickSettings();
+			KhaosSettingsPanel_Load(sender, e);
 		}
 
 		private void meterOnResetTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -276,9 +291,11 @@ namespace SotnRandoTools
 			if (result)
 			{
 				toolConfig.Khaos.MeterOnReset = meterOnReset;
+				setCustomQuickSettings();
 			}
 			meterOnResetTextBox.BackColor = Color.White;
 			this.valueToolTip.Active = false;
+			KhaosSettingsPanel_Load(sender, e);
 		}
 		#endregion
 		#region Command
@@ -657,52 +674,70 @@ namespace SotnRandoTools
 		private void openEntranceDoorCheckBox_CheckChanged(object sender, EventArgs e)
 		{
 			toolConfig.Khaos.OpenEntranceDoor = openEntranceDoorCheckBox.Checked;
+			//setCustomQuickSettings();
+			KhaosSettingsPanel_Load(sender, e);
 		}
 		private void disableMayhemMeterCheckBox_CheckedChanged(object sender, EventArgs e)
 		{
 			toolConfig.Khaos.DisableMayhemMeter = disableMayhemMeterCheckBox.Checked;
+			//setCustomQuickSettings();
+			KhaosSettingsPanel_Load(sender, e);
 		}
 
 		private void permaAxeArmorCheckBox_CheckChanged(object sender, EventArgs e)
 		{
 			toolConfig.Khaos.PermaAxeArmor = permaAxeArmorCheckBox.Checked;
+			//setCustomQuickSettings();
+			KhaosSettingsPanel_Load(sender, e);
 		}
 
 		private void axeArmorTipCheckBox_CheckChanged(object sender, EventArgs e)
 		{
 			toolConfig.Khaos.AxeArmorTips = axeArmorTipsCheckBox.Checked;
+			//setCustomQuickSettings();
+			KhaosSettingsPanel_Load(sender, e);
 		}
 
 		private void boostAxeArmorCheckBox_CheckChanged(object sender, EventArgs e)
 		{
 			toolConfig.Khaos.BoostAxeArmor = boostAxeArmorCheckBox.Checked;
+			//setCustomQuickSettings();
+			KhaosSettingsPanel_Load(sender, e);
 		}
 
 		private void boostFamiliarsCheckBox_CheckChanged(object sender, EventArgs e)
 		{
 			toolConfig.Khaos.BoostFamiliars = boostFamiliarsCheckBox.Checked;
+			//setCustomQuickSettings();
+			KhaosSettingsPanel_Load(sender, e);
 		}
 
 		private void spiritOrbOnCheckBox_CheckChanged(object sender, EventArgs e)
 		{
 			toolConfig.Khaos.spiritOrbOn = spiritOrbOnCheckbox.Checked;
+			//setCustomQuickSettings();
+			KhaosSettingsPanel_Load(sender, e);
 		}
 
 		private void faerieScrollOnCheckBox_CheckChanged(object sender, EventArgs e)
 		{
 			toolConfig.Khaos.faerieScrollOn = faerieScrollOnCheckbox.Checked;
+			//setCustomQuickSettings();
+			KhaosSettingsPanel_Load(sender, e);
 		}
 
 		private void cubeOfZoeCheckBox_CheckChanged(object sender, EventArgs e)
 		{
 			toolConfig.Khaos.cubeOfZoeOn = cubeOfZoeOnCheckbox.Checked;
+			//setCustomQuickSettings();
+			KhaosSettingsPanel_Load(sender, e);
 		}
 
 		private void difficultyComboBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			toolConfig.Khaos.autoMayhemDifficulty = autoMayhemDifficultyComboBox.SelectedIndex;
-			setDifficulty();
 			pauseDifficultyChange = true;
+			setDifficulty();
 			KhaosSettingsPanel_Load(sender, e);
 			pauseDifficultyChange = false;
 		}
@@ -711,6 +746,14 @@ namespace SotnRandoTools
 			if (!pauseDifficultyChange)
 			{
 				toolConfig.Khaos.autoMayhemDifficulty = 0;
+			}
+		}
+
+		private void setCustomQuickSettings()
+		{
+			if (!pauseDifficultyChange)
+			{
+				toolConfig.Khaos.QuickSettings = 0;
 			}
 		}
 
@@ -1340,6 +1383,5 @@ namespace SotnRandoTools
 		{
 
 		}
-
 	}
 }
