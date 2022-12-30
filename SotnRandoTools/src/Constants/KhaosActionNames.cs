@@ -8,7 +8,8 @@
 		public const string Rewind = "Rewind";
 		public const string Library = "Library";
 		public const string MinStats = "Min Stats";
-		
+		//public const string SpawnEntity = "Spawn Entity";
+
 		public const string Merchant = "Merchant";
 		public const string MaxMayhem = "Max Mayhem";
 		public const string TurboMode = "Turbo Mode";

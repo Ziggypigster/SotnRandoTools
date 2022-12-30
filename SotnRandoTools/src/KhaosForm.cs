@@ -814,7 +814,6 @@ namespace SotnRandoTools
 			if (connected)
 			{
 				connectButton.Text = "Connect Bot";
-				//channelPointsController.Disconnect();
 				connected = false;
 				connectButton.BackColor = System.Drawing.Color.FromArgb(17, 0, 17);
 				connectButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(48, 20, 48);
@@ -825,9 +824,6 @@ namespace SotnRandoTools
 			}
 			else
 			{
-				//bool result;
-				//bool result = await channelPointsController.Connect();
-				//if (result)
 				startButton.Enabled = true;
 				connectButton.Text = "Disconnect Bot";
 				connected = true;
@@ -852,6 +848,36 @@ namespace SotnRandoTools
 			}
 		}
 
-		
+		private void spawnEntityButton_Click(object sender, EventArgs e)
+		{
+			khaosControler.SpawnEntity();
+		}
+
+		private void richterColorButton_Click(object sender, EventArgs e)
+		{
+			khaosControler.ChangeRichterColor();
+		}
+
+		private void spawnEntityIDTextBox_TextChanged(object sender, EventArgs e)
+		{
+			string boxText = spawnEntityIDTextBox.Text.Replace("%", "");
+			int spawnID;
+			bool result = Int32.TryParse(boxText, out spawnID);
+			if (result)
+			{
+				toolConfig.Khaos.SpawnEntityID = (int) (spawnID);
+			}
+		}
+
+		private void richterColorTextBox_TextChanged(object sender, EventArgs e)
+		{
+			string boxText = richterColorTextBox.Text.Replace("%", "");
+			int spawnID;
+			bool result = Int32.TryParse(boxText, out spawnID);
+			if (result)
+			{
+				toolConfig.Khaos.RichterColor = (int) (spawnID);
+			}
+		}
 	}
 }

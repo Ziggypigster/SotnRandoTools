@@ -19,43 +19,38 @@
 		public const string HPForMPSound = "./ExternalTools/SotnRandoTools/Sounds/HPForMP.mp3";
 		public const string UnderwaterSound = "./ExternalTools/SotnRandoTools/Sounds/Underwater.mp3";
 		public const string ModerateTrapSound = "./ExternalTools/SotnRandoTools/Sounds/ModerateTrap.mp3";
+		public const string MajorTrapSound = "./ExternalTools/SotnRandoTools/Sounds/MajorTrap.mp3";
 		public const string HexSound = "./ExternalTools/SotnRandoTools/Sounds/Hex.mp3";
 		public const string GetJuggledSound = "./ExternalTools/SotnRandoTools/Sounds/GetJuggled.mp3";
 		public const string AmbushSound = "./ExternalTools/SotnRandoTools/Sounds/Ambush.mp3";
 		public const string ToughBossesSound = "./ExternalTools/SotnRandoTools/Sounds/ToughBosses.mp3";
 		public const string StatsDownSound = "./ExternalTools/SotnRandoTools/Sounds/StatsDown.mp3";
 		public const string ConfiscateSound = "./ExternalTools/SotnRandoTools/Sounds/Confiscate.mp3";
+		public const string PotionsSound = "./ExternalTools/SotnRandoTools/Sounds/Potions.mp3";
 		public const string MinorBoonSound = "./ExternalTools/SotnRandoTools/Sounds/MinorBoon.mp3";
+		public const string MinorEquipmentSound = "./ExternalTools/SotnRandoTools/Sounds/MinorEquipment.mp3";
+		public const string MinorItemsSound = "./ExternalTools/SotnRandoTools/Sounds/MinorItems.mp3";
+		public const string MinorStatsSound = "./ExternalTools/SotnRandoTools/Sounds/MinorStats.mp3";
 		public const string SpeedSound = "./ExternalTools/SotnRandoTools/Sounds/Speed.mp3";
 		public const string RegenSound = "./ExternalTools/SotnRandoTools/Sounds/Regen.mp3";
 		public const string ModerateBoonSound = "./ExternalTools/SotnRandoTools/Sounds/ModerateBoon.mp3";
+		public const string ModerateEquipmentSound = "./ExternalTools/SotnRandoTools/Sounds/ModerateEquipment.mp3";
+		public const string ModerateItemsSound = "./ExternalTools/SotnRandoTools/Sounds/ModerateItems.mp3";
+		public const string ModerateStatsSound = "./ExternalTools/SotnRandoTools/Sounds/ModerateStats.mp3";
 		public const string TimeStopSound = "./ExternalTools/SotnRandoTools/Sounds/TimeStop.mp3";
+		public const string LuckySound = "./ExternalTools/SotnRandoTools/Sounds/Lucky.mp3";
 		public const string SpellcasterSound = "./ExternalTools/SotnRandoTools/Sounds/Spellcaster.mp3";
 		public const string FaceTankSound = "./ExternalTools/SotnRandoTools/Sounds/FaceTank.mp3";
 		public const string ExtraRangeSound = "./ExternalTools/SotnRandoTools/Sounds/ExtraRange.mp3";
 		public const string SummonerSound = "./ExternalTools/SotnRandoTools/Sounds/Summoner.mp3";
 		public const string MajorBoonSound = "./ExternalTools/SotnRandoTools/Sounds/MajorBoon.mp3";
+		public const string MajorEquipmentSound = "./ExternalTools/SotnRandoTools/Sounds/MajorEquipment.mp3";
+		public const string MajorItemsSound = "./ExternalTools/SotnRandoTools/Sounds/MajorItems.mp3";
+		public const string MajorStatsSound = "./ExternalTools/SotnRandoTools/Sounds/MajorStats.mp3";
+		public const string ProgressionSound = "./ExternalTools/SotnRandoTools/Sounds/Progression.mp3";
+		public const string ProgressionStatsSound = "./ExternalTools/SotnRandoTools/Sounds/ProgressionStats.mp3";
 
 		public const string ItemPickupSound = "./ExternalTools/SotnRandoTools/Sounds/Item.mp3";
-		/*
-        public const string AlucardWhatSound = "./ExternalTools/SotnRandoTools/Sounds/AlucardWhat.mp3";
-        public const string LibrarianThankYouSound = "./ExternalTools/SotnRandoTools/Sounds/LibrarianThankYou.mp3";
-        public const string DeathLaughSound = "./ExternalTools/SotnRandoTools/Sounds/DeathLaugh.mp3";
-        public const string RichterLaughSound = "./ExternalTools/SotnRandoTools/Sounds/RichterLaugh.mp3";
-        public const string FairyPotionSound = "./ExternalTools/SotnRandoTools/Sounds/FairyPotion.mp3";
-        public const string MeltySound = "./ExternalTools/SotnRandoTools/Sounds/Melty.mp3";
-        public const string DragonInstallSound = "./ExternalTools/SotnRandoTools/Sounds/DragonInstall.mp3";
-        public const string ZaWarudoSound = "./ExternalTools/SotnRandoTools/Sounds/ZaWarudo.mp3";
-        public const string DeathLaughAlternateSound = "./ExternalTools/SotnRandoTools/Sounds/DeathLaughAlternate.mp3";
-        public const string DieSound = "./ExternalTools/SotnRandoTools/Sounds/Die.mp3";
-        public const string DracLaughSound = "./ExternalTools/SotnRandoTools/Sounds/DracLaugh.mp3";
-        public const string HohoSound = "./ExternalTools/SotnRandoTools/Sounds/Hoho.mp3";
-        public const string SlowWhatSound = "./ExternalTools/SotnRandoTools/Sounds/SlowWhat.mp3";
-        public const string SwordBroSound = "./ExternalTools/SotnRandoTools/Sounds/SwordBro.mp3";
-        public const string AlreadyDeadSound = "./ExternalTools/SotnRandoTools/Sounds/AlreadyDead.mp3";
-        public const string BattleOrdersSound = "./ExternalTools/SotnRandoTools/Sounds/BattleOrders.mp3";
-		*/
-
 		public const string NamesFilePath = "./ExternalTools/SotnRandoTools/Khaos/names.txt";
 
 		public const string SourceLink = "https://github.com/Ziggypigster/SotnRandoTools/";

@@ -103,6 +103,8 @@ namespace SotnRandoTools
 			pandemoniumMaxTextBox.Text = toolConfig.Khaos.PandemoniumMaxItems.ToString();
 
 			nerfUnderwaterCheckbox.Checked = toolConfig.Khaos.NerfUnderwater;
+			respawnRichterCheckbox.Checked = toolConfig.Khaos.RespawnRichter;
+			kindAndFairCheckbox.Checked = toolConfig.Khaos.KindAndFair;
 			enforceMinStatsCheckbox.Checked = toolConfig.Khaos.EnforceMinStats;
 			keepVladRelicsCheckbox.Checked = toolConfig.Khaos.KeepVladRelics;
 			restrictedItemSwapCheckBox.Checked = toolConfig.Khaos.RestrictedItemSwap;
@@ -249,6 +251,7 @@ namespace SotnRandoTools
 		private void romhackModeCheckBox_CheckedChanged(object sender, EventArgs e)
 		{
 			toolConfig.Khaos.RomhackMode = romhackModeCheckBox.Checked;
+			setCustomQuickSettings();
 		}
 
 		private void disableLogsCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -396,6 +399,15 @@ namespace SotnRandoTools
 			toolConfig.Khaos.NerfUnderwater = nerfUnderwaterCheckbox.Checked;
 		}
 
+		private void richterRespawnCheckBox_CheckedChange(object sender, EventArgs e)
+		{
+			toolConfig.Khaos.RespawnRichter = respawnRichterCheckbox.Checked;
+		}
+
+		private void kindAndFairCheckBox_CheckedChange(object sender, EventArgs e)
+		{
+			toolConfig.Khaos.KindAndFair = kindAndFairCheckbox.Checked;
+		}
 
 		private void progressionGivesVladCheckbox_CheckedChanged(object sender, EventArgs e)
 		{
@@ -680,35 +692,35 @@ namespace SotnRandoTools
 		private void disableMayhemMeterCheckBox_CheckedChanged(object sender, EventArgs e)
 		{
 			toolConfig.Khaos.DisableMayhemMeter = disableMayhemMeterCheckBox.Checked;
-			//setCustomQuickSettings();
+			setCustomQuickSettings();
 			KhaosSettingsPanel_Load(sender, e);
 		}
 
 		private void permaAxeArmorCheckBox_CheckChanged(object sender, EventArgs e)
 		{
 			toolConfig.Khaos.PermaAxeArmor = permaAxeArmorCheckBox.Checked;
-			//setCustomQuickSettings();
-			KhaosSettingsPanel_Load(sender, e);
-		}
-
-		private void axeArmorTipCheckBox_CheckChanged(object sender, EventArgs e)
-		{
-			toolConfig.Khaos.AxeArmorTips = axeArmorTipsCheckBox.Checked;
-			//setCustomQuickSettings();
+			setCustomQuickSettings();
 			KhaosSettingsPanel_Load(sender, e);
 		}
 
 		private void boostAxeArmorCheckBox_CheckChanged(object sender, EventArgs e)
 		{
 			toolConfig.Khaos.BoostAxeArmor = boostAxeArmorCheckBox.Checked;
-			//setCustomQuickSettings();
+			setCustomQuickSettings();
+			KhaosSettingsPanel_Load(sender, e);
+		}
+
+		private void axeArmorTipCheckBox_CheckChanged(object sender, EventArgs e)
+		{
+			toolConfig.Khaos.AxeArmorTips = axeArmorTipsCheckBox.Checked;
+			setCustomQuickSettings();
 			KhaosSettingsPanel_Load(sender, e);
 		}
 
 		private void boostFamiliarsCheckBox_CheckChanged(object sender, EventArgs e)
 		{
 			toolConfig.Khaos.BoostFamiliars = boostFamiliarsCheckBox.Checked;
-			//setCustomQuickSettings();
+			setCustomQuickSettings();
 			KhaosSettingsPanel_Load(sender, e);
 		}
 
@@ -729,7 +741,7 @@ namespace SotnRandoTools
 		private void cubeOfZoeCheckBox_CheckChanged(object sender, EventArgs e)
 		{
 			toolConfig.Khaos.cubeOfZoeOn = cubeOfZoeOnCheckbox.Checked;
-			//setCustomQuickSettings();
+			setCustomQuickSettings();
 			KhaosSettingsPanel_Load(sender, e);
 		}
 

@@ -63,7 +63,7 @@ namespace SotnRandoTools
             this.maxMayhemButton = new System.Windows.Forms.Button();
             this.merchantButton = new System.Windows.Forms.Button();
             this.slamButton = new System.Windows.Forms.Button();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.debugTab = new System.Windows.Forms.TabPage();
             this.axeArmorButton = new System.Windows.Forms.Button();
             this.forcedRewindButton = new System.Windows.Forms.Button();
             this.majorTrapButton = new System.Windows.Forms.Button();
@@ -90,6 +90,11 @@ namespace SotnRandoTools
             this.luckyButton = new System.Windows.Forms.Button();
             this.spellCasterButton = new System.Windows.Forms.Button();
             this.faceTankButton = new System.Windows.Forms.Button();
+            this.testingTab = new System.Windows.Forms.TabPage();
+            this.richterColorTextBox = new System.Windows.Forms.TextBox();
+            this.spawnEntityButton = new System.Windows.Forms.Button();
+            this.richterColorButton = new System.Windows.Forms.Button();
+            this.spawnEntityIDTextBox = new System.Windows.Forms.TextBox();
             this.modePanel = new System.Windows.Forms.GroupBox();
             this.instantRadio = new System.Windows.Forms.RadioButton();
             this.queueRadio = new System.Windows.Forms.RadioButton();
@@ -97,7 +102,8 @@ namespace SotnRandoTools
             this.autoMayhemButton = new System.Windows.Forms.Button();
             this.khaosTabs.SuspendLayout();
             this.generalTab.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.debugTab.SuspendLayout();
+            this.testingTab.SuspendLayout();
             this.modePanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -121,7 +127,8 @@ namespace SotnRandoTools
             // khaosTabs
             // 
             this.khaosTabs.Controls.Add(this.generalTab);
-            this.khaosTabs.Controls.Add(this.tabPage1);
+            this.khaosTabs.Controls.Add(this.debugTab);
+            this.khaosTabs.Controls.Add(this.testingTab);
             this.khaosTabs.Location = new System.Drawing.Point(12, 72);
             this.khaosTabs.Name = "khaosTabs";
             this.khaosTabs.SelectedIndex = 0;
@@ -649,40 +656,40 @@ namespace SotnRandoTools
             this.slamButton.UseVisualStyleBackColor = true;
             this.slamButton.Click += new System.EventHandler(this.slamButton_Click);
             // 
-            // tabPage1
+            // debugTab
             // 
-            this.tabPage1.BackColor = System.Drawing.Color.Black;
-            this.tabPage1.Controls.Add(this.axeArmorButton);
-            this.tabPage1.Controls.Add(this.forcedRewindButton);
-            this.tabPage1.Controls.Add(this.majorTrapButton);
-            this.tabPage1.Controls.Add(this.minorTrapButton);
-            this.tabPage1.Controls.Add(this.moderateTrapButton);
-            this.tabPage1.Controls.Add(this.minStatsButton);
-            this.tabPage1.Controls.Add(this.progressionStatsButton);
-            this.tabPage1.Controls.Add(this.libraryButton);
-            this.tabPage1.Controls.Add(this.extraRangeButton);
-            this.tabPage1.Controls.Add(this.majorStatsButton);
-            this.tabPage1.Controls.Add(this.moderateStatsButton);
-            this.tabPage1.Controls.Add(this.minorStatsButton);
-            this.tabPage1.Controls.Add(this.moderateBoonButton);
-            this.tabPage1.Controls.Add(this.minorItemsButton);
-            this.tabPage1.Controls.Add(this.minorEquipmentButton);
-            this.tabPage1.Controls.Add(this.minorBoonButton);
-            this.tabPage1.Controls.Add(this.majorItemsButton);
-            this.tabPage1.Controls.Add(this.majorEquipmentButton);
-            this.tabPage1.Controls.Add(this.majorBoonButton);
-            this.tabPage1.Controls.Add(this.moderateItemsButton);
-            this.tabPage1.Controls.Add(this.moderateEquipmentButton);
-            this.tabPage1.Controls.Add(this.logCurrentRoomButton);
-            this.tabPage1.Controls.Add(this.rewindButton);
-            this.tabPage1.Controls.Add(this.luckyButton);
-            this.tabPage1.Controls.Add(this.spellCasterButton);
-            this.tabPage1.Controls.Add(this.faceTankButton);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(418, 388);
-            this.tabPage1.TabIndex = 1;
-            this.tabPage1.Text = "Debug";
+            this.debugTab.BackColor = System.Drawing.Color.Black;
+            this.debugTab.Controls.Add(this.axeArmorButton);
+            this.debugTab.Controls.Add(this.forcedRewindButton);
+            this.debugTab.Controls.Add(this.majorTrapButton);
+            this.debugTab.Controls.Add(this.minorTrapButton);
+            this.debugTab.Controls.Add(this.moderateTrapButton);
+            this.debugTab.Controls.Add(this.minStatsButton);
+            this.debugTab.Controls.Add(this.progressionStatsButton);
+            this.debugTab.Controls.Add(this.libraryButton);
+            this.debugTab.Controls.Add(this.extraRangeButton);
+            this.debugTab.Controls.Add(this.majorStatsButton);
+            this.debugTab.Controls.Add(this.moderateStatsButton);
+            this.debugTab.Controls.Add(this.minorStatsButton);
+            this.debugTab.Controls.Add(this.moderateBoonButton);
+            this.debugTab.Controls.Add(this.minorItemsButton);
+            this.debugTab.Controls.Add(this.minorEquipmentButton);
+            this.debugTab.Controls.Add(this.minorBoonButton);
+            this.debugTab.Controls.Add(this.majorItemsButton);
+            this.debugTab.Controls.Add(this.majorEquipmentButton);
+            this.debugTab.Controls.Add(this.majorBoonButton);
+            this.debugTab.Controls.Add(this.moderateItemsButton);
+            this.debugTab.Controls.Add(this.moderateEquipmentButton);
+            this.debugTab.Controls.Add(this.logCurrentRoomButton);
+            this.debugTab.Controls.Add(this.rewindButton);
+            this.debugTab.Controls.Add(this.luckyButton);
+            this.debugTab.Controls.Add(this.spellCasterButton);
+            this.debugTab.Controls.Add(this.faceTankButton);
+            this.debugTab.Location = new System.Drawing.Point(4, 22);
+            this.debugTab.Name = "debugTab";
+            this.debugTab.Size = new System.Drawing.Size(418, 388);
+            this.debugTab.TabIndex = 1;
+            this.debugTab.Text = "Debug";
             // 
             // axeArmorButton
             // 
@@ -1100,6 +1107,68 @@ namespace SotnRandoTools
             this.faceTankButton.UseVisualStyleBackColor = true;
             this.faceTankButton.Click += new System.EventHandler(this.faceTankButton_Click);
             // 
+            // testingTab
+            // 
+            this.testingTab.BackColor = System.Drawing.Color.Black;
+            this.testingTab.Controls.Add(this.richterColorTextBox);
+            this.testingTab.Controls.Add(this.spawnEntityButton);
+            this.testingTab.Controls.Add(this.richterColorButton);
+            this.testingTab.Controls.Add(this.spawnEntityIDTextBox);
+            this.testingTab.Location = new System.Drawing.Point(4, 22);
+            this.testingTab.Name = "testingTab";
+            this.testingTab.Padding = new System.Windows.Forms.Padding(3);
+            this.testingTab.Size = new System.Drawing.Size(418, 388);
+            this.testingTab.TabIndex = 2;
+            this.testingTab.Text = "Testing";
+            // 
+            // richterColorTextBox
+            // 
+            this.richterColorTextBox.Location = new System.Drawing.Point(156, 21);
+            this.richterColorTextBox.Name = "richterColorTextBox";
+            this.richterColorTextBox.Size = new System.Drawing.Size(100, 21);
+            this.richterColorTextBox.TabIndex = 96;
+            this.richterColorTextBox.TextChanged += new System.EventHandler(this.richterColorTextBox_TextChanged);
+            // 
+            // spawnEntityButton
+            // 
+            this.spawnEntityButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(21)))), ((int)(((byte)(57)))));
+            this.spawnEntityButton.FlatAppearance.BorderSize = 2;
+            this.spawnEntityButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
+            this.spawnEntityButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
+            this.spawnEntityButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.spawnEntityButton.ForeColor = System.Drawing.Color.White;
+            this.spawnEntityButton.Location = new System.Drawing.Point(3, 50);
+            this.spawnEntityButton.Name = "spawnEntityButton";
+            this.spawnEntityButton.Size = new System.Drawing.Size(134, 26);
+            this.spawnEntityButton.TabIndex = 95;
+            this.spawnEntityButton.Text = "Spawn Entity";
+            this.spawnEntityButton.UseVisualStyleBackColor = true;
+            this.spawnEntityButton.Click += new System.EventHandler(this.spawnEntityButton_Click);
+            // 
+            // richterColorButton
+            // 
+            this.richterColorButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(21)))), ((int)(((byte)(57)))));
+            this.richterColorButton.FlatAppearance.BorderSize = 2;
+            this.richterColorButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
+            this.richterColorButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
+            this.richterColorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.richterColorButton.ForeColor = System.Drawing.Color.White;
+            this.richterColorButton.Location = new System.Drawing.Point(3, 18);
+            this.richterColorButton.Name = "richterColorButton";
+            this.richterColorButton.Size = new System.Drawing.Size(134, 26);
+            this.richterColorButton.TabIndex = 94;
+            this.richterColorButton.Text = "Richter Color";
+            this.richterColorButton.UseVisualStyleBackColor = true;
+            this.richterColorButton.Click += new System.EventHandler(this.richterColorButton_Click);
+            // 
+            // spawnEntityIDTextBox
+            // 
+            this.spawnEntityIDTextBox.Location = new System.Drawing.Point(156, 53);
+            this.spawnEntityIDTextBox.Name = "spawnEntityIDTextBox";
+            this.spawnEntityIDTextBox.Size = new System.Drawing.Size(100, 21);
+            this.spawnEntityIDTextBox.TabIndex = 93;
+            this.spawnEntityIDTextBox.TextChanged += new System.EventHandler(this.spawnEntityIDTextBox_TextChanged);
+            // 
             // modePanel
             // 
             this.modePanel.Controls.Add(this.instantRadio);
@@ -1191,7 +1260,9 @@ namespace SotnRandoTools
             this.Move += new System.EventHandler(this.KhaosForm_Move);
             this.khaosTabs.ResumeLayout(false);
             this.generalTab.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
+            this.debugTab.ResumeLayout(false);
+            this.testingTab.ResumeLayout(false);
+            this.testingTab.PerformLayout();
             this.modePanel.ResumeLayout(false);
             this.modePanel.PerformLayout();
             this.ResumeLayout(false);
@@ -1231,7 +1302,7 @@ namespace SotnRandoTools
 		private System.Windows.Forms.Button turboModeButton;
 		private System.Windows.Forms.Button connectButton;
 		private System.Windows.Forms.Button autoMayhemButton;
-		private System.Windows.Forms.TabPage tabPage1;
+		private System.Windows.Forms.TabPage debugTab;
 		private System.Windows.Forms.Button luckyButton;
 		private System.Windows.Forms.Button spellCasterButton;
 		private System.Windows.Forms.Button faceTankButton;
@@ -1264,6 +1335,11 @@ namespace SotnRandoTools
 		private System.Windows.Forms.Button majorTrapButton;
 		private System.Windows.Forms.Button forcedRewindButton;
 		private System.Windows.Forms.Button axeArmorButton;
+		private System.Windows.Forms.TabPage testingTab;
+		private System.Windows.Forms.TextBox richterColorTextBox;
+		private System.Windows.Forms.Button spawnEntityButton;
+		private System.Windows.Forms.Button richterColorButton;
+		private System.Windows.Forms.TextBox spawnEntityIDTextBox;
 	}
 }
 

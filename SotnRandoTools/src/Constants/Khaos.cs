@@ -125,11 +125,14 @@ namespace SotnRandoTools.Constants
 			new MapLocation{X = 43, Y = 47, SecondCastle = 1},
 			new MapLocation{X = 44, Y = 47, SecondCastle = 1},
 		};
-
 		public static List<MapLocation> ClockRoom = new List<MapLocation>
 		{
 			new MapLocation{X = 32, Y = 26, SecondCastle = 0},
 			new MapLocation{X = 31, Y = 37, SecondCastle = 1}
+		};
+		public static List<MapLocation> ReverseElevator = new List<MapLocation>
+		{
+			new MapLocation{X = 31, Y = 36, SecondCastle = 1},
 		};
 		public static List<MapLocation> RichterRooms = new List<MapLocation>
 		{
@@ -263,8 +266,10 @@ namespace SotnRandoTools.Constants
 		public static List<MapLocation> RewindBanRoom = new List<MapLocation>
 		{
 			new MapLocation{X = 40, Y = 39, SecondCastle = 0}, //Scylla Room 
-			new MapLocation{X = 57, Y = 23, SecondCastle = 0}, //Doppleganger Room
-			new MapLocation{X = 58, Y = 23, SecondCastle = 0}, //Doppleganger Room
+			new MapLocation{X = 57, Y = 23, SecondCastle = 0}, //Doppleganger Room (Left)
+			new MapLocation{X = 58, Y = 23, SecondCastle = 0}, //Doppleganger Room (Right)
+			new MapLocation{X = 23, Y = 13, SecondCastle = 0}, //Hippogryph Room (Left)
+			new MapLocation{X = 24, Y = 13, SecondCastle = 0}, //Hippogryph Room (Right)
 			new MapLocation{X = 5, Y = 40, SecondCastle = 1}, //Reverse Doppleganger Room
 			new MapLocation{X = 6, Y = 40, SecondCastle = 1}, //Reverse Doppleganger Room
 			//new MapLocation{X = 31, Y = 30, SecondCastle = 1}, //???
@@ -432,7 +437,14 @@ namespace SotnRandoTools.Constants
 			new SearchableActor { Name="Thornweed Inverted Mine", Hp = 12, Damage = 10, AiId = 33052 },
 			new SearchableActor { Name="Bat Floating Catacombs", Hp = 1, Damage = 16, AiId = 15412 },
 			new SearchableActor { Name="Blood Skeleton Floating Catacombs", Hp = 9, Damage = 8, AiId = 7536  },
-			new SearchableActor { Name="Skeleton Floating Catacombs", Hp = 9, Damage = 2, AiId = 8684  }
+			new SearchableActor { Name="Skeleton Floating Catacombs", Hp = 9, Damage = 2, AiId = 8684  },
+			//1.1.4 Additions
+			new SearchableActor { Name="Merman 1", Hp = 10, Damage = 14, AiId = 11852 },
+			new SearchableActor { Name="Merman 2", Hp = 10, Damage = 13, AiId = 19232 },
+			new SearchableActor { Name="Wereskeleton", Hp = 33, Damage = 20, AiId = 19008  },
+			new SearchableActor { Name="Bone Arc (Skeleton)", Hp = 140, Damage = 20, AiId = 36064  },
+			new SearchableActor { Name="Jack O'Bones", Hp = 20, Damage = 40, AiId = 33188 },
+			new SearchableActor { Name="Flying Zombie", Hp = 190, Damage = 37, AiId = 31388 },
 		};
 		public static List<SearchableActor> AcceptedRomhackAmbushEnemies = new List<SearchableActor>
 		{
@@ -521,7 +533,14 @@ namespace SotnRandoTools.Constants
 			new SearchableActor { AiId = 33052 },
 			new SearchableActor { AiId = 15412 },
 			new SearchableActor { AiId = 7536  },
-			new SearchableActor { AiId = 8684  }
+			new SearchableActor { AiId = 8684  },
+			//1.1.4 Additions
+			new SearchableActor { AiId = 11852 },
+			new SearchableActor { AiId = 19232 },
+			new SearchableActor { AiId = 19008 },
+			new SearchableActor { AiId = 36064 },
+			new SearchableActor { AiId = 33188 },
+			new SearchableActor { AiId = 31388 },
 		};
 		public static List<SearchableActor> EnduranceBosses = new List<SearchableActor>
 		{
@@ -729,7 +748,7 @@ namespace SotnRandoTools.Constants
 		{
 			//33024, 8100 - Default coloring for reference
 			//33126, Used in speed overdrive
-
+			601, //      - Aqua
 			33026,//8102 - All Black, Blue Outline
 			33030,//8106 - Sunny
 			33137,//8171 - Classic Alucard
@@ -746,6 +765,8 @@ namespace SotnRandoTools.Constants
 
 		public static int[] alucardColorsFirstCastle =
 		{
+			600,  //     - Deep Blue
+			33024,//8100 - Blue/Yellow Cape
 			33028,//8104 - Redish
 			33031,//8107 - Golden Bat
 			33153,//8181 - Grey + Red
@@ -779,6 +800,7 @@ namespace SotnRandoTools.Constants
 			//33336,//8238 - Hot Dog Cape
 			//33337,//8239 - Feeling Blue
 			//33339,//823B - Feeling Pale Blue
+			//33355,//8237 - Cyan Yellow
 			//33337,//8239 - Bright Yellow
 			//33357,//824D - Feeling Green
 			//33365,//8255 - Muddy Purple
@@ -792,8 +814,8 @@ namespace SotnRandoTools.Constants
 		public static int[] richterColors =
 		{
 			//33056,// 8120 - Default coloring for reference
-			309,//0135 - Richter Alternate
-			330,//014A - 80s Punk
+			309,//0135 - Richter Alternate //
+			330,//014A - 80s Punk //Not legal Ricter Color?
 			33057,// 8121 - Green Richter
 			33058,// 8122 - Sunburst Richter
 			33060,// 8124 - Monochrome Richter
@@ -809,7 +831,7 @@ namespace SotnRandoTools.Constants
 
 		public static int[] enemyRichterColors =
 		{
-			309,//0235 - Richter Alternate
+			
 			33138,// 8172 - Legend of Richter
 			33199,// 81AF - Grey Richter
 			33273,// 81F9 - Zombie Richter
@@ -822,6 +844,8 @@ namespace SotnRandoTools.Constants
 			33078,// 8236 - Red Richter
 			33079,// 8237 - Black Richter
 			//Enemy Richter Only
+			550,  //      - Pale Richter
+			588,  //      - 8-Bit Richter
 			33030,// 8106 - Sunburst Richter
 			33089,// 8141 - Sunburnt Richter
 			33090,// 8142 - Frozen Richter
@@ -1147,15 +1171,17 @@ namespace SotnRandoTools.Constants
 		public static float BuffHPMultiplier = 2F;
 		public static uint BuffStrDarkMetamorphosis = 90;
 		public static uint BuffStr = 10u;
-		public static uint BuffCon = 100u;
+		public static uint BuffCon = 200u;
 		public static uint BuffInt = 20u;
 		public static uint BuffLck = 120u;
 		public static uint UnarmedInvincibility = 3;
 		public static uint UnarmedStr = 10u;
-		public static uint UnarmedCon = 200u;
+		public static uint UnarmedCon = 100u;
 		
 		public static uint Rushdown1Con = 600u;
 		public static uint Rushdown2Con = 12000u;
+		public static uint Rushdown1KFCon = 1200u;
+		public static uint Rushdown2KFCon = 15000u;
 		public static uint StatOverflowLimit = 50000u;
 		#endregion
 
@@ -1171,6 +1197,7 @@ namespace SotnRandoTools.Constants
 
 		//Float
 		public static int AxeArmorJumpFloatBaseSpeed = -300000;
+		public static int AxeArmorUnderwaterBaseSpeed = 13500;
 		public static int AxeArmorFloatBaseSpeed = 9000;
 		public static int AxeArmorFastFallSpeed = 800000;
 
@@ -1189,6 +1216,8 @@ namespace SotnRandoTools.Constants
 		public static int AxeArmorWolfMinRunSpeed = 260000;
 		public static int AxeArmorWolfMaxRunSpeed = 380000;
 		public static int AxeArmorWolfMaxDashSpeed = 500000;
+		public static int AxeArmorWolfMaxMayhemSpeed = 600000;
+		public static int AxeArmorWolfMaxMayhemSuperSpeed = 700000;
 
 
 		//2400,1000,1000
@@ -1212,6 +1241,11 @@ namespace SotnRandoTools.Constants
 		public const string AxeArmorHeartName = "AxeArmorHeart";
 		public const string AxeArmorHeartLockName = "AxeArmorHeartLock";
 		public const string AxeArmorEffectName = "AxeArmorEffect";
+
+		public const string AxeArmorColorName = "Axe Armor Color";
+		public const string RemoveEntityName = "Remove Entity";
+		public const string OptionMenuName = "Menu";
+
 
 		#endregion
 
@@ -1341,7 +1375,7 @@ namespace SotnRandoTools.Constants
 		#endregion
 
 		public static uint ShaftKhaosHp = 25;
-		public static uint ShaftAxeArmorHp = 10;
+		public static uint ShaftAxeArmorHp = 13;
 		public static uint ShaftMayhemHp = 20;
 		public static uint GalamothMayhemHp = 1500;
 		public static uint GalamothMayhemPositionOffset = 100;
