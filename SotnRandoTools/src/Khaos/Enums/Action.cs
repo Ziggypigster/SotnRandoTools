@@ -1,0 +1,36 @@
+﻿namespace SotnRandoTools.Khaos.Enums
+{
+	public enum ActionName
+	{
+		KhaosStatus,
+		KhaosBurst,
+		KhaosEquipment,
+		KhaosStats,
+		KhaosRelics,
+		PandorasBox,
+		Gamble,
+		Slam,
+		Bankrupt,
+		Weaken,
+		RespawnBosses,
+		SubweaponsOnly,
+		Cripple,
+		BloodMana,
+		Thirst,
+		KhaosHorde,
+		Endurance,
+		HnK,
+		Vampire,
+		LightHelp,
+		MediumHelp,
+		HeavyHelp,
+		BattleOrders,
+		Magician,
+		MeltyBlood,
+		GuiltyGear,
+		FourBeasts,
+		ZAWARUDO,
+		Haste,
+		Lord
+	}
+}
