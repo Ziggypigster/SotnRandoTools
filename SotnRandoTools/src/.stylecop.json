@@ -4,6 +4,7 @@
 		"documentationRules": {
 			"documentExposedElements": false,
 			"documentInterfaces": false,
+			"documentInternalElements": false
 		},
 		"indentation": {
 			"useTabs": true

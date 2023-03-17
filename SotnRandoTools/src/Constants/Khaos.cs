@@ -132,7 +132,13 @@ namespace SotnRandoTools.Constants
 		};
 		public static List<MapLocation> ReverseElevator = new List<MapLocation>
 		{
+			new MapLocation{X = 31, Y = 35, SecondCastle = 1},
 			new MapLocation{X = 31, Y = 36, SecondCastle = 1},
+		};
+		public static List<MapLocation> Elevator = new List<MapLocation>
+		{
+			new MapLocation{X = 32, Y = 27, SecondCastle = 0},
+			new MapLocation{X = 32, Y = 28, SecondCastle = 0},
 		};
 		public static List<MapLocation> RichterRooms = new List<MapLocation>
 		{

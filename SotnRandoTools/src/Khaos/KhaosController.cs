@@ -13217,18 +13217,7 @@ namespace SotnRandoTools.Khaos
 						action.PokeValue(0);
 						action.Disable();
 						alucardHurtboxY.Disable();
-						if (!IsInRoomList(Constants.Khaos.ClockRoom)
-							&& !IsInRoomList(Constants.Khaos.ReverseElevator)
-							&& (sotnApi.GameApi.CanSave()
-							|| !hasAxeArmorStoredResources)
-							)
-						{
-							smoothCrouch.Disable();
-						}
-						else
-						{
-							smoothCrouch.Enable();
-						}
+						CheckSmoothCrouch();
 						if (isHoldUp &&
 							(inputService.ButtonPressed(PlaystationInputKeys.L1, Globals.UpdateCooldownFrames)
 							|| inputService.ButtonPressed(PlaystationInputKeys.Up, Globals.UpdateCooldownFrames))
@@ -13379,32 +13368,35 @@ namespace SotnRandoTools.Khaos
 					}
 					else if (flightDuration > 0 && currentMP > 2 && inputService.ButtonPressed(PlaystationInputKeys.R1, Globals.UpdateCooldownFrames))
 					{   //Flight /Glide
-						if (!sotnApi.AlucardApi.HasRelic(Relic.SoulOfBat))
+						if (!sotnApi.GameApi.InTransition)
 						{
-							--flightDuration;
-							--flightMPCooldown;
-							--flightMPCooldown;
-							--flightMPCooldown;
-						}
-
-						if (sotnApi.AlucardApi.State == 41 || sotnApi.AlucardApi.State == 40)
-						{
-							if (flightMPCooldown < 10)
+							if (!sotnApi.AlucardApi.HasRelic(Relic.SoulOfBat))
 							{
+								--flightDuration;
+								--flightMPCooldown;
+								--flightMPCooldown;
+								--flightMPCooldown;
+							}
+
+							if (sotnApi.AlucardApi.State == 41 || sotnApi.AlucardApi.State == 40)
+							{
+								if (flightMPCooldown < 10)
+								{
+									flightMPCooldown = 10;
+								}
+							}
+							else if (flightMPCooldown <= 0)
+							{
+								currentMP -= 3;
+								sotnApi.AlucardApi.CurrentMp -= 3;
 								flightMPCooldown = 10;
 							}
+							else
+							{
+								--flightMPCooldown;
+							}
 						}
-						else if (flightMPCooldown <= 0)
-						{
-							currentMP -= 3;
-							sotnApi.AlucardApi.CurrentMp -= 3;
-							flightMPCooldown = 10;
-						}
-						else
-						{
-							--flightMPCooldown;
-						}
-
+						
 						if (sotnApi.AlucardApi.HasRelic(Relic.SoulOfBat))
 						{
 							isAxeArmorBat = true;
@@ -13452,7 +13444,10 @@ namespace SotnRandoTools.Khaos
 						}
 						if (gravityJumpCooldown > 0)
 						{
-							--gravityJumpCooldown;
+							if (!sotnApi.GameApi.InTransition)
+							{
+								--gravityJumpCooldown;
+							}
 							axeArmorInvinCooldown = 7;
 							if (!invincibilityLocked)
 							{
@@ -13460,6 +13455,7 @@ namespace SotnRandoTools.Khaos
 								toggleHurtBox.Enable();
 							}
 						}
+
 
 						int jumpHeight = 0;
 							
@@ -13520,7 +13516,11 @@ namespace SotnRandoTools.Khaos
 						}
 						else
 						{
-							--jumpBoostCooldown;
+							if (!sotnApi.GameApi.InTransition)
+							{
+								--jumpBoostCooldown;
+							}
+							
 						}
 						int jumpHeight = Constants.Khaos.AxeArmorJumpBaseSpeed + (Constants.Khaos.AxeArmorJumpAcceleration * jumpBoostCooldown);
 
@@ -13676,7 +13676,12 @@ namespace SotnRandoTools.Khaos
 							facingModifier = -1;
 						}
 
-						if (sotnApi.AlucardApi.State == 42 && inputService.ButtonHeld(PlaystationInputKeys.R1))
+						if (!inputService.ButtonHeld(PlaystationInputKeys.R2) && (sotnApi.AlucardApi.State == 40 || sotnApi.AlucardApi.State == 41))
+						{
+							instantStop = true;
+							wolfCurrentSpeed = 0;
+						}
+						else if (sotnApi.AlucardApi.State == 42 && inputService.ButtonHeld(PlaystationInputKeys.R1))
 						{
 							if (hasSkillOfWolf)
 							{
@@ -14169,6 +14174,8 @@ namespace SotnRandoTools.Khaos
 				}
 				else
 				{
+					CheckSmoothCrouch();
+
 					if (!sotnApi.GameApi.IsInMenu() && sotnApi.AlucardApi.State == 43 && isAxeArmorMist && currentMP > 0)
 					{
 						bool applyContactDamage = false;
@@ -14327,8 +14334,10 @@ namespace SotnRandoTools.Khaos
 							&& (hasSoulOfBat || (hasPowerOfMist && hasFormOfMist)))
 						{
 							isAxeArmorMistFlight = true;
-							--glideMPCooldown;
-
+							if (!sotnApi.GameApi.InTransition)
+							{
+								--glideMPCooldown;
+							}
 							if (inputService.ButtonPressed(PlaystationInputKeys.Up, 5) && !mistCeilingLocked)
 							{
 								axeArmorFloat.PokeValue(Constants.Khaos.AxeArmorMistFlightUpSpeed);
@@ -14362,7 +14371,10 @@ namespace SotnRandoTools.Khaos
 								axeArmorFloat.Enable();
 								applyContactDamage = true;
 								contactDamage = 4;
-								++glideMPCooldown;
+								if (!sotnApi.GameApi.InTransition)
+								{
+									++glideMPCooldown;
+								}
 							}
 							else if (inputService.ButtonPressed(PlaystationInputKeys.Up, 5) && !mistCeilingLocked)
 							{
@@ -14373,7 +14385,10 @@ namespace SotnRandoTools.Khaos
 									contactDamage = 6;
 									axeArmorFloat.PokeValue(Constants.Khaos.AxeArmorMistFlightSpeed);
 									axeArmorFloat.Enable();
-									mistFlightDuration -= 2;
+									if (!sotnApi.GameApi.InTransition)
+									{
+										mistFlightDuration -= 2;
+									}
 								}
 								else
 								{
@@ -14398,8 +14413,11 @@ namespace SotnRandoTools.Khaos
 								{
 									axeArmorFloat.PokeValue(Constants.Khaos.AxeArmorFloatBaseSpeed);
 									axeArmorFloat.Enable();
-									--glideMPCooldown;
-									--mistBoostDuration;
+									if (!sotnApi.GameApi.InTransition)
+									{
+										--glideMPCooldown;
+										--mistBoostDuration;
+									}
 								}
 								else if (underwaterActive)
 								{
@@ -14745,6 +14763,23 @@ namespace SotnRandoTools.Khaos
 				}
 				axeArmorFloat.Disable();
 				axeArmorHorizontalSpeed.Disable();
+			}
+		}
+
+		private void CheckSmoothCrouch()
+		{
+			if (!IsInRoomList(Constants.Khaos.ClockRoom)
+				&& !IsInRoomList(Constants.Khaos.ReverseElevator)
+				&& !IsInRoomList(Constants.Khaos.Elevator)
+				&& (sotnApi.GameApi.CanSave()
+				|| !hasAxeArmorStoredResources)
+			)
+			{
+				smoothCrouch.Disable();
+			}
+			else
+			{
+				smoothCrouch.Enable();
 			}
 		}
 
