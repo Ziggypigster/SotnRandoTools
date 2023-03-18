@@ -1,4 +1,4 @@
-#Intent of this build
+# Intent of this build
 
 This build is based on the 1.08 version of the SotN Randomizer code that included the Khaos Mod.
 The intent is to carry over the Twitch only updates, along with some balancing changes, to the old chatbot version.
@@ -34,14 +34,17 @@ This section is very WIP and will be updated gradually each release.
 Axe Armor has been retooled to gain progression level upgrades to movement and navigation similar to Alucard.
 Axe Armor can also use consumables + sub weapons to allow for more varied gameplay.
 
-Gathering relics can also grant one or more of the following additional helpful effects:
-	Physical Damage
-	Spell Damage + Increased Spell Hits
-	Defense
-	Regenerate Hearts
-	Damage while Faceplanting
-	Subweapon Damage
-	Subweapon Crit Chance
+Gathering relics can also grant one or more of the following additional helpful effects: <br />
+	Melee Damage <br />
+	Spell Damage + Increased Spell Hits <br />
+	Defense <br />
+	Regenerate Hearts <br />
+	Subweapon Damage <br />
+	Subweapon Crit Chance <br />
+	Increased Momentum Gain <br />
+	Increased Max Stored Speed <br />
+	Damage while Faceplanting <br />
+	Reduced Faceplant Conversion Costs <br />
 
 The following armors also bestow additional effects while held in inventory (not equipped):
 	Spike breaker
@@ -62,72 +65,72 @@ New Subweapon damage types + costs:
 	Stop Watch    - Ice (20 Hearts)
 
 ## Controls
-Up - Revert To Alucard for warp / elevator functionality
-Down - Revert To Crouched Alucard for dodging, warp, elevator functionality
+Up - Revert To Alucard for warp / elevator functionality <br />
+Down - Revert To Crouched Alucard for dodging, warp, elevator functionality <br />
 
-L1 - Faceplant (4mp, drains MP over time): Grants I-Frames for whole duration.
-R1 - Glide (drains MP over time)
-R2 - Momentum
+L1 - Faceplant (4mp, drains MP over time): Grants I-Frames for whole duration. <br />
+R1 - Glide (drains MP over time) <br />
+R2 - Momentum <br />
 
-Square -  Swings Axe + Use held items (Note: Weapons now impact axe armor damage + damage type)
-Triangle - Elemental Hellfire (25 MP)
-	+ Neutral: Ice 
-	+ Up:      Fire
-	+ Down:    Lightning
-Circle - Use subweapons / held items
-X / Cross - Double Jump (upgrades to Triple Jump with Leap Stone)
+Square -  Swings Axe + Use held items (Note: Weapons now impact axe armor damage + damage type) <br />
+Triangle - Elemental Hellfire (25 MP) <br />
+	+ Neutral: Ice  <br />
+	+ Up:      Fire <br />
+	+ Down:    Lightning <br />
+Circle - Use subweapons / held items <br />
+X / Cross - Double Jump (upgrades to Triple Jump with Leap Stone) <br />
 
-Unique Commands (Momentum):
-Left / Right: Build up stored speed.
-Neutral - Slide or move in the air with stored speed.
-Square - Now moves with stored speed.
-Up + Jump - Gravity Jump (requires Gravity Boots)
+Unique Commands (Momentum): <br />
+Left / Right: Build up stored speed. <br />
+Neutral - Slide or move in the air with stored speed. <br />
+Square - Now moves with stored speed. <br />
+Up + Jump - Gravity Jump (requires Gravity Boots) <br />
 
-Unique Commands (while Gliding):
-Up (Requires Bat): Flight
-Triangle   - Small fireballs that can hit breakable ceiling / floor tiles (15MP)
-	+ Up   - Small fireballs shifted upwards
-	+ Down - Small fireballs shfited downwards 
+Unique Commands (while Gliding): <br />
+Up (Requires Bat): Flight <br />
+Triangle   - Small fireballs that can hit breakable ceiling / floor tiles (15MP) <br />
+	+ Up   - Small fireballs shifted upwards <br />
+	+ Down - Small fireballs shfited downwards <br />
 
-Unique Commands (while Faceplanting):
-Hold Up - Goes through mist gates, Olrox narrow passageways (requires Form of Mist)
-Square - MP to Speed Boost / Aerial Faceplant extension
-Triangle - Hearts to MP Conversion
-Circle - Subweapon to Hearts Conversion
-R1 - Flight
+Unique Commands (while Faceplanting): <br />
+Hold Up - Goes through mist gates, Olrox narrow passageways (requires Form of Mist) <br />
+Square - MP to Speed Boost / Aerial Faceplant extension <br />
+Triangle - Hearts to MP Conversion <br />
+Circle - Subweapon to Hearts Conversion <br />
+R1 - Flight <br />
 
-Unique Command (while in hitstun):
-Tap R1 when near the ground to "tech" the landing and act faster.
+Unique Command (while in hitstun):<br />
+Tap R1 when near the ground to "tech" the landing and act faster. <br />
 
 ## Damage Formulas
 WIP (patch notes will always have the most accurate details if updated)
 
 -New Damage Formulas (Melee):
-	1H Weapon x1: 	2 + .75 Weapon ATK 1 + Base STR [.67 <--> .75] + .75 Equipment STR
-	1H Fist: 		4 + .75 Weapon ATK 1 + Base STR [0.83 <--> 0.91] + .50 Equipment STR
-	1H Weapon x2: 	4 + .75 Weapon ATK 1 + .35 Weapon ATK 2 + Base STR [0.75 <--> 0.91] + .75 Equipment STR
-	Fist Only x2: 	6 + .75 Weapon ATK 1 + .35 Weapon ATK 2 + Base STR [1.00 <--> 1.25] + .50 Equipment STR
-	2H Weapon: 	  	6 + .75 Weapon ATK 1 + .35 Weapon ATK 2 + Base STR [1.00 <--> 1.25] + .75 Equipment STR
-	Throwables:   	Consumes if held in main hand, not counted as a weapon in above calculations if in offhand.
-	Shields:		See below chart
-	Others:	 	 	1 (ignores Wolf Damage)
-	Note: Negative ATK2 from offhand will be ignored as a weapon.
-	Note: Dual Wield / 2H will use more favorable rounding for offhand damage.
--New Damage Formulas (Shield Right Hand):
-	1H DMG-Less Shield x1: 		2 + .25 Base INT + .50 Equipment INT + Base STR [.50] + .25 Equipment STR
-	1H DMG-Less Shield, Wpn: 	2 + .25 Base INT + .50 Equipment INT + Base STR [.50] + .25 Equipment STR + .35 Weapon ATK 2
-	1H DMG-Less Shield x2: 		4 + .50 Base INT + .75 Equipment INT + Base STR [.50] + .25 Equipment STR
-	1H DMG-Less Shld, DMG Shld: 4 + .50 Base INT + .75 Equipment INT + Base STR [.50] + .25 Equipment STR + .35 Weapon ATK 2
-	1H DMG-Less Shield w/ SR/M: 6 + .75 Base INT + 1.0 Equipment INT + Base STR [.50] + .25 Equipment STR + .35 Weapon ATK 2
-	1H DMG Shield x1, WPN 		4 + .25 Base INT + .50 Equipment INT + Base STR [0.75 <--> 0.91] + .75 Weapon ATK 1 + .50 Equipment STR + .35 Weapon ATK 2
-	1H DMG Shield x1, DMG-Less: 4 + .50 Base INT + .75 Equipment INT + Base STR [0.67 <--> 0.75] + .75 Weapon ATK 1 + .50 Equipment STR
-	1H DMG Shield x2: 			6 + .50 Base INT + .75 Equipment INT + Base STR [0.75 <--> 0.91] + .75 Weapon ATK 1 + .35 Weapon ATK 2 + .50 Equipment STR
-	1H DMG Shield w/ SR/M:   	8 + .75 Base INT + 1.0 Equipment INT + Base STR [0.75 <--> 0.91] + .75 Weapon ATK 1 + .35 Weapon ATK 2 + .50 Equipment STR
--Current #Hit Damage Scaling rules:
-	x1 Hit: 1.0 WPN ATK, -4 Flat Damage
-	x2 Hit: .92 WPN ATK, -6 Flat Damage,  -.02 STR Bonus
-	x3 Hit: .86 WPN ATK, -9 Flat Damage,  -.06 STR Bonus
-	x4 Hit: .78 WPN ATK, -13 Flat Damage, -.12 STR Bonus
+	1H Weapon x1: 	2 + .75 Weapon ATK 1 + Base STR [.67 <--> .75] + .75 Equipment STR <br />
+	1H Fist: 		4 + .75 Weapon ATK 1 + Base STR [0.83 <--> 0.91] + .50 Equipment STR <br />
+	1H Weapon x2: 	4 + .75 Weapon ATK 1 + .35 Weapon ATK 2 + Base STR [0.75 <--> 0.91] + .75 Equipment STR <br />
+	Fist Only x2: 	6 + .75 Weapon ATK 1 + .35 Weapon ATK 2 + Base STR [1.00 <--> 1.25] + .50 Equipment STR <br />
+	2H Weapon: 	  	6 + .75 Weapon ATK 1 + .35 Weapon ATK 2 + Base STR [1.00 <--> 1.25] + .75 Equipment STR <br />
+	Throwables:   	Consumes if held in main hand, not counted as a weapon in above calculations if in offhand. <br />
+	Shields:		See below chart <br />
+	Others:	 	 	1 (ignores Wolf Damage) <br />
+	Note: Negative ATK2 from offhand will be ignored as a weapon. <br />
+	Note: Dual Wield / 2H will use more favorable rounding for offhand damage. <br />
+-New Damage Formulas (Shield Right Hand): <br />
+	1H DMG-Less Shield x1: 		2 + .25 Base INT + .50 Equipment INT + Base STR [.50] + .25 Equipment STR <br />
+	1H DMG-Less Shield, Wpn: 	2 + .25 Base INT + .50 Equipment INT + Base STR [.50] + .25 Equipment STR + .35 Weapon ATK 2 <br />
+	1H DMG-Less Shield x2: 		4 + .50 Base INT + .75 Equipment INT + Base STR [.50] + .25 Equipment STR <br />
+	1H DMG-Less Shld, DMG Shld: 4 + .50 Base INT + .75 Equipment INT + Base STR [.50] + .25 Equipment STR + .35 Weapon ATK 2 <br />
+	1H DMG-Less Shield w/ SR/M: 6 + .75 Base INT + 1.0 Equipment INT + Base STR [.50] + .25 Equipment STR + .35 Weapon ATK 2 <br />
+	1H DMG Shield x1, WPN 		4 + .25 Base INT + .50 Equipment INT + Base STR [0.75 <--> 0.91] + .75 Weapon ATK 1 + .50 Equipment STR + .35 Weapon ATK 2 <br />
+	1H DMG Shield x1, DMG-Less: 4 + .50 Base INT + .75 Equipment INT + Base STR [0.67 <--> 0.75] + .75 Weapon ATK 1 + .50 Equipment STR <br />
+	1H DMG Shield x2: 			6 + .50 Base INT + .75 Equipment INT + Base STR [0.75 <--> 0.91] + .75 Weapon ATK 1 + .35 Weapon ATK 2 + .50 Equipment STR <br />
+ 	1H DMG Shield w/ SR/M:   	8 + .75 Base INT + 1.0 Equipment INT + Base STR [0.75 <--> 0.91] + .75 Weapon ATK 1 + .35 Weapon ATK 2 + .50 Equipment STR <br />
+-Current #Hit Damage Scaling rules: <br />
+	x1 Hit: 1.0 WPN ATK, -4 Flat Damage <br />
+	x2 Hit: .92 WPN ATK, -6 Flat Damage,  -.02 STR Bonus <br />
+	x3 Hit: .86 WPN ATK, -9 Flat Damage,  -.06 STR Bonus <br />
+	x4 Hit: .78 WPN ATK, -13 Flat Damage, -.12 STR Bonus <br />
 
 # Symphony of the Night Randomizer Tools
 
