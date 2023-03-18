@@ -106,7 +106,7 @@ Tap R1 when near the ground to "tech" the landing and act faster. <br />
 ## Damage Formulas
 WIP (patch notes will always have the most accurate details if updated)
 
-Melee Damage (Weapons only):
+Melee Damage (Weapons only): <br />
 	1H Weapon x1: 	2 + .75 Weapon ATK 1 + Base STR [.67 <--> .75] + .75 Equipment STR <br />
 	1H Fist: 		4 + .75 Weapon ATK 1 + Base STR [0.83 <--> 0.91] + .50 Equipment STR <br />
 	1H Weapon x2: 	4 + .75 Weapon ATK 1 + .35 Weapon ATK 2 + Base STR [0.75 <--> 0.91] + .75 Equipment STR <br />
