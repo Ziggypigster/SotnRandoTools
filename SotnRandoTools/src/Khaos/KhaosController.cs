@@ -12948,6 +12948,7 @@ namespace SotnRandoTools.Khaos
 					)
 				{
 					isAxeArmorSave = true;
+					isAxeArmorSave = true;
 					state.PokeValue(0);
 					state.Enable();
 					action.PokeValue(1);
@@ -12961,6 +12962,7 @@ namespace SotnRandoTools.Khaos
 				}
 
 				if (sotnApi.AlucardApi.HasControl() && !sotnApi.GameApi.IsInMenu()
+					&& sotnApi.AlucardApi.State != 50
 					&& sotnApi.AlucardApi.State != 43
 					&& sotnApi.AlucardApi.State != 10
 					&& sotnApi.AlucardApi.State != 12
@@ -13340,13 +13342,14 @@ namespace SotnRandoTools.Khaos
 					}
 
 					if (facePlantCooldown == 0 && (currentMP > 4)
+						&& !sotnApi.GameApi.IsInMenu()
 						&& inputService.ButtonPressed(PlaystationInputKeys.L1, Globals.UpdateCooldownFrames)
 						&& sotnApi.AlucardApi.Action == 0)
 					{   //Invul / Slow Fall / Faceplant
 						isAxeArmorMist = true;
 						isAxeArmorBat = false;
 						
-						glideMPCooldown = 6;
+						glideMPCooldown = 12;
 						sotnApi.AlucardApi.CurrentMp -= 4;
 						currentMP -= 4;
 
@@ -14189,38 +14192,20 @@ namespace SotnRandoTools.Khaos
 						}
 						else
 						{
-							//Faceplant: Speed up
+							//Faceplant: Speed up / Mist Sustain
 							if (inputService.ButtonPressed(PlaystationInputKeys.Square, Globals.UpdateCooldownFrames)
-							&& ((sotnApi.AlucardApi.HasRelic(Relic.GasCloud) && sotnApi.AlucardApi.CurrentMp > 1) || (!sotnApi.AlucardApi.HasRelic(Relic.GasCloud) && sotnApi.AlucardApi.CurrentMp > 0))
-							&& ((wolfDashActive && (wolfCurrentSpeed < Constants.Khaos.AxeArmorWolfMaxDashSpeed)) || ((wolfCurrentSpeed < Constants.Khaos.AxeArmorWolfMaxRunSpeed) || (!wolfRunActive && !wolfDashActive)) || mistBoostDuration < mistBoostMaxDuration))
+							&& !sotnApi.GameApi.InTransition
+							&& sotnApi.AlucardApi.CurrentMp > 0
+							&& ((inputService.ButtonHeld(PlaystationInputKeys.R2) && ((wolfDashActive && (wolfCurrentSpeed < Constants.Khaos.AxeArmorWolfMaxDashSpeed)) || ((wolfCurrentSpeed < Constants.Khaos.AxeArmorWolfMaxRunSpeed) || (!wolfRunActive && !wolfDashActive))))
+							|| mistBoostDuration < mistBoostMaxDuration))
 							{
-								if (!wolfRunActive)
-								{
-									wolfRunActive = true;
-								}
 
-								if (!wolfDashActive && sotnApi.AlucardApi.HasRelic(Relic.PowerOfWolf))
-								{
-									wolfDashActive = true;
-								}
-
-								int faceplantAcceleration = 36000;
-								float faceplantModifier = 1F;
-
-
-								if (superUnderwater)
-								{
-									faceplantModifier = Constants.Khaos.SuperUnderwaterFactor;
-								}
-
-								else if (underwaterActive)
-								{
-									faceplantModifier = toolConfig.Khaos.UnderwaterFactor;
-								}
+								float faceplantRelicModifier = 1F;
 
 								if (sotnApi.AlucardApi.HasRelic(Relic.GasCloud))
 								{
-									wolfCurrentSpeed += (int) (2 * faceplantAcceleration * faceplantModifier);
+									--glideMPCooldown;
+									faceplantRelicModifier = 2F;
 									if (mistBoostDuration < mistBoostMaxDuration * 5)
 									{
 										mistBoostDuration = mistBoostMaxDuration * 5;
@@ -14228,39 +14213,69 @@ namespace SotnRandoTools.Khaos
 								}
 								else
 								{
-									wolfCurrentSpeed += (int) (faceplantAcceleration * faceplantModifier);
+									--glideMPCooldown;
+									--glideMPCooldown;
 									if (mistBoostDuration < mistBoostMaxDuration * 3)
 									{
 										mistBoostDuration = mistBoostMaxDuration * 3;
 									}
 								}
-								if (superSpeed)
-								{
-									if (wolfCurrentSpeed > Constants.Khaos.AxeArmorWolfMaxMayhemSuperSpeed)
-									{
-										wolfCurrentSpeed = Constants.Khaos.AxeArmorWolfMaxMayhemSuperSpeed;
-									}
-								}
-								else if (speedActive)
-								{
-									if (wolfCurrentSpeed > Constants.Khaos.AxeArmorWolfMaxMayhemSpeed)
-									{
-										wolfCurrentSpeed = Constants.Khaos.AxeArmorWolfMaxMayhemSpeed;
-									}
-								}
-								else if (wolfDashActive)
-								{
-									if (wolfCurrentSpeed > Constants.Khaos.AxeArmorWolfMaxDashSpeed)
-									{
-										wolfCurrentSpeed = Constants.Khaos.AxeArmorWolfMaxDashSpeed;
-									}
-								}
-								else if (wolfCurrentSpeed > Constants.Khaos.AxeArmorWolfMaxRunSpeed)
-								{
-									wolfCurrentSpeed = Constants.Khaos.AxeArmorWolfMaxRunSpeed;
-								}
 
-								axeArmorSafetyCooldown = axeArmorMaxSafetyCooldown;
+								if (inputService.ButtonHeld(PlaystationInputKeys.R2))
+								{
+									if (!wolfRunActive)
+									{
+										wolfRunActive = true;
+									}
+
+									if (!wolfDashActive && sotnApi.AlucardApi.HasRelic(Relic.PowerOfWolf))
+									{
+										wolfDashActive = true;
+									}
+
+									int faceplantAcceleration = 36000;
+									float faceplantModifier = 1F;
+
+									wolfCurrentSpeed += (int) (faceplantRelicModifier * faceplantAcceleration * faceplantModifier);
+
+									if (superUnderwater)
+									{
+										faceplantModifier = Constants.Khaos.SuperUnderwaterFactor;
+									}
+
+									else if (underwaterActive)
+									{
+										faceplantModifier = toolConfig.Khaos.UnderwaterFactor;
+									}
+
+									if (superSpeed)
+									{
+										if (wolfCurrentSpeed > Constants.Khaos.AxeArmorWolfMaxMayhemSuperSpeed)
+										{
+											wolfCurrentSpeed = Constants.Khaos.AxeArmorWolfMaxMayhemSuperSpeed;
+										}
+									}
+									else if (speedActive)
+									{
+										if (wolfCurrentSpeed > Constants.Khaos.AxeArmorWolfMaxMayhemSpeed)
+										{
+											wolfCurrentSpeed = Constants.Khaos.AxeArmorWolfMaxMayhemSpeed;
+										}
+									}
+									else if (wolfDashActive)
+									{
+										if (wolfCurrentSpeed > Constants.Khaos.AxeArmorWolfMaxDashSpeed)
+										{
+											wolfCurrentSpeed = Constants.Khaos.AxeArmorWolfMaxDashSpeed;
+										}
+									}
+									else if (wolfCurrentSpeed > Constants.Khaos.AxeArmorWolfMaxRunSpeed)
+									{
+										wolfCurrentSpeed = Constants.Khaos.AxeArmorWolfMaxRunSpeed;
+									}
+
+									axeArmorSafetyCooldown = axeArmorMaxSafetyCooldown;
+								}
 							}
 						}
 
@@ -14374,6 +14389,7 @@ namespace SotnRandoTools.Khaos
 								if (!sotnApi.GameApi.InTransition)
 								{
 									++glideMPCooldown;
+									++glideMPCooldown;
 								}
 							}
 							else if (inputService.ButtonPressed(PlaystationInputKeys.Up, 5) && !mistCeilingLocked)
@@ -14415,6 +14431,7 @@ namespace SotnRandoTools.Khaos
 									axeArmorFloat.Enable();
 									if (!sotnApi.GameApi.InTransition)
 									{
+										--glideMPCooldown;
 										--glideMPCooldown;
 										--mistBoostDuration;
 									}
@@ -14589,7 +14606,7 @@ namespace SotnRandoTools.Khaos
 							}
 						}
 
-						if (wolfCurrentSpeed < 0)
+						if (wolfCurrentSpeed < 0 || !inputService.ButtonHeld(PlaystationInputKeys.R2))
 						{
 							wolfCurrentSpeed = 0;
 						}
@@ -14665,22 +14682,26 @@ namespace SotnRandoTools.Khaos
 							axeArmorHorizontalSpeed.Disable();
 						}
 
-						if (glideMPCooldown <= 0)
+						if(!sotnApi.GameApi.InTransition)
 						{
-							sotnApi.AlucardApi.CurrentMp -= 1;
-							currentMP -= 1;
-							if (sotnApi.AlucardApi.HasRelic(Relic.FormOfMist))
+							if (glideMPCooldown <= 0)
 							{
-								glideMPCooldown = 9;
+								sotnApi.AlucardApi.CurrentMp -= 1;
+								currentMP -= 1;
+								if (sotnApi.AlucardApi.HasRelic(Relic.FormOfMist))
+								{
+									glideMPCooldown = 18;
+								}
+								else
+								{
+									glideMPCooldown = 12;
+								}
 							}
 							else
 							{
-								glideMPCooldown = 6;
+								--glideMPCooldown;
+								--glideMPCooldown;
 							}
-						}
-						else
-						{
-							--glideMPCooldown;
 						}
 					}
 					else
