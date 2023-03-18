@@ -47,13 +47,13 @@ Gathering relics can also grant one or more of the following additional helpful 
 	Damage while Faceplanting <br />
 	Reduced Faceplant Conversion Costs <br />
 
-The following armors also bestow additional effects while held in inventory (not equipped):
+The following armors also bestow additional effects while held in inventory (not equipped): <br />
 	Spike breaker <br />
 	Healing Mail <br />
 	Brilliant Mail <br />
 	Mojo Mail <br />
 
-New Subweapon damage types + costs:
+New Subweapon damage types + costs: <br />
 	Empty		  - Dark (2 Hearts) <br />
 	Holy Ashes    - Poison (2 Hearts) <br />
 	Agunea		  - Thunder (4 Hearts) <br />
