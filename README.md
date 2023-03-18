@@ -32,6 +32,7 @@ This section is very WIP and will be updated gradually each release.
 
 ## Mechanics
 Axe Armor has been retooled to gain progression level upgrades to movement and navigation similar to Alucard.
+Axe Armor has unique sub weapon animations that changed based on the subweapon acquired.
 Axe Armor can also use consumables + sub weapons to allow for more varied gameplay.
 
 Gathering relics can also grant one or more of the following additional helpful effects: <br />
@@ -47,22 +48,22 @@ Gathering relics can also grant one or more of the following additional helpful 
 	Reduced Faceplant Conversion Costs <br />
 
 The following armors also bestow additional effects while held in inventory (not equipped):
-	Spike breaker
-	Healing Mail
-	Brilliant Mail
-	Mojo Mail
+	Spike breaker <br />
+	Healing Mail <br />
+	Brilliant Mail <br />
+	Mojo Mail <br />
 
 New Subweapon damage types + costs:
-	Empty		  - Dark (2 Hearts)
-	Holy Ashes    - Poison (2 Hearts)
-	Agunea		  - Thunder (4 Hearts)
-	Dagger 		  - Cut (4 Hearts)
-	Axe 		  - Hit (8 Hearts)
-	Cross		  - Dark, Curse (12 Hearts)
-	Rebound Stone - Stone (12 Hearts)
-	Holy Water 	  - Water, Holy (16 Hearts)
-	Bible		  - Holy, Curse (20 Hearts)
-	Stop Watch    - Ice (20 Hearts)
+	Empty		  - Dark (2 Hearts) <br />
+	Holy Ashes    - Poison (2 Hearts) <br />
+	Agunea		  - Thunder (4 Hearts) <br />
+	Dagger 		  - Cut (4 Hearts) <br />
+	Axe 		  - Hit (8 Hearts) <br />
+	Cross		  - Dark, Curse (12 Hearts) <br />
+	Rebound Stone - Stone (12 Hearts) <br />
+	Holy Water 	  - Water, Holy (16 Hearts) <br />
+	Bible		  - Holy, Curse (20 Hearts) <br />
+	Stop Watch    - Ice (20 Hearts) <br />
 
 ## Controls
 Up - Revert To Alucard for warp / elevator functionality <br />
@@ -105,7 +106,7 @@ Tap R1 when near the ground to "tech" the landing and act faster. <br />
 ## Damage Formulas
 WIP (patch notes will always have the most accurate details if updated)
 
--New Damage Formulas (Melee):
+Melee Damage (Weapons only):
 	1H Weapon x1: 	2 + .75 Weapon ATK 1 + Base STR [.67 <--> .75] + .75 Equipment STR <br />
 	1H Fist: 		4 + .75 Weapon ATK 1 + Base STR [0.83 <--> 0.91] + .50 Equipment STR <br />
 	1H Weapon x2: 	4 + .75 Weapon ATK 1 + .35 Weapon ATK 2 + Base STR [0.75 <--> 0.91] + .75 Equipment STR <br />
@@ -116,7 +117,8 @@ WIP (patch notes will always have the most accurate details if updated)
 	Others:	 	 	1 (ignores Wolf Damage) <br />
 	Note: Negative ATK2 from offhand will be ignored as a weapon. <br />
 	Note: Dual Wield / 2H will use more favorable rounding for offhand damage. <br />
--New Damage Formulas (Shield Right Hand): <br />
+
+Melee Damage (while wearing Shield Right Hand): <br />
 	1H DMG-Less Shield x1: 		2 + .25 Base INT + .50 Equipment INT + Base STR [.50] + .25 Equipment STR <br />
 	1H DMG-Less Shield, Wpn: 	2 + .25 Base INT + .50 Equipment INT + Base STR [.50] + .25 Equipment STR + .35 Weapon ATK 2 <br />
 	1H DMG-Less Shield x2: 		4 + .50 Base INT + .75 Equipment INT + Base STR [.50] + .25 Equipment STR <br />
@@ -126,7 +128,8 @@ WIP (patch notes will always have the most accurate details if updated)
 	1H DMG Shield x1, DMG-Less: 4 + .50 Base INT + .75 Equipment INT + Base STR [0.67 <--> 0.75] + .75 Weapon ATK 1 + .50 Equipment STR <br />
 	1H DMG Shield x2: 			6 + .50 Base INT + .75 Equipment INT + Base STR [0.75 <--> 0.91] + .75 Weapon ATK 1 + .35 Weapon ATK 2 + .50 Equipment STR <br />
  	1H DMG Shield w/ SR/M:   	8 + .75 Base INT + 1.0 Equipment INT + Base STR [0.75 <--> 0.91] + .75 Weapon ATK 1 + .35 Weapon ATK 2 + .50 Equipment STR <br />
--Current #Hit Damage Scaling rules: <br />
+
+Current #Hit Damage Scaling rules: <br />
 	x1 Hit: 1.0 WPN ATK, -4 Flat Damage <br />
 	x2 Hit: .92 WPN ATK, -6 Flat Damage,  -.02 STR Bonus <br />
 	x3 Hit: .86 WPN ATK, -9 Flat Damage,  -.06 STR Bonus <br />
