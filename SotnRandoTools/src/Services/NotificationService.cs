@@ -70,6 +70,8 @@ namespace SotnRandoTools.Services
 			audioPlayer.Volume = (double) toolConfig.Khaos.Volume / 10F;
 			ActionQueue = new();
 			this.KhaosMeter = 0;
+			this.EquipMessage = "";
+			this.WeaponMessage = "";
 		}
 
 		public double Volume
@@ -81,6 +83,9 @@ namespace SotnRandoTools.Services
 		}
 
 		public short KhaosMeter { get; set; }
+		public string EquipMessage { get; set; }
+		public string WeaponMessage { get; set; }
+		
 
 		public List<QueuedAction> ActionQueue { get; set; }
 
@@ -134,7 +139,7 @@ namespace SotnRandoTools.Services
 
 		private void DrawUI()
 		{
-			if (ActionQueue.Count == 0 && actionTimers.Count == 0 && messageQueue.Count == 0 && KhaosMeter == 0)
+			if (ActionQueue.Count == 0 && actionTimers.Count == 0 && messageQueue.Count == 0 && KhaosMeter == 0 && WeaponMessage == "" && EquipMessage == "")
 			{
 				if (!cleared)
 				{
@@ -161,7 +166,7 @@ namespace SotnRandoTools.Services
 			int screenWidth = clientAPI.ScreenWidth();
 			int screenHeight = clientAPI.ScreenHeight();
 			int xpos = (int) (screenWidth * 0.45);
-			int ypos = (int) (screenHeight * 0.1);
+			int ypos = (int) (screenHeight * 0.10);
 			int col = 0;
 			int row = 0;
 
@@ -181,6 +186,27 @@ namespace SotnRandoTools.Services
 					DrawQueue(scale, scaledIconSkull, scaledIconFairy, scaledIconEye, xpos, ypos, ref col, ref row);
 				}
 
+				if(WeaponMessage != "")
+				{
+					xpos = (int) (screenWidth * 0.53);
+					ypos = (int) (screenHeight * 0.01);
+
+					fontSize = 9 * scale;
+					/*
+					while (TextRenderer.MeasureText(WeaponMessage, new Font("Arial", fontSize)).Width > (scaledTextbox.Width - (18 * scale)))
+					{
+						fontSize--;
+					}*/
+					DrawMessage(WeaponMessage, scale, scaledTextbox, xpos, ypos, fontSize);
+				}
+				if (EquipMessage != "")
+				{
+					xpos = (int) (screenWidth * 0.04);
+					ypos = (int) (screenHeight * 0.01);
+
+					fontSize = 9 * scale;
+					DrawMessage(EquipMessage, scale, scaledTextbox, xpos, ypos, fontSize);
+				}
 
 				if (KhaosMeter > 0)
 				{
@@ -190,7 +216,7 @@ namespace SotnRandoTools.Services
 				}
 
 				xpos = IsPixelPro() ? (int) (screenWidth * 0.17) : (int) (screenWidth * 0.05);
-				ypos = (int) (screenHeight * 0.15);
+				ypos = (int) (screenHeight * 0.16);
 				row = 0;
 				fontSize = 6 * scale;
 				DrawTimers(scale, fontSize, scaledIconSkull, scaledIconFairy, scaledIconEye, xpos, ypos, ref row);

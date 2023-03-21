@@ -148,7 +148,7 @@ namespace SotnRandoTools.Constants
 			new MapLocation{X = 34, Y = 8, SecondCastle = 0},
 		};
 
-		public static List<MapLocation> DisableFastFallRooms = new List<MapLocation>
+		public static List<MapLocation> ReduceFastFallRooms = new List<MapLocation>
 		{
 			new MapLocation{X = 30, Y = 12, SecondCastle = 0}, //AxeArmor Hallway
 			new MapLocation{X = 31, Y = 12, SecondCastle = 0},
@@ -166,6 +166,7 @@ namespace SotnRandoTools.Constants
 			new MapLocation{X = 36, Y = 53, SecondCastle = 1}, //Reverse Clocktower
 			new MapLocation{X = 44, Y = 53, SecondCastle = 1},
 			new MapLocation{X = 49, Y = 51, SecondCastle = 1},
+			new MapLocation{X = 42, Y = 13, SecondCastle = 1}, //Reverse Galamoth Hallway to Boss?
 		};
 		public static List<MapLocation> EntranceCutsceneRooms = new List<MapLocation>
 		{
@@ -1205,6 +1206,7 @@ namespace SotnRandoTools.Constants
 		public static int AxeArmorJumpFloatBaseSpeed = -300000;
 		public static int AxeArmorUnderwaterBaseSpeed = 13500;
 		public static int AxeArmorFloatBaseSpeed = 9000;
+		public static int AxeArmorReducedFallSpeed = 450000;
 		public static int AxeArmorFastFallSpeed = 800000;
 
 		//Flight
@@ -1252,6 +1254,10 @@ namespace SotnRandoTools.Constants
 		public const string RemoveEntityName = "Remove Entity";
 		public const string OptionMenuName = "Menu";
 
+		public static uint SpirtOrbHeartMPBoost = 15;
+		public static uint FaerieScrollHPBoost = 30;
+		public static uint JewelOfOpenMPBoost = 25;
+		public static uint MermanStatueHeartBoost = 20;
 
 		#endregion
 

@@ -9,6 +9,8 @@ namespace SotnRandoTools.Services
 		List<QueuedAction> ActionQueue { get; set; }
 		double Volume { set; }
 		short KhaosMeter { get; set; }
+		string EquipMessage { get; set; }
+		string WeaponMessage { get; set; }
 		void AddMessage(string message);
 		void AddTimer(ActionTimer timer);
 		void PlayAlert(string uri);
