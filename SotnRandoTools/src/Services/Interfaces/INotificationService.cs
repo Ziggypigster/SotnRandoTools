@@ -11,6 +11,7 @@ namespace SotnRandoTools.Services
 		short KhaosMeter { get; set; }
 		string EquipMessage { get; set; }
 		string WeaponMessage { get; set; }
+		void InitializeService();
 		void AddMessage(string message);
 		void AddTimer(ActionTimer timer);
 		void PlayAlert(string uri);

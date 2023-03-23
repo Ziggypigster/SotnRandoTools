@@ -82,6 +82,14 @@ namespace SotnRandoTools.Services
 			}
 		}
 
+		public void InitializeService()
+		{
+			this.KhaosMeter = 0;
+			this.EquipMessage = "";
+			this.WeaponMessage = "";
+			messageQueue.Clear();
+		}
+
 		public short KhaosMeter { get; set; }
 		public string EquipMessage { get; set; }
 		public string WeaponMessage { get; set; }

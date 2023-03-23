@@ -165,6 +165,7 @@ namespace SotnRandoTools
 			renderingApi = new RenderingApi(_maybeMemAPI);
 			watchlistService = new WatchlistService(_memoryDomains, _emu?.SystemId, GlobalConfig);
 			inputService = new InputService(_maybeJoypadApi, sotnApi);
+			
 			/*
 			if (khaosSettingsPanel is not null)
 			{
@@ -186,7 +187,7 @@ namespace SotnRandoTools
 			this.MainForm.CheatList.Load(_memoryDomains, Paths.CheatsPath, false);
 			this.MainForm.CheatList.DisableAll();
 
-			/*
+			
 			var checkCheat = this.MainForm.CheatList.Where(x => x.Name == "AlucardAttackHitbox2Width").FirstOrDefault();
 
 			if (checkCheat is null)
@@ -194,7 +195,7 @@ namespace SotnRandoTools
 				File.Copy(Paths.CheatsBackupPath, Paths.CheatsPath);
 				this.MainForm.CheatList.Load(_memoryDomains, Paths.CheatsPath, false);
 				this.MainForm.CheatList.DisableAll();
-			}*/
+			}
 
 			if (khaosForm is not null)
 			{
@@ -314,18 +315,19 @@ namespace SotnRandoTools
 
 		private void khaosChatLaunch_Click(object sender, EventArgs e)
 		{
-			/*
+			
 			if (khaosForm is not null && sotnApi is not null)
 			{
 				khaosForm.Close();
-				khaosForm = new KhaosForm(toolConfig, this.MainForm.CheatList, sotnApi, gameApi, alucardApi, notificationService, inputService);
+				khaosForm = new KhaosForm(toolConfig, this.MainForm.CheatList, sotnApi, gameApi, alucardApi, notificationService, inputService, _memoryDomains);
 				khaosForm.Show();
 			}
 			else if (khaosForm is null && sotnApi is not null)
 			{
-				khaosForm = new KhaosForm(toolConfig, this.MainForm.CheatList, sotnApi, gameApi, alucardApi, notificationService, inputService);
+				khaosForm = new KhaosForm(toolConfig, this.MainForm.CheatList, sotnApi, gameApi, alucardApi, notificationService, inputService, _memoryDomains);
 				khaosForm.Show();
-			}*/
+			}
+
 			if (sotnApi is not null)
 			{
 				if (khaosForm is not null)

@@ -119,15 +119,15 @@ Melee Damage (Weapons only): <br />
 	Note: Dual Wield / 2H will use more favorable rounding for offhand damage. <br />
 
 Melee Damage (while wearing Shield Right Hand): <br />
-	1H DMG-Less Shield x1: 		2 + .25 Base INT + .50 Equipment INT + Base STR [.50] + .25 Equipment STR <br />
-	1H DMG-Less Shield, Wpn: 	2 + .25 Base INT + .50 Equipment INT + Base STR [.50] + .25 Equipment STR + .35 Weapon ATK 2 <br />
-	1H DMG-Less Shield x2: 		4 + .50 Base INT + .75 Equipment INT + Base STR [.50] + .25 Equipment STR <br />
-	1H DMG-Less Shld, DMG Shld: 4 + .50 Base INT + .75 Equipment INT + Base STR [.50] + .25 Equipment STR + .35 Weapon ATK 2 <br />
-	1H DMG-Less Shield w/ SR/M: 6 + .75 Base INT + 1.0 Equipment INT + Base STR [.50] + .25 Equipment STR + .35 Weapon ATK 2 <br />
-	1H DMG Shield x1, WPN 		4 + .25 Base INT + .50 Equipment INT + Base STR [0.75 <--> 0.91] + .75 Weapon ATK 1 + .50 Equipment STR + .35 Weapon ATK 2 <br />
-	1H DMG Shield x1, DMG-Less: 4 + .50 Base INT + .75 Equipment INT + Base STR [0.67 <--> 0.75] + .75 Weapon ATK 1 + .50 Equipment STR <br />
-	1H DMG Shield x2: 			6 + .50 Base INT + .75 Equipment INT + Base STR [0.75 <--> 0.91] + .75 Weapon ATK 1 + .35 Weapon ATK 2 + .50 Equipment STR <br />
- 	1H DMG Shield w/ SR/M:   	8 + .75 Base INT + 1.0 Equipment INT + Base STR [0.75 <--> 0.91] + .75 Weapon ATK 1 + .35 Weapon ATK 2 + .50 Equipment STR <br />
+	1H DMG-Less Shield x1: 		2 + Weapon INT + .20 Base INT + .800 Equipment INT <br />
+	1H DMG-Less Shield, Wpn: 	2 + Weapon INT + .20 Base INT + .800 Equipment INT + Base STR [.50 <--> .58]  + .35 Weapon ATK 2 + .25 Equipment STR <br />
+	1H DMG-Less Shield x2: 		4 + Weapon INT + .40 Base INT + 1.60 Equipment INT <br />
+	1H DMG-Less Shld, DMG Shld: 4 + Weapon INT + .40 Base INT + 1.60 Equipment INT + Base STR [.50 <--> .58]  + .35 Weapon ATK 2 + .25 Equipment STR  <br />
+	1H DMG-Less Shield w/ SR/M: 6 + Weapon INT + .60 Base INT + 2.40 Equipment INT + Base STR [.50 <--> .58]  + .35 Weapon ATK 2 + .25 Equipment STR <br />
+	1H DMG Shield x1, WPN 		4 + Weapon INT + .20 Base INT + .80 Equipment INT + Base STR [0.75 <--> 0.91] + .75 Weapon ATK 1 + .35 Weapon ATK 2  + .50 Equipment STR <br />
+	1H DMG Shield x1, DMG-Less: 4 + Weapon INT + .40 Base INT + .80 Equipment INT + Base STR [0.67 <--> 0.75] + .75 Weapon ATK 1 + .50 Equipment STR <br />
+	1H DMG Shield x2: 			6 + Weapon INT + .40 Base INT + .80 Equipment INT + Base STR [0.75 <--> 0.91] + .75 Weapon ATK 1 + .35 Weapon ATK 2 + .50 Equipment STR <br />
+ 	1H DMG Shield w/ SR/M:   	8 + Weapon INT + .60 Base INT + 2.4 Equipment INT + Base STR [0.75 <--> 0.91] + .75 Weapon ATK 1 + .35 Weapon ATK 2 + .50 Equipment STR <br />
 
 Current #Hit Damage Scaling rules: <br />
 	x1 Hit: 1.0 WPN ATK, -4 Flat Damage <br />
