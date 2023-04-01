@@ -1,7 +1,14 @@
 # Intent of this build
 
+
+* [Latest Release](https://github.com/Ziggypigster/SotnRandoTools/releases)
+
 This build is based on the 1.08 version of the SotN Randomizer code that included the Khaos Mod.
 The intent is to carry over the Twitch only updates, along with some balancing changes, to the old chatbot version.
+
+## Video Tutorials
+
+* [Axe Armor Tutorials](https://www.youtube.com/playlist?list=PLt7RkGYW_ln0ah9cSqoGVPo1jM7MwslrI)
 
 
 ## Associated Projects
@@ -13,6 +20,7 @@ The intent is to carry over the Twitch only updates, along with some balancing c
 # Table of Contents
 - [Table of Contents](#table-of-contents)
 - [Axe Armor](#axe-armor)
+  - [Features](#features)
   - [Mechanics](#mechanics)
   - [Controls](#controls)
   - [Damage Formulas](#damage-formulas)
@@ -30,10 +38,12 @@ The intent is to carry over the Twitch only updates, along with some balancing c
 # Axe Armor
 This section is very WIP and will be updated gradually each release.
 
-## Mechanics
-Axe Armor has been retooled to gain progression level upgrades to movement and navigation similar to Alucard.
-Axe Armor has unique sub weapon animations that changed based on the subweapon acquired.
-Axe Armor can also use consumables + sub weapons to allow for more varied gameplay.
+## Features
+Axe Armor has been retooled to gain progression level upgrades to movement and navigation similar to Alucard.  <br />
+Axe Armor weapons and shield now change the damage, damage type, and number of hits.  <br />
+Axe Armor has unique sub weapon animations, with one additional subweapon if the the player does not have any subweapons held.  <br />
+Axe Armor can also use consumables + sub weapons to allow for more varied gameplay.  <br />
+MP now regenerates passively while in Axe Armor. This rate is doubled if you are only moving without attacking, or scales to four times as fast if standing still.  <br />
 
 Gathering relics can also grant one or more of the following additional helpful effects: <br />
 	Melee Damage <br />
@@ -46,6 +56,13 @@ Gathering relics can also grant one or more of the following additional helpful 
 	Increased Max Stored Speed <br />
 	Damage while Faceplanting <br />
 	Reduced Faceplant Conversion Costs <br />
+	Increased HP/MP/Hearts <br />
+	Additional Items / Consumables <br />
+	
+The following weapons have additional effects while held in hand:  <br />
+	Mourneblade  <br />
+	Shield Rod  <br />
+	Mablung Sword  <br />
 
 The following armors also bestow additional effects while held in inventory (not equipped): <br />
 	Spike breaker <br />
@@ -65,6 +82,14 @@ New Subweapon damage types + costs: <br />
 	Bible		  - Holy, Curse (20 Hearts) <br />
 	Stop Watch    - Ice (20 Hearts) <br />
 
+## Mechanics
+It is recommended to hold down the Momentum button to build speed and either attack or jump with a neutral input to make jumps your normally couldn't make.  <br />
+You can buffer jumps mid attack to cause you to automatically ascend with the attack momentum.  <br />
+It is possible to death skip without relics using Faceplant + Speed Boost.  <br />
+Axe Armor's jumps and I-Frames allows additional sequence break relic checks compared to Alucard.  <br />
+
+Reminder of Vanilla Behavior: Axe Armor is immune to status ailments, big toss, and most grab attacks.  <br />
+
 ## Controls
 Up - Revert To Alucard for warp / elevator functionality <br />
 Down - Revert To Crouched Alucard for dodging, warp, elevator functionality <br />
@@ -74,7 +99,7 @@ R1 - Glide (drains MP over time) <br />
 R2 - Momentum <br />
 
 Square -  Swings Axe + Use held items (Note: Weapons now impact axe armor damage + damage type) <br />
-Triangle - Elemental Hellfire (25 MP) <br />
+Triangle - Elemental Hellfire (24 MP) <br />
 	+ Neutral: Ice  <br />
 	+ Up:      Fire <br />
 	+ Down:    Lightning <br />
@@ -82,14 +107,14 @@ Circle - Use subweapons / held items <br />
 X / Cross - Double Jump (upgrades to Triple Jump with Leap Stone) <br />
 
 Unique Commands (Momentum): <br />
-Left / Right: Build up stored speed. <br />
+Left / Right: Build up stored speed. If you collide into an enemy, you will be damage boosted in the held direction with high speed. <br />
 Neutral - Slide or move in the air with stored speed. <br />
 Square - Now moves with stored speed. <br />
 Up + Jump - Gravity Jump (requires Gravity Boots) <br />
 
 Unique Commands (while Gliding): <br />
 Up (Requires Bat): Flight <br />
-Triangle   - Small fireballs that can hit breakable ceiling / floor tiles (15MP) <br />
+Triangle   - Small fireballs that can hit breakable ceiling / floor tiles (18MP) <br />
 	+ Up   - Small fireballs shifted upwards <br />
 	+ Down - Small fireballs shfited downwards <br />
 
@@ -97,37 +122,81 @@ Unique Commands (while Faceplanting): <br />
 Hold Up - Goes through mist gates, Olrox narrow passageways (requires Form of Mist) <br />
 Square - MP to Speed Boost / Aerial Faceplant extension <br />
 Triangle - Hearts to MP Conversion <br />
-Circle - Subweapon to Hearts Conversion <br />
+Circle - Subweapon to HP + Hearts Conversion <br />
 R1 - Flight <br />
 
 Unique Command (while in hitstun):<br />
 Tap R1 when near the ground to "tech" the landing and act faster. <br />
 
 ## Damage Formulas
-WIP (patch notes will always have the most accurate details if updated)
+Note: Latest patch notes will always have the most accurate details.
 
-Melee Damage (Weapons only): <br />
-	1H Weapon x1: 	2 + .75 Weapon ATK 1 + Base STR [.67 <--> .75] + .75 Equipment STR <br />
-	1H Fist: 		4 + .75 Weapon ATK 1 + Base STR [0.83 <--> 0.91] + .50 Equipment STR <br />
-	1H Weapon x2: 	4 + .75 Weapon ATK 1 + .35 Weapon ATK 2 + Base STR [0.75 <--> 0.91] + .75 Equipment STR <br />
-	Fist Only x2: 	6 + .75 Weapon ATK 1 + .35 Weapon ATK 2 + Base STR [1.00 <--> 1.25] + .50 Equipment STR <br />
-	2H Weapon: 	  	6 + .75 Weapon ATK 1 + .35 Weapon ATK 2 + Base STR [1.00 <--> 1.25] + .75 Equipment STR <br />
-	Throwables:   	Consumes if held in main hand, not counted as a weapon in above calculations if in offhand. <br />
-	Shields:		See below chart <br />
-	Others:	 	 	1 (ignores Wolf Damage) <br />
-	Note: Negative ATK2 from offhand will be ignored as a weapon. <br />
-	Note: Dual Wield / 2H will use more favorable rounding for offhand damage. <br />
+Small Fireballs: <br />
+	Damage = 6 + .24 Base + .30 Weapon INT + .30 Equipment INT <br />
+	Soul of Bat, Echo of Bat, Force of Echo: <br />
+		+ .04 Base INT Scaling  <br />
+		+ .05 Equipment INT   <br />
+		+ .05 Weapon INT   <br />
+	Fire of Bat: <br />
+		+ .08 Base INT  <br />
+		+ .10 Equipment INT  <br />
+		+ .10 Weapon INT  <br />
+	Eye of Vlad, Mojo Mail: <br />
+		+ 6 Base Damage  <br />
 
-Melee Damage (while wearing Shield Right Hand): <br />
-	1H DMG-Less Shield x1: 		2 + Weapon INT + .20 Base INT + .800 Equipment INT <br />
-	1H DMG-Less Shield, Wpn: 	2 + Weapon INT + .20 Base INT + .800 Equipment INT + Base STR [.50 <--> .58]  + .35 Weapon ATK 2 + .25 Equipment STR <br />
-	1H DMG-Less Shield x2: 		4 + Weapon INT + .40 Base INT + 1.60 Equipment INT <br />
-	1H DMG-Less Shld, DMG Shld: 4 + Weapon INT + .40 Base INT + 1.60 Equipment INT + Base STR [.50 <--> .58]  + .35 Weapon ATK 2 + .25 Equipment STR  <br />
-	1H DMG-Less Shield w/ SR/M: 6 + Weapon INT + .60 Base INT + 2.40 Equipment INT + Base STR [.50 <--> .58]  + .35 Weapon ATK 2 + .25 Equipment STR <br />
-	1H DMG Shield x1, WPN 		4 + Weapon INT + .20 Base INT + .80 Equipment INT + Base STR [0.75 <--> 0.91] + .75 Weapon ATK 1 + .35 Weapon ATK 2  + .50 Equipment STR <br />
-	1H DMG Shield x1, DMG-Less: 4 + Weapon INT + .40 Base INT + .80 Equipment INT + Base STR [0.67 <--> 0.75] + .75 Weapon ATK 1 + .50 Equipment STR <br />
-	1H DMG Shield x2: 			6 + Weapon INT + .40 Base INT + .80 Equipment INT + Base STR [0.75 <--> 0.91] + .75 Weapon ATK 1 + .35 Weapon ATK 2 + .50 Equipment STR <br />
- 	1H DMG Shield w/ SR/M:   	8 + Weapon INT + .60 Base INT + 2.4 Equipment INT + Base STR [0.75 <--> 0.91] + .75 Weapon ATK 1 + .35 Weapon ATK 2 + .50 Equipment STR <br />
+Big Fireballs: <br />
+	Damage = 12 + .30 Base + .35 Weapon INT + .35 Equipment INT <br />
+	Soul of Bat, Echo of Bat, Force of Echo: <br />
+		+ .05 Base INT Scaling <br />
+		+ .06 Equipment INT <br />
+		+ .06 Weapon INT <br />
+	Fire of Bat: <br />
+		+ .10 Base INT  <br />
+		+ .12 Equipment INT  <br />
+		+ .12 Weapon INT  <br />
+	Eye of Vlad, Mojo Mail: <br />
+		+ 12 Base Damage  <br />
+
+Subweapons: <br />
+	Highest Int: Higher of Base Int or Equipment INT <br />
+	Lowest Int: Lower of Base Int or Equipment INT, + Weapon INT <br />
+	Damage Formula: (Relic Damage + 9 + (Highest INT * .7) + (Lowest INT * .3)) * Subweapon Multiplier <br />
+
+Subweapon Multipliers:<br />
+	Empty: .25 <br />
+	Holy Ashes: .9 <br />
+	Agunea: .4 <br />
+	Dagger: 1.2 <br />
+	Axe: 1 <br />
+	Cross: 1.1 <br />
+	Rebound Stone: 1.4 <br />
+	Holy Water: .6 <br />
+	Bible: .5 <br />
+	Stop Watch: .5 <br />
+
+
+Melee Weapon Damage Formula: (Main Hand Scaling * Hit Multiplier) - Hit Penalties - Hit STR Penalty + Offhand Scaling + Tooth of Vlad Scaling Special <br /> 
+
+Tooth of Vlad: <br />
+2H: 						+.280 Base STR <br />
+Weapons (per hand):		 	+.105 Base STR <br />
+Shields/Unarmed (per hand): +.070 Base STR <br />
+
+Main Hand Scaling: <br />
+2H Weapon: 	6 + 0.75 ATK1 + .67 Base STR + .50 Equipment STR <br />
+DMG Shield: 3 + 0.75 ATK1 + .67 Base STR + .50 Equipment STR + .15 Shield INT <br />
+1H Weapon: 	3 + 0.75 ATK1 + .67 Base STR + .50 Equipment STR <br />
+Fist: 		1 + 0.75 ATK1 + .67 Base STR + .50 Equipment STR <br />
+Shield: 	1 + 0.00 ATK1 + .50 Base STR + .50 Equipment STR + .15 Shield INT <br />
+
+Offhand Scaling: <br />
+2H Weapon:	3 + .35 Weapon ATK 2 + .33 Base STR +. 25 Equipment STR <br />
+DMG Shield: 2 + .35 Weapon ATK 2 + .08 Base STR + .25 Equipment STR + .15 Shield INT <br />
+1H Weapon:	2 + .35 Weapon ATK 2 + .08 Base STR + .25 Equipment STR <br />
+Fist		1 + .00 Weapon ATK 2 + .08 Base STR + .25 Equipment STR <br />
+Shield: 	1 + .00 Weapon ATK 2 + .08 Base STR + .25 Equipment STR + .15 Shield INT <br />
+
+Special: Shield Rod / Mablung Sword adds an additional + .45 Weapon INT to the damage. <br />
 
 Current #Hit Damage Scaling rules: <br />
 	x1 Hit: 1.0 WPN ATK, -4 Flat Damage <br />

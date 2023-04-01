@@ -963,6 +963,7 @@ namespace SotnRandoTools.Constants
 		};
 		public static int[] axeArmorOneHandedDoubleHit =
 		{
+			130,    //Holy Rod
 			131,	//Star Flail
 			132,	//Moon Rod
 		};

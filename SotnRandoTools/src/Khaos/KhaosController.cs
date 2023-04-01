@@ -544,6 +544,7 @@ namespace SotnRandoTools.Khaos
 		private int axeArmorFrameDelay = 32;
 		private int axeArmorSafetyCooldown = 0;
 		private int axeArmorMaxSafetyCooldown = 5;
+		private int spellCooldown = 0;
 		private int facePlantCooldown = 0;
 		private int axeArmorDelayedHPRegenDuration = 0;
 		private int axeArmorDelayedHeartRegenDuration = 0;
@@ -781,7 +782,6 @@ namespace SotnRandoTools.Khaos
 			state.Disable();
 			action.Disable();
 
-			
 			if (socketClient.Connected)
 			{
 				socketClient.Stop();
@@ -1583,7 +1583,7 @@ namespace SotnRandoTools.Khaos
 			{
 				int meleeDamage = 0;
 				CheckAxeArmorStats(true);
-				CheckAxeArmorAttack(false, 0, out meleeDamage);
+				CheckAxeArmorAttack(true, 0, out meleeDamage);
 			}
 			//LogEntityFromRoom(false);
 			LogEntityFromRoom(true);
@@ -1801,7 +1801,7 @@ namespace SotnRandoTools.Khaos
 			int count = 155; //Normal - 131?
 
 			LiveEntity currentActor;
-			if (sotnApi.AlucardApi.ScreenX < 30 || sotnApi.AlucardApi.ScreenX > 225 || sotnApi.AlucardApi.ScreenY < 15 || sotnApi.AlucardApi.ScreenY > 245
+			if (sotnApi.AlucardApi.ScreenX < 30 || sotnApi.AlucardApi.ScreenX > 225 || sotnApi.AlucardApi.ScreenY < 25 || sotnApi.AlucardApi.ScreenY > 240
 				|| !sotnApi.AlucardApi.HasControl()
 				|| sotnApi.GameApi.IsInMenu()
 				|| sotnApi.GameApi.CanSave()
@@ -2495,7 +2495,7 @@ namespace SotnRandoTools.Khaos
 				{
 					if (hasBrilliantMail)
 					{
-						damage += 12;
+						damage += 10;
 					}
 					if (sotnApi.AlucardApi.HasRelic(Relic.RingOfVlad))
 					{
@@ -2532,9 +2532,9 @@ namespace SotnRandoTools.Khaos
 						damageTypeB = 4; //Water
 						damageTypeB = 32; //Ice
 						damage += (int) Math.Round(9 + (highestINT * .7) + (lowestINT * .3));
-						damage = (int)Math.Round(damage / 2.5);
+						damage = (int)Math.Round(damage / 2.0);
 
-						damageInterval = 10;
+						damageInterval = 16;
 						heartUsageCooldown = 150;
 						globalUsageCooldown = 150;
 						lockXPosition = true;
@@ -2570,8 +2570,8 @@ namespace SotnRandoTools.Khaos
 
 							activator = 10;
 							validHeartUsage = true;
-							damage += (int) Math.Round(8 + (highestINT * .7) + (lowestINT * .3));
-							damage = (int) Math.Round(damage * .5);
+							damage += (int) Math.Round(9 + (highestINT * .7) + (lowestINT * .3));
+							damage = (int) Math.Round(damage / 4.0);
 							damageTypeA = 128; //Fire
 							damageTypeB = 8; //Dark
 
@@ -2615,8 +2615,8 @@ namespace SotnRandoTools.Khaos
 
 							activator = 10;
 							validHeartUsage = true;
-							damage += (int) Math.Round(8 + (highestINT * .7) + (lowestINT * .3));
-							damage = (int) Math.Round(damage * 1.33);
+							damage += (int) Math.Round(9 + (highestINT * .7) + (lowestINT * .3));
+							damage = (int) Math.Round(damage * 1.2);
 							damageTypeA = 64; // Cut
 							damageTypeB = 0;
 
@@ -2649,7 +2649,7 @@ namespace SotnRandoTools.Khaos
 
 							activator = 10;
 							validHeartUsage = true;
-							damage += (int) Math.Round(8 + (highestINT * .7) + (lowestINT * .3));
+							damage += (int) Math.Round((9 + (highestINT * .7) + (lowestINT * .3)));
 
 							damageTypeA = 0; //Hit
 							damageTypeB = 0; //Hit
@@ -2685,7 +2685,8 @@ namespace SotnRandoTools.Khaos
 						{
 							activator = 10;
 							validHeartUsage = true;
-							damage += (int) Math.Round(5 + (highestINT * .5) + (lowestINT * .3));
+							damage += (int) Math.Round(9 + (highestINT * .7) + (lowestINT * .3));
+							damage = (int) Math.Round(damage * (.6));
 							damageTypeA = 16;  //Holy
 							damageTypeB = 4;  //Water
 
@@ -2726,12 +2727,8 @@ namespace SotnRandoTools.Khaos
 							damageTypeA = 1;//Curse
 							damageTypeB = 16;//Holy
 							damage += (int) Math.Round(9 + (highestINT * .7) + (lowestINT * .3));
-							damage = damage / 3;
-							if (damage < 1)
-							{
-								damage = 1;
-							}
-							damageInterval = 10;
+							damage = (int) Math.Round(damage / 2.0);
+							damageInterval = 12;
 							heartUsageCooldown = 150;
 							globalUsageCooldown = 150;
 							updateXPosition = true;
@@ -2757,9 +2754,10 @@ namespace SotnRandoTools.Khaos
 								sotnApi.AlucardApi.CurrentHearts -= 12;
 							}
 
-							activator = 10;
+							activator = 16;
 							validHeartUsage = true;
-							damage += (int) Math.Round(8 + (highestINT * .7) + (lowestINT * .3));
+							damage += (int) Math.Round(9 + (highestINT * .7) + (lowestINT * .3));
+							damage = (int) Math.Round(damage * 1.1);
 							damageTypeA = 8; //Dark
 							damageTypeB = 1; //Curse
 
@@ -2803,11 +2801,11 @@ namespace SotnRandoTools.Khaos
 							//activator = 20;
 							activator = 10;
 							validHeartUsage = true;
-							damage += (int) Math.Round((8 + (highestINT * .7) + (lowestINT * .3))*1.2);
+							damage += (int) Math.Round((9 + (highestINT * .7) + (lowestINT * .3))*1.4);
 							damageTypeA = 2; //Stone
 							damageTypeB = 0; //Hit
 
-							damageInterval = 12;
+							damageInterval = 16;
 							heartUsageCooldown = 250;
 							globalUsageCooldown = 7;
 
@@ -2829,7 +2827,7 @@ namespace SotnRandoTools.Khaos
 
 							activator = 10;
 							validHeartUsage = true;
-							damage += (int) Math.Round((8 + (highestINT * .7) + (lowestINT * .3)) *.9);
+							damage += (int) Math.Round((9 + (highestINT * .7) + (lowestINT * .3)) *.9);
 
 							damageTypeA = 192; //Poison
 							damageTypeB = 0; //Neutral
@@ -2872,7 +2870,7 @@ namespace SotnRandoTools.Khaos
 							//activator = 17;
 							activator = 10;
 							validHeartUsage = true;
-							damage += (int) Math.Round((8 + (highestINT * .7) + (lowestINT * .3))*.5);
+							damage += (int) Math.Round((9 + (highestINT * .7) + (lowestINT * .3))*.4);
 							damageTypeA = 64; //Cut
 							damageTypeB = 64; //Thunder
 
@@ -2919,11 +2917,6 @@ namespace SotnRandoTools.Khaos
 						damage = damage / 3;
 					}
 
-					if (damage < 1)
-					{
-						damage = 1;
-					}
-
 					if (sotnApi.AlucardApi.HasRelic(Relic.EyeOfVlad))
 					{
 						int critCheck = rng.Next(0, 8);
@@ -2939,6 +2932,11 @@ namespace SotnRandoTools.Khaos
 								damage += 1;
 							}
 						}
+					}
+
+					if (damage < 1)
+					{
+						damage = 1;
 					}
 
 					if (lockXPosition)
@@ -3818,9 +3816,9 @@ namespace SotnRandoTools.Khaos
 		{
 			if (axeArmorContactDamage > 0)
 			{
-				if(wolfCurrentSpeed >= Constants.Khaos.AxeArmorWolfMinRunSpeed)
+				if(wolfCurrentSpeed >= Constants.Khaos.AxeArmorWolfMinRunSpeed && axeArmorContactDamageCooldown > 1)
 				{
-					axeArmorContactDamageCooldown = 0;
+					axeArmorContactDamageCooldown = 1;
 				}
 				else if (wolfCurrentSpeed >= Constants.Khaos.AxeArmorWolfMinStopSpeed)
 				{
@@ -10986,7 +10984,7 @@ namespace SotnRandoTools.Khaos
 					else if (hasToothOfVlad != ToothOfVlad && ToothOfVlad != false)
 					{
 						hasToothOfVlad = true;
-						notificationService.AddMessage("Melee STR Scaling+");
+						notificationService.AddMessage("Melee Base STR Scaling+");
 					}
 					else if (hasRibOfVlad != RibOfVlad && RibOfVlad != false)
 					{
@@ -12765,7 +12763,7 @@ namespace SotnRandoTools.Khaos
 			if (axeArmorActive && toolConfig.Khaos.BoostAxeArmor)
 			{
 				bool canGrantBonuses = false;
-				if (!IsInRoomList(Constants.Khaos.LoadingRooms))
+				if (!IsInRoomList(Constants.Khaos.LoadingRooms) && !sotnApi.GameApi.CanSave())
 				{
 					canGrantBonuses = true;
 				}
@@ -12812,6 +12810,10 @@ namespace SotnRandoTools.Khaos
 						if (spriteCard == true && hasSpriteCard == false)
 						{
 							notificationService.AddMessage("+1 Life apple");
+						}
+						if (ghostCard == true && hasGhostCard == false)
+						{
+							notificationService.AddMessage("+1 Healing Mail");
 						}
 						if (swordCard == true && hasSwordCard == false)
 						{
@@ -12957,7 +12959,7 @@ namespace SotnRandoTools.Khaos
 				//Restore Items if removed
 				if (swordCard == false && hasSwordCard == true)
 				{
-					bool equippedSword = Equipment.Items[(int) (sotnApi.AlucardApi.RightHand)] == "Sword Familiar" || Equipment.Items[(int) (sotnApi.AlucardApi.LeftHand)] == "Sword Familiar";
+					bool equippedSword = Equipment.Items[(int) (sotnApi.AlucardApi.RightHand)] == "Sword Familiar" || Equipment.Items[(int) (sotnApi.AlucardApi.LeftHand)] == "Sword Familiar" || sotnApi.AlucardApi.HasItemInInventory("Sword Familiar");
 					if (!equippedSword)
 					{
 						sotnApi.AlucardApi.GrantItemByName("Sword Familiar");
@@ -13095,6 +13097,10 @@ namespace SotnRandoTools.Khaos
 					--facePlantCooldown;
 				}
 
+				if (spellCooldown > 0)
+				{
+					--spellCooldown;
+				}
 
 
 				if (sotnApi.GameApi.CanSave() && sotnApi.AlucardApi.ScreenX > 90 && sotnApi.AlucardApi.ScreenX < 150)
@@ -13225,7 +13231,7 @@ namespace SotnRandoTools.Khaos
 					}
 					if (axeArmorDelayedHPRegenDuration > 0)
 					{
-						if (sotnApi.AlucardApi.CurrentHp < sotnApi.AlucardApi.MaxtMp)
+						if (sotnApi.AlucardApi.CurrentHp < sotnApi.AlucardApi.MaxtHp)
 						{
 							sotnApi.AlucardApi.CurrentHp += 1;
 							--axeArmorDelayedHPRegenDuration;
@@ -14295,7 +14301,7 @@ namespace SotnRandoTools.Khaos
 						AxeArmorHeartActionCheck();
 					}
 
-					if (currentMP > 24
+					if (currentMP > 23
 						&& !fireBallActive
 						&& !heartsOnlyActive
 						&& inputService.ButtonPressed(PlaystationInputKeys.Triangle, Globals.UpdateCooldownFrames)
@@ -14303,9 +14309,10 @@ namespace SotnRandoTools.Khaos
 						&& (sotnApi.AlucardApi.State == 40 || sotnApi.AlucardApi.State == 41)
 						&& facePlantCooldown == 0
 						&& axeArmorSafetyCooldown == 0
+						&& spellCooldown == 0
 						)
 					{
-						sotnApi.AlucardApi.CurrentMp -= 25;
+						sotnApi.AlucardApi.CurrentMp -= 24;
 						int fireBallCount = 2;
 
 						bool alucardFacing = sotnApi.AlucardApi.FacingLeft;
@@ -14317,29 +14324,31 @@ namespace SotnRandoTools.Khaos
 						if (!heartsOnlyActive)
 						{
 							uint baseFireballDamage = 12;
-							double baseIntMultiplier = .36;
-							double equipIntMultiplier = .84;
+							double baseINTMultiplier = .30;
+							double equipINTMultiplier = .36;
+							//double baseINTMultiplier = .30;
+							//double equipINTMultiplier = .70;
 
 							if (sotnApi.AlucardApi.HasRelic(Relic.SoulOfBat))
 							{
-								baseIntMultiplier += .12;
-								equipIntMultiplier += .06;
+								baseINTMultiplier += .05;
+								equipINTMultiplier += .06;
 							}
 
 							if (sotnApi.AlucardApi.HasRelic(Relic.EchoOfBat))
 							{
-								baseIntMultiplier += .12;
-								equipIntMultiplier += .06;
+								baseINTMultiplier += .05;
+								equipINTMultiplier += .06;
 							}
 							if (sotnApi.AlucardApi.HasRelic(Relic.FireOfBat))
 							{
-								baseIntMultiplier += .24;
-								equipIntMultiplier += .12;
+								baseINTMultiplier += .10;
+								equipINTMultiplier += .12;
 							}
 							if (sotnApi.AlucardApi.HasRelic(Relic.ForceOfEcho))
 							{
-								baseIntMultiplier += .12;
-								equipIntMultiplier += .06;
+								baseINTMultiplier += .05;
+								equipINTMultiplier += .06;
 							}
 							if (sotnApi.AlucardApi.HasRelic(Relic.EyeOfVlad))
 							{
@@ -14349,7 +14358,7 @@ namespace SotnRandoTools.Khaos
 							{
 								baseFireballDamage += 12;
 							}
-							calculatedFireBallDamage = (short) ((baseFireballDamage) + ((sotnApi.AlucardApi.Int) * baseIntMultiplier) + ((equipmentINT + axeArmorShieldINT) * equipIntMultiplier));
+							calculatedFireBallDamage = (short) ((baseFireballDamage) + ((sotnApi.AlucardApi.Int) * baseINTMultiplier) + ((equipmentINT + +axeArmorShieldINT) * equipINTMultiplier));
 							if (IsInRoomList(Constants.Khaos.GalamothRooms))
 							{
 								calculatedFireBallDamage = (short) (calculatedFireBallDamage / 3);
@@ -14431,21 +14440,22 @@ namespace SotnRandoTools.Khaos
 							--fireBallCount;
 
 						}
-
+						spellCooldown = 3;
 						fireBallActive = true;
 						cheats.AddCheat(address + SotnApi.Constants.Values.Game.Entities.SpeedWholeOffset, alucardFacing ? (ushort) Constants.Khaos.FireBallSpeedLeft : (ushort) Constants.Khaos.FireBallSpeedRight, Constants.Khaos.FireBallSpeedName, WatchSize.Word);
 						fireBallTimer.Start();
 					}
 
-					else if (currentMP > 14
+					else if (currentMP > 17
 						&& inputService.ButtonPressed(PlaystationInputKeys.Triangle, 10)
 						&& !heartsOnlyActive 
 						&& (inputService.ButtonHeld(PlaystationInputKeys.R1) || sotnApi.AlucardApi.State == 42)
 						&& fireballCooldown == 0
 						&& facePlantCooldown == 0
-						&& axeArmorSafetyCooldown == 0)
+						&& axeArmorSafetyCooldown == 0
+						&& spellCooldown == 0)
 					{
-						sotnApi.AlucardApi.CurrentMp -= 15;
+						sotnApi.AlucardApi.CurrentMp -= 18;
 						int fireBallCount = 2;
 						int fireBallStart = 10;
 						uint secondaryDamageType = 16; //Holy
@@ -14530,6 +14540,7 @@ namespace SotnRandoTools.Khaos
 
 						//++batFirePalette;
 						fireballCooldown = 9;
+						spellCooldown = 3;
 					}
 					//Set Damage Calculation Last, account for underflow
 					CheckAxeArmorAttack(false, meleeDamage, out meleeDamageTotal);
@@ -14656,7 +14667,7 @@ namespace SotnRandoTools.Khaos
 								&& sotnApi.AlucardApi.CurrentHearts > 0)
 							{
 								uint remainingHearts = 0;
-								int mpDifference = (int) (sotnApi.AlucardApi.MaxtMp * 2 - sotnApi.AlucardApi.CurrentMp - axeArmorDelayedMPRegenDuration);
+								int mpDifference = (int) (sotnApi.AlucardApi.MaxtMp - sotnApi.AlucardApi.CurrentMp - axeArmorDelayedMPRegenDuration);
 								int heartDifference = sotnApi.AlucardApi.CurrentHearts > mpDifference ? (int) mpDifference : (int) sotnApi.AlucardApi.CurrentHearts;
 								//MaxMP * 2
 
@@ -14682,7 +14693,7 @@ namespace SotnRandoTools.Khaos
 								sotnApi.AlucardApi.CurrentHearts = remainingHearts;
 							}
 
-							//Faceplant: Sacrifice Subweapon
+							//Faceplant: Subweapons to HP/Hearts Conversion
 							if (inputService.ButtonPressed(PlaystationInputKeys.Circle, Globals.UpdateCooldownFrames)
 								&& ((axeArmorDelayedHeartRegenDuration < sotnApi.AlucardApi.MaxtHearts / 2 || axeArmorDelayedHeartRegenDuration == 0)
 								|| (axeArmorDelayedHPRegenDuration < sotnApi.AlucardApi.MaxtHearts / 2 || axeArmorDelayedHPRegenDuration == 0))
@@ -14881,7 +14892,7 @@ namespace SotnRandoTools.Khaos
 									}
 								}
 
-								contactDamage *= 2;
+								contactDamage = (uint) Math.Round(1.5 * contactDamage);
 								contactDamage += 1;
 
 								if (reduceScaling)
@@ -15980,25 +15991,29 @@ namespace SotnRandoTools.Khaos
 				return;
 			}
 
-			CheckAxeArmorWeapon();
-
 			//Initialize Axe Armor Damage
 			int multiplierBaseDamage = (int) (equipmentATK1 - equipmentSTR - sotnApi.AlucardApi.Str - 2);
 			int offHandBonus = (int) (equipmentATK2 - equipmentSTR - sotnApi.AlucardApi.Str - 2);
-			int vanillaINTScaling = (int)Math.Round((equipmentINT * (8.0 / 10.0)) + (sotnApi.AlucardApi.Int / 5.0));
-			int newINTScaling = vanillaINTScaling + 1;
-			int shieldBaseDamage = (int) Math.Round(2 + newINTScaling + axeArmorShieldINT * (4.0 / 10.0));
+			int vanillaINTScaling;
 			int vladBonus = 0;
 			int handsWithDamage = 0;
 			int leftHand = axeArmorLeftHand;
 			int rightHand = axeArmorRightHand;
 			bool requireLogs = false;
 
-			//int equipmentSTRCalc = equipmentSTR > 0 ? equipmentSTR : -equipmentSTR;
+			CheckAxeArmorWeapon();
+
 			if (leftHand != axeArmorLeftHand || rightHand != axeArmorRightHand)
 			{
 				requireLogs = true;
 			}
+
+
+			int shieldBonusDamage = (int) Math.Round((axeArmorShieldINT * .15)) + 1;
+			int shieldBaseDamage = (int) Math.Round((sotnApi.AlucardApi.Str * .5) + (equipmentSTR * .5));
+			shieldBaseDamage += shieldBonusDamage;
+			int shieldRodBonus = (shieldBonusDamage * 2) - 2;
+
 
 			if (equipmentATK1 > 0 && equipmentATK2 > 0 && !axeArmorLimitedLeftHand)
 			{
@@ -16007,60 +16022,54 @@ namespace SotnRandoTools.Khaos
 
 				damage = (int) Math.Round(damage * 3.0 / 4.0);
 
-				if (offHandBonus > 0)
-				{
-					//Weapon2Atk
-					damage += (int) Math.Round((offHandBonus) * .35);
-				}
-
 				if (multiplierBaseDamage > 0)
 				{
 					//Weapon1Atk
 					damage += (int) Math.Round((multiplierBaseDamage * axeArmorMultiDamage) - (multiplierBaseDamage));
 				}
+
+				if (offHandBonus > 0)
+				{
+					//Weapon2Atk
+					damage += (int) Math.Round((offHandBonus) * .35) + 1;
+				}
+
 				//STRPenalty
 				damage += (int) Math.Round((sotnApi.AlucardApi.Str * axeArmorMultiSTR) - (sotnApi.AlucardApi.Str));
-				damage += 2 + axeArmorFlatDamage;
+				damage += 3 + axeArmorFlatDamage;
 
 				if (axeArmorTwoHanded)
-				{ //2H Damage Boost: 1 Base STR, +6 Damage, .75 Equipment Bonus
-					damage += 4;
+				{ //2H Damage Boost: +9 Damage, 1 Base STR, .75 Equipment Bonus
+					damage += 7;
 					damage += (int) Math.Round((sotnApi.AlucardApi.Str) / 4.0);
 				}
 				else if (axeArmorEmptyRightHand && axeArmorEmptyRightHand)
-				{ //Unarmed: 1 Base STR, .50 Equipment Bonus
-					damage += 2;
-					damage -= (int) Math.Round((equipmentSTR) / 4.0);
-					damage += (int) Math.Round((sotnApi.AlucardApi.Str) / 4.0);
+				{ //Unarmed: +2 Damage, .75 Base STR, .75 Equipment Bonus
+					///damage += 1;
 				}
 				else
-				{ //Dual-wield 1H: .75 Base STR, +4 Damage, .75 Equipment Bonus
+				{ //Dual-wield 1H: +4 Damage, .75 Base STR, .75 Equipment Bonus
 					damage += 2;
 				}
 
 				if (axeArmorShieldRightHand)
 				{
 					damage += shieldBaseDamage;
-					damage -= (int) Math.Round((equipmentSTR) / 4.0);
-					if (axeArmorShieldLeftHand)
-					{
-						damage += newINTScaling;
-					}
-					else if (axeArmorShieldINT >= 65)
-					{
-						damage += newINTScaling * 2;
-					}
 				}
-				else
+				if (axeArmorShieldLeftHand)
 				{
-					if (axeArmorShieldINT >= 65)
-					{
-						damage += shieldBaseDamage;
-					}
+					damage += shieldBonusDamage;
+				}
+				if (axeArmorShieldINT >= 65)
+				{
+					damage += shieldRodBonus;
 				}
 			}
 			else if (equipmentATK1 > 0)
 			{
+				//All without Shield: 0.75 ATK1 + .67 Base STR + .50 Equipment STR 
+				//All with Shield: 0.75 ATK1 + .75 Base STR + .75 Equipment STR
+				
 				handsWithDamage = 1;
 				damage += (int) Math.Round(equipmentATK1 * (3.0 / 4.0));
 
@@ -16071,45 +16080,55 @@ namespace SotnRandoTools.Khaos
 				damage += (int) Math.Round((sotnApi.AlucardApi.Str * axeArmorMultiSTR) - (sotnApi.AlucardApi.Str));
 				damage += 2 + axeArmorFlatDamage;
 
-				if (axeArmorEmptyRightHand)
-				{ //1H, Fist: + 4 Damage, .83 Base STR, .50 Equipment Bonus
+				if (axeArmorShieldRightHand)
+				{
+					damage += shieldBonusDamage;
+				}
+				if (!axeArmorEmptyRightHand)
+				{
 					damage += 2;
-					damage += (int) Math.Round((sotnApi.AlucardApi.Str * .08));
-					damage -= (int) Math.Round(equipmentSTR / 4.0);
+				}
+				if (axeArmorShieldLeftHand)
+				{
+					damage += shieldBonusDamage;
 				}
 				else
-				{ //1H: +2 Damage, .67 Base STR, .75 Equipment Bonus
+				{
 					damage -= (int) Math.Round((sotnApi.AlucardApi.Str * .08));
-				}
-
-				if (axeArmorShieldLeftHand && axeArmorShieldRightHand)
-				{ // 2, + INT / 4
-					damage += newINTScaling;
+					damage -= (int) Math.Round(equipmentSTR / 4.0);
 				}
 				if (axeArmorShieldINT >= 65)
 				{ // Shield Rod Alt Damage
-					damage += shieldBaseDamage;
+					damage += shieldRodBonus;
 				}
 			}
 			else if (axeArmorShieldRightHand)
-			{ // Scale off of INT, .25 Equipment Bonus, offhand bonus only for another shield.
+			{ // ...................
 				damage = shieldBaseDamage;
+				if (multiplierBaseDamage > 0)
+				{
+					damage += (int) Math.Round((multiplierBaseDamage * axeArmorMultiDamage) - (multiplierBaseDamage));
+				}
 				damage += (int) Math.Round((sotnApi.AlucardApi.Str * axeArmorMultiSTR) - (sotnApi.AlucardApi.Str));
-				damage += axeArmorFlatDamage;
+				damage += 2 + axeArmorFlatDamage;
 
-				if (offHandBonus > 0 && equipmentATK2 > 0 && !axeArmorLimitedLeftHand)
-				{ //Add 1/4 offhand damage + 1, round up
-					damage += (int) Math.Round((offHandBonus) * .35);
-					//Apply partial strength bonus if offhand deals damage.
-					damage += (int) Math.Round((sotnApi.AlucardApi.Str / 2.0) + (equipmentSTR / 4.0));
+				if (equipmentATK2 > 0 && !axeArmorLimitedLeftHand)
+				{
+					damage += (int) Math.Round((equipmentSTR * .25)) + 1;
+					damage += (int) Math.Round((sotnApi.AlucardApi.Str * .08)) + 1;
+				}
+				if (offHandBonus > 0 && !axeArmorLimitedLeftHand)
+				{ //Add .35 offhand damage + 1, round up
+					damage += (int) Math.Round((offHandBonus) * .35) +1;
+					handsWithDamage = 1;
 				}
 				if (axeArmorShieldLeftHand)
-				{ // 2, + INT / 4
-					damage += newINTScaling;
+				{ // Apply Shield Bonus Damage
+					damage += shieldBonusDamage;
 				}
-				else if (axeArmorShieldINT >= 65)
+				if (axeArmorShieldINT >= 65)
 				{ // Shield Rod Alt Damage
-					damage += newINTScaling * 2;
+					damage += shieldRodBonus;
 				}
 			}
 			else
@@ -16120,50 +16139,46 @@ namespace SotnRandoTools.Khaos
 
 			if (hasToothOfVlad)
 			{
-				vladBonus = 3;
-				if ((axeArmorEmptyLeftHand && axeArmorEmptyRightHand) || axeArmorTwoHanded)
+				vladBonus = 0;
+				double vladScaling = 0.0;
+
+				if (axeArmorTwoHanded)
 				{
-					vladBonus += (int) Math.Round((sotnApi.AlucardApi.Str * (.25)));
-					damage += vladBonus;
+					vladScaling = 4;
 				}
 				else
 				{
-					vladBonus += (int) Math.Round((sotnApi.AlucardApi.Str * .08) * handsWithDamage);
-					damage += vladBonus;
+					if (axeArmorShieldRightHand || axeArmorEmptyRightHand)
+					{
+						vladScaling += 1;
+					}
+					else if (equipmentATK1 > 0 && !axeArmorLimitedRightHand)
+					{
+						vladScaling += 1.5;
+					}
+					if (axeArmorShieldLeftHand || axeArmorEmptyLeftHand)
+					{
+						vladScaling += 1;
+					}
+					else if (equipmentATK2> 0 && !axeArmorLimitedLeftHand)
+					{
+						vladScaling += 1.5;
+					}
+					
 				}
+				vladBonus += (int) Math.Round((sotnApi.AlucardApi.Str * .070) * vladScaling);
+				damage += vladBonus;
 			}
 
 			int weaponDamage = damage;
 			//Remove Vanilla INT from Damage Formula
 			damage += flatDamage;
-			
-			if (vanillaINTScaling < 0 && damage + vanillaINTScaling > 0)
-			{
-				damage += vanillaINTScaling;
-			}
-			if (vanillaINTScaling < 0 && damage + vanillaINTScaling < 0)
-			{
-				if(damage < 0)
-				{
-					damage = -vanillaINTScaling;
-				}
-				else
-				{
-					damage = -(vanillaINTScaling + damage) - 1;
-				}
-			}
-			else if(vanillaINTScaling > 0 && damage - vanillaINTScaling < 0)
-			{
-				damage = vanillaINTScaling - 1;
-			}
-			else
-			{
-				damage -= vanillaINTScaling;
-			}
+
+			removeVanillaINTScaling(damage, out vanillaINTScaling, out damage);
 
 			if (sotnApi.GameApi.IsInMenu())
 			{
-				notificationService.WeaponMessage = $"WPN: {damage} DMG, x{axeArmorMeleeHits} Hits";
+				notificationService.WeaponMessage = $"WPN: {weaponDamage} DMG, x{axeArmorMeleeHits} Hits";
 				notificationService.EquipMessage = $"SPL/SUBWPN INT: +{axeArmorShieldINT}";
 				//notificationService.WeaponMessage = $"Wpn: {weaponDamage}, Adj: {damage}, SHLD: {axeArmorShieldINT}";
 				//notificationService.EquipMessage = $"NewINT: {newINTScaling}, Vanilla:{vanillaINTScaling}";
@@ -16176,8 +16191,43 @@ namespace SotnRandoTools.Khaos
 
 			if (logDamage || requireLogs)
 			{
-				Console.WriteLine($"weaponDamage={weaponDamage} adjustedDamage={damage}; flatDamage{flatDamage},vanillaINTScaling={vanillaINTScaling}; ATK1={equipmentATK1}; ATK2={equipmentATK2}; EquipINT={equipmentINT}; EquipSTR={equipmentSTR}; BaseSTR={sotnApi.AlucardApi.Str}; vladBonus={vladBonus}; FlatDamage={axeArmorFlatDamage}; MultiDMG={axeArmorMultiDamage}; MultiSTR={axeArmorMultiSTR}; offHandUnscaled={offHandBonus}; " +
-					$"multiplierBaseDamage={multiplierBaseDamage}; handsWithDamage={handsWithDamage}; emptyLeftHand={axeArmorEmptyLeftHand}; emptyRight={axeArmorEmptyRightHand}; axeArmorShieldINT={axeArmorShieldINT};");
+				Console.WriteLine($"RH:{sotnApi.AlucardApi.RightHand}; LH:{sotnApi.AlucardApi.LeftHand}; weaponDamage={weaponDamage} adjustedDamage={damage}; flatDamage{flatDamage}; vanillaINTScaling={vanillaINTScaling}; ATK1={equipmentATK1}; ATK2={equipmentATK2}; EquipINT={equipmentINT}; EquipSTR={equipmentSTR}; BaseSTR={sotnApi.AlucardApi.Str}; vladBonus={vladBonus}; AxeFlatDamage={axeArmorFlatDamage}; AxeMultiDMG={axeArmorMultiDamage}; AxeMultiSTR={axeArmorMultiSTR}; offHandUnscaled={offHandBonus}; " +
+					$"multiplierBaseDamage={multiplierBaseDamage}; handsWithDamage={handsWithDamage}; emptyLeftHand={axeArmorEmptyLeftHand}; emptyRight={axeArmorEmptyRightHand}; 2H={axeArmorTwoHanded}; R-Shield={axeArmorShieldRightHand}; L-Shield={axeArmorShieldLeftHand}; axeArmorShieldINT={axeArmorShieldINT}; s-base={shieldBaseDamage}; s-bonus={shieldBonusDamage}; s-rod={shieldRodBonus}");
+			}
+		}
+
+		private void removeVanillaINTScaling(int damage, out int vanillaINTScaling, out int adjustedDamage)
+		{
+			vanillaINTScaling = (int) Math.Round((equipmentINT * (8.0 / 10.0)) + (sotnApi.AlucardApi.Int / 5.0));
+
+			if (vanillaINTScaling < 0 && damage + vanillaINTScaling > 0)
+			{
+				damage += vanillaINTScaling;
+			}
+			if (vanillaINTScaling < 0 && damage + vanillaINTScaling < 0)
+			{
+				if (damage < 0)
+				{
+					damage = -vanillaINTScaling;
+				}
+				else
+				{
+					damage = -(vanillaINTScaling + damage) - 1;
+				}
+			}
+			else if (vanillaINTScaling > 0 && damage - vanillaINTScaling < 0)
+			{
+				damage = vanillaINTScaling - 1;
+			}
+			else
+			{
+				damage -= vanillaINTScaling;
+			}
+			adjustedDamage = damage;
+
+			if(adjustedDamage < 1)
+			{
+				adjustedDamage = 1;
 			}
 		}
 
@@ -16230,25 +16280,21 @@ namespace SotnRandoTools.Khaos
 					{ //Stone, Stone, DoubleHit
 						rightHandShield = true;
 						SetAxeArmorWeaponQualities(2, 192, 4, false, out damageFlatModifier, out damageMultiModifier, out strMultiModifier);
-						strMultiModifier = .5;
 					}
 					else if (rightHandIndex == Equipment.Items.IndexOf("Fire shield"))
 					{ //Fire, SingleHit
 						rightHandShield = true;
 						SetAxeArmorWeaponQualities(1, 0, 128, false, out damageFlatModifier, out damageMultiModifier, out strMultiModifier);
-						strMultiModifier = .5;
 					}
 					else if (rightHandIndex == Equipment.Items.IndexOf("Skull shield"))
 					{   //Poison, Water - Single Hit
 						rightHandShield = true;
 						SetAxeArmorWeaponQualities(3, 192, 4, false, out damageFlatModifier, out damageMultiModifier, out strMultiModifier);
-						strMultiModifier = .5;
 					}
 					else
 					{   //Poison, Water - Single Hit
 						rightHandShield = true;
 						SetAxeArmorWeaponQualities(1, 192, 4, false, out damageFlatModifier, out damageMultiModifier, out strMultiModifier);
-						strMultiModifier = .5;
 					}
 
 					SetAxeArmorShieldBonusInt(rightHandIndex, out shieldBonusINT);
@@ -16258,7 +16304,7 @@ namespace SotnRandoTools.Khaos
 					if (leftHandIndex == Equipment.Items.IndexOf("Shield rod")
 						|| leftHandIndex == Equipment.Items.IndexOf("Mablung Sword"))
 					{
-						damageFlatModifier = 0;
+						//damageFlatModifier = 0;
 						axeArmorShieldINT += 60;
 					}
 					else if (Array.Exists(Constants.Khaos.axeArmorShields, x => x == leftHandIndex))
@@ -16515,7 +16561,7 @@ namespace SotnRandoTools.Khaos
 			}
 			else if (handIndex == Equipment.Items.IndexOf("Alucard shield"))
 			{
-				shieldBonusInt = 30;
+				shieldBonusInt = 32;
 			}
 		}
 		
@@ -16584,41 +16630,43 @@ namespace SotnRandoTools.Khaos
 			fireballsUp.RemoveAll(f => f.Damage == 0 || f.Damage == 80);
 			fireballsDown.RemoveAll(f => f.Damage == 0 || f.Damage == 80);
 
-			uint baseFireballDamage = 6;
+			uint baseFireballDamage = 8;
 			uint fireBallDamage;
+
+			//Mini Fireball
 
 			if (!heartsOnlyActive)
 			{
-				double baseINTModifier = .30;
-				double equipINTModifier = .70;
+				double baseINTModifier = .24;
+				double equipINTModifier = .30;
 
 				if (sotnApi.AlucardApi.HasRelic(Relic.SoulOfBat))
 				{
-					baseINTModifier += .10;
+					baseINTModifier += .04;
 					equipINTModifier += .05;
 				}
 				if (sotnApi.AlucardApi.HasRelic(Relic.EchoOfBat))
 				{
-					baseINTModifier += .10;
+					baseINTModifier += .04;
 					equipINTModifier += .05;
 				}
 				if (sotnApi.AlucardApi.HasRelic(Relic.ForceOfEcho))
 				{
-					baseINTModifier += .10;
+					baseINTModifier += .04;
 					equipINTModifier += .05;
 				}
 				if (sotnApi.AlucardApi.HasRelic(Relic.FireOfBat))
 				{
-					equipINTModifier += .20;
-					baseINTModifier += .10;
+					baseINTModifier += .08;
+					equipINTModifier += .10;
 				}
 				if (sotnApi.AlucardApi.HasRelic(Relic.EyeOfVlad))
 				{
-					baseFireballDamage += 6;
+					baseFireballDamage += 8;
 				}
 				if (hasMojoMail)
 				{
-					baseFireballDamage += 6;
+					baseFireballDamage += 8;
 				}
 
 				baseFireballDamage += (uint) (8 + ((sotnApi.AlucardApi.Int) * baseINTModifier) + ((equipmentINT + axeArmorShieldINT) * equipINTModifier));
