@@ -43,7 +43,7 @@ Axe Armor has been retooled to gain progression level upgrades to movement and n
 Axe Armor weapons and shield now change the damage, damage type, and number of hits.  <br />
 Axe Armor has unique sub weapon animations, with one additional subweapon if the the player does not have any subweapons held.  <br />
 Axe Armor can also use consumables + sub weapons to allow for more varied gameplay.  <br />
-MP now regenerates passively while in Axe Armor. This rate is doubled if you are only moving without attacking, or scales to four times as fast if standing still.  <br />
+MP now regenerates passively while in Axe Armor. This rate is doubled if you are only moving without attacking, or quadruples if standing still.  <br />
 
 Gathering relics can also grant one or more of the following additional helpful effects: <br />
 	Melee Damage <br />
@@ -53,22 +53,26 @@ Gathering relics can also grant one or more of the following additional helpful 
 	Subweapon Damage <br />
 	Subweapon Crit Chance <br />
 	Increased Momentum Gain <br />
-	Increased Max Stored Speed <br />
+	Increased Max Momentum Speed <br />
 	Damage while Faceplanting <br />
 	Reduced Faceplant Conversion Costs <br />
-	Increased HP/MP/Hearts <br />
+	Reduced Fireball Spell Costs <br />
+	Increased HP/MP/Hearts Max <br />
 	Additional Items / Consumables <br />
 	
 The following weapons have additional effects while held in hand:  <br />
-	Mourneblade  <br />
-	Shield Rod  <br />
-	Mablung Sword  <br />
+	Mourneblade: Heals on kill  <br />
+	Shield Rod: Grants Greatly boosted damage for spells / subweapons  <br />
+	Mablung Sword: Grants Greatly boosted damage for spells / subweapons  <br />
+	Jewel Sword: Randomly spawns a jewel on kill <br />
+	Gurthang: Temporarily increases damage after casting fireball (Right Hand Only) <br />
 
 The following armors also bestow additional effects while held in inventory (not equipped): <br />
-	Spike breaker <br />
-	Healing Mail <br />
-	Brilliant Mail <br />
-	Mojo Mail <br />
+	Spike breaker: Automatic immunity to spikes <br />
+	Healing Mail: Regenerate HP when moving / being hit <br />
+	Brilliant Mail: Increases subweapon damage <br />
+	Mojo Mail: Increases spell damage <br />
+	Walk Armor: Increased granted Def Value in Castle 2 <br />
 
 New Subweapon damage types + costs: <br />
 	Empty		  - Dark (2 Hearts) <br />
@@ -94,7 +98,7 @@ Reminder of Vanilla Behavior: Axe Armor is immune to status ailments, big toss, 
 Up - Revert To Alucard for warp / elevator functionality <br />
 Down - Revert To Crouched Alucard for dodging, warp, elevator functionality <br />
 
-L1 - Faceplant (4mp, drains MP over time): Grants I-Frames for whole duration. <br />
+L1 - Faceplant (4mp to initiate, drains MP over time): Grants I-Frames for whole duration. <br />
 R1 - Glide (drains MP over time) <br />
 R2 - Momentum <br />
 
@@ -110,7 +114,7 @@ Unique Commands (Momentum): <br />
 Left / Right: Build up stored speed. If you collide into an enemy, you will be damage boosted in the held direction with high speed. <br />
 Neutral - Slide or move in the air with stored speed. <br />
 Square - Now moves with stored speed. <br />
-Up + Jump - Gravity Jump (requires Gravity Boots) <br />
+Up + Jump - Gravity Jump (requires Gravity Boots, can be chained if user has LeapStone/SoulOfWolf/FormOfMist/Attacks with a Thrust Sword in mid-air) <br />
 
 Unique Commands (while Gliding): <br />
 Up (Requires Bat): Flight <br />
@@ -196,7 +200,7 @@ DMG Shield: 2 + .35 Weapon ATK 2 + .08 Base STR + .25 Equipment STR + .15 Shield
 Fist		1 + .00 Weapon ATK 2 + .08 Base STR + .25 Equipment STR <br />
 Shield: 	1 + .00 Weapon ATK 2 + .08 Base STR + .25 Equipment STR + .15 Shield INT <br />
 
-Special: Shield Rod / Mablung Sword adds an additional + .45 Weapon INT to the damage. <br />
+Special: Shield Rod / Mablung Sword adds an additional + .45 Shield INT to the damage in addition to increasing Shield INT by 60. <br />
 
 Current #Hit Damage Scaling rules: <br />
 	x1 Hit: 1.0 WPN ATK, -4 Flat Damage <br />

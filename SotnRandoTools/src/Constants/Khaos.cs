@@ -751,6 +751,14 @@ namespace SotnRandoTools.Constants
 			"Great sword",
 		};
 
+		public static string[] ThrustWeapons = {
+			"Claymore",
+			"Flamberge",
+			"Estoc",
+			"Zweihander",
+			"Obsidian sword",
+		};
+
 		public static int[] alucardColors =
 		{
 			//33024, 8100 - Default coloring for reference
@@ -1167,7 +1175,6 @@ namespace SotnRandoTools.Constants
 		public static int BoonItemRetryCount = 15;
 		
 		public static uint AxeArmorStr = 10u;
-		//public static uint AxeArmorCon = 200u;
 		public static uint AxeArmorInt = 10u;
 		public static int AxeArmorKickyFeetDamageType = 1;
 		public static int AxeArmorVanillaJumpSpeed = 190;
@@ -1191,6 +1198,10 @@ namespace SotnRandoTools.Constants
 		public static uint Rushdown1KFCon = 1200u;
 		public static uint Rushdown2KFCon = 15000u;
 		public static uint StatOverflowLimit = 50000u;
+
+		public static int highFamiliarXP = 10000;
+		public static int medFamiliarXP = 7000;
+		public static int lowFamiliarXP = 5904;
 		#endregion
 
 		#region Axe Armor Specific
@@ -1211,6 +1222,8 @@ namespace SotnRandoTools.Constants
 		public static int AxeArmorFastFallSpeed = 800000;
 
 		//Flight
+		public static int AxeArmorMistCeilingFallSpeed = 300000;
+		public static int AxeArmorMistCeilingSpeed = -11250;
 		public static int AxeArmorMistFlightSpeed = -80000;
 		public static int AxeArmorMistFlightUpSpeed = -140000;
 		public static int AxeArmorMistFlightFloatSpeed = 1000;
@@ -1228,17 +1241,17 @@ namespace SotnRandoTools.Constants
 		public static int AxeArmorWolfMaxMayhemSpeed = 600000;
 		public static int AxeArmorWolfMaxMayhemSuperSpeed = 700000;
 
-
-		//2400,1000,1000
+		//2400, 2400,1000,1000
+		public static int EnableClipDirection = 9216;
 		public static int EnableCeilingClip = 9216;
 		public static int EnableLeftClip = 4096;
 		public static int EnableRightClip = 4096;
 
-		//1202,1602,1602
+		//1440, 1202,1602,1602
+		public static int DisableClipDirection = 5184;
 		public static int DisableCeilingClip = 4610;
 		public static int DisableRightClip = 5634;
 		public static int DisableLeftClip = 5634;
-
 
 		public static int AxeArmorHand1EffectAddress = 476724;
 		public static int AxeArmorHand2EffectAddress = 476912;
@@ -1256,7 +1269,8 @@ namespace SotnRandoTools.Constants
 		public const string OptionMenuName = "Menu";
 
 		public static uint SpirtOrbHeartMPBoost = 15;
-		public static uint FaerieScrollHPBoost = 30;
+		public static uint FaerieScrollHPBoost = 35;
+		public static uint HolySymbolHPBoost = 30;
 		public static uint JewelOfOpenMPBoost = 25;
 		public static uint MermanStatueHeartBoost = 20;
 

@@ -133,6 +133,7 @@ namespace SotnRandoTools.Khaos
 		Cheat faerieCardXp;
 		Cheat demonCardXp;
 		Cheat swordCardXp;
+		Cheat swordCardLvl;
 		Cheat spriteCardXp;
 		Cheat noseDevilCardXp;
 
@@ -173,6 +174,7 @@ namespace SotnRandoTools.Khaos
 		Cheat startAxeArmor;
 		Cheat permaAxeArmor;
 		Cheat smoothCrouch;
+		Cheat clipDirection;
 		Cheat ceilingClip;
 		Cheat leftClip;
 		Cheat rightClip;
@@ -411,6 +413,8 @@ namespace SotnRandoTools.Khaos
 		private bool mpLocked = false;
 		private bool invincibilityLocked = false;
 
+		private int previousDefense = 0;
+		private uint previousHP = 0;
 		private uint previousExperience = 0;
 		private bool hasSpikeBreaker = false;
 		private bool hasBrilliantMail = false;
@@ -552,6 +556,7 @@ namespace SotnRandoTools.Khaos
 		private int axeArmorSuperMPRegenCooldown = 0;
 		private int axeArmorHeartsRegenCooldown = 0;
 		private int axeArmorHPRegenCooldown = 0;
+		private int axeArmorHPRegenMaxCooldown = 40;
 		private int axeArmorMPRegenCooldown = 0;
 		private int glideMPCooldown = 0;
 		private int flightMPCooldown = 0;
@@ -559,8 +564,10 @@ namespace SotnRandoTools.Khaos
 		private int jumpBoostMax = 1;
 		private int jumpBoostStocks = 1;
 		private int jumpBoostCooldown = 8;
-		private int flightMaxDuration = 6;
 		private int flightDuration = 6;
+		private int flightMaxDuration = 6;
+		private int thrustDuration = 0;
+		private int thrustMaxDuration = 6;
 		private int slamMaxDuration = 20;
 		private int slamDuration = 0;
 		private bool wolfRunActive = false;
@@ -568,7 +575,10 @@ namespace SotnRandoTools.Khaos
 		private bool wolfStrikeBoost = false;
 		//private int wolfMPCooldown = 0;
 
+		private bool axeArmorSwordFamiliar = false;
+		private bool axeArmorGurthang = false;
 		private bool axeArmorTwoHanded = false;
+		private bool axeArmorThrust = false;
 		private bool axeArmorAllowWeaponConsume = false;
 		private bool axeArmorLimitedLeftHand = false;
 		private bool axeArmorLimitedRightHand = false;
@@ -584,6 +594,7 @@ namespace SotnRandoTools.Khaos
 		private int axeArmorMeleeHits = 1;
 		private int equipmentINT = 0;
 		private int equipmentSTR = 0;
+		private int equipmentLCK = 0;
 		private int equipmentATK1 = 0;
 		private int equipmentATK2 = 0;
 
@@ -613,6 +624,8 @@ namespace SotnRandoTools.Khaos
 		private int minHoldDownTime = 0;
 		private int minHoldUpTime = 0;
 
+		private int gurthangBoostTimer = 0;
+		private int gurthangBoostMaxTime = 300;
 		private int axeArmorInvinCooldown = 7;
 		private int gravityJumpCooldown = 5;
 		private int gravityJumpMPCheck = 5;
@@ -625,6 +638,7 @@ namespace SotnRandoTools.Khaos
 		private bool jumpBoostActive = false;
 		private bool jumpBoostAllowed = true;
 		private bool gravityJumpAllowed = false;
+		private bool isAxeArmorThrustAttack = false;
 		private bool isAxeArmorSave = false;
 		private bool isAxeArmorBat = false;
 		private bool isAxeArmorMist = false;
@@ -774,6 +788,7 @@ namespace SotnRandoTools.Khaos
 			axeArmorDefense.Disable();
 			startAxeArmor.Disable();
 			permaAxeArmor.Disable();
+			clipDirection.Disable();
 			ceilingClip.Disable();
 			leftClip.Disable();
 			rightClip.Disable();
@@ -2743,7 +2758,7 @@ namespace SotnRandoTools.Khaos
 					}
 					else if (sotnApi.AlucardApi.Subweapon == Subweapon.Cross)
 					{
-						if (sotnApi.AlucardApi.CurrentHearts > 11 || reduceCost && sotnApi.AlucardApi.CurrentHearts > 5)
+						if (sotnApi.AlucardApi.CurrentHearts > 11 || (reduceCost && sotnApi.AlucardApi.CurrentHearts > 5))
 						{
 							if (reduceCost)
 							{
@@ -2754,7 +2769,7 @@ namespace SotnRandoTools.Khaos
 								sotnApi.AlucardApi.CurrentHearts -= 12;
 							}
 
-							activator = 16;
+							activator = 10;
 							validHeartUsage = true;
 							damage += (int) Math.Round(9 + (highestINT * .7) + (lowestINT * .3));
 							damage = (int) Math.Round(damage * 1.1);
@@ -2778,7 +2793,7 @@ namespace SotnRandoTools.Khaos
 							setArcSpeed = 255;
 							setRisingFalling = 255;
 
-							damageInterval = 10;
+							damageInterval = 16;
 							heartUsageCooldown = 41;
 							globalUsageCooldown = 11;
 
@@ -9105,15 +9120,6 @@ namespace SotnRandoTools.Khaos
 			relic = Relic.FireOfBat;
 			isValidRelic = false;
 
-			/*
-			bool hasSoulOfWolf = (sotnApi.AlucardApi.HasRelic(Relic.SoulOfWolf) || soulOfWolfTaken) ? true : false;
-			bool hasFormOfMist = sotnApi.AlucardApi.HasRelic(Relic.FormOfMist) ? true : false;
-			bool hasPowerOfMist = (sotnApi.AlucardApi.HasRelic(Relic.PowerOfMist) || powerOfMistTaken) ? true : false;
-			bool hasSoulOfBat = sotnApi.AlucardApi.HasRelic(Relic.SoulOfBat) ? true : false;
-			bool hasGravityBoots = sotnApi.AlucardApi.HasRelic(Relic.GravityBoots) ? true : false;
-			bool hasLeapStone = (sotnApi.AlucardApi.HasRelic(Relic.LeapStone)) ? true : false;
-			*/
-
 			if (hasSoulOfWolf && !hasGravityBoots)
 			{
 				relic = Relic.GravityBoots;
@@ -9139,7 +9145,6 @@ namespace SotnRandoTools.Khaos
 				relic = Relic.FormOfMist;
 				isValidRelic = true;
 			}
-
 		}
 		public void GivePotions(string user = "Mayhem")
 		{
@@ -10914,7 +10919,7 @@ namespace SotnRandoTools.Khaos
 					else if (hasHolySymbol != HolySymbol && HolySymbol != false)
 					{
 						hasHolySymbol = true;
-						notificationService.AddMessage("+4 Defense");
+						notificationService.AddMessage("Fireballs -4 MP Cost");
 					}
 					else if (hasLeapStone != LeapStone && LeapStone != false)
 					{
@@ -10989,7 +10994,7 @@ namespace SotnRandoTools.Khaos
 					else if (hasRibOfVlad != RibOfVlad && RibOfVlad != false)
 					{
 						hasRibOfVlad = true;
-						notificationService.AddMessage("+8 Defense");
+						notificationService.AddMessage("+5 Defense");
 					}
 					else if (hasRingOfVlad != RingOfVlad && RingOfVlad != false)
 					{
@@ -12187,9 +12192,9 @@ namespace SotnRandoTools.Khaos
 		}
 		private void setFamiliarXP()
 		{
-			int highXP = 10000;
-			int medXP = 7000;
-			int lowXP = 5904;
+			int highXP = Constants.Khaos.highFamiliarXP;
+			int medXP = Constants.Khaos.medFamiliarXP;
+			int lowXP = Constants.Khaos.lowFamiliarXP;
 
 			// 2710 -> 10,000; Bat,Ghost
 			// 1B58 -> 7,000; Sword
@@ -12277,12 +12282,14 @@ namespace SotnRandoTools.Khaos
 					axeArmorVerticalJumpMoving.Disable();
 					axeArmorVerticalJumpStationary.Disable();
 
+					clipDirection.Disable();
 					ceilingClip.Disable();
 					leftClip.Disable();
 					rightClip.Disable();
 					batLightRoom.Disable();
 					jewelSwordRoom.Disable();
 					jewelSwordRoomReverse.Disable();
+					swordCardLvl.Disable();
 					smoothCrouch.Disable();
 
 					//Reset Axe Armor Variables
@@ -12361,6 +12368,7 @@ namespace SotnRandoTools.Khaos
 			faerieCardXp = cheats.GetCheatByName("FaerieCardXp");
 			demonCardXp = cheats.GetCheatByName("DemonCardXp");
 			swordCardXp = cheats.GetCheatByName("SwordCardXp");
+			swordCardLvl = cheats.GetCheatByName("SwordCardLvl");
 			spriteCardXp = cheats.GetCheatByName("SpriteCardXp");
 			noseDevilCardXp = cheats.GetCheatByName("NoseDevilCardXp");
 
@@ -12398,6 +12406,7 @@ namespace SotnRandoTools.Khaos
 			jewelSwordRoomReverse = cheats.GetCheatByName("JewelSwordReverseRoom");
 			batLightRoom = cheats.GetCheatByName("BatLightRoom");
 			smoothCrouch = cheats.GetCheatByName("SmoothCrouch");
+			clipDirection = cheats.GetCheatByName("ClipDirection");
 			ceilingClip = cheats.GetCheatByName("CeilingClip");
 			leftClip = cheats.GetCheatByName("LeftClip");
 			rightClip = cheats.GetCheatByName("RightClip");
@@ -12760,8 +12769,40 @@ namespace SotnRandoTools.Khaos
 			bool healingMail = sotnApi.AlucardApi.HasItemInInventory("Healing mail");
 			bool mojoMail = sotnApi.AlucardApi.HasItemInInventory("Mojo mail");
 
+
+			bool hasHammer = sotnApi.AlucardApi.HasItemInInventory("Hammer");
+			bool hasBloodStoneFirst = Equipment.Items[(int) (sotnApi.AlucardApi.Accessory1 + Equipment.HandCount + 1)] == "Bloodstone";
+			bool hasBloodStoneSecond = Equipment.Items[(int) (sotnApi.AlucardApi.Accessory2 + Equipment.HandCount + 1)] == "Bloodstone";
+			uint bloodStoneCount = 0;
+
+			if (hasBloodStoneFirst)
+			{
+				++bloodStoneCount;
+			}
+			if (hasBloodStoneSecond)
+			{
+				++bloodStoneCount;
+			}
+
+
 			if (axeArmorActive && toolConfig.Khaos.BoostAxeArmor)
 			{
+				if (axeArmorSwordFamiliar)
+				{
+					//Cap sword familiar weapon to level 49 to prevent item duping.
+					int swordLvl = (int)(sotnApi.AlucardApi.Level);
+					if (swordLvl > 50)
+					{
+						swordLvl = 49;
+					}
+					swordCardLvl.PokeValue(swordLvl);
+					swordCardLvl.Enable();
+				}
+				else
+				{
+					swordCardLvl.Disable();
+				}
+
 				bool canGrantBonuses = false;
 				if (!IsInRoomList(Constants.Khaos.LoadingRooms) && !sotnApi.GameApi.CanSave())
 				{
@@ -12832,11 +12873,20 @@ namespace SotnRandoTools.Khaos
 					}
 					if (mojoMail == true && hasMojoMail == false)
 					{
-						notificationService.AddMessage("Faceplant/Spell + 5 DMG");
+						notificationService.AddMessage("Faceplant/Spell + Flat Damage");
 					}
 					if (healingMail == true && hasHealingMail == false)
 					{
 						notificationService.AddMessage("Slow HP when Moving");
+					}
+
+					//Items
+					if(hasHammer && !subWeaponsLocked && sotnApi.AlucardApi.Subweapon == 0)
+					{
+						int roll = rng.Next(1, 10);
+						sotnApi.AlucardApi.Subweapon = (Subweapon) roll;
+						notificationService.AddMessage("Hammer to Subweapon");
+						sotnApi.AlucardApi.TakeOneItemByName("Hammer");
 					}
 				}
 
@@ -12976,7 +13026,7 @@ namespace SotnRandoTools.Khaos
 					sotnApi.AlucardApi.GrantItemByName("Brilliant mail");
 					brilliantMail = true;
 				}
-				if (healingMail == false && hasHealingMail == true)
+				if (healingMail == false && (hasHealingMail && hasGhostCard))
 				{
 					sotnApi.AlucardApi.GrantItemByName("Healing mail");
 					healingMail = true;
@@ -12987,34 +13037,107 @@ namespace SotnRandoTools.Khaos
 					mojoMail = true;
 				}
 
-				//Mourneblade Heal Effect
-				bool equippedMourne = Equipment.Items[(int) (sotnApi.AlucardApi.RightHand)] == "Mourneblade" || Equipment.Items[(int) (sotnApi.AlucardApi.LeftHand)] == "Mourneblade";
-				if (equippedMourne)
+				if (previousHP > sotnApi.AlucardApi.CurrentHp)
 				{
-					if(previousExperience < sotnApi.AlucardApi.Experiecne)
+					bool equippedTalismanFirst = Equipment.Items[(int) (sotnApi.AlucardApi.Accessory1 + Equipment.HandCount + 1)] == "Talisman";
+					bool equippedTalismanSecond = Equipment.Items[(int) (sotnApi.AlucardApi.Accessory2 + Equipment.HandCount + 1)] == "Talisman";
+					int maxHeld = 0;
+
+					if (equippedTalismanFirst)
 					{
-						if(sotnApi.AlucardApi.CurrentHp < sotnApi.AlucardApi.MaxtHp)
+						maxHeld += 1;
+					}
+					if (equippedTalismanSecond)
+					{
+						maxHeld += 1;
+					}
+
+					for (int i = 0; i < maxHeld; i++)
+					{
+						int max = (int) (10 - ((sotnApi.AlucardApi.Lck + equipmentLCK) / 10));
+						if (max < 3)
 						{
-							if(sotnApi.AlucardApi.MaxtHp - sotnApi.AlucardApi.CurrentHp > sotnApi.AlucardApi.Level)
+							max = 3;
+						}
+						int roll = rng.Next(0, max);
+						if (roll == 0)
+						{
+							AxeArmorStatRestore(previousHP -sotnApi.AlucardApi.CurrentHp, true, false, false, false);
+							break;
+						}
+					}
+				}
+
+				if (previousExperience < sotnApi.AlucardApi.Experiecne)
+				{
+					bool equippedMourne = Equipment.Items[(int) (sotnApi.AlucardApi.RightHand)] == "Mourneblade" || Equipment.Items[(int) (sotnApi.AlucardApi.LeftHand)] == "Mourneblade";
+					bool equippedJewel = Equipment.Items[(int) (sotnApi.AlucardApi.RightHand)] == "Jewel sword" || Equipment.Items[(int) (sotnApi.AlucardApi.LeftHand)] == "Jewel sword";
+
+					if (equippedMourne)
+					{
+						//Mourneblade Heal Effect
+						AxeArmorStatRestore(sotnApi.AlucardApi.Level, true, false, false, false);
+					}
+					if (equippedJewel)
+					{
+						int max = (int)(16 - ((sotnApi.AlucardApi.Lck + equipmentLCK) / 20));
+						if (max < 3)
+						{
+							max = 3;
+						}
+						int roll = rng.Next(0, max);
+						if (roll == 0)
+						{
+							roll = rng.Next(0, 200);
+							if(roll <= 99)
 							{
-								sotnApi.AlucardApi.CurrentHp += sotnApi.AlucardApi.Level;
+								notificationService.AddMessage($"+1 Zircon");
+								sotnApi.AlucardApi.GrantItemByName("Zircon");
+							}
+							else if (roll <= 150)
+							{
+								notificationService.AddMessage($"+1 Aquamarine");
+								sotnApi.AlucardApi.GrantItemByName("Aquamarine");
+							}
+							else if (roll <= 190)
+							{
+								notificationService.AddMessage($"+1 Turquoise");
+								sotnApi.AlucardApi.GrantItemByName("Turquoise");
+							}
+							else if (roll <= 194)
+							{
+								notificationService.AddMessage($"+1 Onyx");
+								sotnApi.AlucardApi.GrantItemByName("Onyx");
+							}
+							else if (roll <= 196)
+							{
+								notificationService.AddMessage($"+1 Garnet");
+								sotnApi.AlucardApi.GrantItemByName("Garnet");
+							}
+							else if (roll <= 198)
+							{
+								notificationService.AddMessage($"+1 Opal");
+								sotnApi.AlucardApi.GrantItemByName("Opal");
 							}
 							else
 							{
-								sotnApi.AlucardApi.CurrentHp = sotnApi.AlucardApi.MaxtHp;
+								notificationService.AddMessage($"+1 Diamond");
+								sotnApi.AlucardApi.GrantItemByName("Diamond");
 							}
+							
+							
 						}
 					}
-					previousExperience = sotnApi.AlucardApi.Experiecne;
 				}
-
-
 			}
 			else
 			{
 				notificationService.WeaponMessage = "";
 				notificationService.EquipMessage = "";
 			}
+
+			previousExperience = sotnApi.AlucardApi.Experiecne;
+			previousHP = sotnApi.AlucardApi.CurrentHp;
 
 			if (toolConfig.Khaos.PermaAxeArmor)
 			{
@@ -13051,16 +13174,100 @@ namespace SotnRandoTools.Khaos
 				}
 				
 				//int MeleeDamage;
-				int newDefense = 3;
+				int newDefense = 0;
+
+				if (sotnApi.AlucardApi.HasItemInInventory("God's Garb"))
+				{
+					newDefense = 25;
+				}
+				else if (sotnApi.AlucardApi.HasItemInInventory("Alucard mail"))
+				{
+					newDefense = 20;
+				}
+				else if (alucardSecondCastle && sotnApi.AlucardApi.HasItemInInventory("Walk armor"))
+				{
+					newDefense = 18;
+				}
+				else if (sotnApi.AlucardApi.HasItemInInventory("Diamond plate")
+					|| sotnApi.AlucardApi.HasItemInInventory("Mojo mail"))
+				{
+					newDefense = 15;
+				}
+				else if (sotnApi.AlucardApi.HasItemInInventory("Dracula tunic"))
+				{
+					newDefense = 14;
+				}
+				else if (sotnApi.AlucardApi.HasItemInInventory("Fury plate"))
+				{
+					newDefense = 13;
+				}
+				else if (sotnApi.AlucardApi.HasItemInInventory("Spike Breaker"))
+				{
+					newDefense = 12; 
+				}
+				else if (sotnApi.AlucardApi.HasItemInInventory("Holy mail"))
+				{
+					newDefense = 11;
+				}
+				else if (sotnApi.AlucardApi.HasItemInInventory("Platinum mail"))
+				{
+					newDefense = 10;
+				}
+				else if (sotnApi.AlucardApi.HasItemInInventory("Walk armor"))
+				{
+					newDefense = 9;
+				}
+				else if (sotnApi.AlucardApi.HasItemInInventory("Gold plate")
+					|| sotnApi.AlucardApi.HasItemInInventory("Lightning mail")
+					|| sotnApi.AlucardApi.HasItemInInventory("Ice mail")
+					|| sotnApi.AlucardApi.HasItemInInventory("Dark armor"))
+				{
+					newDefense = 8;
+				}
+				else if (sotnApi.AlucardApi.HasItemInInventory("Silver plate"))
+				{
+					newDefense = 6;
+				}
+				else if (sotnApi.AlucardApi.HasItemInInventory("Steel cuirass"))
+				{
+					newDefense = 5;
+				}
+				else if (sotnApi.AlucardApi.HasItemInInventory("Fire mail")
+					|| sotnApi.AlucardApi.HasItemInInventory("Healing mail")
+					|| sotnApi.AlucardApi.HasItemInInventory("Iron cuirass"))
+				{
+					newDefense = 4;
+				}
+				else if (sotnApi.AlucardApi.HasItemInInventory("Mirror cuirass")
+					|| sotnApi.AlucardApi.HasItemInInventory("Bronze cuirass"))	
+				{
+					newDefense = 3;
+				}
+				else if (sotnApi.AlucardApi.HasItemInInventory("Hide cuirass")
+					|| sotnApi.AlucardApi.HasItemInInventory("Alucart mail"))
+				{
+					newDefense = 2;
+				}
+				else if (sotnApi.AlucardApi.HasItemInInventory("Cloth tunic"))
+				{
+					newDefense = 1;
+				}
 
 				if (sotnApi.AlucardApi.HasRelic(Relic.RibOfVlad))
 				{
-					newDefense += 8;
+					newDefense += 5;
 				}
-				if (sotnApi.AlucardApi.HasRelic(Relic.HolySymbol))
+
+				if (previousDefense != newDefense)
 				{
-					newDefense += 4;
+					if (toolConfig.Khaos.AxeArmorTips)
+					{
+						notificationService.AddMessage($"Armor Def: {newDefense}");
+					}
 				}
+
+				previousDefense = newDefense;
+
 				axeArmorDefense.PokeValue(newDefense);
 				axeArmorDefense.Enable();
 
@@ -13101,6 +13308,21 @@ namespace SotnRandoTools.Khaos
 				{
 					--spellCooldown;
 				}
+
+				if (gurthangBoostTimer > 0)
+				{
+					--gurthangBoostTimer;
+				}
+
+				if(thrustDuration > 0)
+				{
+					--thrustDuration;
+				}
+				else
+				{
+					isAxeArmorThrustAttack = false;
+				}
+
 
 
 				if (sotnApi.GameApi.CanSave() && sotnApi.AlucardApi.ScreenX > 90 && sotnApi.AlucardApi.ScreenX < 150)
@@ -13200,7 +13422,7 @@ namespace SotnRandoTools.Khaos
 					if (axeArmorHPRegenCooldown == 0 && sotnApi.AlucardApi.CurrentHp < sotnApi.AlucardApi.MaxtHp)
 					{
 						sotnApi.AlucardApi.CurrentHp += 1;
-						axeArmorHPRegenCooldown = 31;
+						axeArmorHPRegenCooldown = 40;
 					}
 					else if (axeArmorHPRegenCooldown > 0)
 					{
@@ -13368,7 +13590,8 @@ namespace SotnRandoTools.Khaos
 
 						if (sotnApi.AlucardApi.HasRelic(Relic.LeapStone)
 							|| sotnApi.AlucardApi.HasRelic(Relic.SoulOfWolf)
-							|| sotnApi.AlucardApi.HasRelic(Relic.FormOfMist))
+							|| sotnApi.AlucardApi.HasRelic(Relic.FormOfMist)
+							|| isAxeArmorThrustAttack)
 						{
 							gravityJumpCooldown = 5;
 						}
@@ -13389,6 +13612,7 @@ namespace SotnRandoTools.Khaos
 					{
 						mistBoostMaxDuration = 10;
 						mistTechDuration = 1;
+						//isAxeArmorThrustAttack = false;
 
 						if (hasPowerOfMist)
 						{
@@ -13444,6 +13668,23 @@ namespace SotnRandoTools.Khaos
 						{
 							minAirTime -= 1;
 						}
+						if(axeArmorThrust && sotnApi.AlucardApi.Action == 1)
+						{
+							isAxeArmorThrustAttack = true;
+							wolfRunActive = true;
+							thrustDuration = thrustMaxDuration;
+							if(wolfCurrentSpeed < Constants.Khaos.AxeArmorWolfMinRunSpeed)
+							{
+								if (sotnApi.AlucardApi.HasRelic(Relic.SkillOfWolf))
+								{
+									wolfCurrentSpeed = Constants.Khaos.AxeArmorWolfMaxRunSpeed;
+								}
+								else
+								{
+									wolfCurrentSpeed = Constants.Khaos.AxeArmorWolfMinRunSpeed;
+								}
+							}
+						}
 					}
 					else if (wolfStrikeBoost)
 					{
@@ -13492,31 +13733,38 @@ namespace SotnRandoTools.Khaos
 							}
 							axeArmorCrouchHP = sotnApi.AlucardApi.CurrentHp;
 							isHoldUp = true;
-							if (!alucardSecondCastle && sotnApi.AlucardApi.ScreenY == 136 && sotnApi.AlucardApi.MapX == 31 && sotnApi.AlucardApi.MapY == 8)
-							//sotnApi.GameApi.RoomX == 30 && sotnApi.GameApi.RoomY == 5
+							if(sotnApi.AlucardApi.CurrentHp <= 0)
 							{
-								state.PokeValue(18);
-								action.PokeValue(2);
-							}
-							else if (alucardSecondCastle && sotnApi.AlucardApi.ScreenY == 136 && sotnApi.AlucardApi.MapX == 32 && sotnApi.AlucardApi.MapY == 56)
-							//sotnApi.GameApi.RoomX == 26 && sotnApi.GameApi.RoomY == 51)
-							{
-								state.PokeValue(18);
-								action.PokeValue(4);
-							}
-							else if (sotnApi.GameApi.CanSave())
-							{
-								state.PokeValue(0);
-								action.PokeValue(0);
+								AxeArmorDisableStateWhenDead();
 							}
 							else
 							{
-								state.PokeValue(1);
-								action.PokeValue(0);
-							}
-							characterData.Enable();
-							state.Enable();
-							action.Enable();
+								if (!alucardSecondCastle && sotnApi.AlucardApi.ScreenY == 136 && sotnApi.AlucardApi.MapX == 31 && sotnApi.AlucardApi.MapY == 8)
+								//sotnApi.GameApi.RoomX == 30 && sotnApi.GameApi.RoomY == 5
+								{
+									state.PokeValue(18);
+									action.PokeValue(2);
+								}
+								else if (alucardSecondCastle && sotnApi.AlucardApi.ScreenY == 136 && sotnApi.AlucardApi.MapX == 32 && sotnApi.AlucardApi.MapY == 56)
+								//sotnApi.GameApi.RoomX == 26 && sotnApi.GameApi.RoomY == 51)
+								{
+									state.PokeValue(18);
+									action.PokeValue(4);
+								}
+								else if (sotnApi.GameApi.CanSave())
+								{
+									state.PokeValue(0);
+									action.PokeValue(0);
+								}
+								else
+								{
+									state.PokeValue(1);
+									action.PokeValue(0);
+								}
+								characterData.Enable();
+								state.Enable();
+								action.Enable();
+							}					
 						}
 						else
 						{
@@ -13558,19 +13806,26 @@ namespace SotnRandoTools.Khaos
 								AxeArmorTakeResources();
 								axeArmorInvinCooldown = 1;
 							}
-							if (axeArmorCrouchHP > sotnApi.AlucardApi.CurrentHp)
+							if (sotnApi.AlucardApi.CurrentHp <= 0)
 							{
-								axeArmorInvinCooldown = 15;
+								AxeArmorDisableStateWhenDead();
 							}
-							axeArmorCrouchHP = sotnApi.AlucardApi.CurrentHp;
-							//isHoldDown = true;
-							characterData.Enable();
+							else
+							{
+								if (axeArmorCrouchHP > sotnApi.AlucardApi.CurrentHp)
+								{
+									axeArmorInvinCooldown = 15;
+								}
+								axeArmorCrouchHP = sotnApi.AlucardApi.CurrentHp;
+								//isHoldDown = true;
+								characterData.Enable();
 
-							state.PokeValue(2);
-							state.Enable();
-							action.PokeValue(1);
-							action.Enable();
-							alucardHurtboxY.Enable();
+								state.PokeValue(2);
+								state.Enable();
+								action.PokeValue(1);
+								action.Enable();
+								alucardHurtboxY.Enable();
+							}
 						}
 						else
 						{
@@ -13719,7 +13974,11 @@ namespace SotnRandoTools.Khaos
 					{   //Invul / Slow Fall / Faceplant
 						isAxeArmorMist = true;
 						isAxeArmorBat = false;
-						
+						if (bloodStoneCount > 0)
+						{
+							AxeArmorStatRestore(bloodStoneCount, true, false, false, false);
+						}
+
 						glideMPCooldown = 12;
 						sotnApi.AlucardApi.CurrentMp -= 4;
 						currentMP -= 4;
@@ -13952,7 +14211,6 @@ namespace SotnRandoTools.Khaos
 						wolfRunActive = false;
 						wolfCurrentSpeed = 0;
 					}
-
 					else if ((wolfDashActive || wolfRunActive))
 					{
 						int acceleration = sotnApi.AlucardApi.HasRelic(Relic.SoulOfWolf) == true ? Constants.Khaos.AxeArmorWolfMaxAcceleration : Constants.Khaos.AxeArmorWolfBaseAcceleration;
@@ -13960,6 +14218,7 @@ namespace SotnRandoTools.Khaos
 						int maxRunSpeed = Constants.Khaos.AxeArmorWolfMaxRunSpeed;
 						int minRunSpeed = Constants.Khaos.AxeArmorWolfMinRunSpeed;
 						int maxDashSpeed = Constants.Khaos.AxeArmorWolfMaxDashSpeed;
+
 
 						if (underwaterActive)
 						{
@@ -13992,12 +14251,7 @@ namespace SotnRandoTools.Khaos
 							{
 								maxDashSpeed = minRunSpeed + 40000;
 							}
-						}
 
-						
-
-						if (underwaterActive)
-						{
 							float underwaterAxeArmorBaseFactor;
 							float underwaterAxeArmorSuperFactor;
 							float underwaterAxeArmorMayhemFactor = 1F;
@@ -14040,6 +14294,7 @@ namespace SotnRandoTools.Khaos
 						}
 
 						int facingModifier = 1;
+						int speedModifier = 1;
 						bool hasSkillOfWolf = sotnApi.AlucardApi.HasRelic(Relic.SkillOfWolf);
 						bool enableAxeWolfDamage = true;
 						bool gradualStop = false;
@@ -14049,49 +14304,52 @@ namespace SotnRandoTools.Khaos
 						{
 							facingModifier = -1;
 						}
-
-						if (!inputService.ButtonHeld(PlaystationInputKeys.R2) && (sotnApi.AlucardApi.State == 40 || sotnApi.AlucardApi.State == 41))
+						if (isAxeArmorThrustAttack)
+						{
+							speedModifier = -3;
+						}
+						if (!inputService.ButtonHeld(PlaystationInputKeys.R2) && (sotnApi.AlucardApi.State == 40 || (sotnApi.AlucardApi.State == 41 && !isAxeArmorThrustAttack)))
 						{
 							instantStop = true;
 							wolfCurrentSpeed = 0;
 						}
 						else if (sotnApi.AlucardApi.State == 42 && inputService.ButtonHeld(PlaystationInputKeys.R1))
 						{
-							if (hasSkillOfWolf)
+							if ((!isAxeArmorThrustAttack && hasSkillOfWolf) || (isAxeArmorThrustAttack && !hasSkillOfWolf))
 							{
-								wolfCurrentSpeed -= Constants.Khaos.AxeArmorWolfBaseDeacceleration * 2;
+								wolfCurrentSpeed -= Constants.Khaos.AxeArmorWolfBaseDeacceleration * 2 * speedModifier;
 							}
 							else
 							{
-								wolfCurrentSpeed -= Constants.Khaos.AxeArmorWolfBaseDeacceleration * 3;
+								wolfCurrentSpeed -= Constants.Khaos.AxeArmorWolfBaseDeacceleration * 3 * speedModifier;
 							}
 						}
 						else if (sotnApi.AlucardApi.State == 42)
 						{
 							if (speedActive)
 							{
-								wolfCurrentSpeed -= Constants.Khaos.AxeArmorWolfBaseDeacceleration * 3;
+								wolfCurrentSpeed -= Constants.Khaos.AxeArmorWolfBaseDeacceleration * 3 * speedModifier;
 							}
 							else if (!jumpBoostActive && !isAxeArmorGravityJump)
 							{
-								if (sotnApi.AlucardApi.HasRelic(Relic.SkillOfWolf))
+								if ((!isAxeArmorThrustAttack && hasSkillOfWolf) || (isAxeArmorThrustAttack && !hasSkillOfWolf))
 								{
-									wolfCurrentSpeed -= Constants.Khaos.AxeArmorWolfBaseDeacceleration * 5;
+									wolfCurrentSpeed -= Constants.Khaos.AxeArmorWolfBaseDeacceleration * 5 * speedModifier;
 								}
 								else
 								{
-									wolfCurrentSpeed -= Constants.Khaos.AxeArmorWolfBaseDeacceleration * 7;
+									wolfCurrentSpeed -= Constants.Khaos.AxeArmorWolfBaseDeacceleration * 7 * speedModifier;
 								}
 							}
 							else
 							{
-								if (sotnApi.AlucardApi.HasRelic(Relic.SkillOfWolf))
+								if ((!isAxeArmorThrustAttack && hasSkillOfWolf) || (isAxeArmorThrustAttack && !hasSkillOfWolf))
 								{
-									wolfCurrentSpeed -= Constants.Khaos.AxeArmorWolfBaseDeacceleration * 6;
+									wolfCurrentSpeed -= Constants.Khaos.AxeArmorWolfBaseDeacceleration * 6 * speedModifier;
 								}
 								else
 								{
-									wolfCurrentSpeed -= Constants.Khaos.AxeArmorWolfBaseDeacceleration * 9;
+									wolfCurrentSpeed -= Constants.Khaos.AxeArmorWolfBaseDeacceleration * 9 * speedModifier;
 								}
 							}
 						}
@@ -14149,7 +14407,7 @@ namespace SotnRandoTools.Khaos
 							wolfCurrentSpeed += acceleration / 2;
 							wolfStrikeBoost = false;
 						}
-						else if (//!inputService.ButtonPressed(PlaystationInputKeys.Square, 32)
+						else if (
 							 inputService.ButtonPressed(PlaystationInputKeys.L1, 32)
 							|| inputService.ButtonPressed(PlaystationInputKeys.R1, 32)
 							|| inputService.ButtonPressed(PlaystationInputKeys.Cross, 32))
@@ -14301,7 +14559,7 @@ namespace SotnRandoTools.Khaos
 						AxeArmorHeartActionCheck();
 					}
 
-					if (currentMP > 23
+					if (((currentMP > 23) || (hasHolySymbol && currentMP > 19))
 						&& !fireBallActive
 						&& !heartsOnlyActive
 						&& inputService.ButtonPressed(PlaystationInputKeys.Triangle, Globals.UpdateCooldownFrames)
@@ -14312,7 +14570,26 @@ namespace SotnRandoTools.Khaos
 						&& spellCooldown == 0
 						)
 					{
-						sotnApi.AlucardApi.CurrentMp -= 24;
+
+						if (axeArmorGurthang)
+						{
+							gurthangBoostTimer = gurthangBoostMaxTime;
+						}
+
+						if (bloodStoneCount > 0)
+						{
+							AxeArmorStatRestore(bloodStoneCount * 6, true, false, false, false);
+						}
+
+						if (hasHolySymbol)
+						{
+							sotnApi.AlucardApi.CurrentMp -= 20;
+						}
+						else
+						{
+							sotnApi.AlucardApi.CurrentMp -= 24;
+						}
+
 						int fireBallCount = 2;
 
 						bool alucardFacing = sotnApi.AlucardApi.FacingLeft;
@@ -14399,7 +14676,8 @@ namespace SotnRandoTools.Khaos
 							if (inputService.ButtonPressed(PlaystationInputKeys.Up, Globals.UpdateCooldownFrames))
 							{
 								//Fire
-								fireball.DamageTypeA = 128;
+								//fireball.DamageTypeA = 128;
+								fireball.DamageTypeA = 64;
 								fireball.DamageTypeB = 128;
 								fireball.Palette = (ushort) (hellfirePalette + 12);
 								// 1 = Curse
@@ -14428,7 +14706,8 @@ namespace SotnRandoTools.Khaos
 							else
 							{
 								//Ice
-								fireball.DamageTypeA = (uint) 32;
+								//fireball.DamageTypeA = (uint) 64;
+								fireball.DamageTypeA = (uint) 64;
 								fireball.DamageTypeB = (uint) 32;
 								fireball.Palette = (ushort) (hellfirePalette + 1);
 
@@ -14446,7 +14725,7 @@ namespace SotnRandoTools.Khaos
 						fireBallTimer.Start();
 					}
 
-					else if (currentMP > 17
+					else if (((currentMP > 17) || (hasHolySymbol && currentMP > 13))
 						&& inputService.ButtonPressed(PlaystationInputKeys.Triangle, 10)
 						&& !heartsOnlyActive 
 						&& (inputService.ButtonHeld(PlaystationInputKeys.R1) || sotnApi.AlucardApi.State == 42)
@@ -14455,10 +14734,29 @@ namespace SotnRandoTools.Khaos
 						&& axeArmorSafetyCooldown == 0
 						&& spellCooldown == 0)
 					{
-						sotnApi.AlucardApi.CurrentMp -= 18;
+
+						if (axeArmorGurthang)
+						{
+							gurthangBoostTimer = gurthangBoostMaxTime;
+						}
+
+						if (hasHolySymbol)
+						{
+							sotnApi.AlucardApi.CurrentMp -= 14;
+						}
+						else
+						{
+							sotnApi.AlucardApi.CurrentMp -= 18;
+						}
+
 						int fireBallCount = 2;
 						int fireBallStart = 10;
 						uint secondaryDamageType = 16; //Holy
+
+						if (bloodStoneCount > 0)
+						{
+							AxeArmorStatRestore(bloodStoneCount * 4, true, false, false, false);
+						}
 
 						if (sotnApi.AlucardApi.HasRelic(Relic.SoulOfBat))
 						{
@@ -14730,20 +15028,34 @@ namespace SotnRandoTools.Khaos
 								--glideMPCooldown;
 								--glideMPCooldown;
 							}
-							if (inputService.ButtonPressed(PlaystationInputKeys.Up, 5) && !mistCeilingLocked)
+							if (inputService.ButtonPressed(PlaystationInputKeys.Up, 5))
 							{
-								axeArmorFloat.PokeValue(Constants.Khaos.AxeArmorMistFlightUpSpeed);
+								if (mistCeilingLocked)
+								{
+									axeArmorFloat.PokeValue(0);
+								}
+								else
+								{
+									axeArmorFloat.PokeValue(Constants.Khaos.AxeArmorMistFlightUpSpeed);
+								}
 								axeArmorFloat.Enable();
 								applyContactDamage = true;
-								//contactDamage = 1;
 								contactDamage = 4;
 							}
 							else if (inputService.ButtonPressed(PlaystationInputKeys.Down, 5))
 							{
-								axeArmorFloat.PokeValue(-Constants.Khaos.AxeArmorMistFlightUpSpeed);
+								if (mistCeilingLocked)
+								{
+									axeArmorFloat.PokeValue(-Constants.Khaos.AxeArmorMistFlightSpeed);
+								}
+								else
+								{
+									axeArmorFloat.PokeValue(-Constants.Khaos.AxeArmorMistFlightUpSpeed);
+
+								}
+
 								axeArmorFloat.Enable();
 								applyContactDamage = true;
-								//contactDamage = 1;
 								contactDamage = 4;
 							}
 							else
@@ -14759,7 +15071,11 @@ namespace SotnRandoTools.Khaos
 							isAxeArmorMistFlight = false;
 							if (inputService.ButtonPressed(PlaystationInputKeys.Down, 5))
 							{
-								if(IsInRoomList(Constants.Khaos.ReduceFastFallRooms))
+								if (mistCeilingLocked)
+								{
+									axeArmorFloat.PokeValue(Constants.Khaos.AxeArmorMistCeilingFallSpeed);
+								}
+								else if(IsInRoomList(Constants.Khaos.ReduceFastFallRooms))
 								{
 									axeArmorFloat.PokeValue(Constants.Khaos.AxeArmorReducedFallSpeed);
 								}
@@ -14777,11 +15093,20 @@ namespace SotnRandoTools.Khaos
 									++glideMPCooldown;
 								}
 							}
-							else if (inputService.ButtonPressed(PlaystationInputKeys.Up, 5) && !mistCeilingLocked)
+							else if (inputService.ButtonPressed(PlaystationInputKeys.Up, 5))
 							{
 								applyContactDamage = true;
 
-								if (mistFlightDuration > 1)
+								if (mistCeilingLocked)
+								{
+									axeArmorFloat.PokeValue(Constants.Khaos.AxeArmorMistCeilingSpeed);
+									axeArmorFloat.Enable();
+									if (!sotnApi.GameApi.InTransition)
+									{
+										mistFlightDuration -= 2;
+									}
+								}
+								else if (mistFlightDuration > 1)
 								{
 									contactDamage = 6;
 									axeArmorFloat.PokeValue(Constants.Khaos.AxeArmorMistFlightSpeed);
@@ -15189,6 +15514,15 @@ namespace SotnRandoTools.Khaos
 			}
 		}
 
+		private void AxeArmorDisableStateWhenDead()
+		{
+			minHoldDownTime = 15;
+			minHoldUpTime = 15;
+			characterData.Disable();
+			state.Disable();
+			action.Disable();
+			hpForMPDeathTimer.Start();
+		}
 		private void CheckEquippedCloak()
 		{
 			uint newCloakIndex = sotnApi.AlucardApi.Cloak;
@@ -15625,10 +15959,23 @@ namespace SotnRandoTools.Khaos
 				skipHandEffectSet = true;
 				isValidItem = true;
 			}
+			else if (hand == (uint) Equipment.Items.IndexOf("Antivenom"))
+			{
+				itemIndex = (int) Potion.Antivenom;
+				uint recoveryAmount = 20;
+				AxeArmorStatRestore(recoveryAmount, true, true, true, true);
+				isValidItem = true;
+			}
+			else if (hand == (uint) Equipment.Items.IndexOf("Uncurse"))
+			{
+				itemIndex = (int) Potion.Uncurse;
+				uint recoveryAmount = 35;
+				AxeArmorStatRestore(recoveryAmount, true, true, true, true);
+				isValidItem = true;
+			}
 			else if (hand == (uint) Equipment.Items.IndexOf("Elixir"))
 			{
 				itemIndex = (int) Potion.Elixir;
-				//sotnApi.AlucardApi.ActivatePotion(Potion.Elixir);
 				isValidItem = true;
 			}
 			else if (hand == (uint) Equipment.Items.IndexOf("High potion"))
@@ -15646,80 +15993,71 @@ namespace SotnRandoTools.Khaos
 			else if (hand == (uint) Equipment.Items.IndexOf("Manna prism"))
 			{
 				itemIndex = (int) Potion.Mannaprism;
-				//sotnApi.AlucardApi.ActivatePotion(Potion.Mannaprism);
 				isValidItem = true;
 			}
 			else if (hand == (uint) Equipment.Items.IndexOf("Str. potion"))
 			{
 				itemIndex = (int) Potion.StrPotion;
-				//sotnApi.AlucardApi.ActivatePotion(Potion.StrPotion);
-				//strPotionDuration = maxPotionDuration;
 				isValidItem = true;
 			}
 			else if (hand == (uint) Equipment.Items.IndexOf("Smart potion"))
 			{
 				itemIndex = (int) Potion.SmartPotion;
-				//sotnApi.AlucardApi.ActivatePotion(Potion.SmartPotion);
-				//intPotionDuration = maxPotionDuration;
 				isValidItem = true;
 			}
 			else if (hand == (uint) Equipment.Items.IndexOf("Attack potion"))
 			{
 				itemIndex = (int) Potion.AttackPotion;
-				//sotnApi.AlucardApi.ActivatePotion(Potion.AttackPotion);
-				//atkPotionDuration = maxPotionDuration;
 				isValidItem = true;
 			}
 			else if (hand == (uint) Equipment.Items.IndexOf("Shield potion"))
 			{
 				itemIndex = (int) Potion.ShieldPotion;
-				//sotnApi.AlucardApi.ActivatePotion(Potion.ShieldPotion);
 				isValidItem = true;
 			}
 			else if (hand == (uint) Equipment.Items.IndexOf("Luck potion"))
 			{
 				itemIndex = (int) Potion.LuckPotion;
-				//sotnApi.AlucardApi.ActivatePotion(Potion.LuckPotion);
 				isValidItem = true;
 			}
 			else if (hand == (uint) Equipment.Items.IndexOf("Heart Refresh"))
 			{
 				itemIndex = (int) Potion.Antivenom;
-				//sotnApi.AlucardApi.ActivatePotion(Potion.Antivenom);
 				sotnApi.AlucardApi.CurrentHearts = sotnApi.AlucardApi.MaxtHearts;
 				isValidItem = true;
 			}
 			else if (hand == (uint) Equipment.Items.IndexOf("Resist fire"))
 			{
 				itemIndex = (int) Potion.ResistFire;
-				//sotnApi.AlucardApi.ActivatePotion(Potion.ResistFire);
 				isValidItem = true;
 			}
 			else if (hand == (uint) Equipment.Items.IndexOf("Resist thunder"))
 			{
 				itemIndex = (int) Potion.ResistThunder;
-				//sotnApi.AlucardApi.ActivatePotion(Potion.ResistThunder);
 				isValidItem = true;
 			}
 			else if (hand == (uint) Equipment.Items.IndexOf("Resist ice"))
 			{
 				itemIndex = (int) Potion.ResistIce;
-				//sotnApi.AlucardApi.ActivatePotion(Potion.ResistIce);
 				isValidItem = true;
 			}
 			else if (hand == (uint) Equipment.Items.IndexOf("Resist holy"))
 			{
 				itemIndex = (int) Potion.ResistHoly;
-				//sotnApi.AlucardApi.ActivatePotion(Potion.ResistHoly);
 				isValidItem = true;
 			}
 			else if (hand == (uint) Equipment.Items.IndexOf("Resist dark"))
 			{
 				itemIndex = (int) Potion.ResistDark;
-				//sotnApi.AlucardApi.ActivatePotion(Potion.ResistDark);
 				isValidItem = true;
 			}
-
+			else if (hand == (uint) Equipment.Items.IndexOf("Resist stone"))
+			{
+				itemIndex = (int) Potion.ResistStone;
+				uint recoveryAmount = 50;
+				AxeArmorStatRestore(recoveryAmount, true, true, true, true);
+				isValidItem = true;
+			}
 			if (isValidItem && !skipHandEffectSet)
 			{
 				int Potion = 39; //27 in Hex
@@ -15727,8 +16065,56 @@ namespace SotnRandoTools.Khaos
 				cheats.AddCheat(address + 49, itemIndex, cheatName, WatchSize.Byte); //+49, Activator Index
 			}
 		}
+
+		private void AxeArmorStatRestore(uint recoveryAmount, bool restoreHP, bool restoreMP, bool restoreHearts, bool checkForAnkh)
+		{
+			if (checkForAnkh)
+			{
+				bool equippedAnkh = Equipment.Items[(int) (sotnApi.AlucardApi.Accessory1 + Equipment.HandCount + 1)] == "Ankh of Life" || Equipment.Items[(int) (sotnApi.AlucardApi.Accessory2 + Equipment.HandCount + 1)] == "Ankh of Life";
+
+				if (equippedAnkh)
+				{
+					recoveryAmount = (uint) (1.5 * recoveryAmount);
+				}
+			}
+
+			if (restoreHP && sotnApi.AlucardApi.CurrentHp < sotnApi.AlucardApi.MaxtHp)
+			{
+				if (sotnApi.AlucardApi.CurrentHp + recoveryAmount < sotnApi.AlucardApi.MaxtHp)
+				{
+					sotnApi.AlucardApi.CurrentHp += recoveryAmount;
+				}
+				else
+				{
+					sotnApi.AlucardApi.CurrentHp = sotnApi.AlucardApi.MaxtHp;
+				}
+			}
+			if (restoreMP && !mpLocked && sotnApi.AlucardApi.CurrentMp < sotnApi.AlucardApi.MaxtMp)
+			{
+				if (sotnApi.AlucardApi.CurrentMp + recoveryAmount < sotnApi.AlucardApi.MaxtMp)
+				{
+					sotnApi.AlucardApi.CurrentMp += recoveryAmount;
+				}
+				else
+				{
+					sotnApi.AlucardApi.CurrentMp = sotnApi.AlucardApi.MaxtMp;
+				}
+			}
+			if (restoreHearts && !heartsLocked && sotnApi.AlucardApi.CurrentHearts < sotnApi.AlucardApi.MaxtHearts)
+			{
+				if (sotnApi.AlucardApi.CurrentHearts + recoveryAmount < sotnApi.AlucardApi.MaxtHearts)
+				{
+					sotnApi.AlucardApi.CurrentHearts += recoveryAmount;
+				}
+				else
+				{
+					sotnApi.AlucardApi.CurrentHearts = sotnApi.AlucardApi.MaxtHearts;
+				}
+			}
+		}
 		private void AxeArmorClipCheck()
 		{
+			bool enableClipDirection = false;
 			bool enableCeilingClip = false;
 			bool enableLeftClip = false;
 			bool enableRightClip = false;
@@ -15746,56 +16132,89 @@ namespace SotnRandoTools.Khaos
 					}
 				}
 			}
-
-			if (isAxeArmorMist && !isAxeArmorMistFlight)
+			if (!isAxeArmorMistFlight)
 			{
 				if (IsInRoomList(Constants.Khaos.AxeArmorOlroxRooms))
 				{
-					if (sotnApi.AlucardApi.ScreenY <= 131)
+					if (sotnApi.AlucardApi.ScreenY <= 133)
 					{
-						enableCeilingClip = true;
+						enableCeilingClip = isAxeArmorMist;
+						enableClipDirection = true;
+						enableLeftClip = isAxeArmorMist;
+						enableRightClip = isAxeArmorMist;
 						olroxOverride = isAxeArmorVClipAllowed;
+					}
+					else if(sotnApi.AlucardApi.ScreenY >= 133)
+					{
+						if (sotnApi.AlucardApi.ScreenY >= 230)
+						{
+							enableCeilingClip = true;
+							MistGateAntiSoftLock();
+						}
+						enableClipDirection = true;
 					}
 				}
 				else if (IsInRoomList(Constants.Khaos.AxeArmorReverseOlroxRooms))
 				{
 					if (sotnApi.AlucardApi.ScreenY <= 115)
 					{
-						enableCeilingClip = true;
-						enableLeftClip = true;
-						enableRightClip = true;
+						enableCeilingClip = isAxeArmorMist;
+						enableLeftClip = isAxeArmorMist;
+						enableRightClip = isAxeArmorMist;
 						olroxOverride = isAxeArmorVClipAllowed;
 					}
 				}
 				else if (IsInRoomList(Constants.Khaos.MistGateRooms))
 				{
-					if (sotnApi.AlucardApi.CurrentMp < 6) //General Softlock Fix
+					if (isAxeArmorMist && sotnApi.AlucardApi.CurrentMp < 6) //General Softlock Fix
 					{
 						sotnApi.AlucardApi.CurrentMp = 6;
 					}
 
+					
 					if (alucardSecondCastle)
 					{
 						if ((alucardMapX == 16 || alucardMapX == 17)) //Reverse Library
 						{
-							if (sotnApi.AlucardApi.ScreenY <= 136 && sotnApi.AlucardApi.ScreenY > 85)
+							if (sotnApi.AlucardApi.ScreenY <= 136 && sotnApi.AlucardApi.ScreenY > 95)
 							{
-								enableCeilingClip = true;
-								enableLeftClip = true;
-								enableRightClip = true;
+								enableCeilingClip = isAxeArmorMist;
+								enableLeftClip = isAxeArmorMist;
+								enableRightClip = isAxeArmorMist;
 								if (alucardMapX == 16 && sotnApi.AlucardApi.ScreenY > 125)
 								{
+									enableClipDirection = true;
 									MistGateAntiSoftLock();
 								}
 							}
 						}
 						else if ((alucardMapX == 50)) // Reverse Silver Ring
 						{
+							if (sotnApi.AlucardApi.ScreenY <= 96)
+							{
+								enableRightClip = isAxeArmorMist;
+								enableLeftClip = isAxeArmorMist;
+								enableCeilingClip = isAxeArmorMist;
+								mistCeilingLocked = true;
+							}
+							if (sotnApi.AlucardApi.ScreenY <= 131)
+							{
+								enableRightClip = isAxeArmorMist;
+								enableLeftClip = isAxeArmorMist;
+								enableCeilingClip = isAxeArmorMist;
+								mistCeilingLocked = true;
+							}
+							if (sotnApi.AlucardApi.ScreenY >= 131)
+							{
+								enableClipDirection = true;
+								MistGateAntiSoftLock();
+							}
+							/*
 							if (sotnApi.AlucardApi.ScreenY <= 95)
 							{
-								enableRightClip = true;
-								enableLeftClip = true;
-								mistCeilingLocked = true;
+								enableRightClip = isAxeArmorMist;
+								enableLeftClip = isAxeArmorMist;
+								mistCeilingLocked = isAxeArmorMist;
 							}
 							else
 							{
@@ -15809,34 +16228,44 @@ namespace SotnRandoTools.Khaos
 								{
 									MistGateAntiSoftLock();
 								}
-							}
+							}*/
 						}
 						else if (alucardMapX == 3)
 						{
 							if (sotnApi.AlucardApi.ScreenX >= 199
 							&& sotnApi.AlucardApi.ScreenX <= 233) //Reverse Outer Wall
 							{
-								enableCeilingClip = true;
-								enableLeftClip = true;
-								enableRightClip = true;
+								enableClipDirection = true;
+								enableCeilingClip = isAxeArmorMist;
+								enableLeftClip = isAxeArmorMist;
+								enableRightClip = isAxeArmorMist;
 							}
 							if (sotnApi.AlucardApi.ScreenX >= 199)
 							{
+								mistCeilingLocked = true;
 								MistGateAntiSoftLock();
 							}
 						}
 						else if ((alucardMapX == 41 || alucardMapX == 42)) //Reverse Coliseum
 						{
-							enableCeilingClip = true;
-							if (sotnApi.AlucardApi.ScreenY <= 115)
+							enableCeilingClip = isAxeArmorMist;
+							if (sotnApi.AlucardApi.ScreenY <= 116)
 							{
-								enableCeilingClip = true;
-								enableLeftClip = true;
-								enableRightClip = true;
+								enableCeilingClip = isAxeArmorMist;
+								enableLeftClip = isAxeArmorMist;
+								enableRightClip = isAxeArmorMist;
 							}
-							else if (sotnApi.AlucardApi.ScreenY >= 153)
+							else
 							{
-								MistGateAntiSoftLock();
+								if(sotnApi.AlucardApi.ScreenY >= 120)
+								{
+									enableClipDirection = true;
+								}
+								if (sotnApi.AlucardApi.ScreenY >= 153)
+								{
+									enableClipDirection = true;
+									MistGateAntiSoftLock();
+								}
 							}
 						}
 					}
@@ -15844,65 +16273,78 @@ namespace SotnRandoTools.Khaos
 					{
 						if ((alucardMapX == 46 || alucardMapX == 47)) // Library
 						{
-							enableCeilingClip = true;
 							if (sotnApi.AlucardApi.ScreenY <= 136)
 							{
-								enableLeftClip = true;
-								enableRightClip = true;
+								if(sotnApi.AlucardApi.ScreenY >= 133)
+								{
+									enableCeilingClip = true;
+									enableClipDirection = true;
+								}
+								enableCeilingClip = isAxeArmorMist;
+								enableLeftClip = isAxeArmorMist;
+								enableRightClip = isAxeArmorMist;
 							}
 							else
 							{
+								enableCeilingClip = isAxeArmorMist;
+								enableClipDirection = true;
 								MistGateAntiSoftLock();
 							}
 						}
 						else if ((alucardMapX == 13 || alucardMapX == 14)) // Silver Ring
 						{
-
-							if (sotnApi.AlucardApi.ScreenY <= 95)
+							if (sotnApi.AlucardApi.ScreenY <= 96)
 							{
-								enableRightClip = true;
-								enableLeftClip = true;
+								enableRightClip = isAxeArmorMist;
+								enableLeftClip = isAxeArmorMist;
+								enableCeilingClip = isAxeArmorMist;
 								mistCeilingLocked = true;
 							}
-							else
+							if (sotnApi.AlucardApi.ScreenY <= 131)
 							{
-								enableCeilingClip = true;
-								if (sotnApi.AlucardApi.ScreenY <= 131)
-								{
-									enableRightClip = true;
-									enableLeftClip = true;
-								}
-								if (sotnApi.AlucardApi.ScreenY >= 131)
-								{
-									MistGateAntiSoftLock();
-								}
+								enableRightClip = isAxeArmorMist;
+								enableLeftClip = isAxeArmorMist;
+								enableCeilingClip = isAxeArmorMist;
+								mistCeilingLocked = true;
+							}
+							if (sotnApi.AlucardApi.ScreenY >= 131)
+							{
+								enableClipDirection = true;
+								MistGateAntiSoftLock();
 							}
 						}
-						else if (alucardMapX == 60)
+						else if (alucardMapX == 60) //Outer Wall
 						{
 							if (sotnApi.AlucardApi.ScreenX >= 24
-							&& sotnApi.AlucardApi.ScreenX <= 58) //Outer Wall
+							&& sotnApi.AlucardApi.ScreenX <= 58) 
 							{
-								enableCeilingClip = true;
-								enableLeftClip = true;
-								enableRightClip = true;
+								enableClipDirection = true;
+								enableCeilingClip = isAxeArmorMist;
+								enableLeftClip = isAxeArmorMist;
+								enableRightClip = isAxeArmorMist;
+								//mistCeilingLocked = true;
 							}
-							if (sotnApi.AlucardApi.ScreenX <= 58)
+							if (sotnApi.AlucardApi.ScreenX <= 59)
 							{
+								mistCeilingLocked = true;
 								MistGateAntiSoftLock();
 							}
 						}
 						else if (alucardMapX == 21 || alucardMapX == 22)  // Coliseum
 						{
-							enableCeilingClip = true;
+							enableCeilingClip = isAxeArmorMist;
 							if (sotnApi.AlucardApi.ScreenY <= 134)
 							{
-								enableLeftClip = true;
-								enableRightClip = true;
+								enableLeftClip = isAxeArmorMist;
+								enableRightClip = isAxeArmorMist;
 							}
-							else if (sotnApi.AlucardApi.ScreenY > 180)
+							else if (sotnApi.AlucardApi.ScreenY > 138)
 							{
-								MistGateAntiSoftLock();
+								enableClipDirection = true;
+								if (sotnApi.AlucardApi.ScreenY > 180)
+								{
+									MistGateAntiSoftLock();
+								}
 							}
 						}
 					}
@@ -15919,6 +16361,16 @@ namespace SotnRandoTools.Khaos
 			}
 			//Offscreen = 237 Screen Y
 
+			if (enableClipDirection)
+			{
+				clipDirection.PokeValue(Constants.Khaos.EnableClipDirection);
+				clipDirection.Enable();
+			}
+			else
+			{
+				clipDirection.PokeValue(Constants.Khaos.DisableClipDirection);
+			}
+
 			if (enableCeilingClip && isAxeArmorVClipAllowed)
 			{
 				ceilingClip.PokeValue(Constants.Khaos.EnableCeilingClip);
@@ -15928,7 +16380,6 @@ namespace SotnRandoTools.Khaos
 			{
 				ceilingClip.PokeValue(Constants.Khaos.DisableCeilingClip);
 			}
-
 			if (enableLeftClip && (isAxeArmorHClipAllowed || olroxOverride))
 			{
 				leftClip.PokeValue(Constants.Khaos.EnableLeftClip);
@@ -15956,21 +16407,25 @@ namespace SotnRandoTools.Khaos
 			//Work around - Grab Alucard current stats
 			LiveEntity equipSTRActor;
 			LiveEntity equipINTActor;
+			LiveEntity equipLCKActor;
 			LiveEntity equipATK1Actor;
 			LiveEntity equipATK2Actor;
 
 			long STRStart = 621510;  //097BC8 -2
 			long INTStart = 621518;  //097BD0 -2
+			long LCKStart = 621522;  //097BD4 -2
 			long ATK1Start = 621594; //097C1C -2
 			long ATK2Start = 621598; //097C20 -2
 
 			equipSTRActor = sotnApi.EntityApi.GetLiveEntity(STRStart);
 			equipINTActor = sotnApi.EntityApi.GetLiveEntity(INTStart);
+			equipLCKActor = sotnApi.EntityApi.GetLiveEntity(LCKStart);
 			equipATK1Actor = sotnApi.EntityApi.GetLiveEntity(ATK1Start);
 			equipATK2Actor = sotnApi.EntityApi.GetLiveEntity(ATK2Start);
 
 			equipmentSTR = (equipSTRActor.Xpos) > 64000 ? (int) (equipSTRActor.Xpos) - 65536 : (int) (equipSTRActor.Xpos);
 			equipmentINT = (equipINTActor.Xpos) > 64000 ? (int)(equipINTActor.Xpos) - 65536 : (int) (equipINTActor.Xpos);
+			equipmentLCK = (equipSTRActor.Xpos) > 64000 ? (int) (equipLCKActor.Xpos) - 65536 : (int) (equipLCKActor.Xpos);
 			equipmentATK1 = (equipATK1Actor.Xpos) > 64000 ? (int) (equipATK1Actor.Xpos) - 65536 : (int) (equipATK1Actor.Xpos);
 			equipmentATK2 = (equipATK2Actor.Xpos) > 64000 ? (int) (equipATK2Actor.Xpos) - 65536 : (int) (equipATK2Actor.Xpos);
 
@@ -16174,6 +16629,12 @@ namespace SotnRandoTools.Khaos
 			//Remove Vanilla INT from Damage Formula
 			damage += flatDamage;
 
+			if(axeArmorGurthang && gurthangBoostTimer > 0) 
+			{
+				damage += 25;
+			}
+
+
 			removeVanillaINTScaling(damage, out vanillaINTScaling, out damage);
 
 			if (sotnApi.GameApi.IsInMenu())
@@ -16191,7 +16652,7 @@ namespace SotnRandoTools.Khaos
 
 			if (logDamage || requireLogs)
 			{
-				Console.WriteLine($"RH:{sotnApi.AlucardApi.RightHand}; LH:{sotnApi.AlucardApi.LeftHand}; weaponDamage={weaponDamage} adjustedDamage={damage}; flatDamage{flatDamage}; vanillaINTScaling={vanillaINTScaling}; ATK1={equipmentATK1}; ATK2={equipmentATK2}; EquipINT={equipmentINT}; EquipSTR={equipmentSTR}; BaseSTR={sotnApi.AlucardApi.Str}; vladBonus={vladBonus}; AxeFlatDamage={axeArmorFlatDamage}; AxeMultiDMG={axeArmorMultiDamage}; AxeMultiSTR={axeArmorMultiSTR}; offHandUnscaled={offHandBonus}; " +
+				Console.WriteLine($"Sword Familiar={axeArmorSwordFamiliar};Gurthang={axeArmorGurthang}; Thrust={axeArmorThrust}; 2H={axeArmorTwoHanded}; RH={sotnApi.AlucardApi.RightHand}; LH={sotnApi.AlucardApi.LeftHand}; weaponDamage={weaponDamage} adjustedDamage={damage}; flatDamage{flatDamage}; vanillaINTScaling={vanillaINTScaling}; ATK1={equipmentATK1}; ATK2={equipmentATK2}; EquipINT={equipmentINT}; EquipSTR={equipmentSTR}; BaseSTR={sotnApi.AlucardApi.Str}; vladBonus={vladBonus}; AxeFlatDamage={axeArmorFlatDamage}; AxeMultiDMG={axeArmorMultiDamage}; AxeMultiSTR={axeArmorMultiSTR}; offHandUnscaled={offHandBonus}; " +
 					$"multiplierBaseDamage={multiplierBaseDamage}; handsWithDamage={handsWithDamage}; emptyLeftHand={axeArmorEmptyLeftHand}; emptyRight={axeArmorEmptyRightHand}; 2H={axeArmorTwoHanded}; R-Shield={axeArmorShieldRightHand}; L-Shield={axeArmorShieldLeftHand}; axeArmorShieldINT={axeArmorShieldINT}; s-base={shieldBaseDamage}; s-bonus={shieldBonusDamage}; s-rod={shieldRodBonus}");
 			}
 		}
@@ -16242,15 +16703,29 @@ namespace SotnRandoTools.Khaos
 
 			//bool isShieldRodBonus = false;
 			bool isTwoHanded = false;
+			bool isThrust = false;
 			bool leftHandLimitedWpn = false;
 			bool rightHandLimitedWpn = false;
 			bool leftHandShield = false;
 			bool rightHandShield = false;
 
-			if(axeArmorLeftHand != leftHandIndex || axeArmorRightHand != rightHandIndex) 
+			
+			
+
+			if (axeArmorLeftHand != leftHandIndex || axeArmorRightHand != rightHandIndex) 
 			{
 				axeArmorShieldINT = 0;
 				uint shieldBonusINT = 0;
+
+				bool isSwordFamiliar = false;
+
+				if (rightHandIndex == Equipment.Items.IndexOf("Sword Familiar")
+				|| leftHandIndex == Equipment.Items.IndexOf("Sword Familiar"))
+				{
+					isSwordFamiliar = true;
+				}
+
+				axeArmorSwordFamiliar = isSwordFamiliar;
 
 				if (rightHandIndex == Equipment.Items.IndexOf("Shield rod")
 				|| rightHandIndex == Equipment.Items.IndexOf("Mablung Sword"))
@@ -16514,9 +16989,23 @@ namespace SotnRandoTools.Khaos
 				else
 				{
 					SetAxeArmorWeaponQualities(0, 64, 0, false, out damageFlatModifier, out damageMultiModifier, out strMultiModifier);
-				}		
+				}
 
+				if (Constants.Khaos.ThrustWeapons.Contains(Equipment.Items[(int) (sotnApi.AlucardApi.RightHand)]))
+				{
+					isThrust = true;
+				}
+
+				bool isGurthang = false;
+
+				if (rightHandIndex == Equipment.Items.IndexOf("Gurthang"))
+				{
+					isGurthang = true;
+				}
+
+				axeArmorGurthang = isGurthang;
 				axeArmorAllowWeaponConsume = false;
+				axeArmorThrust = isThrust;
 				axeArmorTwoHanded = isTwoHanded;
 				axeArmorFlatDamage = damageFlatModifier;
 				axeArmorMultiDamage = damageMultiModifier;
