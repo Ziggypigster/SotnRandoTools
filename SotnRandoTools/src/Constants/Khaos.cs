@@ -229,6 +229,12 @@ namespace SotnRandoTools.Constants
 		{
 			new MapLocation{X = 22, Y = 37, SecondCastle = 0}, //Cavern Switch Room
 		};
+		public static List<MapLocation> AxeArmorDeathSkip = new List<MapLocation>
+		{
+			new MapLocation{X = 19, Y = 40, SecondCastle = 0},
+			new MapLocation{X = 20, Y = 40, SecondCastle = 0}, 
+			new MapLocation{X = 21, Y = 40, SecondCastle = 0}, //Death Skip
+		};
 		public static List<MapLocation> JewelSwordRooms = new List<MapLocation>
 		{
 			new MapLocation{X = 11, Y = 40, SecondCastle = 0},
@@ -1207,7 +1213,7 @@ namespace SotnRandoTools.Constants
 		#region Axe Armor Specific
 
 		//Jump
-		public static int AxeArmorJumpBaseSpeed = -210000;
+		public static int AxeArmorJumpBaseSpeed = -300000;
 		public static int AxeArmorJumpAcceleration = 10000;
 		public static int AxeArmorGravityJumpBaseSpeed = -420000;
 		public static int AxeArmorGravityJumpAcceleration = -10000;
@@ -1215,7 +1221,7 @@ namespace SotnRandoTools.Constants
 		public static int AxeArmorVerticalJumpAirControl = 1006829563;
 
 		//Float
-		public static int AxeArmorJumpFloatBaseSpeed = -300000;
+		public static int AxeArmorJumpFloatBaseSpeed = -250000;
 		public static int AxeArmorUnderwaterBaseSpeed = 13500;
 		public static int AxeArmorFloatBaseSpeed = 9000;
 		public static int AxeArmorReducedFallSpeed = 450000;
@@ -1227,6 +1233,8 @@ namespace SotnRandoTools.Constants
 		public static int AxeArmorMistFlightSpeed = -80000;
 		public static int AxeArmorMistFlightUpSpeed = -140000;
 		public static int AxeArmorMistFlightFloatSpeed = 1000;
+		public static int AxeArmorMistAcceleration = 20000;
+		public static int AxeArmorMistAccelerationRelic = 10000;
 		public static int AxeArmorFlightUpSpeed = -200000;
 
 		//Wolf

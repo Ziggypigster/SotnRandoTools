@@ -232,6 +232,12 @@ namespace SotnRandoTools
 				inputService.UpdateInputs();
 			}
 			cooldown++;
+
+			if (khaosForm is not null)
+			{
+				khaosForm.UpdateAxeArmor();
+			}
+
 			if (cooldown == Globals.UpdateCooldownFrames)
 			{
 				cooldown = 0;

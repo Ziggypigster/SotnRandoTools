@@ -61,7 +61,7 @@ namespace SotnRandoTools.Services
 		};
 
 		private bool numashockCore = true;
-		private string crossKey = PlaystationInputKeys.Cross;
+		//private string crossKey = PlaystationInputKeys.Cross;
 		private string leftKey = PlaystationInputKeys.Left;
 		private string rightKey = PlaystationInputKeys.Right;
 

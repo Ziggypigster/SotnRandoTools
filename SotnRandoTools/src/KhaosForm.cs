@@ -69,6 +69,13 @@ namespace SotnRandoTools
 				khaosControler.Update();
 			}
 		}
+		public void UpdateAxeArmor()
+		{
+			if (khaosControler is not null)
+			{
+				khaosControler.AxeArmorInputs();
+			}
+		}
 
 		private void Khaos_Load(object sender, EventArgs e)
 		{
