@@ -1233,8 +1233,8 @@ namespace SotnRandoTools.Constants
 		public static int AxeArmorMistFlightSpeed = -80000;
 		public static int AxeArmorMistFlightUpSpeed = -140000;
 		public static int AxeArmorMistFlightFloatSpeed = 1000;
-		public static int AxeArmorMistAcceleration = 20000;
-		public static int AxeArmorMistAccelerationRelic = 10000;
+		public static int AxeArmorMistAcceleration = 20000 / Globals.UpdateCooldownFrames;
+		public static int AxeArmorMistAccelerationRelic = 10000 / Globals.UpdateCooldownFrames;
 		public static int AxeArmorFlightUpSpeed = -200000;
 
 		//Wolf
