@@ -123,11 +123,14 @@ Triangle   - Small fireballs that can hit breakable ceiling / floor tiles (18MP)
 	+ Down - Small fireballs shfited downwards <br />
 
 Unique Commands (while Faceplanting): <br />
+Landing - Cancels Faceplant <br />
 Hold Up - Goes through mist gates, Olrox narrow passageways (requires Form of Mist) <br />
 Square - MP to Speed Boost / Aerial Faceplant extension <br />
 Triangle - Hearts to MP Conversion <br />
 Circle - Subweapon to HP + Hearts Conversion <br />
 R1 - Flight <br />
+X / Cross - Cancels Faceplant with a jump (requires LeapStone) <br />
+Up + Jump - Cancels Faceplant Gravity Jump  (requires Gravity Boots) <br />
 
 Unique Command (while in hitstun):<br />
 Tap R1 when near the ground to "tech" the landing and act faster. <br />
@@ -136,28 +139,28 @@ Tap R1 when near the ground to "tech" the landing and act faster. <br />
 Note: Latest patch notes will always have the most accurate details.
 
 Small Fireballs: <br />
-	Damage = 6 + .24 Base + .30 Weapon INT + .30 Equipment INT <br />
+	Damage = 6 + .24 Base + .36 Weapon INT + .36 Equipment INT <br />
 	Soul of Bat, Echo of Bat, Force of Echo: <br />
 		+ .04 Base INT Scaling  <br />
-		+ .05 Equipment INT   <br />
-		+ .05 Weapon INT   <br />
+		+ .06 Equipment INT   <br />
+		+ .06 Weapon INT   <br />
 	Fire of Bat: <br />
 		+ .08 Base INT  <br />
-		+ .10 Equipment INT  <br />
-		+ .10 Weapon INT  <br />
-	Eye of Vlad, Mojo Mail: <br />
-		+ 6 Base Damage  <br />
-
-Big Fireballs: <br />
-	Damage = 12 + .30 Base + .35 Weapon INT + .35 Equipment INT <br />
-	Soul of Bat, Echo of Bat, Force of Echo: <br />
-		+ .05 Base INT Scaling <br />
-		+ .06 Equipment INT <br />
-		+ .06 Weapon INT <br />
-	Fire of Bat: <br />
-		+ .10 Base INT  <br />
 		+ .12 Equipment INT  <br />
 		+ .12 Weapon INT  <br />
+	Eye of Vlad, Mojo Mail: <br />
+		+ 8 Base Damage  <br />
+
+Big Fireballs: <br />
+	Damage = 12 + .30 Base + .35 Weapon INT + .42 Equipment INT <br />
+	Soul of Bat, Echo of Bat, Force of Echo: <br />
+		+ .05 Base INT Scaling <br />
+		+ .07 Equipment INT <br />
+		+ .07 Weapon INT <br />
+	Fire of Bat: <br />
+		+ .10 Base INT  <br />
+		+ .14 Equipment INT  <br />
+		+ .14 Weapon INT  <br />
 	Eye of Vlad, Mojo Mail: <br />
 		+ 12 Base Damage  <br />
 
@@ -174,7 +177,7 @@ Subweapon Multipliers:<br />
 	Axe: 1 <br />
 	Cross: 1.1 <br />
 	Rebound Stone: 1.4 <br />
-	Holy Water: .6 <br />
+	Holy Water: .5 <br />
 	Bible: .5 <br />
 	Stop Watch: .5 <br />
 
@@ -200,13 +203,24 @@ DMG Shield: 2 + .35 Weapon ATK 2 + .08 Base STR + .25 Equipment STR + .15 Shield
 Fist		1 + .00 Weapon ATK 2 + .08 Base STR + .25 Equipment STR <br />
 Shield: 	1 + .00 Weapon ATK 2 + .08 Base STR + .25 Equipment STR + .15 Shield INT <br />
 
-Special: Shield Rod / Mablung Sword adds an additional + .45 Shield INT to the damage in addition to increasing Shield INT by 60. <br />
+Special: Shield Rod / Mablung Sword gains additional base damage in addition to increasing Shield INT by 60. <br />
 
 Current #Hit Damage Scaling rules: <br />
 	x1 Hit: 1.0 WPN ATK, -4 Flat Damage <br />
-	x2 Hit: .92 WPN ATK, -6 Flat Damage,  -.02 STR Bonus <br />
-	x3 Hit: .86 WPN ATK, -9 Flat Damage,  -.06 STR Bonus <br />
-	x4 Hit: .78 WPN ATK, -13 Flat Damage, -.12 STR Bonus <br />
+	x2 Hit: .85 WPN ATK, -5 Flat Damage, -.15 STR Bonus <br />
+	x3 Hit: .78 WPN ATK, -6 Flat Damage, -.22 STR Bonus <br />
+	x4 Hit: .70 WPN ATK, -7 Flat Damage, -.30 STR Bonus <br />
+
+## Shield INT Bonuses
++6 INT: Alucart Shield
++8 INT: Leather Shield
++12 INT: Knight Shield, Iron Shield
++16 INT: Skull Shield, Medusa Shield, Dark Shield
++20 INT: Fire Shield, Herald Shield
++24 INT: Shaman Shield, Goddess Shield
++28 INT: AxeLord Shield
++32 INT: Alucard Shield
+
 
 # Symphony of the Night Randomizer Tools
 
