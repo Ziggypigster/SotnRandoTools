@@ -2,6 +2,7 @@
 using System.IO;
 using System.IO.Pipes;
 
+/*
 namespace SotnRandoTools.Services
 {
 	public class Autosplitter
@@ -101,3 +102,4 @@ namespace SotnRandoTools.Services
 		}
 	}
 }
+*/

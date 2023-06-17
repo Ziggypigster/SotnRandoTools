@@ -837,10 +837,12 @@ namespace SotnRandoTools.Constants
 			//33056,// 8120 - Default coloring for reference
 			309,//0135 - Richter Alternate //
 			330,//014A - 80s Punk //Not legal Ricter Color?
+			332,//		-Legend of Zelda
 			33057,// 8121 - Green Richter
 			33058,// 8122 - Sunburst Richter
 			33060,// 8124 - Monochrome Richter
 			33062,// 8126 - Washed Out Richter
+			33077,// 8135 - Darker Blue Richter
 			33078,// 8136 - Red Richter
 			33079,// 8137 - Black Richter
 			33138,// 8172 - Legend of Richter
@@ -852,11 +854,10 @@ namespace SotnRandoTools.Constants
 
 		public static int[] enemyRichterColors =
 		{
-			
-			33138,// 8172 - Legend of Richter
-			33199,// 81AF - Grey Richter
-			33273,// 81F9 - Zombie Richter
-			33184,// 81A0 - Orange Richter
+			550,  //      - Pale Richter
+			588,  //      - 8-Bit Richter
+			//256 Candidates
+			33030,// 8106 - Sunburst Richter
 			33056,// 8220 - Default Richter
 			33057,// 8221 - Green Richter
 			33058,// 8222 - Sunburst Richter
@@ -864,13 +865,13 @@ namespace SotnRandoTools.Constants
 			33062,// 8226 - Washed Out Richter
 			33078,// 8236 - Red Richter
 			33079,// 8237 - Black Richter
-			//Enemy Richter Only
-			550,  //      - Pale Richter
-			588,  //      - 8-Bit Richter
-			33030,// 8106 - Sunburst Richter
-			33089,// 8141 - Sunburnt Richter
-			33090,// 8142 - Frozen Richter
-			33138,// 8199 - Yeti Richter
+			//End of 256 Candidates
+			33177,// 8199 - Yeti Richter
+			33184,// 81A0 - Orange Richter
+			33199,// 81AF - Grey Richter
+			33273,// 81F9 - Zombie Richter
+			33333,// - Darker Blue Richter
+			33356,// - Legend of Zelda Richter
 		};
 
 		
@@ -1418,6 +1419,52 @@ namespace SotnRandoTools.Constants
 		public static uint GalamothKhaosPositionOffset = 100;
 		
 		public static int SaveIcosahedronFirstCastle = 0xBCAA;
-		public static int SaveIcosahedronSecondCastle = 0x1150;
+		public static int[] saveColorsFirstCastle =
+		{
+			0xBC83, 
+			0xBC90, 
+			0xBC94, 
+			0xBC97, 
+			0xBC99, 
+			0xBCA7, 
+			0xBCA9, 
+			0xBC8C, 
+			0xBCCA, 
+			0xBC91, 
+			0xBC9A, 
+			0xBC98, 
+			0xBCCF,
+			0XBCD2,
+			0xBCE5,
+			0xBCE8,
+		};
+
+		//3FC1 == Normal Save
+		public static int[] saveColorsSecondCastle =
+		{
+			//0x3CCA,
+			0x3CDC,
+			0x3CDF,
+			0x3FB8,
+			0X3FBF,
+			0x3FC0,
+			0x3FC2,
+			0x3FC3,
+			0x3FC4,
+			0x3FC5,
+			0x3FC9,
+			0x3FCA,
+		//public static int SaveIcosahedronSecondCastle = 0x33A0;
+		//0x33A2 - Cyan Transparent
+		//0x33A5 - Purple/Green Alien
+		//0x33A9 - Midnight
+		//0x33AC - Varia Suit
+		//0x33B9 - Red/Blue
+		//0x33F8 - Pink Wireframe
+		//0x33F9 - Purple Wireframe
+		//0x5700 - Alt Grey
+		//0x6620 - Yellow Transparent
+		//0x6627 - Starburst
+		};
 	}
 }

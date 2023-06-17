@@ -93,6 +93,26 @@ namespace SotnRandoTools.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap mayhem {
+            get {
+                object obj = ResourceManager.GetObject("mayhem", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PigLogoMayhem {
+            get {
+                object obj = ResourceManager.GetObject("PigLogoMayhem", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap tracker {
             get {
                 object obj = ResourceManager.GetObject("tracker", resourceCulture);

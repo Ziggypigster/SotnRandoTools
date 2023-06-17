@@ -50,6 +50,7 @@ namespace SotnRandoTools
 			permaAxeArmorCheckBox.Checked = toolConfig.Khaos.PermaAxeArmor;
 			boostAxeArmorCheckBox.Checked = toolConfig.Khaos.BoostAxeArmor;
 			axeArmorTipsCheckBox.Checked = toolConfig.Khaos.AxeArmorTips;
+			enableAutosplitterCheckbox.Checked = toolConfig.Khaos.EnableAutosplitter;
 			
 			dynamicIntervalCheckBox.Checked = toolConfig.Khaos.DynamicInterval;
 			romhackModeCheckBox.Checked = toolConfig.Khaos.RomhackMode;
@@ -1394,6 +1395,11 @@ namespace SotnRandoTools
 		private void alertsGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
 		{
 
+		}
+
+		private void enableAutosplitterCheckBox_CheckChanged(object sender, EventArgs e)
+		{
+			toolConfig.Khaos.EnableAutosplitter = enableAutosplitterCheckbox.Checked;
 		}
 	}
 }

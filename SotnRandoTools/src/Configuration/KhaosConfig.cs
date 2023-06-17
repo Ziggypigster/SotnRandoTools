@@ -250,6 +250,8 @@ namespace SotnRandoTools.Configuration
 		public bool BoostAxeArmor{ get; set; }
 		public bool BoostFamiliars { get; set; }
 
+		public bool EnableAutosplitter { get; set; }
+
 		public bool ReviveRichter { get; set; }
 		public bool ContinuousWingsmash { get; set; }
 		public bool DynamicInterval { get; set; }

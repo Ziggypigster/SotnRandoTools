@@ -100,6 +100,8 @@ namespace SotnRandoTools
             this.queueRadio = new System.Windows.Forms.RadioButton();
             this.connectButton = new System.Windows.Forms.Button();
             this.autoMayhemButton = new System.Windows.Forms.Button();
+            this.axeArmorStartButton = new System.Windows.Forms.Button();
+            this.enemyRichterButton = new System.Windows.Forms.Button();
             this.khaosTabs.SuspendLayout();
             this.generalTab.SuspendLayout();
             this.debugTab.SuspendLayout();
@@ -116,9 +118,9 @@ namespace SotnRandoTools
             this.startButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
             this.startButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.startButton.ForeColor = System.Drawing.Color.White;
-            this.startButton.Location = new System.Drawing.Point(158, 12);
+            this.startButton.Location = new System.Drawing.Point(159, 5);
             this.startButton.Name = "startButton";
-            this.startButton.Size = new System.Drawing.Size(134, 54);
+            this.startButton.Size = new System.Drawing.Size(134, 97);
             this.startButton.TabIndex = 5;
             this.startButton.Text = "Start";
             this.startButton.UseVisualStyleBackColor = true;
@@ -129,10 +131,10 @@ namespace SotnRandoTools
             this.khaosTabs.Controls.Add(this.generalTab);
             this.khaosTabs.Controls.Add(this.debugTab);
             this.khaosTabs.Controls.Add(this.testingTab);
-            this.khaosTabs.Location = new System.Drawing.Point(12, 72);
+            this.khaosTabs.Location = new System.Drawing.Point(12, 112);
             this.khaosTabs.Name = "khaosTabs";
             this.khaosTabs.SelectedIndex = 0;
-            this.khaosTabs.Size = new System.Drawing.Size(426, 414);
+            this.khaosTabs.Size = new System.Drawing.Size(426, 374);
             this.khaosTabs.TabIndex = 33;
             // 
             // generalTab
@@ -172,7 +174,7 @@ namespace SotnRandoTools
             this.generalTab.Location = new System.Drawing.Point(4, 22);
             this.generalTab.Name = "generalTab";
             this.generalTab.Padding = new System.Windows.Forms.Padding(3);
-            this.generalTab.Size = new System.Drawing.Size(418, 388);
+            this.generalTab.Size = new System.Drawing.Size(418, 348);
             this.generalTab.TabIndex = 0;
             this.generalTab.Text = "Mayhem";
             // 
@@ -687,7 +689,7 @@ namespace SotnRandoTools
             this.debugTab.Controls.Add(this.faceTankButton);
             this.debugTab.Location = new System.Drawing.Point(4, 22);
             this.debugTab.Name = "debugTab";
-            this.debugTab.Size = new System.Drawing.Size(418, 388);
+            this.debugTab.Size = new System.Drawing.Size(418, 348);
             this.debugTab.TabIndex = 1;
             this.debugTab.Text = "Debug";
             // 
@@ -1110,6 +1112,7 @@ namespace SotnRandoTools
             // testingTab
             // 
             this.testingTab.BackColor = System.Drawing.Color.Black;
+            this.testingTab.Controls.Add(this.enemyRichterButton);
             this.testingTab.Controls.Add(this.richterColorTextBox);
             this.testingTab.Controls.Add(this.spawnEntityButton);
             this.testingTab.Controls.Add(this.richterColorButton);
@@ -1117,7 +1120,7 @@ namespace SotnRandoTools
             this.testingTab.Location = new System.Drawing.Point(4, 22);
             this.testingTab.Name = "testingTab";
             this.testingTab.Padding = new System.Windows.Forms.Padding(3);
-            this.testingTab.Size = new System.Drawing.Size(418, 388);
+            this.testingTab.Size = new System.Drawing.Size(418, 348);
             this.testingTab.TabIndex = 2;
             this.testingTab.Text = "Testing";
             // 
@@ -1176,7 +1179,7 @@ namespace SotnRandoTools
             this.modePanel.ForeColor = System.Drawing.Color.White;
             this.modePanel.Location = new System.Drawing.Point(304, 6);
             this.modePanel.Name = "modePanel";
-            this.modePanel.Size = new System.Drawing.Size(134, 71);
+            this.modePanel.Size = new System.Drawing.Size(134, 96);
             this.modePanel.TabIndex = 34;
             this.modePanel.TabStop = false;
             this.modePanel.Text = "Mode";
@@ -1213,7 +1216,7 @@ namespace SotnRandoTools
             this.connectButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
             this.connectButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.connectButton.ForeColor = System.Drawing.Color.White;
-            this.connectButton.Location = new System.Drawing.Point(12, 8);
+            this.connectButton.Location = new System.Drawing.Point(14, 5);
             this.connectButton.Name = "connectButton";
             this.connectButton.Size = new System.Drawing.Size(134, 29);
             this.connectButton.TabIndex = 35;
@@ -1229,7 +1232,7 @@ namespace SotnRandoTools
             this.autoMayhemButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
             this.autoMayhemButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.autoMayhemButton.ForeColor = System.Drawing.Color.White;
-            this.autoMayhemButton.Location = new System.Drawing.Point(12, 40);
+            this.autoMayhemButton.Location = new System.Drawing.Point(14, 73);
             this.autoMayhemButton.Name = "autoMayhemButton";
             this.autoMayhemButton.Size = new System.Drawing.Size(134, 29);
             this.autoMayhemButton.TabIndex = 36;
@@ -1237,12 +1240,45 @@ namespace SotnRandoTools
             this.autoMayhemButton.UseVisualStyleBackColor = true;
             this.autoMayhemButton.Click += new System.EventHandler(this.autoMayhemButton_Click);
             // 
+            // axeArmorStartButton
+            // 
+            this.axeArmorStartButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(21)))), ((int)(((byte)(57)))));
+            this.axeArmorStartButton.FlatAppearance.BorderSize = 2;
+            this.axeArmorStartButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
+            this.axeArmorStartButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
+            this.axeArmorStartButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.axeArmorStartButton.ForeColor = System.Drawing.Color.White;
+            this.axeArmorStartButton.Location = new System.Drawing.Point(14, 39);
+            this.axeArmorStartButton.Name = "axeArmorStartButton";
+            this.axeArmorStartButton.Size = new System.Drawing.Size(134, 29);
+            this.axeArmorStartButton.TabIndex = 37;
+            this.axeArmorStartButton.Text = "Start Axe Armor";
+            this.axeArmorStartButton.UseVisualStyleBackColor = true;
+            this.axeArmorStartButton.Click += new System.EventHandler(this.axeArmorStartButton_Click);
+            // 
+            // enemyRichterButton
+            // 
+            this.enemyRichterButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(21)))), ((int)(((byte)(57)))));
+            this.enemyRichterButton.FlatAppearance.BorderSize = 2;
+            this.enemyRichterButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
+            this.enemyRichterButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
+            this.enemyRichterButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.enemyRichterButton.ForeColor = System.Drawing.Color.White;
+            this.enemyRichterButton.Location = new System.Drawing.Point(276, 18);
+            this.enemyRichterButton.Name = "enemyRichterButton";
+            this.enemyRichterButton.Size = new System.Drawing.Size(134, 26);
+            this.enemyRichterButton.TabIndex = 97;
+            this.enemyRichterButton.Text = "Enemy Richter Color";
+            this.enemyRichterButton.UseVisualStyleBackColor = true;
+            this.enemyRichterButton.Click += new System.EventHandler(this.enemyRichter_Click);
+            // 
             // KhaosForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
             this.ClientSize = new System.Drawing.Size(450, 498);
+            this.Controls.Add(this.axeArmorStartButton);
             this.Controls.Add(this.autoMayhemButton);
             this.Controls.Add(this.connectButton);
             this.Controls.Add(this.modePanel);
@@ -1340,6 +1376,8 @@ namespace SotnRandoTools
 		private System.Windows.Forms.Button spawnEntityButton;
 		private System.Windows.Forms.Button richterColorButton;
 		private System.Windows.Forms.TextBox spawnEntityIDTextBox;
+		private System.Windows.Forms.Button axeArmorStartButton;
+		private System.Windows.Forms.Button enemyRichterButton;
 	}
 }
 

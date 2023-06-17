@@ -65,7 +65,7 @@ namespace SotnRandoTools
             this.aboutButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
             this.aboutButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.aboutButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.aboutButton.Image = global::SotnRandoTools.Properties.Resources.LogoTZtwtr1;
+            this.aboutButton.Image = global::SotnRandoTools.Properties.Resources.PigLogoMayhem;
             this.aboutButton.Location = new System.Drawing.Point(294, 12);
             this.aboutButton.Name = "aboutButton";
             this.aboutButton.Size = new System.Drawing.Size(88, 70);
@@ -165,7 +165,7 @@ namespace SotnRandoTools
             this.khaosChatSelect.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
             this.khaosChatSelect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.khaosChatSelect.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.khaosChatSelect.Image = global::SotnRandoTools.Properties.Resources.khaosb;
+            this.khaosChatSelect.Image = global::SotnRandoTools.Properties.Resources.mayhem;
             this.khaosChatSelect.Location = new System.Drawing.Point(106, 12);
             this.khaosChatSelect.Name = "khaosChatSelect";
             this.khaosChatSelect.Size = new System.Drawing.Size(88, 70);

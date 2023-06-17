@@ -120,6 +120,10 @@ namespace SotnRandoTools
 				startButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(48, 20, 48);
 				connectButton.Enabled = true;
 				autoMayhemButton.Enabled = true;
+				axeArmorStartButton.Enabled = true;
+				axeArmorStartButton.Text = "Start Axe Armor";
+				axeArmorStartButton.BackColor = System.Drawing.Color.FromArgb(17, 0, 17);
+				axeArmorStartButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(48, 20, 48);
 				connectButton.Text = "Connect Bot";
 				connectButton.BackColor = System.Drawing.Color.FromArgb(17, 0, 17);
 				connectButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(48, 20, 48);
@@ -135,6 +139,7 @@ namespace SotnRandoTools
 				startButton.BackColor = System.Drawing.Color.FromArgb(114, 32, 25);
 				startButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(169, 19, 7);
 				autoMayhemButton.Enabled = false;
+				axeArmorStartButton.Enabled = false;
 				connectButton.Enabled = false;
 			}
 		}
@@ -786,8 +791,40 @@ namespace SotnRandoTools
 
 		private void modePanel_Enter(object sender, EventArgs e)
 		{
-
+			khaosControler.AxeArmorOn = true;
 		}
+
+		private void axeArmorStartButton_Click(object sender, EventArgs e)
+		{
+			if (khaosControler.AxeArmorOn == true)
+			{
+				khaosControler.AxeArmorOn = false;
+				axeArmorStartButton.Text = "Start Axe Armor";
+				axeArmorStartButton.BackColor = System.Drawing.Color.FromArgb(17, 0, 17);
+				axeArmorStartButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(48, 20, 48);
+				if (!connected && !khaosControler.AutoMayhemOn)
+				{
+					startButton.Enabled = false;
+				}
+			}
+			else
+			{
+				khaosControler.AxeArmorOn = true;
+				startButton.Enabled = true;
+				axeArmorStartButton.Text = "Stop Axe Armor";
+				autoMayhemButton.Text = "Start Auto Mayhem";
+				connectButton.Text = "Connect Bot";
+				connected = false;
+				khaosControler.AutoMayhemOn = false;
+				connectButton.BackColor = System.Drawing.Color.FromArgb(17, 0, 17);
+				connectButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(48, 20, 48);
+				autoMayhemButton.BackColor = System.Drawing.Color.FromArgb(17, 0, 17);
+				autoMayhemButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(48, 20, 48);
+				axeArmorStartButton.BackColor = System.Drawing.Color.FromArgb(93, 56, 147);
+				axeArmorStartButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(145, 70, 255);
+			}
+		}
+
 
 		private void autoMayhemButton_Click(object sender, EventArgs e)
 		{
@@ -797,7 +834,7 @@ namespace SotnRandoTools
 				autoMayhemButton.Text = "Start Auto Mayhem";
 				autoMayhemButton.BackColor = System.Drawing.Color.FromArgb(17, 0, 17);
 				autoMayhemButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(48, 20, 48);
-				if (!connected)
+				if (!connected && !khaosControler.AxeArmorOn)
 				{
 					startButton.Enabled = false;
 				}
@@ -807,8 +844,12 @@ namespace SotnRandoTools
 				khaosControler.AutoMayhemOn = true;
 				startButton.Enabled = true;
 				autoMayhemButton.Text = "Stop Auto Mayhem";
+				axeArmorStartButton.Text = "Start Axe Armor";
 				connectButton.Text = "Connect Bot";
 				connected = false;
+				khaosControler.AxeArmorOn = false;
+				axeArmorStartButton.BackColor = System.Drawing.Color.FromArgb(17, 0, 17);
+				axeArmorStartButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(48, 20, 48);
 				connectButton.BackColor = System.Drawing.Color.FromArgb(17, 0, 17);
 				connectButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(48, 20, 48);
 				autoMayhemButton.BackColor = System.Drawing.Color.FromArgb(93, 56, 147);
@@ -824,7 +865,7 @@ namespace SotnRandoTools
 				connected = false;
 				connectButton.BackColor = System.Drawing.Color.FromArgb(17, 0, 17);
 				connectButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(48, 20, 48);
-				if (!khaosControler.AutoMayhemOn)
+				if (!khaosControler.AutoMayhemOn && !khaosControler.AxeArmorOn)
 				{
 					startButton.Enabled = false;
 				}
@@ -837,6 +878,10 @@ namespace SotnRandoTools
 				connectButton.BackColor = System.Drawing.Color.FromArgb(93, 56, 147);
 				connectButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(145, 70, 255);
 				khaosControler.AutoMayhemOn = false;
+				khaosControler.AxeArmorOn = false;
+				axeArmorStartButton.Text = "Start Axe Armor";
+				axeArmorStartButton.BackColor = System.Drawing.Color.FromArgb(17, 0, 17);
+				axeArmorStartButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(48, 20, 48);
 				autoMayhemButton.Text = "Start Auto Mayhem";
 				autoMayhemButton.BackColor = System.Drawing.Color.FromArgb(17, 0, 17);
 				autoMayhemButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(48, 20, 48);
@@ -885,6 +930,11 @@ namespace SotnRandoTools
 			{
 				toolConfig.Khaos.RichterColor = (int) (spawnID);
 			}
+		}
+
+		private void enemyRichter_Click(object sender, EventArgs e)
+		{
+			khaosControler.adjustEnemyRichterColor(true,true);
 		}
 	}
 }
