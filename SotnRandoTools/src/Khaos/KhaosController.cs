@@ -561,6 +561,7 @@ namespace SotnRandoTools.Khaos
 
 		//private int maxPotionDuration = 4500;
 		private uint axeArmorShieldINT = 0;
+		private uint axeArmorGalamothDef = 0;
 
 		private bool delayStart = true;
 		private int axeArmorFrameCount = 0;
@@ -879,8 +880,18 @@ namespace SotnRandoTools.Khaos
 			{
 				socketClient.Dispose();
 			}
-
-			notificationService.AddMessage($"Mayhem stopped");
+			if (AxeArmorOn)
+			{
+				notificationService.AddMessage($"Axe Armor stopped");
+			}
+			else if (AutoMayhemOn)
+			{
+				notificationService.AddMessage($"AutoMayhem stopped");
+			}
+			else
+			{
+				notificationService.AddMessage($"Mayhem stopped");
+			}
 			Console.WriteLine("Mayhem stopped");
 		}
 		public void OverwriteBossNames(string[] subscribers)
@@ -3015,7 +3026,21 @@ namespace SotnRandoTools.Khaos
 
 					if (IsInRoomList(Constants.Khaos.GalamothRooms))
 					{
-						damage = damage / 3;
+						if (AxeArmorOn)
+						{
+							if (hasCubeOfZoe)
+							{
+								damage = ((damage / 2) - vladRelicsObtained - 3);
+							}
+							else
+							{
+								damage = ((damage / 2) - vladRelicsObtained);
+							}
+						}
+						else
+						{
+							damage = (damage / 3) - vladRelicsObtained;
+						}
 					}
 
 					baseDamage = damage;
@@ -12805,6 +12830,7 @@ namespace SotnRandoTools.Khaos
 				
 				shaft.Hp = (int) (shaftBaseHP + bonusHP);
 				shaftHpSet = true;
+				notificationService.AddMessage($"Boss HP: " + shaft.Hp);
 				Console.WriteLine($"Found Shaft Orb actor and set HP to: {shaft.Hp}; bonus HP {bonusHP}");
 
 			}
@@ -12816,134 +12842,215 @@ namespace SotnRandoTools.Khaos
 		private void SetGalamothStats()
 		{
 			long galamothTorsoAddress = sotnApi.EntityApi.FindEntityFrom(new List<SearchableActor> { Constants.Khaos.GalamothTorsoActor });
-			uint axeArmorDef = 0;
+			axeArmorGalamothDef = 0;
 
 			if (galamothTorsoAddress > 0)
 			{
 				LiveEntity galamothTorso = sotnApi.EntityApi.GetLiveEntity(galamothTorsoAddress);
 
-				//Original
-				//int bonusHp = 500 + (250 * (vladRelicsObtained));
 				int bonusHp = 0;
 
-				if (toolConfig.Khaos.GalamothBossHPModifier > 0)
+				if (toolConfig.Khaos.GalamothBossHPModifier > 0 || AxeArmorOn)
 				{
 					double galamothFlatHp = 250;
 					double galamothScalingHp = 125;
 					double axeArmorFlatHp = 0;
-					
 
-					if (axeArmorActive && toolConfig.Khaos.BoostAxeArmor)
+					if (AxeArmorOn)
 					{
-						if (AxeArmorOn)
-						{
-							galamothFlatHp = 2944;
-						}
-						else
-						{
-							galamothFlatHp = 1833;
-						}
-						galamothScalingHp = 333;
+						galamothFlatHp = 2944;
+						galamothScalingHp = 444;
+						axeArmorGalamothDef = 9;
+
 						if (hasRibOfVlad)
 						{
-							axeArmorDef += 6;
+							axeArmorGalamothDef += 6;
 						}
 						if (hasToothOfVlad)
 						{
-							axeArmorDef += 3;
+							axeArmorGalamothDef += 3;
 						}
 						if (hasRingOfVlad)
 						{
-							axeArmorDef += 3;
+							axeArmorGalamothDef += 3;
 						}
 						if (hasEyeOfVlad)
 						{
-							axeArmorDef += 3;
+							axeArmorGalamothDef += 3;
 						}
 						if (hasHeartOfVlad)
 						{
-							axeArmorDef += 3;
+							axeArmorGalamothDef += 3;
 						}
 						if (hasCubeOfZoe)
 						{
 							axeArmorFlatHp += 999;
-							axeArmorDef += 3;
+							axeArmorGalamothDef += 3;
 						}
 						if (hasSoulOfBat)
 						{
-							axeArmorFlatHp += 200;
+							axeArmorFlatHp += 300;
 						}
 						if (hasEchoOfBat)
 						{
-							axeArmorFlatHp += 200;
+							axeArmorFlatHp += 300;
 						}
 						if (hasFireOfBat)
 						{
-							axeArmorFlatHp += 200;
+							axeArmorFlatHp += 300;
 						}
 						if (hasForceOfEcho)
 						{
-							axeArmorFlatHp += 200;
+							axeArmorFlatHp += 300;
 						}
-
 						if (hasFormOfMist)
 						{
-							axeArmorFlatHp += 150;
+							axeArmorFlatHp += 250;
 						}
 						if (hasPowerOfMist)
 						{
-							axeArmorFlatHp += 150;
+							axeArmorFlatHp += 250;
 						}
 						if (hasGasCloud)
 						{
-							axeArmorFlatHp += 150;
+							axeArmorFlatHp += 250;
 						}
 						if (hasSoulOfWolf)
 						{
-							axeArmorFlatHp += 150;
+							axeArmorFlatHp += 200;
 						}
 						if (hasSkillOfWolf)
 						{
-							axeArmorFlatHp += 150;
+							axeArmorFlatHp += 200;
 						}
 						if (hasPowerOfWolf)
 						{
-							axeArmorFlatHp += 150;
+							axeArmorFlatHp += 200;
 						}
 						if (hasLeapStone)
 						{
-							axeArmorFlatHp += 100;
+							axeArmorFlatHp += 150;
 						}
 						if (hasGravityBoots)
 						{
-							axeArmorFlatHp += 100;
+							axeArmorFlatHp += 150;
 						}
 						if (hasFaerieScroll)
 						{
-							axeArmorFlatHp += 50;
+							axeArmorFlatHp += 100;
 						}
 						if (hasSpiritOrb)
 						{
-							axeArmorFlatHp += 50;
+							axeArmorFlatHp += 100;
 						}
 						if (hasHolySymbol)
 						{
-							axeArmorFlatHp += 50;
+							axeArmorFlatHp += 100;
 						}
-					}
 
-					galamothFlatHp *= toolConfig.Khaos.GalamothBossHPModifier;
-
-					if (AxeArmorOn)
-					{
 						bonusHp = (int) ((galamothFlatHp + (galamothScalingHp * vladRelicsObtained)));
 					}
 					else
 					{
+						if (axeArmorActive && toolConfig.Khaos.BoostAxeArmor)
+						{
+
+							galamothFlatHp = 1833;
+							galamothScalingHp = 333;
+							axeArmorGalamothDef = 9;
+
+							if (hasRibOfVlad)
+							{
+								axeArmorGalamothDef += 4;
+							}
+							if (hasToothOfVlad)
+							{
+								axeArmorGalamothDef += 2;
+							}
+							if (hasRingOfVlad)
+							{
+								axeArmorGalamothDef += 2;
+							}
+							if (hasEyeOfVlad)
+							{
+								axeArmorGalamothDef += 2;
+							}
+							if (hasHeartOfVlad)
+							{
+								axeArmorGalamothDef += 2;
+							}
+							if (hasCubeOfZoe)
+							{
+								axeArmorFlatHp += 999;
+								axeArmorGalamothDef += 2;
+							}
+							if (hasSoulOfBat)
+							{
+								axeArmorFlatHp += 200;
+							}
+							if (hasEchoOfBat)
+							{
+								axeArmorFlatHp += 200;
+							}
+							if (hasFireOfBat)
+							{
+								axeArmorFlatHp += 200;
+							}
+							if (hasForceOfEcho)
+							{
+								axeArmorFlatHp += 200;
+							}
+							if (hasFormOfMist)
+							{
+								axeArmorFlatHp += 150;
+							}
+							if (hasPowerOfMist)
+							{
+								axeArmorFlatHp += 150;
+							}
+							if (hasGasCloud)
+							{
+								axeArmorFlatHp += 150;
+							}
+							if (hasSoulOfWolf)
+							{
+								axeArmorFlatHp += 150;
+							}
+							if (hasSkillOfWolf)
+							{
+								axeArmorFlatHp += 150;
+							}
+							if (hasPowerOfWolf)
+							{
+								axeArmorFlatHp += 150;
+							}
+							if (hasLeapStone)
+							{
+								axeArmorFlatHp += 100;
+							}
+							if (hasGravityBoots)
+							{
+								axeArmorFlatHp += 100;
+							}
+							if (hasFaerieScroll)
+							{
+								axeArmorFlatHp += 50;
+							}
+							if (hasSpiritOrb)
+							{
+								axeArmorFlatHp += 50;
+							}
+							if (hasHolySymbol)
+							{
+								axeArmorFlatHp += 50;
+							}
+						}
+						galamothFlatHp *= toolConfig.Khaos.GalamothBossHPModifier;
 						bonusHp = (int) ((galamothFlatHp + (galamothScalingHp * vladRelicsObtained * toolConfig.Khaos.CurseModifier)) * (toolConfig.Khaos.GalamothBossHPModifier * .5));
 					}
 
 					galamothTorso.Hp = (int) (Constants.Khaos.GalamothMayhemHp + bonusHp + axeArmorFlatHp);
+					notificationService.AddMessage($"Boss HP: " + galamothTorso.Hp);
 
 					if (toughBossesCount > 0)
 					{
@@ -13009,8 +13116,8 @@ namespace SotnRandoTools.Khaos
 
 					if (AxeArmorOn)
 					{
-						galamothAnchor.Def = 18 + axeArmorDef;
-						galamothAnchor.Damage = (uint) (20 + (2.5 * vladRelicsObtained * 2));
+						galamothAnchor.Def = axeArmorGalamothDef;
+						galamothAnchor.Damage = (uint) (20 + (3 * vladRelicsObtained * 2));
 					}
 					else
 					{
@@ -13018,7 +13125,8 @@ namespace SotnRandoTools.Khaos
 						{
 							if (axeArmorActive && toolConfig.Khaos.BoostAxeArmor)
 							{
-								galamothAnchor.Def = 12 + axeArmorDef;
+								//galamothAnchor.Def = axeArmorGalamothDef;
+								galamothAnchor.Def = 0;
 							}
 							else
 							{
@@ -13607,7 +13715,10 @@ namespace SotnRandoTools.Khaos
 						newDefense = 18;
 					}
 					else if (sotnApi.AlucardApi.HasItemInInventory("Diamond plate")
-						|| sotnApi.AlucardApi.HasItemInInventory("Mojo mail"))
+						|| sotnApi.AlucardApi.HasItemInInventory("Mojo mail")
+						|| sotnApi.AlucardApi.HasItemInInventory("Axe Lord armor")
+					)
+
 					{
 						newDefense = 15;
 					}
@@ -14066,12 +14177,12 @@ namespace SotnRandoTools.Khaos
 						{
 							minAirTime -= 1;
 						}
-						if(axeArmorThrust && sotnApi.AlucardApi.Action == 1)
+						if (axeArmorThrust && sotnApi.AlucardApi.Action == 1)
 						{
 							isAxeArmorThrustAttack = true;
 							wolfRunActive = true;
 							thrustDuration = thrustMaxDuration;
-							if(wolfCurrentSpeed < Constants.Khaos.AxeArmorWolfMinRunSpeed)
+							if (wolfCurrentSpeed < Constants.Khaos.AxeArmorWolfMinRunSpeed)
 							{
 								if (sotnApi.AlucardApi.HasRelic(Relic.SkillOfWolf))
 								{
@@ -14093,7 +14204,7 @@ namespace SotnRandoTools.Khaos
 						minAirTime = minAirTimeBase;
 					}
 
-					if((pressUpCDFrames|| heldUp)
+					if ((pressUpCDFrames || heldUp)
 						&& !IsInRoomList(Constants.Khaos.ShopRoom)
 						&& !IsInRoomList(Constants.Khaos.AxeArmorPreventFormShiftRooms)
 						&& !pressLeft32
@@ -14108,7 +14219,7 @@ namespace SotnRandoTools.Khaos
 						&& sotnApi.AlucardApi.HorizontalVelocityWhole == 0
 						&& sotnApi.AlucardApi.CurrentHp > 0
 						&& sotnApi.AlucardApi.State != 42
-						&& (sotnApi.AlucardApi.Action == 0 || sotnApi.AlucardApi.Action == 2)) 
+						&& (sotnApi.AlucardApi.Action == 0 || sotnApi.AlucardApi.Action == 2))
 					{
 						if (minHoldUpTime == 0)
 						{
@@ -14129,7 +14240,7 @@ namespace SotnRandoTools.Khaos
 							}
 							axeArmorCrouchHP = sotnApi.AlucardApi.CurrentHp;
 							isHoldUp = true;
-							if(sotnApi.AlucardApi.CurrentHp <= 0)
+							if (sotnApi.AlucardApi.CurrentHp <= 0)
 							{
 								AxeArmorDisableStateWhenDead();
 							}
@@ -14158,7 +14269,7 @@ namespace SotnRandoTools.Khaos
 								characterData.Enable();
 								state.Enable();
 								action.Enable();
-							}					
+							}
 						}
 						else
 						{
@@ -14237,7 +14348,7 @@ namespace SotnRandoTools.Khaos
 						action.Disable();
 						alucardHurtboxY.Disable();
 						CheckSmoothCrouch();
-						if (isHoldUp 
+						if (isHoldUp
 							&& (pressL1_CDFrames || pressUpCDFrames)
 						)
 						{
@@ -14246,7 +14357,7 @@ namespace SotnRandoTools.Khaos
 						}
 						axeArmorHoldUpYPosition = 0;
 						axeArmorHoldDownYPosition = 0;
-						if(storedResourceDelay > 0)
+						if (storedResourceDelay > 0)
 						{
 							--storedResourceDelay;
 						}
@@ -14308,8 +14419,8 @@ namespace SotnRandoTools.Khaos
 								toggleHurtBox.Enable();
 							}
 
-							if (sotnApi.AlucardApi.HasRelic(Relic.LeapStone) 
-								|| sotnApi.AlucardApi.HasRelic(Relic.SoulOfWolf) 
+							if (sotnApi.AlucardApi.HasRelic(Relic.LeapStone)
+								|| sotnApi.AlucardApi.HasRelic(Relic.SoulOfWolf)
 								|| sotnApi.AlucardApi.HasRelic(Relic.FormOfMist))
 							{
 								gravityJumpAllowed = true;
@@ -14352,7 +14463,7 @@ namespace SotnRandoTools.Khaos
 						{
 							axeArmorHorizontalJump.PokeValue(Constants.Khaos.AxeArmorBaseJumpSpeed);
 						}
-						
+
 						axeArmorHorizontalJump.Enable();
 					}
 
@@ -14387,7 +14498,7 @@ namespace SotnRandoTools.Khaos
 						if (!mistBoostResetLocked)
 						{
 							mistBoostDuration = mistBoostMaxDuration;
-						}	
+						}
 						sotnApi.AlucardApi.State = 43;
 						axeArmorFloat.PokeValue(Constants.Khaos.AxeArmorFloatBaseSpeed);
 						axeArmorFloat.Enable();
@@ -14452,7 +14563,7 @@ namespace SotnRandoTools.Khaos
 							if (!sotnApi.AlucardApi.HasRelic(Relic.SoulOfBat))
 							{
 								--flightDuration;
-								if(axeArmorFrameCount == Globals.UpdateCooldownFrames)
+								if (axeArmorFrameCount == Globals.UpdateCooldownFrames)
 								{
 									--flightMPCooldown;
 									--flightMPCooldown;
@@ -14505,7 +14616,7 @@ namespace SotnRandoTools.Khaos
 						}
 					}
 					else if (jumpBoostAllowed && minAirTime == 0 && jumpBoostCooldown == 0 && jumpBoostStocks > 0
-						&& (pressCrossCDFrames|| heldCross)
+						&& (pressCrossCDFrames || heldCross)
 						&& (sotnApi.AlucardApi.State == 42 || wolfStrikeBoost)
 						)
 					{
@@ -14552,7 +14663,7 @@ namespace SotnRandoTools.Khaos
 							{
 								--jumpBoostCooldown;
 							}
-							
+
 						}
 						int jumpHeight = Constants.Khaos.AxeArmorJumpBaseSpeed + (Constants.Khaos.AxeArmorJumpAcceleration * (jumpBoostCooldown / 8));
 
@@ -14632,7 +14743,7 @@ namespace SotnRandoTools.Khaos
 								{
 									maxRunSpeed = (int) (maxRunSpeed * toolConfig.Khaos.UnderwaterFactor);
 									maxDashSpeed = (int) (maxRunSpeed * toolConfig.Khaos.UnderwaterFactor);
-								}	
+								}
 							}
 							else
 							{
@@ -14678,12 +14789,12 @@ namespace SotnRandoTools.Khaos
 
 							float underwaterAxeArmorModifier = underwaterAxeArmorBaseFactor * underwaterAxeArmorSuperFactor * underwaterAxeArmorMayhemFactor;
 
-							acceleration = (int)((acceleration * underwaterAxeArmorModifier) / Globals.UpdateCooldownFrames);
-							deacceleration = (int)((acceleration * underwaterAxeArmorModifier) / Globals.UpdateCooldownFrames);
+							acceleration = (int) ((acceleration * underwaterAxeArmorModifier) / Globals.UpdateCooldownFrames);
+							deacceleration = (int) ((acceleration * underwaterAxeArmorModifier) / Globals.UpdateCooldownFrames);
 						}
 						if (speedActive)
 						{
-							
+
 							if (superSpeed)
 							{
 								acceleration *= 3;
@@ -14809,7 +14920,7 @@ namespace SotnRandoTools.Khaos
 							wolfStrikeBoost = false;
 						}
 						else if (pressL1_60 || pressR1_60 || pressCross60)
-						{ 
+						{
 							//Handle gradual speed reduction
 							if (pressL1_32 || pressR1_32 || pressCross32)
 							{
@@ -15028,7 +15139,14 @@ namespace SotnRandoTools.Khaos
 							calculatedFireBallDamage = (short) ((baseFireballDamage) + ((sotnApi.AlucardApi.Int) * baseINTMultiplier) + ((equipmentINT + +axeArmorShieldINT) * equipINTMultiplier));
 							if (IsInRoomList(Constants.Khaos.GalamothRooms))
 							{
-								calculatedFireBallDamage = (short) (calculatedFireBallDamage / 3);
+								if (AxeArmorOn)
+								{
+									calculatedFireBallDamage = (short) ((calculatedFireBallDamage / 2) - vladRelicsObtained);
+								}
+								else
+								{
+									calculatedFireBallDamage = (short) ((calculatedFireBallDamage / 3) - vladRelicsObtained);
+								}
 							}
 						}
 
@@ -15117,7 +15235,7 @@ namespace SotnRandoTools.Khaos
 
 					else if (((currentMP > 17) || (hasHolySymbol && currentMP > 13))
 						&& pressTriangleCDFrames
-						&& !heartsOnlyActive 
+						&& !heartsOnlyActive
 						&& (inputService.ButtonHeld(PlaystationInputKeys.R1) || sotnApi.AlucardApi.State == 42)
 						&& fireballCooldown == 0
 						&& facePlantCooldown == 0
@@ -15232,8 +15350,17 @@ namespace SotnRandoTools.Khaos
 					}
 					//Set Damage Calculation Last, account for underflow
 					CheckAxeArmorAttack(false, meleeDamage, out meleeDamageTotal);
-					
-					if (meleeDamageTotal < -1 || heartsOnlyActive || rushDownActive)
+
+					if(IsInGalamothRoom())
+					{
+						//Console.WriteLine($"meleeDamage:{meleeDamageTotal}, axeArmorGalamothDef:{axeArmorGalamothDef}");
+						meleeDamageTotal = (int)(meleeDamageTotal - axeArmorGalamothDef);
+						if(meleeDamageTotal < -15 || heartsOnlyActive || rushDownActive)
+						{
+							meleeDamageTotal = -15;
+						}
+					}
+					else if (meleeDamageTotal < -1 || heartsOnlyActive || rushDownActive)
 					{
 						meleeDamageTotal = -1;
 					}
@@ -15691,6 +15818,7 @@ namespace SotnRandoTools.Khaos
 									if (IsInGalamothRoom())
 									{
 										contactDamage = (uint) Math.Round(contactDamage * 1.0 / 3);
+										contactDamage = (uint)(contactDamage - vladRelicsObtained);
 									}
 								}
 
@@ -16612,7 +16740,7 @@ namespace SotnRandoTools.Khaos
 				}
 				else if (IsInRoomList(Constants.Khaos.AxeArmorOlroxRooms))
 				{
-					if (sotnApi.AlucardApi.ScreenY <= 133)
+					if (sotnApi.AlucardApi.ScreenY <= 133 && sotnApi.AlucardApi.ScreenY >= 70)
 					{
 						enableCeilingClip = isAxeArmorMist;
 						enableClipDirection = true;
@@ -16725,7 +16853,7 @@ namespace SotnRandoTools.Khaos
 						else if ((alucardMapX == 41 || alucardMapX == 42)) //Reverse Coliseum
 						{
 							enableCeilingClip = isAxeArmorMist;
-							if (sotnApi.AlucardApi.ScreenY <= 116)
+							if (sotnApi.AlucardApi.ScreenY <= 116 && sotnApi.AlucardApi.ScreenY >= 48)
 							{
 								enableCeilingClip = isAxeArmorMist;
 								enableLeftClip = isAxeArmorMist;
@@ -17662,7 +17790,14 @@ namespace SotnRandoTools.Khaos
 
 				if (IsInRoomList(Constants.Khaos.GalamothRooms))
 				{
-					baseFireballDamage = baseFireballDamage / 3;
+					if (AxeArmorOn)
+					{
+						baseFireballDamage = (uint)((baseFireballDamage / 2) - vladRelicsObtained);
+					}
+					else
+					{
+						baseFireballDamage = (uint)((baseFireballDamage / 3) - vladRelicsObtained);
+					}
 				}
 
 				if (baseFireballDamage == 80)
