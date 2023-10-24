@@ -57,6 +57,7 @@ namespace SotnRandoTools
             this.disableLogsCheckBox = new System.Windows.Forms.CheckBox();
             this.generalTabControl = new System.Windows.Forms.TabControl();
             this.General = new System.Windows.Forms.TabPage();
+            this.enableAutosplitterCheckbox = new System.Windows.Forms.CheckBox();
             this.disableMayhemMeterCheckBox = new System.Windows.Forms.CheckBox();
             this.axeArmorTipsCheckBox = new System.Windows.Forms.CheckBox();
             this.permaAxeArmorCheckBox = new System.Windows.Forms.CheckBox();
@@ -136,7 +137,6 @@ namespace SotnRandoTools
             this.progressionGivesVladCheckbox = new System.Windows.Forms.CheckBox();
             this.restrictedItemSwapCheckBox = new System.Windows.Forms.CheckBox();
             this.nerfUnderwaterCheckbox = new System.Windows.Forms.CheckBox();
-            this.enforceMinStatsCheckbox = new System.Windows.Forms.CheckBox();
             this.restrictedRelicSwapCheckBox = new System.Windows.Forms.CheckBox();
             this.keepVladRelicsCheckbox = new System.Windows.Forms.CheckBox();
             this.difficultySettingsBox = new System.Windows.Forms.GroupBox();
@@ -152,6 +152,24 @@ namespace SotnRandoTools
             this.statDownLabel = new System.Windows.Forms.Label();
             this.speedLabel = new System.Windows.Forms.Label();
             this.underwaterLabel = new System.Windows.Forms.Label();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.minStatCategoryLabel = new System.Windows.Forms.Label();
+            this.MinStatComboBox = new System.Windows.Forms.ComboBox();
+            this.minLCKTextbox = new System.Windows.Forms.TextBox();
+            this.minLCKLabel = new System.Windows.Forms.Label();
+            this.minINTTextbox = new System.Windows.Forms.TextBox();
+            this.minINTLabel = new System.Windows.Forms.Label();
+            this.minCONTextbox = new System.Windows.Forms.TextBox();
+            this.minCONLabel = new System.Windows.Forms.Label();
+            this.minSTRTextbox = new System.Windows.Forms.TextBox();
+            this.minSTRLabel = new System.Windows.Forms.Label();
+            this.minHeartsTextbox = new System.Windows.Forms.TextBox();
+            this.minHeartsLabel = new System.Windows.Forms.Label();
+            this.minMPTextbox = new System.Windows.Forms.TextBox();
+            this.minMPLabel = new System.Windows.Forms.Label();
+            this.minHPTextbox = new System.Windows.Forms.TextBox();
+            this.minHPLabel = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.enemyTab = new System.Windows.Forms.TabPage();
             this.superAmbushDMGComboBox = new System.Windows.Forms.ComboBox();
             this.superAmbushHPComboBox = new System.Windows.Forms.ComboBox();
@@ -203,7 +221,6 @@ namespace SotnRandoTools
             this.namesFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.valueToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.resetToDefaultButton = new System.Windows.Forms.Button();
-            this.enableAutosplitterCheckbox = new System.Windows.Forms.CheckBox();
             this.khaosTabs.SuspendLayout();
             this.generalTab.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -222,6 +239,7 @@ namespace SotnRandoTools
             this.commandPage.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.difficultySettingsBox.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.enemyTab.SuspendLayout();
             this.inputTab.SuspendLayout();
             this.botApiKeyBox.SuspendLayout();
@@ -391,6 +409,17 @@ namespace SotnRandoTools
             this.General.Size = new System.Drawing.Size(354, 162);
             this.General.TabIndex = 0;
             this.General.Text = "General";
+            // 
+            // enableAutosplitterCheckbox
+            // 
+            this.enableAutosplitterCheckbox.AutoSize = true;
+            this.enableAutosplitterCheckbox.Location = new System.Drawing.Point(211, 98);
+            this.enableAutosplitterCheckbox.Name = "enableAutosplitterCheckbox";
+            this.enableAutosplitterCheckbox.Size = new System.Drawing.Size(115, 17);
+            this.enableAutosplitterCheckbox.TabIndex = 81;
+            this.enableAutosplitterCheckbox.Text = "Auto Spliter (Beta)";
+            this.enableAutosplitterCheckbox.UseVisualStyleBackColor = true;
+            this.enableAutosplitterCheckbox.CheckedChanged += new System.EventHandler(this.enableAutosplitterCheckBox_CheckChanged);
             // 
             // disableMayhemMeterCheckBox
             // 
@@ -1047,6 +1076,7 @@ namespace SotnRandoTools
             // 
             this.commandTabs.Controls.Add(this.categoryPage);
             this.commandTabs.Controls.Add(this.commandPage);
+            this.commandTabs.Controls.Add(this.tabPage1);
             this.commandTabs.Location = new System.Drawing.Point(-4, 3);
             this.commandTabs.Name = "commandTabs";
             this.commandTabs.SelectedIndex = 0;
@@ -1240,7 +1270,6 @@ namespace SotnRandoTools
             this.groupBox1.Controls.Add(this.progressionGivesVladCheckbox);
             this.groupBox1.Controls.Add(this.restrictedItemSwapCheckBox);
             this.groupBox1.Controls.Add(this.nerfUnderwaterCheckbox);
-            this.groupBox1.Controls.Add(this.enforceMinStatsCheckbox);
             this.groupBox1.Controls.Add(this.restrictedRelicSwapCheckBox);
             this.groupBox1.Controls.Add(this.keepVladRelicsCheckbox);
             this.groupBox1.ForeColor = System.Drawing.Color.White;
@@ -1254,7 +1283,7 @@ namespace SotnRandoTools
             // kindAndFairCheckbox
             // 
             this.kindAndFairCheckbox.AutoSize = true;
-            this.kindAndFairCheckbox.Location = new System.Drawing.Point(12, 89);
+            this.kindAndFairCheckbox.Location = new System.Drawing.Point(13, 66);
             this.kindAndFairCheckbox.Name = "kindAndFairCheckbox";
             this.kindAndFairCheckbox.Size = new System.Drawing.Size(164, 17);
             this.kindAndFairCheckbox.TabIndex = 26;
@@ -1265,7 +1294,7 @@ namespace SotnRandoTools
             // respawnRichterCheckbox
             // 
             this.respawnRichterCheckbox.AutoSize = true;
-            this.respawnRichterCheckbox.Location = new System.Drawing.Point(12, 66);
+            this.respawnRichterCheckbox.Location = new System.Drawing.Point(13, 43);
             this.respawnRichterCheckbox.Name = "respawnRichterCheckbox";
             this.respawnRichterCheckbox.Size = new System.Drawing.Size(135, 17);
             this.respawnRichterCheckbox.TabIndex = 25;
@@ -1305,17 +1334,6 @@ namespace SotnRandoTools
             this.nerfUnderwaterCheckbox.Text = "Nerf Underwater";
             this.nerfUnderwaterCheckbox.UseVisualStyleBackColor = true;
             this.nerfUnderwaterCheckbox.CheckedChanged += new System.EventHandler(this.nerfUnderwaterCheckbox_CheckedChanged);
-            // 
-            // enforceMinStatsCheckbox
-            // 
-            this.enforceMinStatsCheckbox.AutoSize = true;
-            this.enforceMinStatsCheckbox.Location = new System.Drawing.Point(12, 43);
-            this.enforceMinStatsCheckbox.Name = "enforceMinStatsCheckbox";
-            this.enforceMinStatsCheckbox.Size = new System.Drawing.Size(110, 17);
-            this.enforceMinStatsCheckbox.TabIndex = 19;
-            this.enforceMinStatsCheckbox.Text = "Enforce Min Stats";
-            this.enforceMinStatsCheckbox.UseVisualStyleBackColor = true;
-            this.enforceMinStatsCheckbox.CheckedChanged += new System.EventHandler(this.enforceMinStatsCheckbox_CheckedChanged);
             // 
             // restrictedRelicSwapCheckBox
             // 
@@ -1468,6 +1486,192 @@ namespace SotnRandoTools
             this.underwaterLabel.Size = new System.Drawing.Size(82, 13);
             this.underwaterLabel.TabIndex = 0;
             this.underwaterLabel.Text = "Underwater %:";
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(0)))), ((int)(((byte)(17)))));
+            this.tabPage1.Controls.Add(this.minStatCategoryLabel);
+            this.tabPage1.Controls.Add(this.MinStatComboBox);
+            this.tabPage1.Controls.Add(this.minLCKTextbox);
+            this.tabPage1.Controls.Add(this.minLCKLabel);
+            this.tabPage1.Controls.Add(this.minINTTextbox);
+            this.tabPage1.Controls.Add(this.minINTLabel);
+            this.tabPage1.Controls.Add(this.minCONTextbox);
+            this.tabPage1.Controls.Add(this.minCONLabel);
+            this.tabPage1.Controls.Add(this.minSTRTextbox);
+            this.tabPage1.Controls.Add(this.minSTRLabel);
+            this.tabPage1.Controls.Add(this.minHeartsTextbox);
+            this.tabPage1.Controls.Add(this.minHeartsLabel);
+            this.tabPage1.Controls.Add(this.minMPTextbox);
+            this.tabPage1.Controls.Add(this.minMPLabel);
+            this.tabPage1.Controls.Add(this.minHPTextbox);
+            this.tabPage1.Controls.Add(this.minHPLabel);
+            this.tabPage1.Controls.Add(this.groupBox4);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(374, 240);
+            this.tabPage1.TabIndex = 2;
+            this.tabPage1.Text = "Min Stats";
+            // 
+            // minStatCategoryLabel
+            // 
+            this.minStatCategoryLabel.AutoSize = true;
+            this.minStatCategoryLabel.Location = new System.Drawing.Point(10, 12);
+            this.minStatCategoryLabel.Name = "minStatCategoryLabel";
+            this.minStatCategoryLabel.Size = new System.Drawing.Size(87, 13);
+            this.minStatCategoryLabel.TabIndex = 55;
+            this.minStatCategoryLabel.Text = "Min Stat Setting:";
+            // 
+            // MinStatComboBox
+            // 
+            this.MinStatComboBox.AutoCompleteCustomSource.AddRange(new string[] {
+            "\"Off\"",
+            "\"Weaker\"",
+            "\"Normal\"",
+            "\"Stronger\"",
+            "\"Strongest\""});
+            this.MinStatComboBox.FormattingEnabled = true;
+            this.MinStatComboBox.Items.AddRange(new object[] {
+            "Custom",
+            "Default (Mayhem)",
+            "Vanilla",
+            "Kind and Fair (Static)",
+            "Kind and Fair (Dynamic Placeholder)"});
+            this.MinStatComboBox.Location = new System.Drawing.Point(105, 8);
+            this.MinStatComboBox.Name = "MinStatComboBox";
+            this.MinStatComboBox.Size = new System.Drawing.Size(256, 21);
+            this.MinStatComboBox.TabIndex = 53;
+            this.MinStatComboBox.SelectedIndexChanged += new System.EventHandler(this.MinStatComboBox_SelectedIndexChanged);
+            // 
+            // minLCKTextbox
+            // 
+            this.minLCKTextbox.Location = new System.Drawing.Point(307, 205);
+            this.minLCKTextbox.Name = "minLCKTextbox";
+            this.minLCKTextbox.Size = new System.Drawing.Size(54, 21);
+            this.minLCKTextbox.TabIndex = 40;
+            this.minLCKTextbox.Validated += new System.EventHandler(this.minLCKTextbox_Validate);
+            // 
+            // minLCKLabel
+            // 
+            this.minLCKLabel.AutoSize = true;
+            this.minLCKLabel.Location = new System.Drawing.Point(257, 209);
+            this.minLCKLabel.Name = "minLCKLabel";
+            this.minLCKLabel.Size = new System.Drawing.Size(48, 13);
+            this.minLCKLabel.TabIndex = 39;
+            this.minLCKLabel.Text = "Min LCK:";
+            // 
+            // minINTTextbox
+            // 
+            this.minINTTextbox.Location = new System.Drawing.Point(307, 178);
+            this.minINTTextbox.Name = "minINTTextbox";
+            this.minINTTextbox.Size = new System.Drawing.Size(54, 21);
+            this.minINTTextbox.TabIndex = 38;
+            this.minINTTextbox.Validated += new System.EventHandler(this.minINTTextbox_Validate);
+            // 
+            // minINTLabel
+            // 
+            this.minINTLabel.AutoSize = true;
+            this.minINTLabel.Location = new System.Drawing.Point(258, 182);
+            this.minINTLabel.Name = "minINTLabel";
+            this.minINTLabel.Size = new System.Drawing.Size(47, 13);
+            this.minINTLabel.TabIndex = 37;
+            this.minINTLabel.Text = "Min INT:";
+            // 
+            // minCONTextbox
+            // 
+            this.minCONTextbox.Location = new System.Drawing.Point(307, 151);
+            this.minCONTextbox.Name = "minCONTextbox";
+            this.minCONTextbox.Size = new System.Drawing.Size(54, 21);
+            this.minCONTextbox.TabIndex = 36;
+            this.minCONTextbox.Validated += new System.EventHandler(this.minCONTextbox_Validate);
+            // 
+            // minCONLabel
+            // 
+            this.minCONLabel.AutoSize = true;
+            this.minCONLabel.Location = new System.Drawing.Point(253, 156);
+            this.minCONLabel.Name = "minCONLabel";
+            this.minCONLabel.Size = new System.Drawing.Size(52, 13);
+            this.minCONLabel.TabIndex = 35;
+            this.minCONLabel.Text = "Min CON:";
+            // 
+            // minSTRTextbox
+            // 
+            this.minSTRTextbox.Location = new System.Drawing.Point(307, 124);
+            this.minSTRTextbox.Name = "minSTRTextbox";
+            this.minSTRTextbox.Size = new System.Drawing.Size(54, 21);
+            this.minSTRTextbox.TabIndex = 34;
+            this.minSTRTextbox.Validated += new System.EventHandler(this.minSTRTextbox_Validate);
+            // 
+            // minSTRLabel
+            // 
+            this.minSTRLabel.AutoSize = true;
+            this.minSTRLabel.Location = new System.Drawing.Point(256, 127);
+            this.minSTRLabel.Name = "minSTRLabel";
+            this.minSTRLabel.Size = new System.Drawing.Size(49, 13);
+            this.minSTRLabel.TabIndex = 33;
+            this.minSTRLabel.Text = "Min STR:";
+            // 
+            // minHeartsTextbox
+            // 
+            this.minHeartsTextbox.Location = new System.Drawing.Point(78, 204);
+            this.minHeartsTextbox.Name = "minHeartsTextbox";
+            this.minHeartsTextbox.Size = new System.Drawing.Size(54, 21);
+            this.minHeartsTextbox.TabIndex = 26;
+            this.minHeartsTextbox.Validated += new System.EventHandler(this.minHeartsTextbox_Validate);
+            // 
+            // minHeartsLabel
+            // 
+            this.minHeartsLabel.AutoSize = true;
+            this.minHeartsLabel.Location = new System.Drawing.Point(10, 207);
+            this.minHeartsLabel.Name = "minHeartsLabel";
+            this.minHeartsLabel.Size = new System.Drawing.Size(62, 13);
+            this.minHeartsLabel.TabIndex = 25;
+            this.minHeartsLabel.Text = "Min Hearts:";
+            // 
+            // minMPTextbox
+            // 
+            this.minMPTextbox.Location = new System.Drawing.Point(78, 177);
+            this.minMPTextbox.Name = "minMPTextbox";
+            this.minMPTextbox.Size = new System.Drawing.Size(54, 21);
+            this.minMPTextbox.TabIndex = 24;
+            this.minMPTextbox.Validated += new System.EventHandler(this.minMPTextbox_Validate);
+            // 
+            // minMPLabel
+            // 
+            this.minMPLabel.AutoSize = true;
+            this.minMPLabel.Location = new System.Drawing.Point(28, 182);
+            this.minMPLabel.Name = "minMPLabel";
+            this.minMPLabel.Size = new System.Drawing.Size(44, 13);
+            this.minMPLabel.TabIndex = 23;
+            this.minMPLabel.Text = "Min MP:";
+            // 
+            // minHPTextbox
+            // 
+            this.minHPTextbox.Location = new System.Drawing.Point(78, 150);
+            this.minHPTextbox.Name = "minHPTextbox";
+            this.minHPTextbox.Size = new System.Drawing.Size(54, 21);
+            this.minHPTextbox.TabIndex = 22;
+            this.minHPTextbox.Validated += new System.EventHandler(this.minHPTextbox_Validated);
+            // 
+            // minHPLabel
+            // 
+            this.minHPLabel.AutoSize = true;
+            this.minHPLabel.Location = new System.Drawing.Point(29, 157);
+            this.minHPLabel.Name = "minHPLabel";
+            this.minHPLabel.Size = new System.Drawing.Size(43, 13);
+            this.minHPLabel.TabIndex = 21;
+            this.minHPLabel.Text = "Min HP:";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.ForeColor = System.Drawing.Color.White;
+            this.groupBox4.Location = new System.Drawing.Point(6, 109);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(362, 125);
+            this.groupBox4.TabIndex = 54;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Custom Min Stats";
             // 
             // enemyTab
             // 
@@ -2248,17 +2452,6 @@ namespace SotnRandoTools
             this.resetToDefaultButton.UseVisualStyleBackColor = true;
             this.resetToDefaultButton.Click += new System.EventHandler(this.resetToDefaultButton_Click);
             // 
-            // enableAutosplitterCheckbox
-            // 
-            this.enableAutosplitterCheckbox.AutoSize = true;
-            this.enableAutosplitterCheckbox.Location = new System.Drawing.Point(211, 98);
-            this.enableAutosplitterCheckbox.Name = "enableAutosplitterCheckbox";
-            this.enableAutosplitterCheckbox.Size = new System.Drawing.Size(115, 17);
-            this.enableAutosplitterCheckbox.TabIndex = 81;
-            this.enableAutosplitterCheckbox.Text = "Auto Spliter (Beta)";
-            this.enableAutosplitterCheckbox.UseVisualStyleBackColor = true;
-            this.enableAutosplitterCheckbox.CheckedChanged += new System.EventHandler(this.enableAutosplitterCheckBox_CheckChanged);
-            // 
             // KhaosSettingsPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -2302,6 +2495,8 @@ namespace SotnRandoTools
             this.groupBox1.PerformLayout();
             this.difficultySettingsBox.ResumeLayout(false);
             this.difficultySettingsBox.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.enemyTab.ResumeLayout(false);
             this.enemyTab.PerformLayout();
             this.inputTab.ResumeLayout(false);
@@ -2433,7 +2628,6 @@ namespace SotnRandoTools
 		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.CheckBox restrictedItemSwapCheckBox;
 		private System.Windows.Forms.CheckBox nerfUnderwaterCheckbox;
-		private System.Windows.Forms.CheckBox enforceMinStatsCheckbox;
 		private System.Windows.Forms.CheckBox restrictedRelicSwapCheckBox;
 		private System.Windows.Forms.CheckBox keepVladRelicsCheckbox;
 		private System.Windows.Forms.GroupBox difficultySettingsBox;
@@ -2481,5 +2675,23 @@ namespace SotnRandoTools
 		private System.Windows.Forms.CheckBox respawnRichterCheckbox;
 		private System.Windows.Forms.CheckBox kindAndFairCheckbox;
 		private System.Windows.Forms.CheckBox enableAutosplitterCheckbox;
+		private System.Windows.Forms.TabPage tabPage1;
+		private System.Windows.Forms.ComboBox MinStatComboBox;
+		private System.Windows.Forms.TextBox minLCKTextbox;
+		private System.Windows.Forms.Label minLCKLabel;
+		private System.Windows.Forms.TextBox minINTTextbox;
+		private System.Windows.Forms.Label minINTLabel;
+		private System.Windows.Forms.TextBox minCONTextbox;
+		private System.Windows.Forms.Label minCONLabel;
+		private System.Windows.Forms.TextBox minSTRTextbox;
+		private System.Windows.Forms.Label minSTRLabel;
+		private System.Windows.Forms.TextBox minHeartsTextbox;
+		private System.Windows.Forms.Label minHeartsLabel;
+		private System.Windows.Forms.TextBox minMPTextbox;
+		private System.Windows.Forms.Label minMPLabel;
+		private System.Windows.Forms.TextBox minHPTextbox;
+		private System.Windows.Forms.Label minHPLabel;
+		private System.Windows.Forms.GroupBox groupBox4;
+		private System.Windows.Forms.Label minStatCategoryLabel;
 	}
 }

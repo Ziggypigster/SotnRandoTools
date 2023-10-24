@@ -125,6 +125,13 @@ namespace SotnRandoTools.Constants
 			new MapLocation{X = 43, Y = 47, SecondCastle = 1},
 			new MapLocation{X = 44, Y = 47, SecondCastle = 1},
 		};
+		public static List<MapLocation> ForcedEntityClear = new List<MapLocation>
+		{
+			new MapLocation{X = 14, Y = 16, SecondCastle = 0},
+			new MapLocation{X = 15, Y = 16, SecondCastle = 0},
+			new MapLocation{X = 48, Y = 47, SecondCastle = 1},
+			new MapLocation{X = 49, Y = 47, SecondCastle = 1},
+		};
 		public static List<MapLocation> ClockRoom = new List<MapLocation>
 		{
 			new MapLocation{X = 32, Y = 26, SecondCastle = 0},
@@ -1202,8 +1209,8 @@ namespace SotnRandoTools.Constants
 		
 		public static uint Rushdown1Con = 600u;
 		public static uint Rushdown2Con = 12000u;
-		public static uint Rushdown1KFCon = 1200u;
-		public static uint Rushdown2KFCon = 15000u;
+		public static uint Rushdown1KFCon = 2400u;
+		public static uint Rushdown2KFCon = 48000u;
 		public static uint StatOverflowLimit = 50000u;
 
 		public static int highFamiliarXP = 10000;
@@ -1239,6 +1246,10 @@ namespace SotnRandoTools.Constants
 		public static int AxeArmorFlightUpSpeed = -200000;
 
 		//Wolf
+		public static int AxeArmorBaseAirSpeed = 0x3404DD00;
+		public static int AxeArmorGravityJumpAirSpeed = 0x3404FF00;
+		public static int AxeArmorUnderwaterAirSpeed = 0x34047800;
+		public static int AxeArmorWolfAirSpeed = 0x3D040000;
 		public static int AxeArmorWolfBaseAcceleration = 4000;
 		public static int AxeArmorWolfMaxAcceleration = 6000;
 		public static int AxeArmorWolfBaseDeacceleration = 2250;
@@ -1276,6 +1287,7 @@ namespace SotnRandoTools.Constants
 		public const string AxeArmorColorName = "Axe Armor Color";
 		public const string RemoveEntityName = "Remove Entity";
 		public const string OptionMenuName = "Menu";
+		public const string MinStatName = "MinStat";
 
 		public static uint SpirtOrbHeartMPBoost = 15;
 		public static uint FaerieScrollHPBoost = 35;
@@ -1421,7 +1433,8 @@ namespace SotnRandoTools.Constants
 		public static int SaveIcosahedronFirstCastle = 0xBCAA;
 		public static int[] saveColorsFirstCastle =
 		{
-			0xBC83, 
+			0xBC83,
+			0xBC89,
 			0xBC90, 
 			0xBC94, 
 			0xBC97, 
@@ -1434,7 +1447,8 @@ namespace SotnRandoTools.Constants
 			0xBC9A, 
 			0xBC98, 
 			0xBCCF,
-			0XBCD2,
+			//0XBCD2,
+			
 			0xBCE5,
 			0xBCE8,
 		};
@@ -1445,7 +1459,8 @@ namespace SotnRandoTools.Constants
 			//0x3CCA,
 			0x3CDC,
 			0x3CDF,
-			0x3FB8,
+			0x3F00,
+			//0x3FB8,
 			0X3FBF,
 			0x3FC0,
 			0x3FC2,

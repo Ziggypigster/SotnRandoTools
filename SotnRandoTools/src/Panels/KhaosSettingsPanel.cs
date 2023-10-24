@@ -35,7 +35,8 @@ namespace SotnRandoTools
 			//General
 			queueTextBox.Text = toolConfig.Khaos.QueueInterval.ToString();
 			meterOnResetTextBox.Text = toolConfig.Khaos.MeterOnReset.ToString();
-			enforceMinStatsCheckbox.Checked = toolConfig.Khaos.EnforceMinStats;
+			//enforceMinStatsCheckbox.Checked = toolConfig.Khaos.EnforceMinStats;
+			toolConfig.Khaos.EnforceMinStats = true;
 
 			quickSettingsComboBox.SelectedIndex = toolConfig.Khaos.QuickSettings;
 			spiritOrbOnCheckbox.Checked = toolConfig.Khaos.spiritOrbOn;
@@ -106,10 +107,20 @@ namespace SotnRandoTools
 			nerfUnderwaterCheckbox.Checked = toolConfig.Khaos.NerfUnderwater;
 			respawnRichterCheckbox.Checked = toolConfig.Khaos.RespawnRichter;
 			kindAndFairCheckbox.Checked = toolConfig.Khaos.KindAndFair;
-			enforceMinStatsCheckbox.Checked = toolConfig.Khaos.EnforceMinStats;
+			//enforceMinStatsCheckbox.Checked = toolConfig.Khaos.EnforceMinStats;
 			keepVladRelicsCheckbox.Checked = toolConfig.Khaos.KeepVladRelics;
 			restrictedItemSwapCheckBox.Checked = toolConfig.Khaos.RestrictedItemSwap;
 			restrictedRelicSwapCheckBox.Checked = toolConfig.Khaos.RestrictedRelicSwap;
+
+			MinStatComboBox.SelectedIndex = toolConfig.Khaos.QuickMinStatSettings;
+			minHPTextbox.Text = toolConfig.Khaos.MinHP.ToString();
+			minMPTextbox.Text = toolConfig.Khaos.MinMP.ToString();
+			minHeartsTextbox.Text = toolConfig.Khaos.MinHearts.ToString();
+			minSTRTextbox.Text = toolConfig.Khaos.MinSTR.ToString();
+			minCONTextbox.Text = toolConfig.Khaos.MinCON.ToString();
+			minINTTextbox.Text = toolConfig.Khaos.MinINT.ToString();
+			minLCKTextbox.Text = toolConfig.Khaos.MinLCK.ToString();
+
 
 			//Enemy
 			cloneBossDMGComboBox.SelectedIndex = (int) toolConfig.Khaos.CloneBossDMGModifier;
@@ -420,12 +431,6 @@ namespace SotnRandoTools
 		{
 			toolConfig.Khaos.KeepVladRelics = keepVladRelicsCheckbox.Checked;
 		}
-
-		private void enforceMinStatsCheckbox_CheckedChanged(object sender, EventArgs e)
-		{
-			toolConfig.Khaos.EnforceMinStats = enforceMinStatsCheckbox.Checked;
-		}
-
 
 		private void underwaterTextBox_Validated(object sender, EventArgs e)
 		{
@@ -767,6 +772,14 @@ namespace SotnRandoTools
 			if (!pauseDifficultyChange)
 			{
 				toolConfig.Khaos.QuickSettings = 0;
+			}
+		}
+
+		private void setCustomMinStatsSettings()
+		{
+			if (!pauseDifficultyChange)
+			{
+				toolConfig.Khaos.QuickMinStatSettings = 0;
 			}
 		}
 
@@ -1387,11 +1400,6 @@ namespace SotnRandoTools
 
 		}
 
-		private void allowNeutralLevelResetCheckbox_CheckedChanged(object sender, EventArgs e)
-		{
-
-		}
-
 		private void alertsGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
 		{
 
@@ -1400,6 +1408,115 @@ namespace SotnRandoTools
 		private void enableAutosplitterCheckBox_CheckChanged(object sender, EventArgs e)
 		{
 			toolConfig.Khaos.EnableAutosplitter = enableAutosplitterCheckbox.Checked;
+		}
+
+		private void MinStatComboBox_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			toolConfig.Khaos.QuickMinStatSettings = MinStatComboBox.SelectedIndex;
+			pauseDifficultyChange = true;
+			setCustomQuickSettings();
+			toolConfig.Khaos.SetQuickSettings();
+			KhaosSettingsPanel_Load(sender, e);
+			pauseDifficultyChange = false;
+		}
+
+		private void minHPTextbox_Validated(object sender, EventArgs e)
+		{
+			int minStat;
+			bool result = Int32.TryParse(minHPTextbox.Text, out minStat);
+			if (result)
+			{
+				toolConfig.Khaos.MinHP = (uint) minStat;
+				setCustomMinStatsSettings();
+			}
+			minHPTextbox.BackColor = Color.White;
+			this.valueToolTip.Active = false;
+			KhaosSettingsPanel_Load(sender, e);
+		}
+
+		private void minMPTextbox_Validate(object sender, EventArgs e)
+		{
+
+			int minStat;
+			bool result = Int32.TryParse(minMPTextbox.Text, out minStat);
+			if (result)
+			{
+				toolConfig.Khaos.MinMP = (uint) minStat;
+				setCustomMinStatsSettings();
+			}
+			minMPTextbox.BackColor = Color.White;
+			this.valueToolTip.Active = false;
+			KhaosSettingsPanel_Load(sender, e);
+		}
+
+		private void minHeartsTextbox_Validate(object sender, EventArgs e)
+		{
+			int minStat;
+			bool result = Int32.TryParse(minHeartsTextbox.Text, out minStat);
+			if (result)
+			{
+				toolConfig.Khaos.MinHearts = (uint) minStat;
+				setCustomMinStatsSettings();
+			}
+			minHeartsTextbox.BackColor = Color.White;
+			this.valueToolTip.Active = false;
+			KhaosSettingsPanel_Load(sender, e);
+		}
+
+		private void minSTRTextbox_Validate(object sender, EventArgs e)
+		{
+			int minStat;
+			bool result = Int32.TryParse(minSTRTextbox.Text, out minStat);
+			if (result)
+			{
+				toolConfig.Khaos.MinSTR = (uint) minStat;
+				setCustomMinStatsSettings();
+			}
+			minSTRTextbox.BackColor = Color.White;
+			this.valueToolTip.Active = false;
+			KhaosSettingsPanel_Load(sender, e);
+		}
+
+		private void minCONTextbox_Validate(object sender, EventArgs e)
+		{
+			int minStat;
+			bool result = Int32.TryParse(minCONTextbox.Text, out minStat);
+			if (result)
+			{
+				toolConfig.Khaos.MinCON = (uint) minStat;
+				setCustomMinStatsSettings();
+			}
+			minCONTextbox.BackColor = Color.White;
+			this.valueToolTip.Active = false;
+			KhaosSettingsPanel_Load(sender, e);
+		}
+
+		private void minINTTextbox_Validate(object sender, EventArgs e)
+		{
+			int minStat;
+			bool result = Int32.TryParse(minINTTextbox.Text, out minStat);
+			if (result)
+			{
+				toolConfig.Khaos.MinINT = (uint) minStat;
+				setCustomMinStatsSettings();
+			}
+			minINTTextbox.BackColor = Color.White;
+			this.valueToolTip.Active = false;
+			KhaosSettingsPanel_Load(sender, e);
+		}
+
+		private void minLCKTextbox_Validate(object sender, EventArgs e)
+		{
+			int minStat;
+			bool result = Int32.TryParse(minLCKTextbox.Text, out minStat);
+			if (result)
+			{
+				toolConfig.Khaos.MinLCK = (uint) minStat;
+				setCustomMinStatsSettings();
+			}
+			minLCKTextbox.BackColor = Color.White;
+			this.valueToolTip.Active = false;
+			KhaosSettingsPanel_Load(sender, e);
 		}
 	}
 }

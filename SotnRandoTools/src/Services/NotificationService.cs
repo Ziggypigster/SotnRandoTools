@@ -310,10 +310,46 @@ namespace SotnRandoTools.Services
 		private void DrawMeter(int scale, int xpos, int ypos)
 		{
 			short adjustedMeter = KhaosMeter > 100 ? (short) 100 : KhaosMeter;
+			
 			guiApi.DrawBox(xpos - (1 * scale), ypos - (1 * scale), xpos + (MeterSize * scale) + (1 * scale), ypos + (5 * scale) + (1 * scale), meterBorderColor, meterBorderColor);
 			guiApi.DrawBox(xpos, ypos, xpos + (MeterSize * scale), ypos + (5 * scale), meterBackgroundColor, meterBackgroundColor);
 			guiApi.DrawBox(xpos, ypos, xpos + ((int) ((adjustedMeter / 100f) * MeterSize) * scale), ypos + (5 * scale), meterForegroundColor, meterForegroundColor);
-			guiApi.DrawString(xpos + (int) (0.38 * (MeterSize * scale)), ypos, "MAYHEM", Color.White, null, 4 * scale, "Arial", "bold");
+
+			Color adjustedMeterForegroundColor = Color.FromArgb(110, 25, 170);
+			Color fontColor = Color.White;
+
+			if (KhaosMeter > 100)
+			{
+				adjustedMeter = (short) (KhaosMeter - 100 > 100 ? (short) 100 : KhaosMeter - 100);
+				adjustedMeterForegroundColor = Color.FromArgb(150, 120, 182);
+				guiApi.DrawBox(xpos, ypos, xpos + ((int) ((adjustedMeter / 100f) * MeterSize) * scale), ypos + (5 * scale), adjustedMeterForegroundColor, adjustedMeterForegroundColor);
+				if (KhaosMeter > 200)
+				{
+					adjustedMeter = (short) (KhaosMeter - 200 > 100 ? (short) 100 : KhaosMeter - 200);
+					adjustedMeterForegroundColor = Color.FromArgb(46, 134, 193);
+					guiApi.DrawBox(xpos, ypos, xpos + ((int) ((adjustedMeter / 100f) * MeterSize) * scale), ypos + (5 * scale), adjustedMeterForegroundColor, adjustedMeterForegroundColor);
+					if (KhaosMeter > 300)
+					{
+						adjustedMeter = (short) (KhaosMeter - 300 > 100 ? (short) 100 : KhaosMeter - 300);
+						adjustedMeterForegroundColor = Color.FromArgb(64, 224, 208);
+						guiApi.DrawBox(xpos, ypos, xpos + ((int) ((adjustedMeter / 100f) * MeterSize) * scale), ypos + (5 * scale), adjustedMeterForegroundColor, adjustedMeterForegroundColor);
+						if (KhaosMeter > 400)
+						{
+							adjustedMeter = (short) (KhaosMeter - 400 > 100 ? (short) 100 : KhaosMeter - 400);
+							adjustedMeterForegroundColor = Color.FromArgb(222, 49, 99);
+							guiApi.DrawBox(xpos, ypos, xpos + ((int) ((adjustedMeter / 100f) * MeterSize) * scale), ypos + (5 * scale), adjustedMeterForegroundColor, adjustedMeterForegroundColor);
+							if (KhaosMeter > 500)
+							{
+								adjustedMeter = (short) (KhaosMeter - 500 > 100 ? (short) 100 : KhaosMeter - 500);
+								adjustedMeterForegroundColor = Color.FromArgb(255, 127, 80);
+								guiApi.DrawBox(xpos, ypos, xpos + ((int) ((adjustedMeter / 100f) * MeterSize) * scale), ypos + (5 * scale), adjustedMeterForegroundColor, adjustedMeterForegroundColor);
+							}
+						}
+					}
+				}
+			}
+			guiApi.DrawString(xpos + (int) (0.32 * (MeterSize * scale)), ypos, "MAYHEM ("+ KhaosMeter + ")", fontColor, null, 4 * scale, "Arial", "bold");
+
 		}
 
 		private void DequeueMessage(object sender, ElapsedEventArgs e)

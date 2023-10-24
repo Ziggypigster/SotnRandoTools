@@ -237,10 +237,19 @@ namespace SotnRandoTools.Configuration
 		public string BotApiKey { get; set; }
 		public System.TimeSpan QueueInterval { get; set; }
 
+		public int QuickMinStatSettings { get; set; }
 		public int QuickSettings { get; set; }
 		public bool spiritOrbOn { get; set; }
 		public bool faerieScrollOn { get; set; }
 		public bool cubeOfZoeOn { get; set; }
+
+		public uint MinHP { get; set; }
+		public uint MinMP { get; set; }
+		public uint MinHearts { get; set; }
+		public uint MinSTR { get; set; }
+		public uint MinCON { get; set; }
+		public uint MinINT { get; set; }
+		public uint MinLCK { get; set; }
 
 		public bool DisableLogs { get; set; }
 		public bool OpenEntranceDoor { get; set; }
@@ -249,10 +258,7 @@ namespace SotnRandoTools.Configuration
 		public bool AxeArmorTips { get; set; }
 		public bool BoostAxeArmor{ get; set; }
 		public bool BoostFamiliars { get; set; }
-
 		public bool EnableAutosplitter { get; set; }
-
-		public bool ReviveRichter { get; set; }
 		public bool ContinuousWingsmash { get; set; }
 		public bool DynamicInterval { get; set; }
 		public bool RomhackMode { get; set; }
@@ -400,6 +406,47 @@ namespace SotnRandoTools.Configuration
 				default:
 					break;
 			}
+			switch (QuickMinStatSettings)
+			{
+				case 1:
+					MinHP = 80u;
+					MinMP = 30u;
+					MinHearts = 50u;
+					MinSTR = 7u;
+					MinCON = 7u;
+					MinINT = 7u;
+					MinLCK = 7u;
+					break;
+				case 2:
+					MinHP = 70u;
+					MinMP = 20u;
+					MinHearts = 50u;
+					MinSTR = 6u;
+					MinCON = 6u;
+					MinINT = 6u;
+					MinLCK = 6u;
+					break;
+				case 3:
+					MinHP = 100u;
+					MinMP = 25u;
+					MinHearts = 25u;
+					MinSTR = 5u;
+					MinCON = 5u;
+					MinINT = 5u;
+					MinLCK = 10u;
+					break;
+				case 4:
+					MinHP = 100u;
+					MinMP = 25u;
+					MinHearts = 25u;
+					MinSTR = 5u;
+					MinCON = 5u;
+					MinINT = 5u;
+					MinLCK = 10u;
+					break;
+				default:
+					break;
+			}
 		}
 
 		public void DefaultSettings()
@@ -418,6 +465,7 @@ namespace SotnRandoTools.Configuration
 			DisableLogs = false;
 
 			QuickSettings = 1;
+			QuickMinStatSettings = 1;
 			SetQuickSettings();
 			
 			#endregion
@@ -514,12 +562,15 @@ namespace SotnRandoTools.Configuration
 
 				//Normal Commands
 				new Action{Command = "merchant", Name="Merchant", AutoMayhemEnabled = true, Enabled = true, Meter = 4, AlertPath = Paths.PainTradeSound, Type = (int)Khaos.Enums.ActionType.Neutral, Cooldown = new System.TimeSpan(0, 0, 0), StartsOnCooldown = false },
-				new Action{Command = "maxmayhem", Name="Max Mayhem", AutoMayhemEnabled = true, Enabled = true, Meter = 0, AlertPath = Paths.MaxMayhemSound, Type = (int)Khaos.Enums.ActionType.Neutral, Cooldown = new System.TimeSpan(0, 2, 0), StartsOnCooldown = true},
-				new Action{Command = "heartsonly", Name="Hearts Only", AutoMayhemEnabled = true, Enabled = true, Meter = 6,  Duration = new System.TimeSpan(0, 1, 0), AlertPath = Paths.HeartsOnlySound, Type = (int)Khaos.Enums.ActionType.Neutral, Cooldown = new System.TimeSpan(0, 1, 15), StartsOnCooldown = false},
-				new Action{Command = "unarmed", Name="Unarmed", AutoMayhemEnabled = true, Enabled = true, Meter = 6, Duration = new System.TimeSpan(0, 1, 10), AlertPath = Paths.UnarmedSound, Type = (int)Khaos.Enums.ActionType.Neutral, Cooldown = new System.TimeSpan(0, 1, 15), StartsOnCooldown = false},
 				new Action{Command = "turbomode", Name="Turbo Mode", AutoMayhemEnabled = true, Enabled = true, Meter = 4, Duration = new System.TimeSpan(0, 1, 10), AlertPath = Paths.TurboModeSound, Type = (int)Khaos.Enums.ActionType.Neutral, Cooldown = new System.TimeSpan(0, 1, 15), StartsOnCooldown = false},
+				new Action{Command = "heartsonly", Name="Hearts Only", AutoMayhemEnabled = true, Enabled = true, Meter = 6,  Duration = new System.TimeSpan(0, 1, 0), AlertPath = Paths.HeartsOnlySound, Type = (int)Khaos.Enums.ActionType.Neutral, Cooldown = new System.TimeSpan(0, 1, 15), StartsOnCooldown = false},
+				//new Action{Command = "challenge", Name="Challenge", AutoMayhemEnabled = true, Enabled = true, Meter = 6, Duration = new System.TimeSpan(0, 1, 10), AlertPath = Paths.UnarmedSound, Type = (int)Khaos.Enums.ActionType.Neutral, Cooldown = new System.TimeSpan(0, 1, 15), StartsOnCooldown = false},
+				//new Action{Command = "oppsallsupers", Name="Opps All Supers", AutoMayhemEnabled = false, Enabled = false, Meter = 0, Duration = new System.TimeSpan(0, 1, 10), AlertPath = Paths.UnarmedSound, Type = (int)Khaos.Enums.ActionType.Neutral, Cooldown = new System.TimeSpan(0, 1, 15), StartsOnCooldown = false},
+				new Action{Command = "unarmed", Name="Unarmed", AutoMayhemEnabled = false, Enabled = false, Meter = 0, Duration = new System.TimeSpan(0, 1, 10), AlertPath = Paths.UnarmedSound, Type = (int)Khaos.Enums.ActionType.Neutral, Cooldown = new System.TimeSpan(0, 1, 15), StartsOnCooldown = false},
 				new Action{Command = "rushdown", Name="Rushdown", AutoMayhemEnabled = true, Enabled = true, Meter = 6, Duration = new System.TimeSpan(0, 1, 10), AlertPath = Paths.RushdownSound, Type = (int)Khaos.Enums.ActionType.Neutral, Cooldown = new System.TimeSpan(0, 1, 15), StartsOnCooldown = false},
-				new Action{Command = "swapstats", Name="Swap Stats", AutoMayhemEnabled = true, Enabled = true, Meter = 8, AlertPath = Paths.SwapStatsSound, Type = (int)Khaos.Enums.ActionType.Neutral, Cooldown = new System.TimeSpan(0, 0, 10), StartsOnCooldown = false},
+				new Action{Command = "maxmayhem", Name="Max Mayhem", AutoMayhemEnabled = true, Enabled = true, Meter = 0, AlertPath = Paths.MaxMayhemSound, Type = (int)Khaos.Enums.ActionType.Neutral, Cooldown = new System.TimeSpan(0, 2, 0), StartsOnCooldown = true},
+				new Action{Command = "swapstats", Name="Swap Stats", AutoMayhemEnabled = false, Enabled = false, Meter = 6, AlertPath = Paths.SwapStatsSound, Type = (int)Khaos.Enums.ActionType.Neutral, Cooldown = new System.TimeSpan(0, 0, 10), StartsOnCooldown = false},
+				new Action{Command = "swapinventory", Name="Swap Inventory", AutoMayhemEnabled = true, Enabled = true, Meter = 8, AlertPath = Paths.SwapStatsSound, Type = (int)Khaos.Enums.ActionType.Neutral, Cooldown = new System.TimeSpan(0, 0, 10), StartsOnCooldown = false},
 				new Action{Command = "swapequipment", Name="Swap Equipment", AutoMayhemEnabled = true, Enabled = true, Meter = 8, AlertPath = Paths.SwapEquipmentSound, Type = (int)Khaos.Enums.ActionType.Neutral, Cooldown = new System.TimeSpan(0, 6, 0), StartsOnCooldown = false},
 				new Action{Command = "swaprelics", Name="Swap Relics", AutoMayhemEnabled = false, Enabled = true, Meter = 12, AlertPath = Paths.SwapRelicsSound, Type = (int)Khaos.Enums.ActionType.Neutral, Cooldown = new System.TimeSpan(0, 35, 0), StartsOnCooldown = true},
 				new Action{Command = "pandemonium", Name="Pandemonium", AutoMayhemEnabled = false, Enabled = true, Meter = 12, AlertPath = Paths.PandemoniumSound, Type = (int)Khaos.Enums.ActionType.Neutral, Cooldown = new System.TimeSpan(0, 35, 0), StartsOnCooldown = true},

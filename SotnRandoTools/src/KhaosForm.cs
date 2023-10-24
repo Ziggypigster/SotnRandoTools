@@ -936,5 +936,46 @@ namespace SotnRandoTools
 		{
 			khaosControler.adjustEnemyRichterColor(true,true);
 		}
+		private void swapItemsButton_Click(object sender, EventArgs e)
+		{
+			if (toolConfig.Khaos.ControlPannelQueueActions)
+			{
+				khaosControler.EnqueueAction(new EventAddAction { Command = "swapitems", UserName = "Mayhem" });
+			}
+			else
+			{
+				khaosControler.SwapInventory();
+			}
+		}
+
+		private void saveColorTextBox_TextChanged(object sender, EventArgs e)
+		{
+			string boxText = saveColorTextBox.Text.Replace("%", "");
+			int saveColor;
+			bool result = Int32.TryParse(boxText, out saveColor);
+			if (result)
+			{
+				//khaosControler.SetSaveColorPalette((int) (saveColor));
+			}
+			else
+			{
+				saveColorTextBox.Text = "";
+			}
+		}
+
+		private void saveColorButton_Click(object sender, EventArgs e)
+		{
+			string boxText = saveColorTextBox.Text.Replace("%", "");
+			int saveColor;
+			bool result = Int32.TryParse(boxText, out saveColor);
+			if (result)
+			{
+				khaosControler.SetSaveColorPalette((int) (saveColor));
+			}
+			else if (boxText == "")
+			{
+				khaosControler.SetSaveColorPalette();
+			}
+		}
 	}
 }

@@ -11,13 +11,17 @@
 		//public const string SpawnEntity = "Spawn Entity";
 
 		public const string Merchant = "Merchant";
-		public const string MaxMayhem = "Max Mayhem";
+		
 		public const string TurboMode = "Turbo Mode";
 		public const string HeartsOnly = "Hearts Only";
+		public const string Challenge = "Challenge";
+		public const string OppsAllSupers = "Opps All Supers";
 		public const string Unarmed = "Unarmed";
 		public const string RushDown = "Rushdown";
 		public const string SwapStats = "Swap Stats";
+		public const string MaxMayhem = "Max Mayhem";
 		public const string SwapEquipment = "Swap Equipment";
+		public const string SwapInventory = "Swap Inventory";
 		public const string SwapRelics = "Swap Relics";
 		public const string Pandemonium = "Pandemonium";
 

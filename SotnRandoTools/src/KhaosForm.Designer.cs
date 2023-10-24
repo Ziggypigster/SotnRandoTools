@@ -33,6 +33,7 @@ namespace SotnRandoTools
             this.startButton = new System.Windows.Forms.Button();
             this.khaosTabs = new System.Windows.Forms.TabControl();
             this.generalTab = new System.Windows.Forms.TabPage();
+            this.challengeButton = new System.Windows.Forms.Button();
             this.trapButton = new System.Windows.Forms.Button();
             this.porgressionButton = new System.Windows.Forms.Button();
             this.equipmentButton = new System.Windows.Forms.Button();
@@ -48,7 +49,6 @@ namespace SotnRandoTools
             this.timeStopButton = new System.Windows.Forms.Button();
             this.speedButton = new System.Windows.Forms.Button();
             this.potionsButton = new System.Windows.Forms.Button();
-            this.unarmedButton = new System.Windows.Forms.Button();
             this.rushdownButton = new System.Windows.Forms.Button();
             this.confiscateButton = new System.Windows.Forms.Button();
             this.toughBossesButton = new System.Windows.Forms.Button();
@@ -58,7 +58,7 @@ namespace SotnRandoTools
             this.pandemoniumButton = new System.Windows.Forms.Button();
             this.swapRelicsButton = new System.Windows.Forms.Button();
             this.swapEquipmentButton = new System.Windows.Forms.Button();
-            this.swapStatsButton = new System.Windows.Forms.Button();
+            this.swapItemsButton = new System.Windows.Forms.Button();
             this.heartsOnlyButton = new System.Windows.Forms.Button();
             this.maxMayhemButton = new System.Windows.Forms.Button();
             this.merchantButton = new System.Windows.Forms.Button();
@@ -90,7 +90,11 @@ namespace SotnRandoTools
             this.luckyButton = new System.Windows.Forms.Button();
             this.spellCasterButton = new System.Windows.Forms.Button();
             this.faceTankButton = new System.Windows.Forms.Button();
+            this.deprecatedTab = new System.Windows.Forms.TabPage();
+            this.unarmedButton = new System.Windows.Forms.Button();
+            this.swapStatsButton = new System.Windows.Forms.Button();
             this.testingTab = new System.Windows.Forms.TabPage();
+            this.enemyRichterButton = new System.Windows.Forms.Button();
             this.richterColorTextBox = new System.Windows.Forms.TextBox();
             this.spawnEntityButton = new System.Windows.Forms.Button();
             this.richterColorButton = new System.Windows.Forms.Button();
@@ -101,10 +105,12 @@ namespace SotnRandoTools
             this.connectButton = new System.Windows.Forms.Button();
             this.autoMayhemButton = new System.Windows.Forms.Button();
             this.axeArmorStartButton = new System.Windows.Forms.Button();
-            this.enemyRichterButton = new System.Windows.Forms.Button();
+            this.saveColorButton = new System.Windows.Forms.Button();
+            this.saveColorTextBox = new System.Windows.Forms.TextBox();
             this.khaosTabs.SuspendLayout();
             this.generalTab.SuspendLayout();
             this.debugTab.SuspendLayout();
+            this.deprecatedTab.SuspendLayout();
             this.testingTab.SuspendLayout();
             this.modePanel.SuspendLayout();
             this.SuspendLayout();
@@ -130,6 +136,7 @@ namespace SotnRandoTools
             // 
             this.khaosTabs.Controls.Add(this.generalTab);
             this.khaosTabs.Controls.Add(this.debugTab);
+            this.khaosTabs.Controls.Add(this.deprecatedTab);
             this.khaosTabs.Controls.Add(this.testingTab);
             this.khaosTabs.Location = new System.Drawing.Point(12, 112);
             this.khaosTabs.Name = "khaosTabs";
@@ -140,6 +147,7 @@ namespace SotnRandoTools
             // generalTab
             // 
             this.generalTab.BackColor = System.Drawing.Color.Black;
+            this.generalTab.Controls.Add(this.challengeButton);
             this.generalTab.Controls.Add(this.trapButton);
             this.generalTab.Controls.Add(this.porgressionButton);
             this.generalTab.Controls.Add(this.equipmentButton);
@@ -155,7 +163,6 @@ namespace SotnRandoTools
             this.generalTab.Controls.Add(this.timeStopButton);
             this.generalTab.Controls.Add(this.speedButton);
             this.generalTab.Controls.Add(this.potionsButton);
-            this.generalTab.Controls.Add(this.unarmedButton);
             this.generalTab.Controls.Add(this.rushdownButton);
             this.generalTab.Controls.Add(this.confiscateButton);
             this.generalTab.Controls.Add(this.toughBossesButton);
@@ -165,7 +172,7 @@ namespace SotnRandoTools
             this.generalTab.Controls.Add(this.pandemoniumButton);
             this.generalTab.Controls.Add(this.swapRelicsButton);
             this.generalTab.Controls.Add(this.swapEquipmentButton);
-            this.generalTab.Controls.Add(this.swapStatsButton);
+            this.generalTab.Controls.Add(this.swapItemsButton);
             this.generalTab.Controls.Add(this.heartsOnlyButton);
             this.generalTab.Controls.Add(this.maxMayhemButton);
             this.generalTab.Controls.Add(this.merchantButton);
@@ -177,6 +184,21 @@ namespace SotnRandoTools
             this.generalTab.Size = new System.Drawing.Size(418, 348);
             this.generalTab.TabIndex = 0;
             this.generalTab.Text = "Mayhem";
+            // 
+            // challengeButton
+            // 
+            this.challengeButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(21)))), ((int)(((byte)(57)))));
+            this.challengeButton.FlatAppearance.BorderSize = 2;
+            this.challengeButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
+            this.challengeButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
+            this.challengeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.challengeButton.ForeColor = System.Drawing.Color.White;
+            this.challengeButton.Location = new System.Drawing.Point(3, 146);
+            this.challengeButton.Name = "challengeButton";
+            this.challengeButton.Size = new System.Drawing.Size(134, 26);
+            this.challengeButton.TabIndex = 93;
+            this.challengeButton.Text = "Challenge";
+            this.challengeButton.UseVisualStyleBackColor = true;
             // 
             // trapButton
             // 
@@ -282,7 +304,7 @@ namespace SotnRandoTools
             this.turboModeButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
             this.turboModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.turboModeButton.ForeColor = System.Drawing.Color.White;
-            this.turboModeButton.Location = new System.Drawing.Point(3, 146);
+            this.turboModeButton.Location = new System.Drawing.Point(3, 50);
             this.turboModeButton.Name = "turboModeButton";
             this.turboModeButton.Size = new System.Drawing.Size(134, 26);
             this.turboModeButton.TabIndex = 60;
@@ -418,22 +440,6 @@ namespace SotnRandoTools
             this.potionsButton.UseVisualStyleBackColor = true;
             this.potionsButton.Click += new System.EventHandler(this.potionsButton_Click);
             // 
-            // unarmedButton
-            // 
-            this.unarmedButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(21)))), ((int)(((byte)(57)))));
-            this.unarmedButton.FlatAppearance.BorderSize = 2;
-            this.unarmedButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
-            this.unarmedButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
-            this.unarmedButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.unarmedButton.ForeColor = System.Drawing.Color.White;
-            this.unarmedButton.Location = new System.Drawing.Point(3, 114);
-            this.unarmedButton.Name = "unarmedButton";
-            this.unarmedButton.Size = new System.Drawing.Size(134, 26);
-            this.unarmedButton.TabIndex = 46;
-            this.unarmedButton.Text = "Unarmed";
-            this.unarmedButton.UseVisualStyleBackColor = true;
-            this.unarmedButton.Click += new System.EventHandler(this.unarmedButton_Click);
-            // 
             // rushdownButton
             // 
             this.rushdownButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(21)))), ((int)(((byte)(57)))));
@@ -442,7 +448,7 @@ namespace SotnRandoTools
             this.rushdownButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
             this.rushdownButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rushdownButton.ForeColor = System.Drawing.Color.White;
-            this.rushdownButton.Location = new System.Drawing.Point(3, 178);
+            this.rushdownButton.Location = new System.Drawing.Point(3, 114);
             this.rushdownButton.Name = "rushdownButton";
             this.rushdownButton.Size = new System.Drawing.Size(134, 26);
             this.rushdownButton.TabIndex = 45;
@@ -578,21 +584,21 @@ namespace SotnRandoTools
             this.swapEquipmentButton.UseVisualStyleBackColor = true;
             this.swapEquipmentButton.Click += new System.EventHandler(this.swapEquipmentButton_Click);
             // 
-            // swapStatsButton
+            // swapItemsButton
             // 
-            this.swapStatsButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(21)))), ((int)(((byte)(57)))));
-            this.swapStatsButton.FlatAppearance.BorderSize = 2;
-            this.swapStatsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
-            this.swapStatsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
-            this.swapStatsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.swapStatsButton.ForeColor = System.Drawing.Color.White;
-            this.swapStatsButton.Location = new System.Drawing.Point(3, 210);
-            this.swapStatsButton.Name = "swapStatsButton";
-            this.swapStatsButton.Size = new System.Drawing.Size(134, 26);
-            this.swapStatsButton.TabIndex = 36;
-            this.swapStatsButton.Text = "Swap Stats";
-            this.swapStatsButton.UseVisualStyleBackColor = true;
-            this.swapStatsButton.Click += new System.EventHandler(this.swapStatsButton_Click);
+            this.swapItemsButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(21)))), ((int)(((byte)(57)))));
+            this.swapItemsButton.FlatAppearance.BorderSize = 2;
+            this.swapItemsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
+            this.swapItemsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
+            this.swapItemsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.swapItemsButton.ForeColor = System.Drawing.Color.White;
+            this.swapItemsButton.Location = new System.Drawing.Point(4, 210);
+            this.swapItemsButton.Name = "swapItemsButton";
+            this.swapItemsButton.Size = new System.Drawing.Size(134, 26);
+            this.swapItemsButton.TabIndex = 36;
+            this.swapItemsButton.Text = "Swap Inventory";
+            this.swapItemsButton.UseVisualStyleBackColor = true;
+            this.swapItemsButton.Click += new System.EventHandler(this.swapItemsButton_Click);
             // 
             // heartsOnlyButton
             // 
@@ -602,7 +608,7 @@ namespace SotnRandoTools
             this.heartsOnlyButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
             this.heartsOnlyButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.heartsOnlyButton.ForeColor = System.Drawing.Color.White;
-            this.heartsOnlyButton.Location = new System.Drawing.Point(3, 82);
+            this.heartsOnlyButton.Location = new System.Drawing.Point(4, 82);
             this.heartsOnlyButton.Name = "heartsOnlyButton";
             this.heartsOnlyButton.Size = new System.Drawing.Size(134, 26);
             this.heartsOnlyButton.TabIndex = 35;
@@ -618,7 +624,7 @@ namespace SotnRandoTools
             this.maxMayhemButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
             this.maxMayhemButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.maxMayhemButton.ForeColor = System.Drawing.Color.White;
-            this.maxMayhemButton.Location = new System.Drawing.Point(3, 50);
+            this.maxMayhemButton.Location = new System.Drawing.Point(3, 178);
             this.maxMayhemButton.Name = "maxMayhemButton";
             this.maxMayhemButton.Size = new System.Drawing.Size(134, 26);
             this.maxMayhemButton.TabIndex = 34;
@@ -1109,9 +1115,55 @@ namespace SotnRandoTools
             this.faceTankButton.UseVisualStyleBackColor = true;
             this.faceTankButton.Click += new System.EventHandler(this.faceTankButton_Click);
             // 
+            // deprecatedTab
+            // 
+            this.deprecatedTab.BackColor = System.Drawing.Color.Black;
+            this.deprecatedTab.Controls.Add(this.unarmedButton);
+            this.deprecatedTab.Controls.Add(this.swapStatsButton);
+            this.deprecatedTab.Location = new System.Drawing.Point(4, 22);
+            this.deprecatedTab.Name = "deprecatedTab";
+            this.deprecatedTab.Padding = new System.Windows.Forms.Padding(3);
+            this.deprecatedTab.Size = new System.Drawing.Size(418, 348);
+            this.deprecatedTab.TabIndex = 3;
+            this.deprecatedTab.Text = "Deprecated";
+            // 
+            // unarmedButton
+            // 
+            this.unarmedButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(21)))), ((int)(((byte)(57)))));
+            this.unarmedButton.FlatAppearance.BorderSize = 2;
+            this.unarmedButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
+            this.unarmedButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
+            this.unarmedButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.unarmedButton.ForeColor = System.Drawing.Color.White;
+            this.unarmedButton.Location = new System.Drawing.Point(6, 148);
+            this.unarmedButton.Name = "unarmedButton";
+            this.unarmedButton.Size = new System.Drawing.Size(134, 26);
+            this.unarmedButton.TabIndex = 92;
+            this.unarmedButton.Text = "Unarmed";
+            this.unarmedButton.UseVisualStyleBackColor = true;
+            this.unarmedButton.Click += new System.EventHandler(this.unarmedButton_Click);
+            // 
+            // swapStatsButton
+            // 
+            this.swapStatsButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(21)))), ((int)(((byte)(57)))));
+            this.swapStatsButton.FlatAppearance.BorderSize = 2;
+            this.swapStatsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
+            this.swapStatsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
+            this.swapStatsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.swapStatsButton.ForeColor = System.Drawing.Color.White;
+            this.swapStatsButton.Location = new System.Drawing.Point(6, 180);
+            this.swapStatsButton.Name = "swapStatsButton";
+            this.swapStatsButton.Size = new System.Drawing.Size(134, 26);
+            this.swapStatsButton.TabIndex = 91;
+            this.swapStatsButton.Text = "Swap Stats";
+            this.swapStatsButton.UseVisualStyleBackColor = true;
+            this.swapStatsButton.Click += new System.EventHandler(this.swapStatsButton_Click);
+            // 
             // testingTab
             // 
             this.testingTab.BackColor = System.Drawing.Color.Black;
+            this.testingTab.Controls.Add(this.saveColorTextBox);
+            this.testingTab.Controls.Add(this.saveColorButton);
             this.testingTab.Controls.Add(this.enemyRichterButton);
             this.testingTab.Controls.Add(this.richterColorTextBox);
             this.testingTab.Controls.Add(this.spawnEntityButton);
@@ -1124,9 +1176,25 @@ namespace SotnRandoTools
             this.testingTab.TabIndex = 2;
             this.testingTab.Text = "Testing";
             // 
+            // enemyRichterButton
+            // 
+            this.enemyRichterButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(21)))), ((int)(((byte)(57)))));
+            this.enemyRichterButton.FlatAppearance.BorderSize = 2;
+            this.enemyRichterButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
+            this.enemyRichterButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
+            this.enemyRichterButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.enemyRichterButton.ForeColor = System.Drawing.Color.White;
+            this.enemyRichterButton.Location = new System.Drawing.Point(276, 18);
+            this.enemyRichterButton.Name = "enemyRichterButton";
+            this.enemyRichterButton.Size = new System.Drawing.Size(134, 26);
+            this.enemyRichterButton.TabIndex = 97;
+            this.enemyRichterButton.Text = "Enemy Richter Color";
+            this.enemyRichterButton.UseVisualStyleBackColor = true;
+            this.enemyRichterButton.Click += new System.EventHandler(this.enemyRichter_Click);
+            // 
             // richterColorTextBox
             // 
-            this.richterColorTextBox.Location = new System.Drawing.Point(156, 21);
+            this.richterColorTextBox.Location = new System.Drawing.Point(156, 20);
             this.richterColorTextBox.Name = "richterColorTextBox";
             this.richterColorTextBox.Size = new System.Drawing.Size(100, 21);
             this.richterColorTextBox.TabIndex = 96;
@@ -1166,7 +1234,7 @@ namespace SotnRandoTools
             // 
             // spawnEntityIDTextBox
             // 
-            this.spawnEntityIDTextBox.Location = new System.Drawing.Point(156, 53);
+            this.spawnEntityIDTextBox.Location = new System.Drawing.Point(156, 52);
             this.spawnEntityIDTextBox.Name = "spawnEntityIDTextBox";
             this.spawnEntityIDTextBox.Size = new System.Drawing.Size(100, 21);
             this.spawnEntityIDTextBox.TabIndex = 93;
@@ -1256,21 +1324,29 @@ namespace SotnRandoTools
             this.axeArmorStartButton.UseVisualStyleBackColor = true;
             this.axeArmorStartButton.Click += new System.EventHandler(this.axeArmorStartButton_Click);
             // 
-            // enemyRichterButton
+            // saveColorButton
             // 
-            this.enemyRichterButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(21)))), ((int)(((byte)(57)))));
-            this.enemyRichterButton.FlatAppearance.BorderSize = 2;
-            this.enemyRichterButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
-            this.enemyRichterButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
-            this.enemyRichterButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.enemyRichterButton.ForeColor = System.Drawing.Color.White;
-            this.enemyRichterButton.Location = new System.Drawing.Point(276, 18);
-            this.enemyRichterButton.Name = "enemyRichterButton";
-            this.enemyRichterButton.Size = new System.Drawing.Size(134, 26);
-            this.enemyRichterButton.TabIndex = 97;
-            this.enemyRichterButton.Text = "Enemy Richter Color";
-            this.enemyRichterButton.UseVisualStyleBackColor = true;
-            this.enemyRichterButton.Click += new System.EventHandler(this.enemyRichter_Click);
+            this.saveColorButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(21)))), ((int)(((byte)(57)))));
+            this.saveColorButton.FlatAppearance.BorderSize = 2;
+            this.saveColorButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
+            this.saveColorButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
+            this.saveColorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.saveColorButton.ForeColor = System.Drawing.Color.White;
+            this.saveColorButton.Location = new System.Drawing.Point(3, 82);
+            this.saveColorButton.Name = "saveColorButton";
+            this.saveColorButton.Size = new System.Drawing.Size(134, 26);
+            this.saveColorButton.TabIndex = 98;
+            this.saveColorButton.Text = "Save Color";
+            this.saveColorButton.UseVisualStyleBackColor = true;
+            this.saveColorButton.Click += new System.EventHandler(this.saveColorButton_Click);
+            // 
+            // saveColorTextBox
+            // 
+            this.saveColorTextBox.Location = new System.Drawing.Point(156, 85);
+            this.saveColorTextBox.Name = "saveColorTextBox";
+            this.saveColorTextBox.Size = new System.Drawing.Size(100, 21);
+            this.saveColorTextBox.TabIndex = 99;
+            this.saveColorTextBox.TextChanged += new System.EventHandler(this.saveColorTextBox_TextChanged);
             // 
             // KhaosForm
             // 
@@ -1297,6 +1373,7 @@ namespace SotnRandoTools
             this.khaosTabs.ResumeLayout(false);
             this.generalTab.ResumeLayout(false);
             this.debugTab.ResumeLayout(false);
+            this.deprecatedTab.ResumeLayout(false);
             this.testingTab.ResumeLayout(false);
             this.testingTab.PerformLayout();
             this.modePanel.ResumeLayout(false);
@@ -1320,9 +1397,8 @@ namespace SotnRandoTools
 		private System.Windows.Forms.Button pandemoniumButton;
 		private System.Windows.Forms.Button swapRelicsButton;
 		private System.Windows.Forms.Button swapEquipmentButton;
-		private System.Windows.Forms.Button swapStatsButton;
+		private System.Windows.Forms.Button swapItemsButton;
 		private System.Windows.Forms.Button heartsOnlyButton;
-		private System.Windows.Forms.Button unarmedButton;
 		private System.Windows.Forms.Button rushdownButton;
 		private System.Windows.Forms.Button speedButton;
 		private System.Windows.Forms.Button potionsButton;
@@ -1378,6 +1454,12 @@ namespace SotnRandoTools
 		private System.Windows.Forms.TextBox spawnEntityIDTextBox;
 		private System.Windows.Forms.Button axeArmorStartButton;
 		private System.Windows.Forms.Button enemyRichterButton;
+		private System.Windows.Forms.TabPage deprecatedTab;
+		private System.Windows.Forms.Button swapStatsButton;
+		private System.Windows.Forms.Button unarmedButton;
+		private System.Windows.Forms.Button challengeButton;
+		private System.Windows.Forms.TextBox saveColorTextBox;
+		private System.Windows.Forms.Button saveColorButton;
 	}
 }
 
