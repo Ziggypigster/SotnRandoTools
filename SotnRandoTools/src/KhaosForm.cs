@@ -235,6 +235,18 @@ namespace SotnRandoTools
 				khaosControler.MaxMayhem();
 			}
 		}
+		private void challengeButton_Click(object sender, EventArgs e)
+		{
+			if (toolConfig.Khaos.ControlPannelQueueActions)
+			{
+				khaosControler.EnqueueAction(new EventAddAction { Command = "challenge", UserName = "Mayhem" });
+			}
+			else
+			{
+				khaosControler.Challenge();
+			}
+		}
+
 		private void heartsOnlyButton_Click(object sender, EventArgs e)
 		{
 			if (toolConfig.Khaos.ControlPannelQueueActions)
@@ -940,7 +952,7 @@ namespace SotnRandoTools
 		{
 			if (toolConfig.Khaos.ControlPannelQueueActions)
 			{
-				khaosControler.EnqueueAction(new EventAddAction { Command = "swapitems", UserName = "Mayhem" });
+				khaosControler.EnqueueAction(new EventAddAction { Command = "swapinventory", UserName = "Mayhem" });
 			}
 			else
 			{
@@ -975,6 +987,32 @@ namespace SotnRandoTools
 			else if (boxText == "")
 			{
 				khaosControler.SetSaveColorPalette();
+			}
+		}
+
+		private void spawnThrowableTextbox_TextChanged(object sender, EventArgs e)
+		{
+			string boxText = spawnThrowableTextbox.Text.Replace("%", "");
+			int saveColor;
+			bool result = Int32.TryParse(boxText, out saveColor);
+			if (result)
+			{
+				//khaosControler.SetSaveColorPalette((int) (saveColor));
+			}
+			else
+			{
+				spawnThrowableTextbox.Text = "";
+			}
+		}
+
+		private void spawnThrowableButton_Click(object sender, EventArgs e)
+		{
+			string boxText = spawnThrowableTextbox.Text.Replace("%", "");
+			int spawnThrowable;
+			bool result = Int32.TryParse(boxText, out spawnThrowable);
+			if (result)
+			{
+				toolConfig.Khaos.SpawnEntityID = (int) (spawnThrowable);
 			}
 		}
 	}

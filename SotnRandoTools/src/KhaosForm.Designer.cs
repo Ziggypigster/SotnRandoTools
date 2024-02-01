@@ -94,6 +94,8 @@ namespace SotnRandoTools
             this.unarmedButton = new System.Windows.Forms.Button();
             this.swapStatsButton = new System.Windows.Forms.Button();
             this.testingTab = new System.Windows.Forms.TabPage();
+            this.saveColorTextBox = new System.Windows.Forms.TextBox();
+            this.saveColorButton = new System.Windows.Forms.Button();
             this.enemyRichterButton = new System.Windows.Forms.Button();
             this.richterColorTextBox = new System.Windows.Forms.TextBox();
             this.spawnEntityButton = new System.Windows.Forms.Button();
@@ -105,8 +107,8 @@ namespace SotnRandoTools
             this.connectButton = new System.Windows.Forms.Button();
             this.autoMayhemButton = new System.Windows.Forms.Button();
             this.axeArmorStartButton = new System.Windows.Forms.Button();
-            this.saveColorButton = new System.Windows.Forms.Button();
-            this.saveColorTextBox = new System.Windows.Forms.TextBox();
+            this.setThrowableButton = new System.Windows.Forms.Button();
+            this.spawnThrowableTextbox = new System.Windows.Forms.TextBox();
             this.khaosTabs.SuspendLayout();
             this.generalTab.SuspendLayout();
             this.debugTab.SuspendLayout();
@@ -199,6 +201,7 @@ namespace SotnRandoTools
             this.challengeButton.TabIndex = 93;
             this.challengeButton.Text = "Challenge";
             this.challengeButton.UseVisualStyleBackColor = true;
+            this.challengeButton.Click += new System.EventHandler(this.challengeButton_Click);
             // 
             // trapButton
             // 
@@ -1162,6 +1165,8 @@ namespace SotnRandoTools
             // testingTab
             // 
             this.testingTab.BackColor = System.Drawing.Color.Black;
+            this.testingTab.Controls.Add(this.spawnThrowableTextbox);
+            this.testingTab.Controls.Add(this.setThrowableButton);
             this.testingTab.Controls.Add(this.saveColorTextBox);
             this.testingTab.Controls.Add(this.saveColorButton);
             this.testingTab.Controls.Add(this.enemyRichterButton);
@@ -1175,6 +1180,30 @@ namespace SotnRandoTools
             this.testingTab.Size = new System.Drawing.Size(418, 348);
             this.testingTab.TabIndex = 2;
             this.testingTab.Text = "Testing";
+            // 
+            // saveColorTextBox
+            // 
+            this.saveColorTextBox.Location = new System.Drawing.Point(156, 85);
+            this.saveColorTextBox.Name = "saveColorTextBox";
+            this.saveColorTextBox.Size = new System.Drawing.Size(100, 21);
+            this.saveColorTextBox.TabIndex = 99;
+            this.saveColorTextBox.TextChanged += new System.EventHandler(this.saveColorTextBox_TextChanged);
+            // 
+            // saveColorButton
+            // 
+            this.saveColorButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(21)))), ((int)(((byte)(57)))));
+            this.saveColorButton.FlatAppearance.BorderSize = 2;
+            this.saveColorButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
+            this.saveColorButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
+            this.saveColorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.saveColorButton.ForeColor = System.Drawing.Color.White;
+            this.saveColorButton.Location = new System.Drawing.Point(3, 82);
+            this.saveColorButton.Name = "saveColorButton";
+            this.saveColorButton.Size = new System.Drawing.Size(134, 26);
+            this.saveColorButton.TabIndex = 98;
+            this.saveColorButton.Text = "Save Color";
+            this.saveColorButton.UseVisualStyleBackColor = true;
+            this.saveColorButton.Click += new System.EventHandler(this.saveColorButton_Click);
             // 
             // enemyRichterButton
             // 
@@ -1324,29 +1353,29 @@ namespace SotnRandoTools
             this.axeArmorStartButton.UseVisualStyleBackColor = true;
             this.axeArmorStartButton.Click += new System.EventHandler(this.axeArmorStartButton_Click);
             // 
-            // saveColorButton
+            // setThrowableButton
             // 
-            this.saveColorButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(21)))), ((int)(((byte)(57)))));
-            this.saveColorButton.FlatAppearance.BorderSize = 2;
-            this.saveColorButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
-            this.saveColorButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
-            this.saveColorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.saveColorButton.ForeColor = System.Drawing.Color.White;
-            this.saveColorButton.Location = new System.Drawing.Point(3, 82);
-            this.saveColorButton.Name = "saveColorButton";
-            this.saveColorButton.Size = new System.Drawing.Size(134, 26);
-            this.saveColorButton.TabIndex = 98;
-            this.saveColorButton.Text = "Save Color";
-            this.saveColorButton.UseVisualStyleBackColor = true;
-            this.saveColorButton.Click += new System.EventHandler(this.saveColorButton_Click);
+            this.setThrowableButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(21)))), ((int)(((byte)(57)))));
+            this.setThrowableButton.FlatAppearance.BorderSize = 2;
+            this.setThrowableButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
+            this.setThrowableButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
+            this.setThrowableButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.setThrowableButton.ForeColor = System.Drawing.Color.White;
+            this.setThrowableButton.Location = new System.Drawing.Point(3, 114);
+            this.setThrowableButton.Name = "setThrowableButton";
+            this.setThrowableButton.Size = new System.Drawing.Size(134, 26);
+            this.setThrowableButton.TabIndex = 100;
+            this.setThrowableButton.Text = "Set A.Armor Throw";
+            this.setThrowableButton.UseVisualStyleBackColor = true;
+            this.setThrowableButton.Click += new System.EventHandler(this.spawnThrowableButton_Click);
             // 
-            // saveColorTextBox
+            // spawnThrowableTextbox
             // 
-            this.saveColorTextBox.Location = new System.Drawing.Point(156, 85);
-            this.saveColorTextBox.Name = "saveColorTextBox";
-            this.saveColorTextBox.Size = new System.Drawing.Size(100, 21);
-            this.saveColorTextBox.TabIndex = 99;
-            this.saveColorTextBox.TextChanged += new System.EventHandler(this.saveColorTextBox_TextChanged);
+            this.spawnThrowableTextbox.Location = new System.Drawing.Point(156, 116);
+            this.spawnThrowableTextbox.Name = "spawnThrowableTextbox";
+            this.spawnThrowableTextbox.Size = new System.Drawing.Size(100, 21);
+            this.spawnThrowableTextbox.TabIndex = 101;
+            this.spawnThrowableTextbox.TextChanged += new System.EventHandler(this.spawnThrowableTextbox_TextChanged);
             // 
             // KhaosForm
             // 
@@ -1460,6 +1489,8 @@ namespace SotnRandoTools
 		private System.Windows.Forms.Button challengeButton;
 		private System.Windows.Forms.TextBox saveColorTextBox;
 		private System.Windows.Forms.Button saveColorButton;
+		private System.Windows.Forms.TextBox spawnThrowableTextbox;
+		private System.Windows.Forms.Button setThrowableButton;
 	}
 }
 

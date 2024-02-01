@@ -2,10 +2,17 @@
 {
 	public static class Paths
 	{
+		//Debug
+		public const string LibrarySound = "./ExternalTools/SotnRandoTools/Sounds/Library.mp3";
+		public const string MinStatsSound = "./ExternalTools/SotnRandoTools/Sounds/MinStats.mp3";
+		public const string RewindSound = "./ExternalTools/SotnRandoTools/Sounds/Rewind.mp3";
 
+		//Mayhe
 		public const string PainTradeSound = "./ExternalTools/SotnRandoTools/Sounds/PainTrade.mp3";
 		public const string MaxMayhemSound = "./ExternalTools/SotnRandoTools/Sounds/MaxMayhem.mp3";
 		public const string HeartsOnlySound = "./ExternalTools/SotnRandoTools/Sounds/HeartsOnly.mp3";
+		public const string ChallengeSound = "./ExternalTools/SotnRandoTools/Sounds/Challenge.mp3";
+		public const string OppsAllSupersSound = "./ExternalTools/SotnRandoTools/Sounds/OppsAllSupers.mp3";
 		public const string UnarmedSound = "./ExternalTools/SotnRandoTools/Sounds/Unarmed.mp3";
 		public const string TurboModeSound = "./ExternalTools/SotnRandoTools/Sounds/TurboMode.mp3";
 		public const string RushdownSound = "./ExternalTools/SotnRandoTools/Sounds/Rushdown.mp3";

@@ -1273,6 +1273,12 @@ namespace SotnRandoTools.Constants
 		public static int DisableRightClip = 5634;
 		public static int DisableLeftClip = 5634;
 
+		//public static int AxeArmorInvincibility = 0x262164;
+		//public const  int AxeArmorInvincibiltyAddress = 0x072F1C;
+
+		public static int AxeArmorMeleeStartAddress = 475033;
+		public static int AxeArmorThrowable1StartAddress = 475269;
+		public static int AxeArmorThrowable2StartAddress = 475597;
 		public static int AxeArmorHand1EffectAddress = 476724;
 		public static int AxeArmorHand2EffectAddress = 476912;
 		public static int AxeArmorEffectStartAddress = 477100;
@@ -1281,6 +1287,7 @@ namespace SotnRandoTools.Constants
 
 		public const string AxeArmorLibrary = "AxeArmorLibrary";
 		public const string AxeArmorHeartName = "AxeArmorHeart";
+		public const string AxeArmorInvincibilityName = "AxeArmorInvincibility";
 		public const string AxeArmorHeartLockName = "AxeArmorHeartLock";
 		public const string AxeArmorEffectName = "AxeArmorEffect";
 
